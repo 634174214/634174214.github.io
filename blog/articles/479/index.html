@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="如何使用phpquery? | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>如何使用phpquery? | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="phpquery，PhpQuery"/>
+<meta name="description" content="phpQuery是一个基于PHP的服务端开源项目，它可以让PHP开发人员轻松处理DOM文档内容。更有意思的是，它采用了jQuery的思想，使得可以像使用jQuery一样处理页面内容，获取想要的页面信息。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 479,
+            article_title: '如何使用phpquery?',
+            article_desc: 'phpQuery是一个基于PHP的服务端开源项目，它可以让PHP开发人员轻松处理DOM文档内容。更有意思的是，它采用了jQuery的思想，使得可以像使用jQuery一样处理页面内容，获取想要的页面信息。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal active">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" class="active">
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/php">PHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">如何使用phpquery?</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>9995</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>695</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2024-03-15 14:42:51</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>PHPQuery介绍与安装</h2><div>PHPQuery是一个开源的PHP类库，它基于jQuery语法，允许PHP开发者使用CSS选择器来操作HTML和XML文档，同时也提供了一些常用的DOM操作方法，例如获取元素、遍历、修改元素属性、添加、删除、复制元素等。PHPQuery库的使用不需要外部依赖或者扩展，仅需要使用Core API即可完成网页爬取等操作。</div><div>PHPQuery的最新版本可以在GitHub上下载。安装PHPQuery只需要下载zip文件，并将其解压缩到你的项目文件夹即可。示例代码：</div><div><pre type="PHP"><code><span class="hljs-attribute">require_once</span> <span class="hljs-string">'phpquery/phpQuery/phpQuery.php'</span>;</code></pre></div><p>gitee下载：<a href="https://gitee.com/mirrors/phpquery" target="_blank">https://gitee.com/mirrors/phpquery</a></p><h2>简单使用</h2><h3>加载HTML文档</h3><div>使用phpQuery::newDocumentHTML()方法可以将HTML文档加载到phpQuery对象中，并且可以传入第二个参数，指定了在解析文档时的字符编码。</div><div><pre type="Html"><code>$html = '<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>PHPQuery Test<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello PHPQuery！<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>';
+$doc = phpQuery::newDocumentHTML($html, 'utf-8');</code></pre></div><h3>使用CSS选择器获取元素</h3><p>通过使用CSS选择器，可以获取网页中所有符合要求的元素并且在phpQuery对象中进行编辑。</p><pre type="PHP"><code><span class="hljs-comment">//获取HTML文档中的h1元素</span>
+$h1 = $doc-&gt;find(<span class="hljs-string">'h1'</span>);</code></pre><p>注意：此时获得的$h1是一个对象，获取元素建议使用pq。</p><h3>获取和修改元素属性</h3><p>phpQuery提供了attr()和removeAttr()方法来获取和移除元素的属性，也支持使用addAttr()和attr()方法来添加和修改元素的属性。</p><div><pre type="Html"><code><span class="hljs-comment">//获取元素的title属性</span>
+$title = $h1-&gt;attr(<span class="hljs-string">'title'</span>);
+<span class="hljs-comment">//设置元素的title属性</span>
+$h1-&gt;attr(<span class="hljs-string">'title'</span>, <span class="hljs-string">'PHPQuery Test'</span>);
+<span class="hljs-comment">//移除元素的title属性</span>
+$h1-&gt;removeAttr(<span class="hljs-string">'title'</span>);</code></pre></div><h3>遍历和复制元素</h3><p>phpQuery还提供了each()方法来遍历匹配的元素，clone()方法来复制元素。</p><div><pre type="Html"><code><span class="hljs-comment">//遍历所有h5元素</span>
+$h5 = $doc-&gt;find(<span class="hljs-string">'h5'</span>);
+$h5-&gt;each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$index, $element</span>) </span>{
+    <span class="hljs-keyword">echo</span> $element-&gt;tagName . <span class="hljs-string">'&lt;br&gt;'</span>;
+});
+<span class="hljs-comment">//复制元素</span>
+$h6 = $h5-&gt;clone();</code></pre></div><h3>网页爬取实例</h3><p>通过使用以上几个方法，我们可以轻松实现网页爬取。例如，我们想爬取百度首页上的Logo图片。我们可以再次使用find()方法来获取Logo图片元素，并使用attr()方法获取图片的链接地址，最终使用file_gets_content()函数下载该图片。具体代码如下：</p><div><pre type="PHP"><code><span class="hljs-comment">//载入百度首页</span>
+$html = file_get_contents(<span class="hljs-string">'https://www.baidu.com'</span>);
+$doc = phpQuery::newDocumentHTML($html);
+<span class="hljs-comment">//获取百度首页Logo图片链接地址</span>
+$img_url = $doc-&gt;find(<span class="hljs-string">'#lg img'</span>)-&gt;attr(<span class="hljs-string">'src'</span>);
+<span class="hljs-comment">//通过file_get_contents()函数获取图片内容并保存到本地</span>
+$img_content = file_get_contents($img_url);
+file_put_contents(<span class="hljs-string">'baidu_logo.jpeg'</span>, $img_content);</code></pre></div><h3>其他示例</h3><div>比如有如下结构：</div><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span><span class="hljs-tag">&lt;/&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"main"</span>&gt;</span><span class="hljs-tag">&lt;/&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span><span class="hljs-tag">&lt;/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre><p>我要先获取body中所有的元素，然后再删除掉header和footer，那么我该这么操作：</p><pre type="PHP"><code> $doc = phpQuery::newDocumentHTML($html, <span class="hljs-string">'utf-8'</span>);
+$bodyDom = p<span class="hljs-string">q("body", $doc)</span>;
+
+ <span class="hljs-regexp">//</span> 从body中删除.footer和header
+p<span class="hljs-string">q('.header', $bodyDom)</span>-&gt;remove();
+p<span class="hljs-string">q('.footer', $bodyDom)</span>-&gt;remove();
+
+ <span class="hljs-regexp">//</span> 获取body的html字符串
+$body = $bodyDom-&gt;html();</code></pre><p>其他例子：</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">require</span>(<span class="hljs-string">'phpQuery/phpQuery.php'</span>);
+<span class="hljs-comment">// INITIALIZE IT</span>
+<span class="hljs-comment">// phpQuery::newDocumentHTML($markup);</span>
+<span class="hljs-comment">// phpQuery::newDocumentXML();</span>
+<span class="hljs-comment">// phpQuery::newDocumentFileXHTML('test.html');</span>
+<span class="hljs-comment">// phpQuery::newDocumentFilePHP('test.php');</span>
+<span class="hljs-comment">// phpQuery::newDocument('test.xml', 'application/rss+xml');</span>
+<span class="hljs-comment">// this one defaults to text/html in utf8</span>
+$doc = phpQuery::newDocument(<span class="hljs-string">'&lt;div/&gt;'</span>);
+<span class="hljs-comment">// FILL IT</span>
+<span class="hljs-comment">// array syntax works like -&gt;find() here</span>
+$doc[<span class="hljs-string">'div'</span>]-&gt;append(<span class="hljs-string">'&lt;ul&gt;&lt;/ul&gt;'</span>);
+<span class="hljs-comment">// array set changes inner html</span>
+$doc[<span class="hljs-string">'div ul'</span>] = <span class="hljs-string">'&lt;li&gt;1&lt;/li&gt; &lt;li&gt;2&lt;/li&gt; &lt;li&gt;3&lt;/li&gt;'</span>;
+<span class="hljs-comment">// MANIPULATE IT</span>
+$li = <span class="hljs-literal">null</span>;
+<span class="hljs-comment">// almost everything can be a chain</span>
+$doc[<span class="hljs-string">'ul &gt; li'</span>]
+	-&gt;addClass(<span class="hljs-string">'my-new-class'</span>)
+	-&gt;filter(<span class="hljs-string">':last'</span>)
+		-&gt;addClass(<span class="hljs-string">'last-li'</span>)
+<span class="hljs-comment">// save it anywhere in the chain</span>
+		-&gt;toReference($li);
+<span class="hljs-comment">// SELECT DOCUMENT</span>
+<span class="hljs-comment">// pq(); is using selected document as default</span>
+phpQuery::selectDocument($doc);
+<span class="hljs-comment">// documents are selected when created or by above method</span>
+<span class="hljs-comment">// query all unordered lists in last selected document</span>
+$ul = pq(<span class="hljs-string">'ul'</span>)-&gt;insertAfter(<span class="hljs-string">'div'</span>);
+<span class="hljs-comment">// ITERATE IT</span>
+<span class="hljs-comment">// all direct LIs from $ul</span>
+<span class="hljs-keyword">foreach</span>($ul[<span class="hljs-string">'&gt; li'</span>] <span class="hljs-keyword">as</span> $li) {
+	<span class="hljs-comment">// iteration returns PLAIN dom nodes, NOT phpQuery objects</span>
+	$tagName = $li-&gt;tagName;
+	$childNodes = $li-&gt;childNodes;
+	<span class="hljs-comment">// so you NEED to wrap it within phpQuery, using pq();</span>
+	pq($li)-&gt;addClass(<span class="hljs-string">'my-second-new-class'</span>);
+}
+<span class="hljs-comment">// PRINT OUTPUT</span>
+<span class="hljs-comment">// 1st way</span>
+<span class="hljs-keyword">print</span> phpQuery::getDocument($doc-&gt;getDocumentID());
+<span class="hljs-comment">// 2nd way</span>
+<span class="hljs-keyword">print</span> phpQuery::getDocument(pq(<span class="hljs-string">'div'</span>)-&gt;getDocumentID());
+<span class="hljs-comment">// 3rd way</span>
+<span class="hljs-keyword">print</span> pq(<span class="hljs-string">'div'</span>)-&gt;getDocument();
+<span class="hljs-comment">// 4th way</span>
+<span class="hljs-keyword">print</span> $doc-&gt;htmlOuter();
+<span class="hljs-comment">// 5th way</span>
+<span class="hljs-keyword">print</span> $doc;
+<span class="hljs-comment">// another...</span>
+<span class="hljs-keyword">print</span> $doc[<span class="hljs-string">'ul'</span>];</code></pre><div></div><div></div><h2>更详细的说明</h2><h3><strong>加载需要获取内容的网页连接或则文档</strong></h3><div>加载文档主要通过phpQuery::newDocument()来进行操作，其作用是使得phpQuery可以在服务器预先读取到指定的文件或文本内容。<strong></strong></div><p>主要的常用方法包括：phpQuery::newDocumentFile($file，$contentType = null)$file可以是一个网址地址（带http的）或则html文件路径,如果 $contentType为空,则根据文档自动检测编码。检测失败,则对于text/html类型文档自动赋予utf-8编码。</p><pre type="PHP"><code>phpQuery::newDocument($html)</code></pre><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+header(<span class="hljs-string">"Content-Type: text/html;charset=utf-8"</span>); 
+<span class="hljs-keyword">require</span>(<span class="hljs-string">'phpQuery/phpQuery.php'</span>);
+<span class="hljs-comment">/*通过读取URL或则文件路径 返回值是该网站或文件的html，一个网页对应着一个html文件*/</span>
+<span class="hljs-comment">/*eg 1*/</span>
+$eg1=phpQuery::newDocumentFile(<span class="hljs-string">"test.htm"</span>);
+
+<span class="hljs-comment">/*eg 2*/</span>
+ $eg2=phpQuery::newDocumentFile(<span class="hljs-string">"http://www.baidu.com"</span>);
+
+<span class="hljs-comment">//可以通过echo htmlentities($eg1,ENT_QUOTES,"UTF-8");查看返回值。注意htmlentities()函数可以输出原始html代码。</span>
+
+<span class="hljs-comment">/*eg 3*/</span>
+<span class="hljs-comment">//读入html</span>
+$html=<span class="hljs-string">"&lt;div&gt;
+        &lt;ul&gt;
+            &lt;li&gt;第一行&lt;/li&gt;
+            &lt;li&gt;第二行&lt;/li&gt;
+        &lt;/ul&gt;
+       &lt;/div"</span>;
+$eg3=phpQuery::newDocument($html);<span class="hljs-comment">//输入入参数为html</span>
+<span class="hljs-meta">?&gt;</span></code></pre><blockquote>phpQuery::newDocument（$file）初始加载时返回html的串后，就可以使用html操作句柄函数——pq()，通过pq()来筛选提取指定的内容。</blockquote><h3><strong>pq()函数用法</strong></h3><div>pq($param, $context = null);<strong></strong></div><p>pq()函数的用法是phpQuery的重点，pq($xpath,$DocumentID)函数有个参数，第一个$xpath是通过html标签/类/id等定位到某一元素，$DocumentID可以看做为一个指针，指向需要查询的html文档（也就是phpQuery::newDocumentFile($file)的返回结果。</p><p>如：$eg1或$eg2或$eg3——其实也就是html的context。当同时对多个文档操作时，需要用到这个参数，如果没有给出，会自动邻近匹配匹配，因此如果只对一个文档操作时，可以省略即使用——pq($xpath）就可以。</p><p>pq(); 相当于 jQuery的$()。主要分两部分：即选择器和过滤器。</p><h3><strong>选择器</strong></h3><ul><li>#id 根据给定的ID属性匹配单个元素。</li><li>element 根据给定的名称匹配所有符合的元素。</li><li>.class 根据给定的class匹配所有的元素。</li><li>* 选择所有元素。</li><li>selector1, selector2, selectorN 根据所有制定的选择器匹配结合结果选择结果是取并集</li></ul><pre type="Html"><code><span class="hljs-comment">/* 基本选择器*/</span>
+<span class="hljs-selector-tag">1</span>)  <span class="hljs-selector-id">#id</span>                     <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"#myDiv"</span>);
+<span class="hljs-selector-tag">2</span>)  <span class="hljs-selector-tag">element</span>                 <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"div"</span>); 
+<span class="hljs-selector-tag">3</span>)  <span class="hljs-selector-class">.class</span>                  <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">".myClass"</span>); 
+<span class="hljs-selector-tag">4</span>)  *                       <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"*"</span>) 
+<span class="hljs-selector-tag">5</span>)  <span class="hljs-selector-tag">selector1</span>,<span class="hljs-selector-tag">selectorN</span>     <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"div,span,p.myClass"</span>)</code></pre><h3>层次选择器</h3><ul><li>parent &gt; child 匹配由父元素指定的子元素指定的所有子元素。</li><li>prev + next 根据指定的”next”和指定的”prev”匹配所有的下一个元素。</li><li>prev ~ siblings 匹配根据”prev” 元素的 所有相邻元素。</li><li>ancestor descendant 匹配由先祖指定的元素的后代指定的所有后代元素。</li></ul><pre type="PHP"><code><span class="hljs-comment">/* 层次选择器*/</span>
+<span class="hljs-selector-tag">1</span>)  <span class="hljs-selector-tag">ancestor</span> <span class="hljs-selector-tag">descendant</span>     <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"form input"</span>) 
+<span class="hljs-selector-tag">2</span>)  <span class="hljs-selector-tag">parent</span> &gt; <span class="hljs-selector-tag">child</span>          <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"form &gt; input"</span>) 
+<span class="hljs-selector-tag">3</span>)  <span class="hljs-selector-tag">prev</span> + <span class="hljs-selector-tag">next</span>             <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"label + input"</span>) 
+<span class="hljs-selector-tag">4</span>)  <span class="hljs-selector-tag">prev</span> ~ <span class="hljs-selector-tag">siblings</span>         <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"form ~ input"</span>)</code></pre><h3><strong>过滤器</strong></h3><ul><li>:first 匹配第一个被选择的元素。</li></ul><ul><li>:last 匹配最后一个被选择的元素。</li><li>:not(selector) 匹配所有不是被选择的元素。</li><li>:even 匹配所有被选择的偶数元素，0索引。</li><li>:odd 匹配所有被选择的奇数元素，0索引。</li><li>:eq(index) 匹配等同于给定的索引的元素。</li><li>:gt(index) 匹配大于给定的索引的元素。</li><li>:lt(index) 匹配小于给定的索引的元素。</li><li>:header 匹配所有header元素，如h1,h2,h3等。</li><li>:animated 匹配正在进行动画效果的元素。</li></ul><pre type="PHP"><code><span class="hljs-comment">/*基础过滤*/</span>
+<span class="hljs-selector-tag">1</span>)  <span class="hljs-selector-pseudo">:first</span>                  <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"tr:first"</span>) 
+<span class="hljs-selector-tag">2</span>)  <span class="hljs-selector-pseudo">:last</span>                   <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"tr:last"</span>) 
+<span class="hljs-selector-tag">3</span>)  <span class="hljs-selector-pseudo">:not(selector)</span>          <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"input:not(:checked)"</span>) 
+<span class="hljs-selector-tag">4</span>)  <span class="hljs-selector-pseudo">:even</span>                   <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"tr:even"</span>) 
+<span class="hljs-selector-tag">5</span>)  <span class="hljs-selector-pseudo">:odd</span>                    <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"tr:odd"</span>) 
+<span class="hljs-selector-tag">6</span>)  <span class="hljs-selector-pseudo">:eq(index)</span>              <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"tr:eq(1)"</span>)
+<span class="hljs-selector-tag">7</span>)  <span class="hljs-selector-pseudo">:gt(index)</span>              <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"tr:gt(0)"</span>) 
+<span class="hljs-selector-tag">8</span>)  <span class="hljs-selector-pseudo">:lt(index)</span>              <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"tr:lt(2)"</span>)
+<span class="hljs-selector-tag">9</span>)  <span class="hljs-selector-pseudo">:header</span>                 <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">":header"</span>)<span class="hljs-selector-class">.css</span>(<span class="hljs-string">"background"</span>, <span class="hljs-string">"#EEE"</span>);</code></pre><h3>内容过滤</h3><ul><li>:contains(text) 匹配包含指定文本的元素。</li><li>:empty 匹配所有无子节点的元素（包括文本节点）。</li><li>:has(selector) 匹配至少包含一个对于给定选择器的元素。</li><li>:parent 匹配所有父元素 - 拥有子元素的，包括文本。</li></ul><pre type="PHP"><code><span class="hljs-comment">/*内容过滤*/</span>
+<span class="hljs-selector-tag">1</span>)  <span class="hljs-selector-pseudo">:contains(text)</span>         <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"div:contains('John')"</span>) 
+<span class="hljs-selector-tag">2</span>)  <span class="hljs-selector-pseudo">:empty</span>                  <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"td:empty"</span>) 
+<span class="hljs-selector-tag">3</span>)  <span class="hljs-selector-pseudo">:has(selector)</span>          <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"div:has(p)"</span>)<span class="hljs-selector-class">.addClass</span>(<span class="hljs-string">"test"</span>); 
+<span class="hljs-selector-tag">4</span>)  <span class="hljs-selector-pseudo">:parent</span>                 <span class="hljs-selector-tag">pq</span>(<span class="hljs-string">"td:parent"</span>)</code></pre><h3>属性过滤</h3><ul><li>[attribute] 匹配给定属性的元素。</li><li>[attribute=value] 匹配给定属性等于确定值的元素。</li><li>[attribute!=value] 匹配给定属性不等于确定值的元素。</li><li>[attribute^=value] 匹配给定属性是确定值开始的元素。</li><li>[attribute$=value] 匹配给定属性是确定值结尾的元素。</li><li>[attribute*=value] 匹配给定属性包含确定值的元素。</li><li>[selector1selector2selectorN] 匹配给定属性并且包含确定值的元素。</li></ul><pre type="PHP"><code><span class="hljs-number">1</span>)  [attribute]             p<span class="hljs-string">q("div[id]")</span> 
+<span class="hljs-number">2</span>)  [attribute=value]       p<span class="hljs-string">q("input[name='newsletter']")</span>.attr(<span class="hljs-string">"checked"</span>, true); 
+<span class="hljs-number">3</span>)  [attribute!=value]      p<span class="hljs-string">q("input[name!='newsletter']")</span>.attr(<span class="hljs-string">"checked"</span>, true); 
+<span class="hljs-number">4</span>)  [attribute^=value]      p<span class="hljs-string">q("input[name^='news']")</span>
+<span class="hljs-number">5</span>)  [attribute$=value]      p<span class="hljs-string">q("input[name$='letter']")</span>
+<span class="hljs-number">6</span>)  [attribute*=value]      p<span class="hljs-string">q("input[name*='man']")</span>
+<span class="hljs-number">7</span>)  [selector1][selectorN]  p<span class="hljs-string">q("input[id][name$='man']")</span></code></pre><h3>子元素过滤</h3><ul><li>:nth-child(index/even/odd/equation) 匹配所有是父元素的第n个的子元素，或者是父元素的偶数或者奇数子元素。</li><li>:first-child 匹配所有是父元素的第一个的子元素。</li><li>:last-child 匹配所有是父元素的最后一个的子元素。</li><li>:only-child 匹配所有是父元素唯一子元素的子元素。</li></ul><pre type="PHP"><code><span class="hljs-number">1</span>)  <span class="hljs-symbol">:nth-child</span>(index/even/odd/equation) pq(<span class="hljs-string">"ul li:nth-child(2)"</span>)
+<span class="hljs-number">2</span>)  <span class="hljs-symbol">:first-child</span>                        pq(<span class="hljs-string">"ul li:first-child"</span>)
+<span class="hljs-number">3</span>)  <span class="hljs-symbol">:last-child</span>                         pq(<span class="hljs-string">"ul li:last-child"</span>)
+<span class="hljs-number">4</span>)  <span class="hljs-symbol">:only-child</span>                         pq(<span class="hljs-string">"ul li:only-child"</span>)</code></pre><h3>基于表单</h3><ul><li>:input 匹配input, textarea, select和button元素。</li><li>:text 匹配所有类型为text的input元素。</li><li>:password 匹配所有类型为password的input元素。</li><li>:radio 匹配所有类型为radio的input元素。</li><li>:checkbox 匹配所有类型为checkbox的input元素。</li><li>:submit 匹配所有类型为submit的input元素。</li><li>:image 匹配所有类型为image的input元素。</li><li>:reset 匹配所有类型为reset的input元素。</li><li>:button 匹配所有类型为button的input元素和button元素。</li><li>:file 匹配所有类型为file的input元素。</li><li>:hidden 匹配所有类型为hidden的input元素或者其他hidden元素。</li></ul><pre type="PHP"><code><span class="hljs-number">1</span>)  :input                  p<span class="hljs-string">q(":input")</span>
+<span class="hljs-number">2</span>)  :text                   p<span class="hljs-string">q(":text")</span>
+<span class="hljs-number">3</span>)  :password               p<span class="hljs-string">q(":password")</span>
+<span class="hljs-number">4</span>)  :radio                  p<span class="hljs-string">q(":radio")</span>
+<span class="hljs-number">5</span>)  :checkbox               p<span class="hljs-string">q(":checkbox")</span>
+<span class="hljs-number">6</span>)  :submit                 p<span class="hljs-string">q(":submit")</span>
+<span class="hljs-number">7</span>)  :image                  p<span class="hljs-string">q(":image")</span>
+<span class="hljs-number">8</span>)  :<span class="hljs-keyword">reset</span>                  p<span class="hljs-string">q(":reset")</span> 
+<span class="hljs-number">9</span>)  :button                 p<span class="hljs-string">q(":button")</span>
+<span class="hljs-number">10</span>) :file                   p<span class="hljs-string">q(":file")</span>
+<span class="hljs-number">11</span>) :hidden                 p<span class="hljs-string">q("tr:hidden")</span></code></pre><h3>表单过滤</h3><ul><li>:enabled 匹配所有可用元素。</li><li>:disabled 匹配所有不可用元素。</li><li>:checked 匹配所有被勾选的元素。</li><li>:selected 匹配所有被选择的元素。</li></ul><pre type="PHP"><code><span class="hljs-number">1</span>)  :enabled                p<span class="hljs-string">q("input:enabled")</span>
+<span class="hljs-number">2</span>)  :disabled               p<span class="hljs-string">q("input:disabled")</span>
+<span class="hljs-number">3</span>)  :checked                p<span class="hljs-string">q("input:checked")</span>
+<span class="hljs-number">4</span>)  :selected               p<span class="hljs-string">q("select option:selected")</span></code></pre><h2>其他方法</h2><h3>attr属性获取</h3><ul><li>attr($name) 访问第一个给名称的元素的属性。这个方法可以很轻易地取得第一个匹配到的元素的属性值。如果这个元素没有对应名称的属性则返回undefined。</li></ul><ul><li>attr($properties) 对于所有匹配到的元素设置对应属性。</li></ul><ul><li>attr($key, $value) 对于匹配到的元素设置一个属性和对应值。</li><li>attr($key, $fn) 对于匹配到的元素设置一个属性和需要计算的值。</li><li>removeAttr($name) 对匹配到的元素移除给定名称的属性。</li></ul><ul><li>addClass($class) 对匹配到的元素添加一个给定的类。</li><li>hasClass($class) 如果有至少一个匹配到的元素包含给定的类则返回true。</li><li>removeClass($class) 对匹配到的元素移除给定名称的类。</li></ul><ul><li>toggleClass($class) 对匹配到的元素，如果类不存在则添加，如果存在则移除。</li></ul><pre type="PHP"><code><span class="hljs-number">1</span>)  attr                    p<span class="hljs-string">q("img")</span>-&gt;attr(<span class="hljs-string">"src"</span>);
+<span class="hljs-number">2</span>)  attr(properties)        p<span class="hljs-string">q("img")</span>-&gt;attr({ src: <span class="hljs-string">"test.jpg"</span>, alt: <span class="hljs-string">"Test Image"</span> });
+<span class="hljs-number">3</span>)  attr(key,value)         p<span class="hljs-string">q("img")</span>-&gt;attr(<span class="hljs-string">"src"</span>,<span class="hljs-string">"test.jpg"</span>);
+<span class="hljs-number">4</span>)  attr(key,fn)            p<span class="hljs-string">q("img")</span>-&gt;attr(<span class="hljs-string">"title"</span>, function() { <span class="hljs-keyword">return</span> this.src });
+<span class="hljs-number">5</span>)  removeAttr(name)        p<span class="hljs-string">q("img")</span>-&gt;removeAttr(<span class="hljs-string">"src"</span>);
+<span class="hljs-number">6</span>)  addClass(class)         p<span class="hljs-string">q("p")</span>-&gt;addClass(<span class="hljs-string">"selected"</span>);
+<span class="hljs-number">7</span>)  removeClass(class)      p<span class="hljs-string">q("p")</span>-&gt;removeClass(<span class="hljs-string">"selected"</span>);
+<span class="hljs-number">8</span>)  toggleClass(class)      p<span class="hljs-string">q("p")</span>-&gt;toggleClass(<span class="hljs-string">"selected"</span>);</code></pre><h3>HTML获取</h3><ul><li>html() 获取第一个匹配到的元素的html内容（innerHTML）。这个方法不适用于XML文本（但适用于XHTML。）</li><li>html($val) 对匹配到的元素设置html内容。这个方法不适用于XML文本（但适用于XHTML。）</li></ul><pre type="PHP"><code><span class="hljs-number">1</span>) html()                  p<span class="hljs-string">q("div")</span>-&gt;html();
+<span class="hljs-number">2</span>) html(val)               p<span class="hljs-string">q("div")</span>-&gt;html(<span class="hljs-string">"&lt;p&gt;Hello Again&lt;/p&gt;"</span>);</code></pre><h3>text获取</h3><ul><li>text() 获取匹配到的所有元素的文本内容。</li><li>text($val) 对匹配到的所有元素设置文本内容。</li></ul><pre type="PHP"><code><span class="hljs-number">1</span>) text()                  p<span class="hljs-string">q("p")</span>-&gt;text();
+<span class="hljs-number">2</span>) text(val)               p<span class="hljs-string">q("p")</span>-&gt;text(<span class="hljs-string">"&lt;b&gt;Some&lt;/b&gt; new text."</span>);</code></pre><h3>Value 获取</h3><ul><li>val() 获取匹配到的第一个元素的value属性的值。</li><li>val($val) 对匹配到的元素设置value值。val($val) 所有的Checks, selects, radio buttons, checkboxes,和select options都会设置相应给定的值。</li></ul><pre type="PHP"><code><span class="hljs-number">1</span>) val()                   p<span class="hljs-string">q("input")</span>-&gt;val();
+<span class="hljs-number">2</span>) val(val)                p<span class="hljs-string">q("input")</span>-&gt;val(<span class="hljs-string">"hello world!"</span>);</code></pre><h3>其他筛选和文档处理</h3><pre type="PHP"><code>\*筛选*\
+<span class="hljs-number">1</span>)  e<span class="hljs-string">q(index)</span>               p<span class="hljs-string">q("p")</span>-&gt;e<span class="hljs-string">q(1)</span>
+<span class="hljs-number">2</span>)  hasClass(class)         p<span class="hljs-string">q("div")</span>-&gt;hasClass(<span class="hljs-string">"protected"</span>)
+<span class="hljs-number">3</span>)  filter(expr)            p<span class="hljs-string">q("p")</span>-&gt;filter(<span class="hljs-string">".selected"</span>) 
+<span class="hljs-number">4</span>)  filter(fn)              p<span class="hljs-string">q("p")</span>-&gt;filter(function($index) {
+                              <span class="hljs-keyword">return</span> p<span class="hljs-string">q("ol", pq($index)</span>)-&gt;size() == <span class="hljs-number">0</span>;
+                            }); 
+<span class="hljs-number">5</span>)  is(expr)                p<span class="hljs-string">q("input[type='checkbox']")</span>-&gt;parent()-&gt;is(<span class="hljs-string">"form"</span>)
+<span class="hljs-number">6</span>)  <span class="hljs-keyword">map</span>(callback)           p<span class="hljs-string">q("p")</span>-&gt;append(p<span class="hljs-string">q("input")</span>.map(function(){
+                              <span class="hljs-keyword">return</span> p<span class="hljs-string">q(this)</span>-&gt;val();
+                            })-&gt;get()-&gt;<span class="hljs-keyword">join</span>(<span class="hljs-string">", "</span>));
+<span class="hljs-number">7</span>)  <span class="hljs-keyword">not</span>(expr)               p<span class="hljs-string">q("p")</span>-&gt;<span class="hljs-keyword">not</span>(p<span class="hljs-string">q("#selected")</span>[<span class="hljs-number">0</span>])
+<span class="hljs-number">8</span>)  slice(start,[end])      p<span class="hljs-string">q("p")</span>-&gt;slice(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)-&gt;wrapInner(<span class="hljs-string">"&lt;b&gt;&lt;/b&gt;"</span>);
+<span class="hljs-number">9</span>)  add(expr)               p<span class="hljs-string">q("p")</span>-&gt;add(<span class="hljs-string">"span"</span>)
+<span class="hljs-number">10</span>) children([expr])        p<span class="hljs-string">q("div")</span>-&gt;children()
+<span class="hljs-number">11</span>) contents()              p<span class="hljs-string">q("p")</span>-&gt;contents()-&gt;<span class="hljs-keyword">not</span>(<span class="hljs-string">"[@nodeType=1]"</span>).wrap(<span class="hljs-string">"&lt;b/&gt;"</span>);
+<span class="hljs-number">12</span>) find(expr)              p<span class="hljs-string">q("p")</span>-&gt;find(<span class="hljs-string">"span"</span>)
+<span class="hljs-number">13</span>) <span class="hljs-keyword">next</span>([expr])            p<span class="hljs-string">q("p")</span>-&gt;<span class="hljs-keyword">next</span>()
+<span class="hljs-number">14</span>) nextAll([expr])         p<span class="hljs-string">q("div:first")</span>-&gt;nextAll()-&gt;addClass(<span class="hljs-string">"after"</span>);
+<span class="hljs-number">15</span>) parent([expr])          p<span class="hljs-string">q("p")</span>-&gt;parent()
+<span class="hljs-number">16</span>) parents([expr])         p<span class="hljs-string">q("span")</span>-&gt;parents()
+<span class="hljs-number">17</span>) prev([expr])            p<span class="hljs-string">q("p")</span>.prev()
+<span class="hljs-number">18</span>) prevAll([expr])         p<span class="hljs-string">q("div:last")</span>-&gt;prevAll()-&gt;addClass(<span class="hljs-string">"before"</span>); 
+<span class="hljs-number">19</span>) siblings([expr])        p<span class="hljs-string">q("div")</span>-&gt;siblings()
+<span class="hljs-number">20</span>) andSelf()               p<span class="hljs-string">q("div")</span>-&gt;find(<span class="hljs-string">"p"</span>)-&gt;andSelf()-&gt;addClass(<span class="hljs-string">"border"</span>);
+<span class="hljs-number">21</span>) end()                   p<span class="hljs-string">q("p")</span>-&gt;find(<span class="hljs-string">"span"</span>)-&gt;end()
+
+\*文档处理*\
+<span class="hljs-number">1</span>)  append(content)         p<span class="hljs-string">q("p")</span>-&gt;append(<span class="hljs-string">"&lt;b&gt;Hello&lt;/b&gt;"</span>);
+<span class="hljs-number">2</span>)  appendTo(content)       p<span class="hljs-string">q("p")</span>-&gt;appendTo(<span class="hljs-string">"#foo"</span>);
+<span class="hljs-number">3</span>)  prepend(content)        p<span class="hljs-string">q("p")</span>-&gt;prepend(<span class="hljs-string">"&lt;b&gt;Hello&lt;/b&gt;"</span>);
+<span class="hljs-number">4</span>)  prependTo(content)      p<span class="hljs-string">q("p")</span>-&gt;prependTo(<span class="hljs-string">"#foo"</span>);
+<span class="hljs-number">5</span>)  after(content)          p<span class="hljs-string">q("p")</span>-&gt;after(<span class="hljs-string">"&lt;b&gt;Hello&lt;/b&gt;"</span>);
+<span class="hljs-number">6</span>)  before(content)         p<span class="hljs-string">q("p")</span>-&gt;before(<span class="hljs-string">"&lt;b&gt;Hello&lt;/b&gt;"</span>);
+<span class="hljs-number">7</span>)  insertAfter(content)    p<span class="hljs-string">q("p")</span>-&gt;insertAfter(<span class="hljs-string">"#foo"</span>);
+<span class="hljs-number">8</span>)  insertBefore(content)   p<span class="hljs-string">q("p")</span>-&gt;insertBefore(<span class="hljs-string">"#foo"</span>);
+<span class="hljs-number">9</span>)  wrap(html)              p<span class="hljs-string">q("p")</span>-&gt;wrap(<span class="hljs-string">"&lt;div class='wrap'&gt;&lt;/div&gt;"</span>);
+<span class="hljs-number">10</span>) wrap(elem)              p<span class="hljs-string">q("p")</span>-&gt;wrap(p<span class="hljs-string">q("#content")</span>);
+<span class="hljs-number">11</span>) wrapAll(html)           p<span class="hljs-string">q("p")</span>-&gt;wrapAll(<span class="hljs-string">"&lt;div&gt;&lt;/div&gt;"</span>);
+<span class="hljs-number">12</span>) wrapAll(elem)           p<span class="hljs-string">q("p")</span>-&gt;wrapAll(p<span class="hljs-string">q("#content")</span>); 
+<span class="hljs-number">13</span>) wrapInner(html)         p<span class="hljs-string">q("p")</span>-&gt;wrapInner(<span class="hljs-string">"&lt;b&gt;&lt;/b&gt;"</span>);
+<span class="hljs-number">14</span>) wrapInner(elem)         p<span class="hljs-string">q("p")</span>-&gt;wrapInner(p<span class="hljs-string">q(".content")</span>);
+<span class="hljs-number">15</span>) replaceWith(content)    p<span class="hljs-string">q("p")</span>-&gt;replaceWith(<span class="hljs-string">"&lt;b&gt;Paragraph. &lt;/b&gt;"</span>);
+<span class="hljs-number">16</span>) replaceAll(selector)    p<span class="hljs-string">q("&lt;b&gt;Paragraph. &lt;/b&gt;")</span>-&gt;replaceAll(<span class="hljs-string">"p"</span>);
+<span class="hljs-number">17</span>) empty()                 p<span class="hljs-string">q("p")</span>-&gt;empty();
+<span class="hljs-number">18</span>) remove([expr])          p<span class="hljs-string">q("p")</span>-&gt;remove();
+<span class="hljs-number">19</span>) clone()                 p<span class="hljs-string">q("b")</span>-&gt;clone()-&gt;prependTo(<span class="hljs-string">"p"</span>);
+<span class="hljs-number">20</span>) clone(true)             p<span class="hljs-string">q("button")</span>-&gt;clone(true)-&gt;insertAfter(p<span class="hljs-string">q("b")</span>)</code></pre><h2>爬虫综合案例</h2><p>以武汉大学<a href="http://www.whu.edu.cn/tzgg.htm">通知公告</a><a href="http://www.whu.edu.cn/tzgg.htm">http://www.whu.edu.cn/tzgg.htm</a>为例进行爬取测试test.php</p><pre type="PHP"><code>&lt;?php
+header(<span class="hljs-string">"Content-Type: text/html;charset=utf-8"</span>); 
+<span class="hljs-keyword">require</span>(<span class="hljs-string">'phpQuery/phpQuery.php'</span>);
+$eg1=phpQuery::newDocumentFile(<span class="hljs-string">"http://www.whu.edu.cn/tzgg.htm"</span>);
+$eg2=phpQuery::newDocumentFile(<span class="hljs-string">"https://www.baidu.com/"</span>);
+
+echo p<span class="hljs-string">q("title",$eg1)</span>-&gt;html().<span class="hljs-string">"&lt;br&gt;"</span>;
+echo p<span class="hljs-string">q("title",$eg1-&gt;getDocumentID()</span>)-&gt;html().<span class="hljs-string">"&lt;br&gt;"</span>;<span class="hljs-regexp">//</span>$eg1与$eg1-&gt;getDocumentID()效果等同
+echo p<span class="hljs-string">q("title")</span>-&gt;html().<span class="hljs-string">"&lt;br&gt;"</span>;<span class="hljs-regexp">//</span>就近匹配 $eg2
+
+phpQuery::selectDocument($eg1); <span class="hljs-regexp">//</span>默认会使用选定的文档
+echo p<span class="hljs-string">q("title")</span>-&gt;html().<span class="hljs-string">"&lt;br&gt;"</span>;
+
+
+<span class="hljs-regexp">//</span> $mes=p<span class="hljs-string">q("ul")</span>-&gt;html();<span class="hljs-regexp">//</span>获取所有的ul标签中的html内容
+// echo $mes;
+<span class="hljs-regexp">//</span> echo <span class="hljs-string">"&lt;br&gt;___________________&lt;br&gt;"</span>;
+<span class="hljs-regexp">//</span> $mes=p<span class="hljs-string">q("ul,li")</span>-&gt;html();<span class="hljs-regexp">//</span>获取所有的ul以及li标签中的html内容
+// echo $mes;
+
+<span class="hljs-regexp">//</span> $t=p<span class="hljs-string">q("ul[class='article']")</span>-&gt;html();<span class="hljs-regexp">//</span>获取ul class=<span class="hljs-string">"article"</span>的html内容
+// echo $t;
+
+
+$t=p<span class="hljs-string">q("ul[class='article']&gt;li:eq(2)</span><span class="hljs-string">")-&gt;html();//获取ul class="</span>article<span class="hljs-string">" 下第二个子元素li的html内容
+echo $t;
+$t=pq("</span>ul[class=<span class="hljs-string">'article'</span>]&gt;li:e<span class="hljs-string">q(2)</span>&gt;center&gt;div:e<span class="hljs-string">q(1)</span><span class="hljs-string">")-&gt;html();
+echo $t."</span>&lt;br&gt;<span class="hljs-string">";
+
+$t=pq("</span>(ul[class=<span class="hljs-string">'article'</span>]&gt;li:e<span class="hljs-string">q(2)</span>&gt;center&gt;div:e<span class="hljs-string">q(1)</span>)<span class="hljs-string">")-&gt;html();
+echo $t."</span>&lt;br&gt;<span class="hljs-string">";
+$t=pq("</span>(ul[class=<span class="hljs-string">'article'</span>]&gt;li:e<span class="hljs-string">q(3)</span>&gt;div[class=<span class="hljs-string">'col-xs-12 col-sm-6 col-md-6'</span>]&gt;a<span class="hljs-string">")-&gt;html();
+echo $t."</span>&lt;br&gt;<span class="hljs-string">";
+
+$t=pq("</span>(ul[class=<span class="hljs-string">'article'</span>]&gt;li:e<span class="hljs-string">q(3)</span>&gt;div[class=<span class="hljs-string">'col-xs-12 col-sm-6 col-md-6'</span>]&gt;a<span class="hljs-string">")-&gt;attr("</span>href<span class="hljs-string">");
+echo $t."</span>&lt;br&gt;<span class="hljs-string">";
+
+?&gt;
+</span></code></pre>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://blog.csdn.net/summerxiachen/article/details/78681674" target="_blank">原文链接</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://gitee.com/mirrors/phpquery" target="_blank">gitee下载</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：phpquery，PhpQuery
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/268" class="imgbox">
+                <img src="/statics/blog/2022/0530/ea057f87a73e254fd18fdb7d6d181bd4.png">
+            </a>
+            <a href="/blog/articles/268" class="title" title="uni-app本地打包安卓安装包">
+                uni-app本地打包安卓安装包
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/24" class="imgbox">
+                <img src="/statics/blog/2021/0309/71d80785312648a691140e697dd4648c.png">
+            </a>
+            <a href="/blog/articles/24" class="title" title="客户端发送数据及服务器获取参数的几种形式">
+                客户端发送数据及服务器获取参数的几种形式
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/322" class="imgbox">
+                <img src="/statics/blog/2022/1021/62762cd1203a3f2a5c1ebf536e5820ef.jpg">
+            </a>
+            <a href="/blog/articles/322" class="title" title="设置网页在Safari15浏览器顶部状态栏的颜色">
+                设置网页在Safari15浏览器顶部状态栏的颜色
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/php">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/176">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        几个PHP常用composer包推荐
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/269">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        php简单统计中文个数的方法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/357">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        解决PHP中的image图像对象转换为base64的方法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/73">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用IP地址设置用户白名单
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/7">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        记录wubin.work开发中遇到的问题
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="thinkphp笔记-查询表达式where、时间查询、聚合、原生、子查询 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>thinkphp笔记-查询表达式where、时间查询、聚合、原生、子查询 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="where"/>
+<meta name="description" content="thinkphp笔记-查询表达式"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 491,
+            article_title: 'thinkphp笔记-查询表达式where、时间查询、聚合、原生、子查询',
+            article_desc: 'thinkphp笔记-查询表达式',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal active">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" class="active">
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/thinkphp">ThinkPHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">thinkphp笔记-查询表达式where、时间查询、聚合、原生、子查询</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>13224</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>615</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2024-04-01 14:12:06</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>查询表达式</h2><h3>比较查询</h3><p>查询表达式支持大部分常用的SQL 语句，语法格式如下：</p><pre type="Html"><code><span class="hljs-built_in">where</span>(<span class="hljs-string">'字段名'</span>,<span class="hljs-string">'查询表达式'</span>,<span class="hljs-string">'查询条件'</span>);</code></pre><p>在查询数据进行筛选时，我们采用where()方法，比如id=80；</p><pre type="PHP"><code>Db::name(<span class="hljs-symbol">'user</span>')-&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'id</span>', <span class="hljs-number">80</span>)-&gt;find();
+等价
+Db::name(<span class="hljs-symbol">'user</span>')-&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'id</span><span class="hljs-string">','</span>=',<span class="hljs-number">80</span>)-&gt;find();
+</code></pre><p>使用&lt;&gt;、&gt;、&lt;、&gt;=、&lt;=可以筛选出各种符合比较值的数据列表（找到不等于19的全部记录）；</p><pre type="PHP"><code>Db::name(<span class="hljs-symbol">'user</span>')-&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'id</span><span class="hljs-string">','</span>&lt;&gt;',<font color="#008080">19</font>)-&gt;select();</code></pre><h3>区间查询</h3><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>id</th><th>email</th><th>password</th><th>uid</th></tr><tr><td>19</td><td>xiaoming@163.com</td><td>123</td><td>11</td></tr><tr><td>38</td><td><p >yihu@163.com</p></td><td>eqwe</td><td>null</td></tr><tr><td>20</td><td>xiaoxin@qq.com</td><td>sda</td><td>876</td></tr><tr><td>41</td><td><p >wufan@163.com</p></td><td>adsa</td><td>null</td></tr></tbody></table><p>使用like 表达式进行模糊查询；</p><pre type="PHP"><code>$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'email'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'xiao%'</span>)-&gt;select();
+<span class="hljs-comment">// 找到email前面是 xiao开头的项</span></code></pre><p>like 表达式还可以支持数组传递进行模糊查询；</p><pre type="Html"><code>$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'email'</span>, <span class="hljs-string">'like'</span>, [<span class="hljs-string">'xiao%'</span>, <span class="hljs-string">'wu%'</span>])-&gt;select();
+<span class="hljs-regexp">//</span> SELECT * FROM <span class="hljs-string">`tp_user`</span> WHERE (<span class="hljs-string">`email`</span> LIKE <span class="hljs-string">'xiao%'</span> AND <span class="hljs-string">`email`</span> LIKE <span class="hljs-string">'wu%'</span>)
+
+<span class="hljs-keyword">return</span> Db::getlastSql();</code></pre><p>如果不传递第四个参数，那么默认是and，所以这里我们给它传入第四个参数or（无所谓大小写）</p><pre type="PHP"><code> $user = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'email'</span>, <span class="hljs-string">'like'</span>, [<span class="hljs-string">'xiao%'</span>, <span class="hljs-string">'wu%'</span>], <span class="hljs-string">'or'</span>)-&gt;select();
+<span class="hljs-regexp">//</span> SELECT * FROM <span class="hljs-string">`tp_user`</span> WHERE (<span class="hljs-string">`email`</span> LIKE <span class="hljs-string">'xiao%'</span> OR <span class="hljs-string">`email`</span> LIKE <span class="hljs-string">'wu%'</span>)</code></pre><p>like 表达式具有两个快捷方式whereLike()和whereNoLike()；</p><pre type="PHP"><code> $user = Db::name(<span class="hljs-string">'user'</span>)-&gt;whereLike(<span class="hljs-string">'email'</span>, <span class="hljs-string">'xiao%'</span>)-&gt;select();</code></pre><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereNotLike(<span class="hljs-string">'email'</span>, <span class="hljs-string">'xiao%'</span>)-&gt;select(); <span class="hljs-comment">// 反向，全部email中不含有xiao的</span></code></pre><p>between 表达式具有两个快捷方式whereBetween()和whereNotBetween()；</p><pre type="PHP"><code> <span class="hljs-comment">// 列出id在21~27之间的项 以下均效果等价</span>
+$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'id'</span>, <span class="hljs-string">'between'</span>, <span class="hljs-string">'21, 27'</span>)-&gt;select();
+<span class="hljs-comment">// 同时也支持数组方式</span>
+$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'id'</span>, <span class="hljs-string">'between'</span>, [<span class="hljs-number">21</span>, <span class="hljs-number">27</span>])-&gt;select();
+$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;whereBetween(<span class="hljs-string">'id'</span>, [<span class="hljs-number">21</span>, <span class="hljs-number">27</span>])-&gt;select();
+$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;whereBetween(<span class="hljs-string">'id'</span>, <span class="hljs-string">'21, 27'</span>)-&gt;select();</code></pre><p>in 表达式具有两个快捷方式whereIn()和whereNotIn()；</p><pre type="PHP"><code><span class="hljs-comment">// 以下语句效果等价</span>
+$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'id'</span>, <span class="hljs-string">'in'</span>, <span class="hljs-string">'25, 26,29'</span>)-&gt;select();
+$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'id'</span>, <span class="hljs-string">'in'</span>, [<span class="hljs-number">25</span>, <span class="hljs-number">26</span>,<span class="hljs-number">29</span>])-&gt;select();
+Db::name(<span class="hljs-string">'user'</span>)-&gt;whereIn(<span class="hljs-string">'id'</span>,<span class="hljs-string">'19,21,29'</span>)-&gt;select();
+Db::name(<span class="hljs-string">'user'</span>)-&gt;whereNotIn(<span class="hljs-string">'id'</span>,<span class="hljs-string">'19,21,29'</span>)-&gt;select();</code></pre><p>null 表达式具有两个快捷方式whereNull()和whereNotNull()；</p><pre type="PHP"><code> <span class="hljs-comment">// 找到所有的null数据 和 非null数据 以下效果等价</span>
+$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'uid'</span>, <span class="hljs-string">'null'</span>)-&gt;select();
+$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'uid'</span>, <span class="hljs-string">'not null'</span>)-&gt;select();
+Db::name(<span class="hljs-string">'user'</span>)-&gt;whereNull(<span class="hljs-string">'uid'</span>)-&gt;select();
+Db::name(<span class="hljs-string">'user'</span>)-&gt;whereNotNull(<span class="hljs-string">'uid'</span>)-&gt;select();</code></pre><h3>EXP 查询</h3><p>假设提供的查询方法没有想要的，那么使用exp 可以自定义字段后的SQL 语句；</p><p>exp方法主要就是使用mysql原生的查询语句进行拼装。</p><p>比如：Db::name('user')-&gt;select(); 等价于&nbsp;SELECT * FROM `tp_user`</p><p>Db::name('user')-&gt;where('id','in','19,21,22')-&gt;select(); 等价于&nbsp;SELECT * FROM `tp_user` WHERE `id` IN (19,21,22)</p><p>所以使用exp实现的方法就是：</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'id'</span>, <span class="hljs-string">'exp'</span>, <span class="hljs-string">'IN (19,21,22)'</span>)-&gt;select();
+<span class="hljs-comment">// 等价于</span>
+SELECT * <span class="hljs-keyword">FROM</span> `tp_user` WHERE ( `id` in (<span class="hljs-number">19</span>,<span class="hljs-number">21</span>,<span class="hljs-number">22</span>) )</code></pre><p>即第二个参数传递exp，然后第三个参数传递一个sql语句</p><p>同样的也有一个简单方法</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereExp(<span class="hljs-string">'id'</span>, <span class="hljs-string">'IN (19,21,25)'</span>)-&gt;select();</code></pre><h2>时间查询</h2><h3>传统方式</h3><p>可以使用&gt;、&lt;、&gt;=、&lt;=来筛选匹配时间的数据；</p><pre type="PHP"><code> <span class="hljs-comment">// 大于2018-1-1日期的</span>
+$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'&gt;'</span>, <span class="hljs-string">'2018-01-01'</span>)-&gt;select();</code></pre><p>可以使用between 关键字来设置时间的区间；</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'between'</span>, [<span class="hljs-string">'2018-01-01'</span>, <span class="hljs-string">'2019-12-1'</span>])-&gt;select();</code></pre><p>以及反向区间</p><pre type="PHP"><code> // 反向区间操作
+<span class="hljs-variable">$user</span> = Db::name(<span class="hljs-string">'user'</span>)-&gt;<span class="hljs-built_in">where</span>(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'not between'</span>, [<span class="hljs-string">'2018-01-01'</span>, <span class="hljs-string">'2019-12-1'</span>])-&gt;select();</code></pre><h3>快捷方式</h3><p>时间查询的快捷方法为whereTime()，直接使用&gt;、&lt;、&gt;=、&lt;=；</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereTime(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'&gt;'</span>, <span class="hljs-string">'2018-01-01'</span>)-&gt;select();</code></pre><p>默认的大于&gt;，可以省略（如果表达式是大于某个时间），一般不要省略，语义化更好</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereTime(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'2018-01-01'</span>)-&gt;select();</code></pre><p>快捷方式也可以使用between 和not between；</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereBetween(<span class="hljs-string">'create_time'</span>, [<span class="hljs-string">'2018-01-01'</span>, <span class="hljs-string">'2019-12-1'</span>])-&gt;select();</code></pre><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereNotBetween(<span class="hljs-string">'create_time'</span>, [<span class="hljs-string">'2018-01-01'</span>, <span class="hljs-string">'2019-12-1'</span>])-&gt;select();</code></pre><p>还有一种快捷方式为：whereBetweenTime()和whereNotBetweenTime()；这种形式就是不用数组，而用字符串的形式。</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereBetweenTime(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'2018-01-01'</span>, <span class="hljs-string">'2019-12-1'</span>)-&gt;select();</code></pre><h3>固定查询</h3><p>固定查询就是固定查询今天、当月、本周之类的操作，使用whereYear 查询今年的数据、去年的数据和某一年的数据。比如，我要查找时间在今年的数据：</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereYear(<span class="hljs-string">'create_time'</span>)-&gt;select();</code></pre><p>如果要查询去年的数据，那么就需要传入第二个参数</p><pre type="PHP"><code> Db::name(<span class="hljs-string">'user'</span>)-&gt;whereYear(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'last year'</span>)-&gt;select();</code></pre><p>如果要找指定某一年份的数据：</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereYear(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'2016'</span>)-&gt;select();</code></pre><p>使用whereMonth 查询当月的数据、上月的数据和某一个月的数据；</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereMonth(<span class="hljs-string">'create_time'</span>)-&gt;select();
+Db::name(<span class="hljs-string">'user'</span>)-&gt;whereMonth(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'last month'</span>)-&gt;select();
+Db::name(<span class="hljs-string">'user'</span>)-&gt;whereMonth(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'2016-6'</span>)-&gt;select();</code></pre><p>使用whereDay 查询今天的数据、昨天的数据和某一个天的数据；</p><pre type="PHP"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;whereDay(<span class="hljs-string">'create_time'</span>)-&gt;select();
+Db::name(<span class="hljs-string">'user'</span>)-&gt;whereDay(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'last day'</span>)-&gt;select();
+Db::name(<span class="hljs-string">'user'</span>)-&gt;whereDay(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'2016-6-27'</span>)-&gt;select();</code></pre><h3>其他查询</h3><p>比如我要找到两个小时之内新增的数据、两个小时内注册的用户全部列出来，就可以使用这个方法</p><pre type="PHP"><code>$user = Db::name(<span class="hljs-string">'user'</span>)-&gt;whereTime(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'-2 hours'</span>)-&gt;select();
+<span class="hljs-comment">// SELECT * FROM `tp_user` WHERE `create_time` &gt;= '2024-04-02 08:14:00'</span>
+<span class="hljs-comment">// 当前时间是2024-04-02 10:14:00 所以sql语句就是大于8：14的时间筛选</span>
+<span class="hljs-keyword">return</span> Db::getLastSql();</code></pre><p>查询两个时间字段时间有效期的数据，比如会员开始到结束的期间；比如，查询两个字段的之间的有效期，根据会员开始时间和结束时间去查找一下有哪些，在有效期内的会员以及在有效期之内的活动等。</p><pre type="PHP"><code> $user = Db::name(<span class="hljs-string">'user'</span>)-&gt;whereBetweenTimeField(<span class="hljs-string">'create_time'</span>, <span class="hljs-string">'update_time'</span>)-&gt;select();
+<span class="hljs-regexp">//</span> SELECT * FROM <span class="hljs-string">`tp_user`</span> WHERE <span class="hljs-string">`create_time`</span> &lt;= <span class="hljs-string">'2024-04-02 10:19:41'</span> AND <span class="hljs-string">`update_time`</span> &gt;= <span class="hljs-string">'2024-04-02 10:19:41'</span>
+<span class="hljs-keyword">return</span> Db::getLastSql();</code></pre><h2>聚合.原生.子查询</h2><h3>聚合查询</h3><p>系统提供了一系列的方法，更好的计算所有列整合的数据。</p><p>使用count()方法，可以求出所查询数据的数量；</p><pre type="PHP"><code> $result = Db::name(<span class="hljs-string">'user'</span>)-&gt;count();
+<span class="hljs-keyword">return</span> json($result);
+<span class="hljs-comment">// 返回17 代表共有17条数据</span></code></pre><p>此返回的sql语句为：SELECT COUNT(*) AS think_count FROM `tp_user` LIMIT 1</p><p>count()可设置指定id，比如有空值(Null)的uid，不会计算数量,即排除值为null的行，统计其余有值行的数量；</p><pre type="PHP"><code>$result = Db::name(<span class="hljs-string">'user'</span>)-&gt;count(<span class="hljs-string">'uid'</span>);
+<span class="hljs-keyword">return</span> json($result);</code></pre><p>使用max()方法，求出所查询数据字段的最大值；</p><pre type="PHP"><code>$result = Db::name(<span class="hljs-string">'user'</span>)-&gt;max(<span class="hljs-string">'price'</span>);</code></pre><p>使用min()方法，求出所查询数据字段的最小值</p><pre type="PHP"><code>$result = Db::name(<span class="hljs-string">'user'</span>)-&gt;min(<span class="hljs-string">'price'</span>);</code></pre><p>min、max方法都有第二个参数，如果得到的结果不是数值，则通过第二参数强制转换；比如</p><pre type="PHP"><code> $result = Db::name(<span class="hljs-string">'user'</span>)-&gt;min(<span class="hljs-string">'email'</span>); <span class="hljs-comment">// 得到的是0 </span></code></pre><p>然后我们传入第二个参数，不要求其强制转换</p><pre type="PHP"><code>$result = Db::name(<span class="hljs-string">'user'</span>)-&gt;min(<span class="hljs-string">'email'</span>, <span class="hljs-literal">false</span>); // 得到HUIYE@163.COM</code></pre><p>avg()方法，求出所查询数据字段的平均值，sum()方法，求出所查询数据字段的总和；</p><pre type="PHP"><code>$result = Db::name(<span class="hljs-string">'user'</span>)-&gt;avg(<span class="hljs-string">'price'</span>);
+$result = Db::name(<span class="hljs-string">'user'</span>)-&gt;sum(<span class="hljs-string">'price'</span>);</code></pre><h3>子查询</h3><p>使用fetchSql()方法，可以设置不执行SQL，而返回SQL 语句，默认true；</p><pre type="PHP"><code>$result = Db::name(<span class="hljs-string">'user'</span>)-&gt;fetchSql(<span class="hljs-literal">true</span>)-&gt;select();
+<span class="hljs-keyword">return</span> json($result);
+<span class="hljs-comment">// 结果返回 "SELECT * FROM `tp_user`" 所以它返回的是一个sql语句</span></code></pre><p>如果传入的是false，那么就会执行语句，得到查询结果</p><pre type="PHP"><code> $result = Db::name(<span class="hljs-string">'user'</span>)-&gt;fetchSql(<span class="hljs-literal">false</span>)-&gt;select();</code></pre><pre type="PHP"><code>$result = Db::name(<span class="hljs-string">'user'</span>)-&gt;buildSql(<span class="hljs-literal">true</span>);
+<span class="hljs-keyword">return</span> json($result);
+<span class="hljs-comment">// 得到的结果带括号，方便拼接查询的时候不需要拼装了( SELECT * FROM `tp_user` )</span></code></pre><p>使用buildSql()方法，也是返回SQL 语句，不需要再执行select()，且有括号；</p><p>下面来看一个子查询的例子，有如下两张表：</p><p>tp_two：</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>uid</th><th>gender</th></tr><tr><td>1</td><td>男</td></tr><tr><td>2</td><td>女</td></tr><tr><td>3</td><td>男</td></tr><tr><td>4</td><td>男</td></tr><tr><td>25</td><td>女</td></tr></tbody></table><p>tp_one:</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>id</th><th>user</th><th>age</th></tr><tr><td>1</td><td>张三</td><td>55</td></tr><tr><td>2</td><td>李四</td><td>41</td></tr><tr><td>3</td><td>王五</td><td>34</td></tr><tr><td>4</td><td>马七</td><td>56</td></tr><tr><td>25</td><td>赵八</td><td>98</td></tr></tbody></table><p>我们要实现根据第one表的id=two表的uid且是男的行。</p><p>第一步，求出所有男的uid</p><pre type="PHP"><code> <span class="hljs-comment">// 求出所有男的uid 返回其sql语句，如果末尾换成-&gt;selcet（）则会输出结果</span>
+$subQuery = Db::name(<span class="hljs-string">'two'</span>)-&gt;field(<span class="hljs-string">'uid'</span>)-&gt;where(<span class="hljs-string">'gender'</span>, <span class="hljs-string">'男'</span>)-&gt;buildSql(<span class="hljs-literal">true</span>);
+<span class="hljs-comment">// 得到 ( SELECT `uid` FROM `tp_two` WHERE  `gender` = '男' )</span></code></pre><p>第二步，找到id在第一步区间内的行</p><pre type="PHP"><code><span class="hljs-comment">// 这个写法不对</span>
+$result = Db::name(<span class="hljs-string">'one'</span>)-&gt;where(<span class="hljs-string">'id'</span>, <span class="hljs-string">'in'</span>, $subQuery)-&gt;select();
+<span class="hljs-keyword">return</span> Db::getLastSql();</code></pre><p>上面的写法会返回：SELECT * FROM `tp_one` WHERE `id` = ( SELECT `uid` FROM `tp_two` WHERE `gender` = '男' ) 这个语句不对，所以第二个参数不能用In，应该使用exp进行拼接。</p><pre type="PHP"><code>$result = Db::name(<span class="hljs-string">'one'</span>)-&gt;where(<span class="hljs-string">'id'</span>, <span class="hljs-string">'exp'</span>, <span class="hljs-string">'IN '</span> . $subQuery)-&gt;select();
+<span class="hljs-regexp">//</span> SELECT * FROM <span class="hljs-string">`tp_one`</span> WHERE ( <span class="hljs-string">`id`</span> IN ( SELECT <span class="hljs-string">`uid`</span> FROM <span class="hljs-string">`tp_two`</span> WHERE <span class="hljs-string">`gender`</span> = <span class="hljs-string">'男'</span> ) )
+<span class="hljs-keyword">return</span> Db::getLastSql();</code></pre><p>最终得到的结果就是：</p><pre type="JSON"><code>[
+{
+<span class="hljs-attr">id:</span> <span class="hljs-number">1</span>,
+<span class="hljs-attr">user:</span> <span class="hljs-string">"张三"</span>
+},
+{
+<span class="hljs-attr">id:</span> <span class="hljs-number">3</span>,
+<span class="hljs-attr">user:</span> <span class="hljs-string">"王五"</span>
+},
+{
+<span class="hljs-attr">id:</span> <span class="hljs-number">4</span>,
+<span class="hljs-attr">user:</span> <span class="hljs-string">"马七"</span>
+}
+]</code></pre><h3>使用闭包的方式执行子查询</h3><pre type="PHP"><code><span class="hljs-comment">// $query 就是数据库链接对象 相当于Db</span>
+$result = Db::name(<span class="hljs-string">'one'</span>)-&gt;where(<span class="hljs-string">'id'</span>, <span class="hljs-string">'in'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$query</span>) </span>{
+    $query-&gt;name(<span class="hljs-string">'two'</span>)-&gt;field(<span class="hljs-string">'uid'</span>)-&gt;where(<span class="hljs-string">'gender'</span>, <span class="hljs-string">'男'</span>);
+})-&gt;select();</code></pre><p>以上得到的sql语句也是：SELECT * FROM `tp_one` WHERE `id` IN (SELECT `uid` FROM `tp_two` WHERE `gender` = '男')</p><h3>原生查询</h3><p>使用query()方法，进行原生SQL 查询，适用于读取操作，SQL 错误返回false</p><pre type="PHP"><code>$result = Db::query(<span class="hljs-string">'SELECT * FROM tp_user'</span>);
+<span class="hljs-keyword">return</span> json($result);</code></pre><p>使用execute 方法，进行原生SQL 更新写入等，SQL 错误返回false；</p><pre type="PHP"><code>$result = Db::execute(<span class="hljs-string">'UPDATE tp_user SET username="孙武" WHERE id=29'</span>);
+<span class="hljs-keyword">return</span> json($result);</code></pre><p></p><p></p><p></p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：where
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/54" class="imgbox">
+                <img src="/statics/blog/2021/0430/da9c422e423825dfa9611987768bc41e.jpg">
+            </a>
+            <a href="/blog/articles/54" class="title" title="【课堂笔记】PHP开发APP接口【单例模式】(二)">
+                【课堂笔记】PHP开发APP接口【单例模式】(二)
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/71" class="imgbox">
+                <img src="/statics/blog/2021/0520/05cd13e0d36b54b9d965429e18c0c590.jpeg">
+            </a>
+            <a href="/blog/articles/71" class="title" title="看了肯德基里的这对父子，才明白为什么有些孩子，一生都富不起来">
+                看了肯德基里的这对父子，才明白为什么有些孩子，一生都富不起来
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/122" class="imgbox">
+                <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+            </a>
+            <a href="/blog/articles/122" class="title" title="【中文】免费可商用字体下载与考证">
+                【中文】免费可商用字体下载与考证
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/thinkphp">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/515">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp-关联预载入、关联统计
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/79">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        初识Laravel
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/124">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        控制器之Response
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/186">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用Composer安装Laravel
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/121">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        控制器之Session
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

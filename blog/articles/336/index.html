@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="可以随意切换node版本的工具nvm | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>可以随意切换node版本的工具nvm | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="nvm，npm"/>
+<meta name="description" content="大家在开发过程中，不知道有没有遇到过node已经安装好了，npm也有了，但是运行项目的时候就是莫名奇妙的报了很多看不懂的错误。这个时候大家不加思索的打开了度娘。结果显示您的node版本过高或者过低。需要重新卸载安装别的版本，就特别搞心态。那么今天我就为大家说一下我自己的方法。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 336,
+            article_title: '可以随意切换node版本的工具nvm',
+            article_desc: '大家在开发过程中，不知道有没有遇到过node已经安装好了，npm也有了，但是运行项目的时候就是莫名奇妙的报了很多看不懂的错误。这个时候大家不加思索的打开了度娘。结果显示您的node版本过高或者过低。需要重新卸载安装别的版本，就特别搞心态。那么今天我就为大家说一下我自己的方法。',
+            article_img: '/statics/blog/2022/1206/0ef1feaeb86f5dee4f5a5fb13f81632a.png',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" class="active">
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/zatan">经验杂谈</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">可以随意切换node版本的工具nvm</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>9393</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>567</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2022-12-06 15:59:40</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>nvm的安装</h2><p>大家在开发过程中，不知道有没有遇到过node已经安装好了，npm也有了，<strong>但是运行项目的时候就是莫名奇妙的报了很多看不懂的错误。这个时候大家不加思索的打开了度娘。结果显示您的node版本过高或者过低。需要重新卸载安装别的版本，就特别搞心态。那么今天我就为大家说一下我自己的方法。（</strong><strong>NVM=</strong>NodeJS Version Management<strong>）</strong></p><p><strong>修改nvm镜像（永久生效）</strong></p><pre type="Html"><code><span class="hljs-comment"># 1. 设置 node 镜像（淘宝 npmmirror）</span>
+nvm node_mirror <span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/npmmirror.com/mirrors</span><span class="hljs-regexp">/node/</span>
+
+<span class="hljs-comment"># 2. 设置 npm 镜像</span>
+nvm npm_mirror <span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/npmmirror.com/mirrors</span><span class="hljs-regexp">/npm/</span>
+
+<span class="hljs-comment"># 3. 清缓存（非常重要）</span>
+nvm cache clear</code></pre><h3>把现在安装的node卸载</h3><p>打开cmd，输入系统中node还没有有存在。</p><pre type="Html"><code><span class="hljs-attribute">node</span> -v</code></pre><h3>下载nvm</h3><p><a href="https://github.com/coreybutler/nvm-windows/releases" target="_blank">https://github.com/coreybutler/nvm-windows/releases</a>&nbsp; 下载第四个安装包。</p><p>预防被墙，特意下载后传入百度网盘一份，有需要的自取，里面是1.1.10版本的nvm安装程序，有安装版和绿色版，可以根据自身情况选择使用：</p><a href="https://pan.baidu.com/s/1OlbOhf0hetQ9LlCcpn1u5A?pwd=dmjp 提取码:dmjp" target="_blank">https://pan.baidu.com/s/1OlbOhf0hetQ9LlCcpn1u5A?pwd=dmjp 提取码:dmjp</a><blockquote>安装的时候最好在D盘里面创两个新文件，一个用来存放nvm，一个用来存放以后下载的node</blockquote><h3>安装</h3><p>这里需要注意的是如果安装在C盘一般会有权限问题, 所以最好不要装在C盘，例如D:\nvm 和 D:\nodejs 即可。</p><blockquote>（注意路径中不能包含中文或空格，不然在nvm use命令会报乱码错误。）</blockquote><p>在安装nvm的时候，第一个路径改成自己刚创建的nvm，第二个路径改成自己刚创建的node文件夹。</p><p><img src="/statics/blog/2022/1206/0ef1feaeb86f5dee4f5a5fb13f81632a.png"></p><p>选择存放node的路径</p><p><img src="/statics/blog/2022/1206/65c50e79d0bc5f776c4c4b1ea1b849f5.png"></p><p>然后一路next，然后install，最后finish完成安装。</p><h3>确认安装成功</h3><p>在cmd中，输入命令nvm。</p><p>如果出现一大串信息，Running version 1.1.10.之类的版本信息，就代表安装成功了。</p><h3>配置下载的镜像</h3><p>安装好后在D:\nvm\nvm里对settings.txt文件配置，（主要是若不能科学上网下载速度太慢了，分别配置node和npm的下载镜像）</p><pre type="Html"><code><span class="hljs-attribute">root</span>: <span class="hljs-attribute">D</span>:\worksoft\nvm\nvm
+<span class="hljs-attribute">path</span>: <span class="hljs-attribute">D</span>:\worksoft\nodejs
+<span class="hljs-attribute">node_mirror</span>: <span class="hljs-attribute">https</span>:<span class="hljs-comment">//npmmirror.com/mirrors/node/</span>
+<span class="hljs-attribute">npm_mirror</span>: <span class="hljs-attribute">https</span>:<span class="hljs-comment">//npmmirror.com/mirrors/npm/</span></code></pre><p>下面的信息已经过期了，淘宝 npm 镜像（<code >npm.taobao.org</code>）已停止服务，目前官方推荐使用<code >npmmirror.com</code>替代。</p><p>如果执行nvm list available 发现列表为空，那么代表当前镜像域名不可用。</p><pre type="Html"><code><span class="hljs-attribute">root</span>: <span class="hljs-attribute">D</span>:\nvm\nvm
+<span class="hljs-attribute">path</span>: <span class="hljs-attribute">D</span>:\nodejs
+<span class="hljs-attribute">node_mirror</span>: <span class="hljs-attribute">http</span>:<span class="hljs-comment">//npm.taobao.org/mirrors/node/</span>
+<span class="hljs-attribute">npm_mirror</span>: <span class="hljs-attribute">https</span>:<span class="hljs-comment">//npm.taobao.org/mirrors/npm/</span></code></pre><h2>nvm的使用</h2><p>可以先看看目前node有拿一些版本：</p><p><a href="https://nodejs.org/en/download/releases/" target="_blank">https://nodejs.org/en/download/releases/</a></p><p><a href="https://nodejs.org/dist/" target="_blank">https://nodejs.org/dist/</a></p><p><a href="https://help.aliyun.com/document_detail/60811.html" target="_blank">https://help.aliyun.com/document_detail/60811.html</a>&nbsp;（上面链接打不开的时候可以参考）</p><blockquote>NVM要以管理员身份运行cmd，不然在nvm use node_version时会报乱码错误。</blockquote><h3>查看远程可安装的node版本</h3><p>可以先查看远程可安装的node版本（除开所显示的其他版本也可以下载）</p><blockquote>nvm list available</blockquote><p>可选参数available显示所有可下载版本，缺省时显示本地安装的所有版本及当前使用的node版本。</p><h3>下载指定的node版本并使用</h3><p>下载node版本的命令为nvm install (版本号) 括号省略。比如：</p><pre type="Html"><code><span class="hljs-attribute">nvm</span> install <span class="hljs-number">12</span>.<span class="hljs-number">18</span>.<span class="hljs-number">1</span></code></pre><p>下载完后，你可以查看目前所下载的所有node版本。使用：</p><pre type="Html"><code>nvm <span class="hljs-built_in">list</span></code></pre><p>例如，现在项目用的是12.18.1，那么使用这个版本的node命令就是：</p><pre type="Html"><code><span class="hljs-attribute">nvm</span> use<span class="hljs-number">12</span>.<span class="hljs-number">18</span>.<span class="hljs-number">1</span></code></pre><p>即可。同时可以查看npm和node版本是否正确。</p><p>在cmd中分别直接输入：</p><pre type="Html"><code><span class="hljs-built_in">npm</span> -v 和 node -v</code></pre><h3>重新安装vue-cli</h3><p>注意，<strong>全局安装</strong>的 vue-cli（使用<code>npm install -g @vue/cli</code>）：</p><ul><li>切换 Node 版本后，原来的全局 vue-cli 可能无法直接使用</li><li>需要在新切换的 Node 版本下重新全局安装 vue-cli</li><li>建议切换 Node 版本后，先运行<code>vue --version</code>检查是否能正常使用，若提示命令不存在或报错，再重新安装即可。</li></ul><p><b>确认当前 Node 版本是否正常运行</b></p><p>node -v 和 npm -v，确保 Node 和 npm 能正常工作。若版本显示正常，继续下一步。</p><p><b>重新全局安装 vue-cli</b></p><p>在当前 Node 版本下执行命令：<b></b></p><pre><code>npminstall -g @vue/cli</code></pre><p><strong>验证安装</strong></p><p>安装完成后，再次运行<code>vue --version</code>，若显示版本号，则说明安装成功。</p><h2>常用命令总结</h2><ul><li><b>nvm list available</b>：可选参数available显示所有可下载版本，缺省时显示本地安装的所有版本及当前使用的node版本。</li><li><b>nvm install 14.18.1</b>：安装14.18.1版本的nodejs及对应的npm，会在nvm的安装目录下生成对应版本的nodejs文件夹，可选参数arch指定安装系统位数(32位/64位，默认根据系统位数)。</li><li><b>nvm use 14.18.1</b>：使用指定版本的nodejs和对应npm，如果不使用管理员身份运行cmd，此时此处会出现exit status 1: …的乱码错误，可选参数arch指定安装系统位数(32位/64位，默认根据系统位数)。</li><li><b>nvm uninstall 14.18.1</b>：卸载对应版本的nodejs，nvm的安装目录中对应文件夹会去掉。</li><li><b>nvm arch</b>：显示node运行系统环境32位或64位。</li><li><b>nvm on</b>：开启nodejs版本管理。</li><li><b>nvm off</b>：关闭nodejs版本管理。</li><li><b>nvm proxy [url]</b>：设置下载代理，可选参数url，不加参数显示当前的代理，url为none则清除当前代理。</li><li><b>nvm node_mirror [url]</b>：设置node镜像，默认为https://nodejs.org/dist/，设置后可在nvm安装目录下settings.txt文件查看。</li><li><b>nvm npm_mirror [url]</b>：设置npm镜像，默认为https://github.com/npm/cli/archive/，同理设置后可在nvm安装目录下settings.txt文件查看。</li><li><b>nvm root [path]</b>：设置存储nodejs的目录，默认在nvm的安装目录下。</li><li><b>nvm version</b>：查看nvm版本。</li><li>nvm cache clear&nbsp;清除 nvm 缓存，当修改setting.txt文件时，需要清空一下缓存。</li><li>nvm root&nbsp; 找nvm的安装目录</li></ul>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://blog.csdn.net/weixin_52103939/article/details/123395360" target="_blank">nvm安装与使用</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://blog.csdn.net/TYD0313/article/details/127290110" target="_blank">node随意切换版本</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：nvm，npm
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/146" class="imgbox">
+                <img src="/statics/blog/2021/0728/528951a7001c6fa90f2b91fa706fbb0d.png">
+            </a>
+            <a href="/blog/articles/146" class="title" title="MySQL和Redis如何保证数据一致性？">
+                MySQL和Redis如何保证数据一致性？
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/71" class="imgbox">
+                <img src="/statics/blog/2021/0520/05cd13e0d36b54b9d965429e18c0c590.jpeg">
+            </a>
+            <a href="/blog/articles/71" class="title" title="看了肯德基里的这对父子，才明白为什么有些孩子，一生都富不起来">
+                看了肯德基里的这对父子，才明白为什么有些孩子，一生都富不起来
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/361" class="imgbox">
+                <img src="/statics/blog/2023/0216/668c9296be956f049b809bc035ccdf8c.jpg">
+            </a>
+            <a href="/blog/articles/361" class="title" title="uniapp开发的APP下载图片到手机相册功能的实现">
+                uniapp开发的APP下载图片到手机相册功能的实现
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/zatan">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/219">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用gitee和picgo做图床的一个大坑
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/439">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        华为Mate9开启USB调试模式
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/91">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        给宋老师收藏的期末班主任评语100则
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/162">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        【NS】Switch使用Lanplay实现远程面连的操作流程及信息汇总
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/338">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        微信视频号中的视频下载方法
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

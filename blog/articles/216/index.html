@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="几个高级前端常用的API | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>几个高级前端常用的API | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="IntersectionObserver、MutationObserver"/>
+<meta name="description" content="推荐4个前端开发中常用的高端API，分别是MutationObserver、IntersectionObserver、getComputedstyle、getBoundingClientRect、requestAnimationframe，用其实现图片懒加载等功能。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 216,
+            article_title: '几个高级前端常用的API',
+            article_desc: '推荐4个前端开发中常用的高端API，分别是MutationObserver、IntersectionObserver、getComputedstyle、getBoundingClientRect、requestAnimationframe，用其实现图片懒加载等功能。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal active">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" class="active">
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/js">JS</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">几个高级前端常用的API</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>15916</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>1049</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2021-11-11 09:39:54</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>MutationObserver</h2><p>MutationObserver 是一个可以监听 DOM 结构变化的接口。当 DOM 对象树发生任何变动时，MutationObserver 会得到通知。</p><h3>API</h3><p>MutationObserver 是一个构造器，接受一个 callback 参数，用来处理节点变化的回调函数，返回两个参数：</p><ul><li>mutations：节点变化记录列表<code>（sequence&lt;MutationRecord&gt;）</code></li><li>observer：构造 MutationObserver 对象。</li></ul><p>MutationObserver 对象有三个方法，分别如下：</p><ul><li>observe：设置观察目标，接受两个参数，target：观察目标，options：通过对象成员来设置观察选项</li><li>disconnect：阻止观察者观察任何改变</li><li>takeRecords：清空记录队列并返回里面的内容</li></ul><pre type="JavaScript"><code><span class="hljs-comment">//选择一个需要观察的节点</span>
+<span class="hljs-keyword">var</span> targetNode = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'root'</span>)
+
+<span class="hljs-comment">// 设置observer的配置选项</span>
+<span class="hljs-keyword">var</span> config = { <span class="hljs-attr">attributes</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">childList</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">subtree</span>: <span class="hljs-literal">true</span> }
+
+<span class="hljs-comment">// 当节点发生变化时的需要执行的函数</span>
+<span class="hljs-keyword">var</span> callback = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">mutationsList, observer</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> mutation <span class="hljs-keyword">of</span> mutationsList) {
+    <span class="hljs-keyword">if</span> (mutation.type == <span class="hljs-string">'childList'</span>) {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A child node has been added or removed.'</span>)
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (mutation.type == <span class="hljs-string">'attributes'</span>) {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'The '</span> + mutation.attributeName + <span class="hljs-string">' attribute was modified.'</span>)
+    }
+  }
+}
+
+<span class="hljs-comment">// 创建一个observer示例与回调函数相关联</span>
+<span class="hljs-keyword">var</span> observer = <span class="hljs-keyword">new</span> MutationObserver(callback)
+
+<span class="hljs-comment">//使用配置文件对目标节点进行观测</span>
+observer.observe(targetNode, config)
+
+<span class="hljs-comment">// 停止观测</span>
+observer.disconnect()
+</code></pre><p>observe 方法中 options 参数有已下几个选项：</p><li>childList：设置 true，表示观察目标子节点的变化，比如添加或者删除目标子节点，不包括修改子节点以及子节点后代的变化</li><li>attributes：设置 true，表示观察目标属性的改变</li><li>characterData：设置 true，表示观察目标数据的改变</li><li>subtree：设置为 true，目标以及目标的后代改变都会观察</li><li>attributeOldValue：如果属性为 true 或者省略，则相当于设置为 true，表示需要记录改变前的目标属性值，设置了 attributeOldValue 可以省略 attributes 设置</li><li>characterDataOldValue：如果 characterData 为 true 或省略，则相当于设置为 true,表示需要记录改变之前的目标数据，设置了 characterDataOldValue 可以省略 characterData 设置</li><li>attributeFilter：如果不是所有的属性改变都需要被观察，并且 attributes 设置为 true 或者被忽略，那么设置一个需要观察的属性本地名称（不需要命名空间）的列表</li><h3>特点</h3><p>MutationObserver 有以下特点：</p><ul><li>它等待所有脚本任务完成后才会运行，即采用异步方式</li><li>它把 DOM 变动记录封装成一个数组进行处理，而不是一条条地个别处理 DOM 变动。</li><li>它即可以观察发生在 DOM 节点的所有变动，也可以观察某一类变动</li></ul><p>当 DOM 发生变动会触发 MutationObserver 事件。但是，它与事件有一个本质不同：事件是同步触发，也就是说 DOM 发生变动立刻会触发相应的事件；MutationObserver 则是异步触发，DOM 发生变动以后，并不会马上触发，而是要等到当前所有 DOM 操作都结束后才触发。</p><p>举例来说，如果在文档中连续插入 1000 个段落（p 元素），会连续触发 1000 个插入事件，执行每个事件的回调函数，这很可能造成浏览器的卡顿；而 MutationObserver 完全不同，只在 1000 个段落都插入结束后才会触发，而且只触发一次，这样较少了 DOM 的频繁变动，大大有利于性能。</p><h2>IntersectionObserver</h2><p>网页开发时，常常需要了解某个元素是否进入了"视口"（viewport），即用户能不能看到它。</p><p>传统的实现方法是，监听到 scroll 事件后，调用目标元素的 getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于 scroll 事件密集发生，计算量很大，容易造成性能问题。</p><p>目前有一个新的 IntersectionObserver API，可以自动"观察"元素是否可见，Chrome 51+ 已经支持。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做"交叉观察器"。</p><h3>API</h3><p>IntersectionObserver 是浏览器原生提供的构造函数，接受两个参数：callback 是可见性变化时的回调函数，option 是配置对象（该参数可选）。</p><pre type="JavaScript"><code><span class="hljs-keyword">var</span> io = <span class="hljs-keyword">new</span> IntersectionObserver(callback, option)
+
+<span class="hljs-comment">// 开始观察</span>
+io.observe(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'example'</span>))
+
+<span class="hljs-comment">// 停止观察</span>
+io.unobserve(element)
+
+<span class="hljs-comment">// 关闭观察器</span>
+io.disconnect()
+</code></pre><p>如果要观察多个节点，就要多次调用这个方法。</p><pre type="JavaScript"><code><span class="hljs-selector-tag">io</span><span class="hljs-selector-class">.observe</span>(<span class="hljs-selector-tag">elementA</span>)
+<span class="hljs-selector-tag">io</span><span class="hljs-selector-class">.observe</span>(<span class="hljs-selector-tag">elementB</span>)
+</code></pre><p>目标元素的可见性变化时，就会调用观察器的回调函数 callback。callback 一般会触发两次。一次是目标元素刚刚进入视口（开始可见），另一次是完全离开视口（开始不可见）。</p><pre type="JavaScript"><code>var io = <span class="hljs-keyword">new</span> IntersectionObserver(<span class="hljs-function"><span class="hljs-params">(entries)</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(entries)
+})
+</code></pre><p>callback 函数的参数（entries）是一个数组，每个成员都是一个 IntersectionObserverEntry 对象。举例来说，如果同时有两个被观察的对象的可见性发生变化，entries 数组就会有两个成员。</p><ul><li>time：可见性发生变化的时间，是一个高精度时间戳，单位为毫秒</li><li>target：被观察的目标元素，是一个 DOM 节点对象</li><li>isIntersecting: 目标是否可见</li><li>rootBounds：根元素的矩形区域的信息，getBoundingClientRect()方法的返回值，如果没有根元素（即直接相对于视口滚动），则返回 null</li><li>boundingClientRect：目标元素的矩形区域的信息</li><li>intersectionRect：目标元素与视口（或根元素）的交叉区域的信息</li><li>intersectionRatio：目标元素的可见比例，即 intersectionRect 占 boundingClientRect 的比例，完全可见时为 1，完全不可见时小于等于 0</li></ul><p>举个例子</p><pre type="JavaScript"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+      <span class="hljs-selector-id">#div1</span> {
+        <span class="hljs-attribute">position</span>: sticky;
+        <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;
+        <span class="hljs-attribute">line-height</span>: <span class="hljs-number">50px</span>;
+        <span class="hljs-attribute">text-align</span>: center;
+        <span class="hljs-attribute">background</span>: black;
+        <span class="hljs-attribute">color</span>: <span class="hljs-number">#ffffff</span>;
+        <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;
+      }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"div1"</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"height: 1000px;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"div2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"height: 100px; background: red;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+      <span class="hljs-keyword">var</span> div2 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'div2'</span>)
+      <span class="hljs-keyword">let</span> observer = <span class="hljs-keyword">new</span> IntersectionObserver(
+        <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">entries</span>) </span>{
+          entries.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">element, index</span>) </span>{
+            <span class="hljs-built_in">console</span>.log(element)
+            <span class="hljs-keyword">if</span> (element.isIntersecting) {
+              div1.innerText = <span class="hljs-string">'我出来了'</span>
+            } <span class="hljs-keyword">else</span> {
+              div1.innerText = <span class="hljs-string">'首页'</span>
+            }
+          })
+        },
+        {
+          <span class="hljs-attr">root</span>: <span class="hljs-literal">null</span>,
+          <span class="hljs-attr">threshold</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]
+        }
+      )
+
+      observer.observe(div2)
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><p>相比于 getBoundingClientRect，它的优点是不会引起重绘回流。兼容性如下（<a href="https://caniuse.com/?search=IntersectionObserver" target="_blank">点击查看caniuse</a>）：</p><p><img src="https://634174214.gitee.io/my-pic/IntersectionObserver-caniuse.png"></p><h3>图片懒加载</h3><p>图片懒加载的原理主要是判断当前图片是否到了可视区域这一核心逻辑实现的。这样可以节省带宽，提高网页性能。传统的突破懒加载是通过监听 scroll 事件实现的，但是 scroll 事件会在很短的时间内触发很多次，严重影响页面性能。为提高页面性能，我们可以使用 IntersectionObserver 来实现图片懒加载。</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> imgs = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'img[data-src]'</span>)
+<span class="hljs-keyword">const</span> config = {
+  <span class="hljs-attr">rootMargin</span>: <span class="hljs-string">'0px'</span>,
+  <span class="hljs-attr">threshold</span>: <span class="hljs-number">0</span>
+}
+<span class="hljs-keyword">let</span> observer = <span class="hljs-keyword">new</span> IntersectionObserver(<span class="hljs-function">(<span class="hljs-params">entries, self</span>) =&gt;</span> {
+  entries.forEach(<span class="hljs-function">(<span class="hljs-params">entry</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (entry.isIntersecting) {
+      <span class="hljs-keyword">let</span> img = entry.target
+      <span class="hljs-keyword">let</span> src = img.dataset.src
+      <span class="hljs-keyword">if</span> (src) {
+        img.src = src
+        img.removeAttribute(<span class="hljs-string">'data-src'</span>)
+      }
+      <span class="hljs-comment">// 解除观察</span>
+      self.unobserve(entry.target)
+    }
+  })
+}, config)
+
+imgs.forEach(<span class="hljs-function">(<span class="hljs-params">image</span>) =&gt;</span> {
+  observer.observe(image)
+})
+</code></pre><h3>无限滚动</h3><p>无限滚动（infinite scroll）的实现也很简单。</p><pre type="JavaScript"><code><span class="hljs-keyword">var</span> intersectionObserver = <span class="hljs-keyword">new</span> IntersectionObserver(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">entries</span>) </span>{
+  <span class="hljs-comment">// 如果不可见，就返回</span>
+  <span class="hljs-keyword">if</span> (entries[<span class="hljs-number">0</span>].intersectionRatio &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>
+  loadItems(<span class="hljs-number">10</span>)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Loaded new items'</span>)
+})
+
+<span class="hljs-comment">// 开始观察</span>
+intersectionObserver.observe(<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.scrollerFooter'</span>))
+</code></pre><h2>getComputedStyle()</h2><p>DOM2 Style 在<code>document.defaultView</code>上增加了 getComputedStyle()方法，该方法返回一个<code>CSSStyleDeclaration</code>对象（与 style 属性的类型一样），包含元素的计算样式。</p><h3>API</h3><pre type="JavaScript"><code><span class="hljs-built_in">document</span>.defaultView.getComputedStyle(element[,pseudo-element])
+<span class="hljs-comment">// or</span>
+<span class="hljs-built_in">window</span>.getComputedStyle(element[,pseudo-element])
+</code></pre><p>这个方法接收两个参数：要取得计算样式的元素和伪元素字符串（如":after"）。如果不需要查询伪元素，则第二个参数可以传 null。</p><pre type="JavaScript"><code><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span><span class="css">
+      <span class="hljs-selector-id">#myDiv</span> {
+        <span class="hljs-attribute">background-color</span>: blue;
+        <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+        <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;
+      }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myDiv"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"background-color: red; border: 1px solid black"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getStyleByAttr</span>(<span class="hljs-params">obj, name</span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>.getComputedStyle ? <span class="hljs-built_in">window</span>.getComputedStyle(obj, <span class="hljs-literal">null</span>)[name] : obj.currentStyle[name]
+    }
+    <span class="hljs-keyword">let</span> node = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myDiv'</span>)
+    <span class="hljs-built_in">console</span>.log(getStyleByAttr(node, <span class="hljs-string">'backgroundColor'</span>))
+    <span class="hljs-built_in">console</span>.log(getStyleByAttr(node, <span class="hljs-string">'width'</span>))
+    <span class="hljs-built_in">console</span>.log(getStyleByAttr(node, <span class="hljs-string">'height'</span>))
+    <span class="hljs-built_in">console</span>.log(getStyleByAttr(node, <span class="hljs-string">'border'</span>))
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><h3>和 style 的异同</h3><p>getComputedStyle 和 element.style 的相同点就是二者返回的都是 CSSStyleDeclaration 对象。而不同点就是：</p><ul><li>element.style 读取的只是元素的内联样式，即写在元素的 style 属性上的样式；而 getComputedStyle 读取的样式是最终样式，包括了内联样式、嵌入样式和外部样式。</li><li>element.style 既支持读也支持写，我们通过 element.style 即可改写元素的样式。而 getComputedStyle 仅支持读并不支持写入。我们可以通过使用 getComputedStyle 读取样式，通过 element.style 修改样式</li></ul><h2>getBoundingClientRect</h2><p>getBoundingClientRect() 方法返回元素的大小及其相对于视口的位置。</p><h3>API</h3><pre type="JavaScript"><code><span class="hljs-keyword">let</span> DOMRect = <span class="hljs-built_in">object</span>.getBoundingClientRect()
+</code></pre><p>它的返回值是一个 DOMRect 对象，这个对象是由该元素的 getClientRects() 方法返回的一组矩形的集合，就是该元素的 CSS 边框大小。返回的结果是包含完整元素的最小矩形，并且拥有 left, top, right, bottom, x, y, width, 和 height 这几个以像素为单位的只读属性用于描述整个边框。除了 width 和 height 以外的属性是相对于视图窗口的左上角来计算的。</p><p><img src="https://634174214.gitee.io/my-pic/getBoundingClientRect.png"></p><h3>应用场景</h3><p>1、获取 dom 元素相对于网页左上角定位的距离</p><p>以前的写法是通过 offsetParent 找到元素到定位父级元素，直至递归到顶级元素 body 或 html。</p><pre type="JavaScript"><code><span class="hljs-comment">// 获取dom元素相对于网页左上角定位的距离</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">offset</span>(<span class="hljs-params">el</span>) </span>{
+  <span class="hljs-keyword">var</span> top = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">var</span> left = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">do</span> {
+    top += el.offsetTop
+    left += el.offsetLeft
+  } <span class="hljs-keyword">while</span> ((el = el.offsetParent)) <span class="hljs-comment">// 存在兼容性问题，需要兼容</span>
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">top</span>: top,
+    <span class="hljs-attr">left</span>: left
+  }
+}
+
+<span class="hljs-keyword">var</span> odiv = <span class="hljs-built_in">document</span>.getElementsByClassName(<span class="hljs-string">'markdown-body'</span>)
+offset(a[<span class="hljs-number">0</span>]) <span class="hljs-comment">// {top: 271, left: 136}</span>
+</code></pre><p>现在根据 getBoundingClientRect 这个 api，可以写成这样：</p><pre type="JavaScript"><code><span class="hljs-keyword">var</span> positionX = <span class="hljs-built_in">this</span>.getBoundingClientRect().left + <span class="hljs-built_in">document</span>.documentElement.scrollLeft
+<span class="hljs-keyword">var</span> positionY = <span class="hljs-built_in">this</span>.getBoundingClientRect().top + <span class="hljs-built_in">document</span>.documentElement.scrollTop
+</code></pre><p>2、判断元素是否在可视区域内</p><pre type="JavaScript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isElView</span>(<span class="hljs-params">el</span>) </span>{
+  <span class="hljs-keyword">var</span> top = el.getBoundingClientRect().top <span class="hljs-comment">// 元素顶端到可见区域顶端的距离</span>
+  <span class="hljs-keyword">var</span> bottom = el.getBoundingClientRect().bottom <span class="hljs-comment">// 元素底部端到可见区域顶端的距离</span>
+  <span class="hljs-keyword">var</span> se = <span class="hljs-built_in">document</span>.documentElement.clientHeight <span class="hljs-comment">// 浏览器可见区域高度。</span>
+  <span class="hljs-keyword">if</span> (top &lt; se &amp;&amp; bottom &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (top &gt;= se || bottom &lt;= <span class="hljs-number">0</span>) {
+    <span class="hljs-comment">// 不可见</span>
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+}
+</code></pre><h2>requestAnimationFrame</h2><p>window.requestAnimationFrame() 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。</p><h3>API</h3><p>该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行。</p><pre type="JavaScript"><code><span class="hljs-built_in">window</span>.requestAnimationFrame(callback)
+</code></pre><p>兼容性处理</p><pre type="JavaScript"><code><span class="hljs-built_in">window</span>._requestAnimationFrame = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="hljs-built_in">window</span>.requestAnimationFrame ||
+    <span class="hljs-built_in">window</span>.webkitRequestAnimationFrame ||
+    <span class="hljs-built_in">window</span>.mozRequestAnimationFrame ||
+    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) </span>{
+      <span class="hljs-built_in">window</span>.setTimeout(callback, <span class="hljs-number">1000</span> / <span class="hljs-number">60</span>)
+    }
+  )
+})()
+</code></pre><p>结束动画</p><pre type="JavaScript"><code><span class="hljs-keyword">var</span> globalID
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animate</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// done(); 一直运行</span>
+  globalID = requestAnimationFrame(animate) <span class="hljs-comment">// Do something animate</span>
+}
+globalID = requestAnimationFrame(animate) <span class="hljs-comment">//开始</span>
+cancelAnimationFrame(globalID) <span class="hljs-comment">//结束</span>
+</code></pre><p>与 setTimeout 相比，requestAnimationFrame 最大的优势是由系统来决定回调函数的执行时机。具体一点讲，如果屏幕刷新率是 60Hz,那么回调函数就每 16.7ms 被执行一次，如果刷新率是 75Hz，那么这个时间间隔就变成了 1000/75=13.3ms，换句话说就是，requestAnimationFrame 的步伐跟着系统的刷新步伐走。它能保证回调函数在屏幕每一次的刷新间隔中只被执行一次，这样就不会引起丢帧现象，也不会导致动画出现卡顿的问题。这个 API 的调用很简单，如下所示：</p><pre type="JavaScript"><code><span class="hljs-keyword">var</span> progress = <span class="hljs-number">0</span>
+<span class="hljs-comment">//回调函数</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>) </span>{
+  progress += <span class="hljs-number">1</span> <span class="hljs-comment">//修改图像的位置</span>
+  <span class="hljs-keyword">if</span> (progress &lt; <span class="hljs-number">100</span>) {
+    <span class="hljs-comment">//在动画没有结束前，递归渲染</span>
+    <span class="hljs-built_in">window</span>.requestAnimationFrame(render)
+  }
+}
+<span class="hljs-comment">//第一帧渲染</span>
+<span class="hljs-built_in">window</span>.requestAnimationFrame(render)
+</code></pre><h3>优点：</h3><li><p>CPU 节能：使用 setTimeout 实现的动画，当页面被隐藏或最小化时，setTimeout 仍然在后台执行动画任务，由于此时页面处于不可见或不可用状态，刷新动画是没有意义的，完全是浪费 CPU 资源。而 requestAnimationFrame 则完全不同，当页面处理未激活的状态下，该页面的屏幕刷新任务也会被系统暂停，因此跟着系统步伐走的 requestAnimationFrame 也会停止渲染，当页面被激活时，动画就从上次停留的地方继续执行，有效节省了 CPU 开销。</p></li><li><p>函数节流：在高频率事件(resize,scroll 等)中，为了防止在一个刷新间隔内发生多次函数执行，使用 requestAnimationFrame 可保证每个刷新间隔内，函数只被执行一次，这样既能保证流畅性，也能更好的节省函数执行的开销。一个刷新间隔内函数执行多次时没有意义的，因为显示器每 16.7ms 刷新一次，多次绘制并不会在屏幕上体现出来。</p></li><h3>应用场景</h3><p>1、监听 scroll 函数</p><p>页面滚动事件（scroll）的监听函数，就很适合用这个 api，推迟到下一次重新渲染。</p><pre type="JavaScript"><code>$(<span class="hljs-built_in">window</span>).on(<span class="hljs-string">'scroll'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">window</span>.requestAnimationFrame(scrollHandler)
+})
+</code></pre><p>平滑滚动到页面顶部</p><pre type="JavaScript"><code>const scrollToTop = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  const c = <span class="hljs-built_in">document</span>.documentElement.scrollTop || <span class="hljs-built_in">document</span>.body.scrollTop
+  <span class="hljs-keyword">if</span> (c &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-built_in">window</span>.requestAnimationFrame(scrollToTop)
+    <span class="hljs-built_in">window</span>.scrollTo(<span class="hljs-number">0</span>, c - c / <span class="hljs-number">8</span>)
+  }
+}
+
+scrollToTop()
+</code></pre><p>2、大量数据渲染</p><p>比如对十万条数据进行渲染，主要由以下几种方法：</p><p>（1）使用定时器</p><pre type="JavaScript"><code><span class="hljs-comment">//需要插入的容器</span>
+<span class="hljs-keyword">let</span> ul = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'container'</span>)
+<span class="hljs-comment">// 插入十万条数据</span>
+<span class="hljs-keyword">let</span> total = <span class="hljs-number">100000</span>
+<span class="hljs-comment">// 一次插入 20 条</span>
+<span class="hljs-keyword">let</span> once = <span class="hljs-number">20</span>
+<span class="hljs-comment">//总页数</span>
+<span class="hljs-keyword">let</span> page = total / once
+<span class="hljs-comment">//每条记录的索引</span>
+<span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>
+<span class="hljs-comment">//循环加载数据</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loop</span>(<span class="hljs-params">curTotal, curIndex</span>) </span>{
+  <span class="hljs-keyword">if</span> (curTotal &lt;= <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  }
+  <span class="hljs-comment">//每页多少条</span>
+  <span class="hljs-keyword">let</span> pageCount = <span class="hljs-built_in">Math</span>.min(curTotal, once)
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; pageCount; i++) {
+      <span class="hljs-keyword">let</span> li = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'li'</span>)
+      li.innerText = curIndex + i + <span class="hljs-string">' : '</span> + ~~(<span class="hljs-built_in">Math</span>.random() * total)
+      ul.appendChild(li)
+    }
+    loop(curTotal - pageCount, curIndex + pageCount)
+  }, <span class="hljs-number">0</span>)
+}
+loop(total, index)
+</code></pre><p>（2）使用 requestAnimationFrame</p><pre type="JavaScript"><code><span class="hljs-comment">//需要插入的容器</span>
+<span class="hljs-keyword">let</span> ul = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'container'</span>)
+<span class="hljs-comment">// 插入十万条数据</span>
+<span class="hljs-keyword">let</span> total = <span class="hljs-number">100000</span>
+<span class="hljs-comment">// 一次插入 20 条</span>
+<span class="hljs-keyword">let</span> once = <span class="hljs-number">20</span>
+<span class="hljs-comment">//总页数</span>
+<span class="hljs-keyword">let</span> page = total / once
+<span class="hljs-comment">//每条记录的索引</span>
+<span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>
+<span class="hljs-comment">//循环加载数据</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loop</span>(<span class="hljs-params">curTotal, curIndex</span>) </span>{
+  <span class="hljs-keyword">if</span> (curTotal &lt;= <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  }
+  <span class="hljs-comment">//每页多少条</span>
+  <span class="hljs-keyword">let</span> pageCount = <span class="hljs-built_in">Math</span>.min(curTotal, once)
+  <span class="hljs-built_in">window</span>.requestAnimationFrame(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; pageCount; i++) {
+      <span class="hljs-keyword">let</span> li = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'li'</span>)
+      li.innerText = curIndex + i + <span class="hljs-string">' : '</span> + ~~(<span class="hljs-built_in">Math</span>.random() * total)
+      ul.appendChild(li)
+    }
+    loop(curTotal - pageCount, curIndex + pageCount)
+  })
+}
+loop(total, index)
+</code></pre><h3>监控卡顿方法</h3><p>每秒中计算一次网页的 FPS，获得一列数据，然后分析。通俗地解释就是，通过 requestAnimationFrame API 来定时执行一些 JS 代码，如果浏览器卡顿，无法很好地保证渲染的频率，1s 中 frame 无法达到 60 帧，即可间接地反映浏览器的渲染帧率。</p><pre type="JavaScript"><code><span class="hljs-keyword">var</span> lastTime = performance.now()
+<span class="hljs-keyword">var</span> frame = <span class="hljs-number">0</span>
+<span class="hljs-keyword">var</span> lastFameTime = performance.now()
+<span class="hljs-keyword">var</span> loop = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">time</span>) </span>{
+  <span class="hljs-keyword">var</span> now = performance.now()
+  <span class="hljs-keyword">var</span> fs = now - lastFameTime
+  lastFameTime = now
+  <span class="hljs-keyword">var</span> fps = <span class="hljs-built_in">Math</span>.round(<span class="hljs-number">1000</span> / fs)
+  frame++
+  <span class="hljs-keyword">if</span> (now &gt; <span class="hljs-number">1000</span> + lastTime) {
+    <span class="hljs-keyword">var</span> fps = <span class="hljs-built_in">Math</span>.round((frame * <span class="hljs-number">1000</span>) / (now - lastTime))
+    frame = <span class="hljs-number">0</span>
+    lastTime = now
+  }
+  <span class="hljs-built_in">window</span>.requestAnimationFrame(loop)
+}
+</code></pre><p>我们可以定义一些边界值，比如连续出现 3 个低于 20 的 FPS 即可认为网页存在卡顿。</p>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://juejin.cn/post/7028744289890861063?utm_source=gold_browser_extension#heading-13" target="_blank">原文地址</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：IntersectionObserver、MutationObserver
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/92" class="imgbox">
+                <img src="/statics/blog/2021/0622/24deca6ea8cb1a47f7b77468c963f978.jpg">
+            </a>
+            <a href="/blog/articles/92" class="title" title="【Apache】服务器开启SSI-include包含模块">
+                【Apache】服务器开启SSI-include包含模块
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/212" class="imgbox">
+                <img src="/statics/blog/2021/1109/34b3afcc2e19c518ebd8920b5e37b1dd.jpg">
+            </a>
+            <a href="/blog/articles/212" class="title" title="19个console实用调试技巧">
+                19个console实用调试技巧
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/135" class="imgbox">
+                <img src="/statics/blog/2021/0714/55ecfb0e5af67e9e543924cb051e546a.jpg">
+            </a>
+            <a href="/blog/articles/135" class="title" title="百度分享share.baidu各配置详解及解决https支持问题">
+                百度分享share.baidu各配置详解及解决https支持问题
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/js">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/242">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        将ArrayBuffer和base64转为blob临时地址
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/598">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        将Markdown文件转换为DOCX格式，支持浏览器和Node.js
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/312">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        viewport适配移动端的方案
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/524">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        JS模拟机打效果，逐个字显示，并排除br标签
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/228">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        【JS实现JQuery方法】parents、parent、children、data
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

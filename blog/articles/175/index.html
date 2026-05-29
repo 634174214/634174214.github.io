@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="z-index和transform你真的了解吗？ | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>z-index和transform你真的了解吗？ | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="z-index，transform"/>
+<meta name="description" content="z-index和transform是CSS中的属性，但很少同学将二者联系到一起，感觉他们八杆子打不上。事实真的是这样吗？如果你也不能确认，这篇文章就值得你花点时间阅读。因为阅读完了，你会有所收获的。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 175,
+            article_title: 'z-index和transform你真的了解吗？',
+            article_desc: 'z-index和transform是CSS中的属性，但很少同学将二者联系到一起，感觉他们八杆子打不上。事实真的是这样吗？如果你也不能确认，这篇文章就值得你花点时间阅读。因为阅读完了，你会有所收获的。',
+            article_img: '/statics/blog/2021/0906/fba3015d5d6fbbb539f3fb628fe45b95.jpg',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal active">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" class="active">
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/css">CSS</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">z-index和transform你真的了解吗？</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>12451</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>575</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2021-09-06 17:28:56</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>堆叠上下文</h2><p><code>z-index</code>和<code>transform</code>是CSS中的属性，但很少同学将二者联系到一起，感觉他们八杆子打不上。事实真的是这样吗？如果你也不能确认，这篇文章就值得你花点时间阅读。因为阅读完了，你会有所收获的。</p><p>在开始今天的主题之前，先得回忆一下CSS中的Stacking Context(堆叠上下文)。因为只有了解清楚了这个概念，才能更好的了解下面的内容。</p><p>任何HTML文档默认的堆叠上下文都是<code>&lt;html&gt;</code>元素。因此，除非创建新的堆叠上下文。默认情况下，元素的堆叠顺序相对于页面内的其他元素。在一个未做堆叠顺序更换的页面中，其顺序就是根据HTML中的元素出现的先后顺序来决定，先出现的在底下，后出现的在顶部。用数字来表示的话是就<code>1,2,3,4,...,n</code>这样的顺序。</p><p>第二个<code>div</code>做了一个<code>margin-top</code>的<code>-50px</code>，可以看到第二个<code>div</code>遮住了第一个<code>div</code>。那么怎么才能改变默认的堆叠顺序呢？</p><p>先把结论给大家抛出来，<strong>在CSS中可以使用<code>z-index</code>和<code>transform</code>可以改变元素的堆叠顺序</strong>。但也可能会导致一些奇怪的情况，比如具有较大的<code>z-index</code>的元素并不总是位于具有较低<code>z-index</code>元素的上方。比如，在一些情况之下，同时使用<code>z-index</code>和<code>transform</code>会让<code>z-index</code>失效等。</p><h3>CSS中会产生新的层情况还有很多种：</h3><ul><li><p>当一个元素位于HTML文档的最外层（<code>&lt;html&gt;</code>元素）</p></li><li><p>当一个元素被定位了并且拥有一个<code>z-index</code>值（不为<code>auto</code>）</p></li><li><p>当一个元素被设置了<code>opacity</code>，<code>transforms</code>,<code>filters</code>,<code>css-regions</code>,<code>paged media</code>等属性</p></li><li><p><code>flex item</code>，也就是父元素的<code>display</code>设置了<code>flex</code>或者<code>inline-flex</code>值，早期的<code>box</code>值不行</p></li><li><p><code>grid item</code>,也就是父元素的<code>display</code>设置了<code>grid</code>或者<code>inline-grid</code>值</p></li><li><p><code>isolation:isolate</code></p></li><li><p>元素的<code>mix-blend-mode</code>值不为<code>normal</code></p></li><li><p>元素的<code>overflow-scrolling</code>值不为<code>touch</code></p></li><li><p>元素的<code>filter</code>值不为<code>none</code></p></li><li><p>元素的<code>perspective</code>值不为<code>none</code></p></li><li><p>元素的<code>motion-path</code>值不为<code>none</code></p></li></ul><h2>三维空间</h2><p>Web中的任何元素都存在于一个三维空间中，除了大家熟知的平面画布中的<code>x</code>轴和<code>y</code>轴之外，还有控制第三维度的<code>z</code>轴，如下图所示：</p><p><img src="/statics/blog/2021/0906/0b211eae7cd80b2877d5a2c5ce65193c.jpg"></p><p>在CSS中使用<code>margin</code>,<code>float</code>、<code>offset</code>这些属性，可以控制元素在<code>x</code>轴和<code>y</code>轴上的表现。而<code>z</code>轴上的表现形式可以通过<code>z-index</code>和<code>transform</code>来控制。</p><h2>如何控制z轴</h2><p>前面也说了，控制<code>z</code>是通过<code>z-index</code>和<code>transform</code>来实现的。先简单的了解一下这两种控制<code>z</code>轴的方法。</p><p>通过<code>z-index</code>控制<code>z</code>轴，需要配合<code>position</code>属性，且<code>position</code>的属性值为<code>relative</code>、<code>absolute</code>、<code>fixed</code>和<code>sticky</code>时。并且给<code>z-index</code>显式的设置数值，数值越大，其层级越高。简单点说，数值越高，元素越在顶上。</p><p><img src="/statics/blog/2021/0906/20b6ef502ff137a42758896dd39dbbb0.jpg"></p><p><code>transform</code>可以通过它的<code>translateZ()</code>来改变元素的层叠顺序，其值越大，越在顶层，离屏幕越近。不过通过<code>transform:translateZ()</code>改变元素<code>z</code>轴的层级，必须在元素的父元素中显示的设置<code>transform-style: preserve-3d</code>或者在<code>transform</code>中显示的设置<code>perspective()</code>。如下所示：</p><p><img src="/statics/blog/2021/0906/fba3015d5d6fbbb539f3fb628fe45b95.jpg"></p><p>有关于<code>z-index</code>和<code>transform</code>更多的教程可以阅读下面这些文章：</p><ul><li><p><a><code>z-index</code>的工作原理</a></p></li><li><p><a>没人告诉你关于<code>z-index</code>的一些事</a></p></li><li><p><a>你对<code>position</code>的了解程度有多少?</a></p></li><li><p><a>十步图解CSS的<code>position</code></a></p></li><li><p><a>CSS3 3D Transform</a></p></li><li><p><a>CSS3 2D Transform</a></p></li><li><p><a>Transform-style和Perspective属性</a></p></li></ul><h2>z-index 和 translate3d</h2><blockquote><strong >特别声明：</strong><span >接下来的内容挑选于</span><a >@凹凸实验室</a><span >的《</span><a >探究<code>transform</code>动画元素的<code>z-index</code></a><span >》一文。此文章详细讲解了</span><code >transform</code><span >和</span><code >z-index</code><span >在一起使用将会发生的状况。</span></blockquote><p>在一次需求中，需要做出三张卡牌走马灯式滚动的效果，由于在前面的一张卡牌需要挡住后面的卡牌，自然而然地就用<code>z-index</code>使前面的卡牌显示在最上面，配以<code>transform</code>动画让“走马灯”滚起来，在开发过程中，在 PC 侧 Chrome 中表现良好，在本人手机浏览器中也表现良好，最后测试时却发现，在微信客户端或 QQ 客户端中打开页面出现问题，“走马灯”滚动时，卡牌先通过<code>transform</code>就位后，才把<code>z-index</code>设置较大的卡牌置于上面，感觉上非常的不流畅。</p><p>究其原因，发现这是某些浏览器的渲染规则，涉及到 stacking context 的概念，<code>transform</code>的元素会创建新的 DOM，层级会在普通元素的上面，除了<code>transform</code>,还有哪些情况会创建新 stacking context呢？</p><p><img src="/statics/blog/2021/0906/e042e44487ff065a5d2c37f0ed5044ee.jpg"></p><p>很明显，红色<code>div</code>都在绿色<code>div</code>上面了，说明真的有创建了个更高层级的 stacking context。再做进一步测试，我给两组的<code>div</code>都加了<code>position:relative;z-index:1;</code>，结果绿色的都在上面了，手机微信上也一样，这能不能说明<code>z-index</code>对层级的影响大于<code>transform</code>和<code>opacity</code>呢。</p><p>至于<code>transform</code>变换的时候会让<code>z-index</code>“临时失效”，其实并非<code>z-index</code>失效了，只是<code>z-index</code>被用在不同的 stacking context 上，而非在默认的 context 上同等地比较层级了。所以 DOM 在<code>transform</code>的工程中，DOM 处于一个新的 stacking context 里，<code>z-index</code>也是相对于这个 stacking context 的，所以表现出来的实际是 stacking context 的层次，动画一结束，DOM 又回到默认的 context 里，这时的<code>z-index</code>才是在同一个 context 上的比较。</p><p>那该用什么方法来控制卡牌的层级，又能让动画流畅地表现呢，当然是<code>translate3d</code>中的<code>z-axis</code>，很多时候我们并不知道它是用来做什么的，平常用得最多的只是它的<code>x-axis</code>和<code>y-axis</code></p><p><p>现在可以来理解下<code>perspective</code>和<code>translate3d</code>的关系，<code>perspective</code>可以比作镜头和 DOM 的距离，实际上设置多少都没影响，因为它通过跟<code>z-axis</code>上的数值比例来影响样式，它更像是一个刻度，而<code>translate3d</code>的<code>z-axis</code>则表示了 DOM 和屏幕的距离。假定镜头跟屏幕的距离固定了，<code>z-axis</code>越大，DOM 逐渐远离屏幕，靠近镜头，这时 DOM 看起来也就越大，当<code>z-axis</code>大于或等于<code>perspective</code>时，DOM元素已经在我们镜头的后面了，所以也就看不到它了。</p><p><img src="/statics/blog/2021/0906/dc94f7c2023d1c661301eca29dc31c84.jpg"></p><p>现在也就好理解为什么<code>perspective</code>和<code>translate3d</code>能够影响 DOM 的层级了，它们在屏幕和镜头之间的距离不同，所以就有了层次，移动端设备很好地表现了这个结论，但在 PC 的 Chrome 上测试则不然，我们仍需要<code>z-index</code>才会表现出我们需要的 层次关系。</p><h2>transform变换z-index层级渲染异常</h2></p><p>在一些浏览器或设备上，当<code>transform</code>和<code>z-index</code>在一起使用时会发生异样，造成<code>z-index</code>失灵。至于为什么会失灵，以及如何解决，这里就不多讲了。如果您对这方面的感兴趣，可以看看<a>@张鑫旭</a>大师写得一篇文章《<a>Safari 3D transform变换z-index层级渲染异常的研究</a>》。</p><div><p>文章总结了两种解决方案：</p><ul><li><p><strong>方法1</strong>：父级，任意父级，非<code>body</code>级别，设置<code>overflow:hidden</code>可恢复和其他浏览器一样的渲染</p></li><li><p><strong>方法2</strong>：以毒攻毒。也可以使用3D transform变换</p></li></ul><p></p><p>至于怎么使用3D Transform，大家还是<a>移步看张大师是怎么分析的</a>。</p></div><p><h2>何时使用Transform来实现z-index</h2></p><p>在介绍<code>z-index</code>和<code>translate3d</code>一节中，我们也了解到了，有时候设置<code>z-index</code>来控制<code>z</code>轴并不有效，张大师文章也提到过，它们在一起使用时，有时候会使用<code>z-index</code>失灵。其实还有一个现象，大家可能平时并没有注意到。</p><div><p>当你通过<code>z-index</code>配合伪元素<code>::before</code>或者<code>::after</code>时让其<code>z</code>轴在元素的底部，特别是碰到大的元素渲染(比如全屏背景图)，会直接影响性能，特别是在移动端，会造成客户端闪退，也就是大家所说的Crash，给用户造成非常不好的体验。</p><p>缩合上面的几个现象(当然可能还有很多我自己没有发现的)，我们可以抛弃<code>z-index</code>来控制<code>z</code>轴的顺序，而是直接通过<code>transform</code>中的<code>translateZ()</code>或者<code>translate3d()</code>来控制<code>z</code>轴的顺序。</p></div><p><p>单独使用<code>z-index</code>或者<code>transform</code>中的<code>translateZ</code>、<code>translate3d()</code>，或许你都不会想到他们之间有这么多的故事，甚至更没有想到在实际业务中通过<code>transform</code>来替代<code>z-index</code>来控制元素的<code>z</code>轴的顺序。那么这篇文章介绍的就是这两者之间的故事，以及如何通过<code>transform</code>来控制元素<code>z</code>轴的顺序。</p></p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：z-index，transform
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/291" class="imgbox">
+                <img src="//native-res.dcloud.net.cn/images/uniapp/share/modules.png">
+            </a>
+            <a href="/blog/articles/291" class="title" title="使用uni-share插件实现APP页面分享">
+                使用uni-share插件实现APP页面分享
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/81" class="imgbox">
+                <img src="/statics/blog/2021/0608/c73e3b8f3846b3d02d63e48f859fe548.jpg">
+            </a>
+            <a href="/blog/articles/81" class="title" title="记录一些Linux常用操作">
+                记录一些Linux常用操作
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/100" class="imgbox">
+                <img src="/statics/blog/2021/0623/f460191aa62e5b885217a3b4eae730b4.jpg">
+            </a>
+            <a href="/blog/articles/100" class="title" title="使用查询构造器查询数据">
+                使用查询构造器查询数据
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/css">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/240">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        在HTML元素伪类after的attr方法中拼接字符串
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/104">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        IE10的CSS-Hack介绍及IE11的CSS-Hack
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/529">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        CSS使用not伪类实现列表内容过滤效果
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/151">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        一句css属性禁用a标签的跳转，阻止a标签的默认行为
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/522">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        CSS实现渐变字效果
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

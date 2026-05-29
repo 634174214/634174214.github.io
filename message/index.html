@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="用户留言 | 一介武夫 | wubin.work &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>用户留言 | 一介武夫 | wubin.work</title>
+<meta name="keywords" content="一介武夫, 博客, PHP， 前端， js, es， 技术平台， mysql, javascript, ecmascript，个人建站"/>
+<meta name="description" content="用户留言 | 旨在共享设计、开发类的知识，交流开发中遇到的各种问题,涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery等前后端常用的技巧及知识点，欢迎交流学习。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script></head>
+<body class="preload" ontouchstart>
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear live-message">
+    <aside class="message-left">
+        <!-- 留言输入 -->
+        <div class="inner margin-bot-l">
+            <div class="top-banner">
+                <img src="/assets/img/live-message-top.png">
+            </div>
+            <div class="message-h2">
+                <h2>我要留言</h2>
+                <span>感谢您的宝贵意见，他们将是我不断前行的动力</span>
+            </div>
+            <!-- message-area -->
+            <div class="message-area">
+                <div class="textarea-x">
+                    <textarea name="message" id="message-text" class="mes-textarea" placeholder="请在此处输入您的宝贵意见或想对站长说的话，留言最少10个字，最多不能超过200字，必填" maxlength="200"></textarea>
+                    <span class="text-count"><span id="text-count">0</span> / 200</span>
+                </div>
+                <div class="nike-name-x">
+                    <input type="text" placeholder="请在此处输入您的自定义昵称或点击生成一个昵称，选填" id="nikename" maxlength="20">
+                    <div class="create-nike-name" id="create-nike-name">
+                        <i class="icon fa fa-user-plus"></i>点我随机生成一个昵称
+                    </div>
+                </div>
+                <div class="submit-x clear">
+                    <input type="text" placeholder="请输入您的邮箱地址，用于发言验证，必填" class="email-input" id="email-input">
+                        <div class="your-avatar" id="your-avatar">
+                        <img src="/assets/img/live-message-u-avatar-0.png" id="your-avatar-img" data-uavatar="0">
+                        <p>请点击更换<br>留言头像</p>
+                        <div class="your-avatar-list" id="your-avatar-list">
+                            <img src="/assets/img/live-message-u-avatar-0.png" title="默认" data-uavatar="0">
+                            <img src="/assets/img/live-message-u-avatar-1.png" title="小猪" data-uavatar="1">
+                            <img src="/assets/img/live-message-u-avatar-2.png" title="机器猫" data-uavatar="2">
+                            <img src="/assets/img/live-message-u-avatar-3.png" title="帅哥" data-uavatar="3">
+                            <img src="/assets/img/live-message-u-avatar-4.png" title="Q版美女" data-uavatar="4">
+                            <img src="/assets/img/live-message-u-avatar-5.png" title="美女" data-uavatar="5">
+                            <img src="/assets/img/live-message-u-avatar-6.png" title="路飞" data-uavatar="6">
+                            <img src="/assets/img/live-message-u-avatar-7.png" title="索隆" data-uavatar="7">
+                            <img src="/assets/img/live-message-u-avatar-8.png" title="宅男" data-uavatar="8">
+                            <img src="/assets/img/live-message-u-avatar-9.png" title="樱桃小丸子" data-uavatar="9">
+                        </div>
+                    </div>
+                    <button type="button" class="submit-btn" id="submit-btn">
+                        发布留言
+                    </button>
+                </div>
+                <ol class="message-tips">
+                    <li><strong>注意事项：</strong></li>
+                    <li>① 为响应国家净网规范，您的留言将在审核通过后进行采纳并公开。</li>
+                    <li>② 发言时<b>必须使用真实有效的邮箱进行验证</b>，点击提交后，请在弹窗中输入发送到您邮箱的验证码。<b>验证码24小时内有效</b>。</li>
+                    <li>③ 当您的留言被回复后，将会收到邮件通知。请注意查收。</li>
+                    <li>④ 请文明发言，禁止发布违法国家法律法规及侵害他人合法权益的信息，一经发现，将永久封禁邮箱账号 。</li>
+                    <li>⑤ 每个<b>邮箱地址每日仅能发布一条留言</b>。</li>
+                    <li>⑥ 留言被采纳后，如已填写昵称，则优先显示昵称。展示时，您的邮箱地址会被隐藏。</li>
+                    <li>⑦ 根据每个邮箱的不同，向您邮箱中发送的<b>验证码</b>，可能会在您的<b>垃圾箱中</b>，请谨慎操作。</li>
+                </ol>
+            </div>
+            <!-- message-area end -->
+        </div>
+        <!-- 留言输入 end -->
+        <!-- 留言展示 -->
+        <div class="inner">
+            <div class="message-h2">
+                <h2>留言板</h2>
+                <span>感谢朋友们的赠言，感谢大家给予我无私的帮助</span>
+            </div>
+            <ul class="live-message-list" id="live-message-list"></ul>
+            <div class="message-load-more" id="message-load-more">
+                <div class="no-load">
+                    <img src="/assets/img/live-message-load.gif" class="icon">
+                    <span>点我加载更多留言</span>
+                </div>
+                <div class="is-loading">
+                    <img src="/assets/img/loading-pc.gif" class="icon">
+                    <span>正在加载，请稍后...</span>
+                </div>
+                <div class="is-loaded">
+                    <span>抱歉，已经没有更多的留言啦~</span>
+                </div>
+            </div>
+
+            <div class="empty-message-list" id="empty-message-list">
+                目前还没有人留言，还不快来抢占沙发~
+            </div>
+
+        </div>
+        <!-- 留言展示 end -->
+    </aside>
+
+    <aside class="message-right">
+        <div class="inner">
+            <!-- slide thanks -->
+            <div class="slide margin-bot-l">
+                <h3 class="slide-h3">
+                    <i class="icon fa fa-podcast"></i>特别感谢
+                </h3>
+                <ul class="slide-thanks-list" id="slide-thanks-list">
+                    <li class="thanks-item">
+                        <div class="avatar">
+                            <img src="/assets/img/live-message-thanks-yang.png">
+                        </div>
+                        <div class="info">
+                            <p class="name">技术君 <a href="http://yangjinjian.com/" target="_blank">访问他的博客</a></p>
+                            <p>资深IOS/安卓APP开发工程师、系统架构师。
+                                精通GO、Python多种开发语言，深藏不露的大佬。</p>
+                        </div>
+                    </li>
+                    <li class="thanks-item">
+                        <div class="avatar">
+                            <img src="/assets/img/live-message-thanks-song.png">
+                        </div>
+                        <div class="info">
+                            <p class="name">老婆大人</p>
+                            <p>优秀青年语文教师、格兰德小学语文组带头人。感谢宋老师的资金支持，老婆爱你么么哒~</p>
+                        </div>
+                    </li>
+                    <li class="thanks-item">
+                        <div class="avatar">
+                            <img src="/assets/img/live-message-thanks-tianshi.png">
+                        </div>
+                        <div class="info">
+                            <p class="name">小天使</p>
+                            <p>尚在成长阶段的人类幼崽。每当看到你，我都会拥有无限的动力！为了更好的明天，努力!奋斗！</p>
+                        </div>
+                    </li>
+                    <li class="thanks-item">
+                        <div class="avatar">
+                            <img src="/assets/img/live-message-thanks-fumu.png">
+                        </div>
+                        <div class="info">
+                            <p class="name">老头老太太</p>
+                            <p>感谢长久以来你们为了家庭无私的辛劳付出。这是说了谢谢，反而才觉得亏欠的情感。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- slide thanks end -->
+            <!-- slide-qr -->
+            <!-- qr-box -->
+            <div class="qr-box">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <!-- slide-qr end -->
+            <!-- slide-pay -->
+            <div class="slide margin-bot-l">
+                <h3 class="slide-h3">
+                    <i class="icon fa fa-diamond"></i>赞助榜
+                </h3>
+                <div class="slide-pays-roll" id="slide-pays-roll">
+                    <ul class="slide-pays-list">
+                        <li class="pays-item">
+                            <span class="name">宋小宝</span>
+                            <span class="money">1314.00</span>
+                        </li>
+                        <li class="pays-item">
+                            <span class="name">三不知</span>
+                            <span class="money">200.00</span>
+                        </li>
+                        <li class="pays-item">
+                            <span class="name">KiMi</span>
+                            <span class="money">188.88</span>
+                        </li>
+                        <li class="pays-item">
+                            <span class="name">哼唧兽饲养员</span>
+                            <span class="money">186.66</span>
+                        </li>
+                        <li class="pays-item">
+                            <span class="name">Gryffindor</span>
+                            <span class="money">180.00</span>
+                        </li>
+                    </ul>
+                    <ul class="slide-pays-list">
+                        <li class="pays-item">
+                            <span class="name">唐Sir</span>
+                            <span class="money">150.00</span>
+                        </li>
+                        <li class="pays-item">
+                            <span class="name">聖耀</span>
+                            <span class="money">150.00</span>
+                        </li>
+                        <li class="pays-item">
+                            <span class="name">桔,卩</span>
+                            <span class="money">100.00</span>
+                        </li>
+                        <li class="pays-item">
+                            <span class="name">woshicapricorn</span>
+                            <span class="money">200.00</span>
+                        </li>
+                        <li class="pays-item">
+                            <span class="name">Tambo</span>
+                            <span class="money">90.00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- slide-pay end -->
+            <!-- slide-best -->
+            <div class="slide" id="slide-bestmes">
+                <h3 class="slide-h3">
+                    <i class="icon fa fa-comments"></i>精选留言
+                    <div class="refresh-message" id="refresh-choosen" title="随机更换一组精选留言">
+                        <i class="icon fa fa-refresh"></i>换一组
+                    </div>
+                </h3>
+                                <ul class="slide-bestmes-list" id="choosen-list">
+                                        <li class="bestmes-item">
+                        <p>wubin是一位自驱力很强的同学，从之前的一知半解，到现在可以独立开发出有一定规模的web产品，为你点赞！</p>
+                        <div class="mes-info">
+                            <span class="name">ustbhuangyi</span>
+                            <span class="time">2021-11-03</span>
+                        </div>
+                    </li>
+                                        <li class="bestmes-item">
+                        <p>wu同学买了我的书表示支持，他是真正看进去了，而且学到了东西，进步非常之大。借地给新书打个广告《CSS新世界》出版了，欢迎大家购买学习~~。</p>
+                        <div class="mes-info">
+                            <span class="name">张鑫旭</span>
+                            <span class="time">2021-11-08</span>
+                        </div>
+                    </li>
+                                        <li class="bestmes-item">
+                        <p>网站做的很不错，希望你能继续努力啊~</p>
+                        <div class="mes-info">
+                            <span class="name">前端小智</span>
+                            <span class="time">2021-11-02</span>
+                        </div>
+                    </li>
+                                        <li class="bestmes-item">
+                        <p>希望栏目越办越好，小伙子前途无量</p>
+                        <div class="mes-info">
+                            <span class="name">马爸爸</span>
+                            <span class="time">2021-11-02</span>
+                        </div>
+                    </li>
+                                    </ul>
+                            </div>
+            <!-- slide-best end -->
+        </div>
+    </aside>
+
+    <!-- 邮件验证中 -->
+    <section class="live-msg-checking" id="live-msg-checking">
+        <div class="checking-inner">
+            <img src="/assets/img/loading-pc.gif">
+            <p>邮箱账户校验中，请稍候...</p>
+        </div>
+    </section>
+    <!-- 邮件验证中 -->
+    <!-- 邮件发送中 -->
+    <section class="live-msg-emailing" id="live-msg-emailing">
+        <div class="emailing-inner">
+            <img src="/assets/img/live-message-sending-email.gif">
+            <p>验证码邮件正在发送中，请稍后...</p>
+        </div>
+    </section>
+    <!-- 邮件发送中 end -->
+</section>
+<!-- main end -->
+
+<script>
+    var jsfile = 'nomin';
+</script>
+<footer class="footer" id="footer">
+            <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer><script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_live_message.js?t=4445"></script></body>
+</html>

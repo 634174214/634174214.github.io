@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="使用jsdelivr+github白嫖静态资源CDN | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>使用jsdelivr+github白嫖静态资源CDN | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="jsdelivr、github"/>
+<meta name="description" content="jsdelivr+github白嫖"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 597,
+            article_title: '使用jsdelivr+github白嫖静态资源CDN',
+            article_desc: 'jsdelivr+github白嫖',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" class="active">
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/zatan">经验杂谈</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">使用jsdelivr+github白嫖静态资源CDN</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>8471</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>379</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2025-04-14 09:59:02</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>github准备</h2><div>我的静态资源库地址：<a href="https://github.com/634174214/wuwork-static/tree/main" target="_blank">https://github.com/634174214/wuwork-static/tree/main</a></div><p>鉴于某些JR，禁止第三方请求静态资源，导致网站炸了，经过研究，发现可以使用jsdelivr+github白嫖CDN的方法，特此做个记录。</p><p>jsDelivr + GitHub/npm具体优点是：</p><p>1、无流量限制，通过 GitHub 仓库托管文件，使用 jsDelivr CDN 加速；</p><p>2、 全球 CDN，国内访问速度也不错；</p><p>3、使用方式：将资源上传到 GitHub，然后通过 jsDelivr 引用。</p><h3>在 GitHub 上创建一个新的仓库：</h3><p>- 登录 GitHub</p><p>- 点击右上角的 "+" 按钮，选择 "New repository"</p><p>- 填写仓库名称（比如 wuwork-static ）</p><p>- 选择公开（Public）</p><p>- 创建仓库</p><h3>在本地初始化 Git 仓库并提交文件：</h3><pre type="Html"><code>git <span class="hljs-keyword">init</span>
+git <span class="hljs-keyword">add</span> .
+git commit -m <span class="hljs-string">"Initial commit"</span></code></pre><h3>将本地仓库与远程 GitHub 仓库关联并推送：</h3><pre type="Html"><code>git remote <span class="hljs-keyword">add</span> origin https:<span class="hljs-comment">//github.com/你的用户名/仓库名称.git</span></code></pre><p>我这里是：</p><pre type="Html"><code>git remote <span class="hljs-keyword">add</span> origin https:<span class="hljs-comment">//github.com/634174214/wuwork-static.git</span></code></pre><p>这里如果：</p><pre type="Html"><code><span class="hljs-attribute">D</span>:\wuwork-site&gt;git remote add origin <span class="hljs-attribute">https</span>:<span class="hljs-comment">//github.com/634174214/wuwork-static.git</span>
+
+<span class="hljs-attribute">error</span>: remote origin already exists.</code></pre><p>这是代表已经链接到了一个远程仓库，需要先断开：</p><pre type="Html"><code><span class="hljs-comment">// 首先查看当前远程仓库的配置：</span>
+git remote -v
+<span class="hljs-comment">//如果显示的远程仓库地址不是你想要的，你可以先删除现有的 origin，然后重新添加：</span>
+git remote <span class="hljs-keyword">remove</span> origin
+<span class="hljs-comment">// 再重新添加</span>
+git remote <span class="hljs-keyword">add</span> origin https:<span class="hljs-comment">//github.com/634174214/wuwork-static.git</span></code></pre><h3>推送代码</h3><pre type="Html"><code><span class="hljs-attribute">git</span> push -u origin main</code></pre><blockquote><span >如果这是第一次推送，系统可能会要求你输入 GitHub 的用户名和密码（或者个人访问令牌 Personal Access Token）。 我是通过浏览器进行验证的。</span></blockquote><p><span class="hljs-attribute" >D</span><span >:\wuwork-site&gt;git push -u origin main</span></p><pre type="Html"><code><span class="hljs-attribute">error</span>: src refspec main does not match any
+<span class="hljs-attribute">error</span>: failed to push some refs to <span class="hljs-string">'https://github.com/634174214/wuwork-static.git'</span></code></pre><p>这个报错意味着我仓库中当前没有main分支，这通常是因为你还没有进行第一次提交或者你的主分支名称可能是 master 而不是 main 。</p><pre type="JavaScript"><code>首先查看当前分支：</code><code>git branch
+// 如果没有看到任何分支，或者当前是 master 分支，我们需要先添加文件并提交：
+git add .
+git <span class="hljs-keyword">commit</span> -m <span class="hljs-string">"Initial commit"</span>
+// 如果你的主分支是 <span class="hljs-keyword">master</span> ，我们可以直接推送 <span class="hljs-keyword">master</span> 分支：
+git push -u origin <span class="hljs-keyword">master</span>
+// 或者，（推荐）如果你想要使用 <span class="hljs-keyword">main</span> 作为主分支名（这是 GitHub 的默认设置），可以这样操作：
+git branch -M <span class="hljs-keyword">main</span>
+// 然后再推送：
+git push -u origin <span class="hljs-keyword">main</span>
+
+</code></pre><p>GitHub 现在默认使用 main 作为主分支。</p><h3>中途我发现原目录太大，想要使用子目录关联远程仓库</h3><p>进入子目录：cd&nbsp; d:\wuwork-site\github-online&nbsp; （原来是wuwork-site）</p><p>初始化新子目录的 Git 仓库：git init</p><p>添加远程仓库（如果已存在，需要先删除）：</p><pre type="Html"><code>git remote <span class="hljs-keyword">remove</span> origin
+git remote <span class="hljs-keyword">add</span> origin https:<span class="hljs-comment">//github.com/634174214/wuwork-static.git</span></code></pre><p>添加并提交文件：</p><p>git add .&nbsp; &nbsp;&nbsp;</p><p>git commit -m "Initial commit: optimized static files"</p><p>创建并切换到 main 分支：</p><p>git branch -M main</p><p>强制推送到远程仓库（这会覆盖远程仓库的内容）：</p><pre type="Html"><code><span class="hljs-attribute">git</span> push -f origin main</code></pre><h2>jsdelivr</h2><p>github仓库成功创建后，就可以直接使用jsdelivr进行引用了。jsDelivr 的引用格式为：</p><pre type="Html"><code>https:<span class="hljs-regexp">//cdn.jsdelivr.net/gh/</span>用户名<span class="hljs-regexp">/仓库名@版本号/</span>文件路径</code></pre><p>我这里的：</p><pre type="Html"><code><span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/cdn.jsdelivr.net/gh</span><span class="hljs-regexp">/634174214/wuwork</span>-static@main/文件路径</code></pre><h3>关于后续文件更新</h3><p>1、首先，在本地仓库进行更新和添加目录、文件等。添加\修改完成后：</p><pre type="JavaScript"><code><span class="hljs-attr">git</span> <span class="hljs-string">status</span>
+<span class="hljs-attr">添加所有新文件和修改到暂存区</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">add .</span>
+<span class="hljs-attr">提交这些更改：</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">commit -m "Update: add new directory and modify files"</span>
+<span class="hljs-meta">推送到</span> <span class="hljs-string">GitHub：</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">push origin main</span></code></pre><p>完成这些步骤后，你的更改就会同步到 GitHub 仓库了。然后 jsDelivr 会自动更新缓存（可能需要几分钟时间）。</p><h3>因为网络原因，我手动向github上传文件</h3><p>因为我本地修改了文件，然后同步上传之后，有缓存，这时我就另复制了一份，然后使用再上传一份的方法，绕过jsdelivr缓存。</p><blockquote>当然如果有代理的话，可以使用代理：<span >git config --global http.proxy http://127.0.0.1:你的代理端口</span></blockquote><p>1. 打开仓库 https://github.com/634174214/wuwork-static</p><p>2. 点击"Add file"按钮</p><p>3. 选择"Upload files"</p><p>4. 可以：</p><p>&nbsp; &nbsp;- 直接拖拽文件/文件夹到上传区域</p><p>&nbsp; &nbsp;- 或点击"choose your files"选择文件</p><p>5. 在下方添加提交信息（Commit message）</p><p>6. 点击"Commit changes"完成上传</p><blockquote>注意事项：- 网页上传有单个文件大小限制<b>（通常是 25MB）</b>- 如果要上传文件夹，建议先将文件夹压缩后上传- 上传完成后，jsDelivr 的链接使用方式保持不变</blockquote><p>但是这样操作之后，需要将线上仓库与本地仓库进行同步。</p><pre type="JavaScript"><code><span class="hljs-attr">先获取远程仓库的更新：</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">fetch origin main</span>
+<span class="hljs-attr">将远程更改合并到本地：</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">pull origin main</span>
+
+<span class="hljs-attr">操作之后，再检查本地与远程库差异状态</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">status</span>
+<span class="hljs-attr">查看本地与远程分支的差异：</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">fetch</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">diff main origin/main</span></code></pre><p>执行git status 发现报错如下：</p><pre type="Html"><code>D:\wuwork-site\github-online&gt;git status
+On branch main
+You have unmerged paths.
+(fix conflicts <span class="hljs-keyword">and</span> run <span class="hljs-string">"git commit"</span>)
+(<span class="hljs-keyword">use</span> <span class="hljs-string">"git merge --abort"</span> to abort the merge)
+Unmerged paths:
+(<span class="hljs-keyword">use</span> <span class="hljs-string">"git add &lt;file&gt;..."</span> to mark resolution)
+both added:      backend/js/<span class="hljs-keyword">require</span>-jsdelivr.config.js
+<span class="hljs-keyword">no</span> changes added to commit (<span class="hljs-keyword">use</span> <span class="hljs-string">"git add"</span> <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> <span class="hljs-string">"git commit -a"</span>)</code></pre><p>这个提示表明你遇到了合并冲突（Merge Conflict）。具体来说， backend/js/require-jsdelivr.config.js 这个文件在本地和远程都有修改，Git 无法自动合并。</p><p><b>查看冲突内容并选择以哪个版本为准进行合并</b></p><pre type="Html"><code>首先，可以查看文件中的冲突内容：
+git diff backend/js/<span class="hljs-built_in">require</span>-jsdelivr.<span class="hljs-built_in">config</span>.js
+然后，按 q 键退出查看
+使用远程版本：
+git checkout <span class="hljs-comment">--theirs backend/js/require-jsdelivr.config.js</span>
+使用本地版本：
+git checkout <span class="hljs-comment">--ours backend/js/require-jsdelivr.config.js</span>
+或者直接放弃这次合并：
+git merge <span class="hljs-comment">--abort</span></code></pre><p>比如我这里使用远程库版本，执行之后，还需要再执行下面的步骤：</p><pre type="Html"><code>将解决的文件添加到暂存区：
+git add backend/js/<span class="hljs-built_in">require</span>-jsdelivr.<span class="hljs-built_in">config</span>.js
+git commit -m <span class="hljs-string">"resolve conflict: use remote version"</span>
+完成后可以再次检查状态：
+git <span class="hljs-built_in">status</span></code></pre><p>如果提示：</p><p>nothing to commit, working tree clean，表明本地工作目录是干净的（没有未提交的修改），并且本地仓库与远程仓库是同步的。</p><p>甚至还能双重确认：</p><pre type="Html"><code><span class="hljs-attr">git</span> <span class="hljs-string">fetch</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">status</span></code></pre><h3>jsdelivr清空缓存</h3><p>当我们修改文件之后，会发现jsdelivr不会立即生效，这是因为有缓存的原因。并且缓存一般需要24小时才能刷新，如果着急的话，可以使用上面说的方法，重新上传一份文件。但是jsdelivr也提供了刷新地址缓存的办法:</p><pre type="Html"><code>访问：<span class="hljs-attribute">https</span>:<span class="hljs-comment">//www.jsdelivr.com/tools/purge</span></code></pre><blockquote>使用该地址必须使用梯子，否则无法应用。因为其需要谷歌验证。</blockquote><p>在Input框中输入要刷新的地址即可。</p><p><a href="https://www.jsdelivr.com/tools/purge" target="_blank">https://www.jsdelivr.com/tools/purge</a></p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：jsdelivr、github
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/122" class="imgbox">
+                <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+            </a>
+            <a href="/blog/articles/122" class="title" title="【中文】免费可商用字体下载与考证">
+                【中文】免费可商用字体下载与考证
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/585" class="imgbox">
+                <img src="/statics/blog/2025/0312/770a3c7de9b0652534d8341f1cf59ccd.png">
+            </a>
+            <a href="/blog/articles/585" class="title" title="pygal库的使用">
+                pygal库的使用
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/436" class="imgbox">
+                <img src="/statics/blog/2023/0821/2be25e89dd125f199f8809862e86fdea.jpg">
+            </a>
+            <a href="/blog/articles/436" class="title" title="vue-cli+router实现异步组件配合路由进行性能优化">
+                vue-cli+router实现异步组件配合路由进行性能优化
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/zatan">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/219">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用gitee和picgo做图床的一个大坑
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/295">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        人民日报金句文案摘抄
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/162">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        【NS】Switch使用Lanplay实现远程面连的操作流程及信息汇总
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/94">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Win10修改编辑hosts文件后无法保存的解决方法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/145">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        火花塞需要更换时，汽车会发出三次提醒，新手老手都应该明白
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

@@ -1,0 +1,1514 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="fetch的用法简单介绍 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>fetch的用法简单介绍 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="fetch"/>
+<meta name="description" content="fetch是web提供的一个可以获取异步资源的api它提供的api返回的是Promise对象。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 412,
+            article_title: 'fetch的用法简单介绍',
+            article_desc: 'fetch是web提供的一个可以获取异步资源的api它提供的api返回的是Promise对象。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal active">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" class="active">
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/js">JS</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">fetch的用法简单介绍</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>4440</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>314</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2023-06-13 16:38:19</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>使用传统的方法</h2><p>那我们首先讲讲在没有fetch的时候，我们是如何获取异步资源的：</p><pre type="JavaScript"><code><span class="hljs-comment">//发送一个get请求是这样的:</span>
+
+<span class="hljs-comment">//首先实例化一个XMLHttpRequest对象</span>
+<span class="hljs-keyword">var</span> httpRequest = <span class="hljs-keyword">new</span> XMLHttpRequest();
+
+<span class="hljs-comment">//注册httpRequest.readyState改变时会回调的函数,httpRequest.</span>
+<span class="hljs-comment">//readyState共有5个可能的值,</span>
+<span class="hljs-comment">//0	UNSENT (未打开)	open()方法还未被调用;</span>
+<span class="hljs-comment">//1	OPENED  (未发送)	send()方法还未被调用;</span>
+<span class="hljs-comment">//2	HEADERS_RECEIVED (已获取响应头)	send()方法已经被调用, 响应头和响应状态已经返回;</span>
+<span class="hljs-comment">//3	LOADING (正在下载响应体)	响应体下载中; responseText中已经获取了部分数据;</span>
+<span class="hljs-comment">//4	DONE (请求完成)	整个请求过程已经完毕.</span>
+httpRequest.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+ <span class="hljs-comment">//该回调函数会被依次调用4次</span>
+ <span class="hljs-built_in">console</span>.log(httpRequest.readyState);
+
+ <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">httpRequest.readyState===<span class="hljs-number">4</span></span>)</span>{
+   <span class="hljs-comment">//请求已完成</span>
+   <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">httpRequest.status===<span class="hljs-number">200</span></span>)</span>{
+     <span class="hljs-comment">//http状态为200</span>
+     <span class="hljs-built_in">console</span>.log(httpRequest.response);
+
+     <span class="hljs-keyword">var</span> data = <span class="hljs-built_in">JSON</span>.parse(httpRequest.response);
+     <span class="hljs-built_in">console</span>.log(data);
+   }
+ }
+
+}
+
+<span class="hljs-comment">//请求的网址</span>
+<span class="hljs-keyword">var</span> url = <span class="hljs-string">"http://127.0.0.1:7777/list"</span>;
+<span class="hljs-comment">//该方法为初始化请求,第一个参数是请求的方法,比如GET,POST,PUT,第二个参数是请求的url</span>
+httpRequest.open(<span class="hljs-string">'GET'</span>,url,<span class="hljs-literal">true</span>);
+
+<span class="hljs-comment">//设置http请求头</span>
+httpRequest.setRequestHeader(<span class="hljs-string">"Content-Type"</span>,<span class="hljs-string">"application/json"</span>);
+
+<span class="hljs-comment">//发出请求,参数为要发送的body体,如果是GET方法的话，一般无需发送body,设为空就可以</span>
+httpRequest.send(<span class="hljs-literal">null</span>);
+
+</code></pre><p>关于XMLHttpRequest的更多用法请参照:<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest#open()">https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest#open()</a></p><h2>fetch</h2><p>fetch是web提供的一个可以获取异步资源的api，目前浏览器支持情况<a href="https://caniuse.com/?search=fetch" target="_blank">caniuse-fet</a>ch，它提供的api返回的是Promise对象，所以你在了解这个api前首先得了解Promise的用法。</p><p>如果用了fetch之后，发送一个get请求是这样的：</p><pre type="JavaScript"><code><span class="hljs-comment">//请求的网址</span>
+<span class="hljs-keyword">var</span> url = <span class="hljs-string">"http://127.0.0.1:7777/list"</span>;
+<span class="hljs-comment">//发起get请求</span>
+<span class="hljs-keyword">var</span> promise = fetch(url).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+
+   <span class="hljs-comment">//response.status表示响应的http状态码</span>
+   <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">response.status === <span class="hljs-number">200</span></span>)</span>{
+     <span class="hljs-comment">//json是返回的response提供的一个方法,会把返回的json字符串反序列化成对象,也被包装成一个Promise了</span>
+     <span class="hljs-keyword">return</span> response.json();
+   }<span class="hljs-keyword">else</span>{
+     <span class="hljs-keyword">return</span> {}
+   }
+
+});
+    
+promise = promise.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{
+  <span class="hljs-comment">//响应的内容</span>
+	<span class="hljs-built_in">console</span>.log(data);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>{
+	<span class="hljs-built_in">console</span>.log(err);
+})
+</code></pre><blockquote>response.json()也是个promise，所以使用时候，需要response.json().then(...)</blockquote><p>接下来介绍下fetch的语法:</p><pre type="JavaScript"><code><span class="hljs-string">/**</span>
+<span class="hljs-string">参数:</span>
+<span class="hljs-string">input:定义要获取的资源。可能的值是：一个URL或者一个Request对象。</span>
+<span class="hljs-string">init:可选,是一个对象，参数有：</span>
+	<span class="hljs-attr">method:</span> <span class="hljs-string">请求使用的方法，如</span> <span class="hljs-string">GET、POST。</span>
+	<span class="hljs-attr">headers:</span> <span class="hljs-string">请求的头信息，形式为</span> <span class="hljs-string">Headers</span> <span class="hljs-string">对象或</span> <span class="hljs-string">ByteString。</span>
+	<span class="hljs-attr">body:</span> <span class="hljs-string">请求的</span> <span class="hljs-string">body</span> <span class="hljs-string">信息：可能是一个</span> <span class="hljs-string">Blob、BufferSource、FormData、URLSearchParams</span> <span class="hljs-string">或者</span> <span class="hljs-string">USVString</span> <span class="hljs-string">对象。注意</span> <span class="hljs-string">GET</span> <span class="hljs-string">或</span> <span class="hljs-string">HEAD</span> <span class="hljs-string">方法的请求不能包含</span> <span class="hljs-string">body</span> <span class="hljs-string">信息。</span>
+	<span class="hljs-attr">mode:</span> <span class="hljs-string">请求的模式，如</span> <span class="hljs-string">cors、</span> <span class="hljs-literal">no</span><span class="hljs-string">-cors</span> <span class="hljs-string">或者</span> <span class="hljs-string">same-origin,默认为no-cors,该模式允许来自</span> <span class="hljs-string">CDN</span> <span class="hljs-string">的脚本、其他域的图片和其他一些跨域资源，但是首先有个前提条件，就是请求的</span> <span class="hljs-string">method</span> <span class="hljs-string">只能是HEAD、GET</span> <span class="hljs-string">或</span> <span class="hljs-string">POST。此外，如果</span> <span class="hljs-string">ServiceWorkers</span> <span class="hljs-string">拦截了这些请求，它不能随意添加或者修改除这些之外</span> <span class="hljs-string">Header</span> <span class="hljs-string">属性。第三，JS</span> <span class="hljs-string">不能访问</span> <span class="hljs-string">Response</span> <span class="hljs-string">对象中的任何属性，这确保了跨域时</span> <span class="hljs-string">ServiceWorkers</span> <span class="hljs-string">的安全和隐私信息泄漏问题。cors模式允许跨域请求,same-origin模式对于跨域的请求，将返回一个</span> <span class="hljs-string">error，这样确保所有的请求遵守同源策略。</span>
+	<span class="hljs-attr">credentials:</span> <span class="hljs-string">请求的</span> <span class="hljs-string">credentials，如</span> <span class="hljs-string">omit、same-origin</span> <span class="hljs-string">或者</span> <span class="hljs-string">include。</span>
+	<span class="hljs-attr">cache:</span>  <span class="hljs-string">请求的</span> <span class="hljs-string">cache</span> <span class="hljs-string">模式:</span> <span class="hljs-string">default,</span> <span class="hljs-literal">no</span><span class="hljs-string">-store,</span> <span class="hljs-string">reload,</span> <span class="hljs-literal">no</span><span class="hljs-string">-cache,</span> <span class="hljs-string">force-cache,</span> <span class="hljs-string">or</span> <span class="hljs-string">only-if-cached.</span>
+<span class="hljs-string">返回值：一个</span> <span class="hljs-string">Promise，resolve</span> <span class="hljs-string">时回传</span> <span class="hljs-string">Response</span> <span class="hljs-string">对象。</span>
+<span class="hljs-string">*/</span>
+<span class="hljs-string">fetch(input,</span> <span class="hljs-string">init).then(function(response)</span> {  }<span class="hljs-string">);</span>
+</code></pre><p>一个发送post请求的示例:</p><pre type="JavaScript"><code>fetch(<span class="hljs-string">"http://127.0.0.1:7777/postContent"</span>, {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">"POST"</span>,
+  <span class="hljs-attr">headers</span>: {
+      <span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"application/json"</span>,
+  },
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">"cors"</span>,
+  <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify({
+      <span class="hljs-attr">content</span>: <span class="hljs-string">"留言内容"</span>
+  })
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+  <span class="hljs-keyword">if</span> (res.status === <span class="hljs-number">200</span>) {
+      <span class="hljs-keyword">return</span> res.json()
+  } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(res.json())
+  }
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(data);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(err);
+});
+</code></pre><p>如果考虑低版本浏览器的问题的话，引入<a href="https://github.com/github/fetch/blob/master/fetch.js">https://github.com/github/fetch/blob/master/fetch.js</a>即可兼容。</p><h2>兼容插件fetch.js</h2><pre type="JavaScript"><code><span class="hljs-keyword">var</span> <span class="hljs-built_in">global</span> =
+  (<span class="hljs-keyword">typeof</span> globalThis !== <span class="hljs-string">'undefined'</span> &amp;&amp; globalThis) ||
+  (<span class="hljs-keyword">typeof</span> self !== <span class="hljs-string">'undefined'</span> &amp;&amp; self) ||
+  (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">global</span> !== <span class="hljs-string">'undefined'</span> &amp;&amp; <span class="hljs-built_in">global</span>) ||
+  {}
+
+<span class="hljs-keyword">var</span> support = {
+  <span class="hljs-attr">searchParams</span>: <span class="hljs-string">'URLSearchParams'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">global</span>,
+  <span class="hljs-attr">iterable</span>: <span class="hljs-string">'Symbol'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">global</span> &amp;&amp; <span class="hljs-string">'iterator'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">Symbol</span>,
+  <span class="hljs-attr">blob</span>:
+    <span class="hljs-string">'FileReader'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">global</span> &amp;&amp;
+    <span class="hljs-string">'Blob'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">global</span> &amp;&amp;
+    (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">new</span> Blob()
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+      } <span class="hljs-keyword">catch</span> (e) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+      }
+    })(),
+  <span class="hljs-attr">formData</span>: <span class="hljs-string">'FormData'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">global</span>,
+  <span class="hljs-attr">arrayBuffer</span>: <span class="hljs-string">'ArrayBuffer'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">global</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDataView</span>(<span class="hljs-params">obj</span>) </span>{
+  <span class="hljs-keyword">return</span> obj &amp;&amp; <span class="hljs-built_in">DataView</span>.prototype.isPrototypeOf(obj)
+}
+
+<span class="hljs-keyword">if</span> (support.arrayBuffer) {
+  <span class="hljs-keyword">var</span> viewClasses = [
+    <span class="hljs-string">'[object Int8Array]'</span>,
+    <span class="hljs-string">'[object Uint8Array]'</span>,
+    <span class="hljs-string">'[object Uint8ClampedArray]'</span>,
+    <span class="hljs-string">'[object Int16Array]'</span>,
+    <span class="hljs-string">'[object Uint16Array]'</span>,
+    <span class="hljs-string">'[object Int32Array]'</span>,
+    <span class="hljs-string">'[object Uint32Array]'</span>,
+    <span class="hljs-string">'[object Float32Array]'</span>,
+    <span class="hljs-string">'[object Float64Array]'</span>
+  ]
+
+  <span class="hljs-keyword">var</span> isArrayBufferView =
+    <span class="hljs-built_in">ArrayBuffer</span>.isView ||
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>{
+      <span class="hljs-keyword">return</span> obj &amp;&amp; viewClasses.indexOf(<span class="hljs-built_in">Object</span>.prototype.toString.call(obj)) &gt; -<span class="hljs-number">1</span>
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">normalizeName</span>(<span class="hljs-params">name</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> name !== <span class="hljs-string">'string'</span>) {
+    name = <span class="hljs-built_in">String</span>(name)
+  }
+  <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/[^a-z0-9\-#$%&amp;'*+.^_`|~!]/i</span>.test(name) || name === <span class="hljs-string">''</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">'Invalid character in header field name: "'</span> + name + <span class="hljs-string">'"'</span>)
+  }
+  <span class="hljs-keyword">return</span> name.toLowerCase()
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">normalizeValue</span>(<span class="hljs-params">value</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value !== <span class="hljs-string">'string'</span>) {
+    value = <span class="hljs-built_in">String</span>(value)
+  }
+  <span class="hljs-keyword">return</span> value
+}
+
+<span class="hljs-comment">// Build a destructive iterator for the value list</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">iteratorFor</span>(<span class="hljs-params">items</span>) </span>{
+  <span class="hljs-keyword">var</span> iterator = {
+    <span class="hljs-attr">next</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> value = items.shift()
+      <span class="hljs-keyword">return</span> {<span class="hljs-attr">done</span>: value === <span class="hljs-literal">undefined</span>, <span class="hljs-attr">value</span>: value}
+    }
+  }
+
+  <span class="hljs-keyword">if</span> (support.iterable) {
+    iterator[<span class="hljs-built_in">Symbol</span>.iterator] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> iterator
+    }
+  }
+
+  <span class="hljs-keyword">return</span> iterator
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Headers</span>(<span class="hljs-params">headers</span>) </span>{
+  <span class="hljs-built_in">this</span>.map = {}
+
+  <span class="hljs-keyword">if</span> (headers <span class="hljs-keyword">instanceof</span> Headers) {
+    headers.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value, name</span>) </span>{
+      <span class="hljs-built_in">this</span>.append(name, value)
+    }, <span class="hljs-built_in">this</span>)
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(headers)) {
+    headers.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">header</span>) </span>{
+      <span class="hljs-built_in">this</span>.append(header[<span class="hljs-number">0</span>], header[<span class="hljs-number">1</span>])
+    }, <span class="hljs-built_in">this</span>)
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (headers) {
+    <span class="hljs-built_in">Object</span>.getOwnPropertyNames(headers).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
+      <span class="hljs-built_in">this</span>.append(name, headers[name])
+    }, <span class="hljs-built_in">this</span>)
+  }
+}
+
+Headers.prototype.append = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name, value</span>) </span>{
+  name = normalizeName(name)
+  value = normalizeValue(value)
+  <span class="hljs-keyword">var</span> oldValue = <span class="hljs-built_in">this</span>.map[name]
+  <span class="hljs-built_in">this</span>.map[name] = oldValue ? oldValue + <span class="hljs-string">', '</span> + value : value
+}
+
+Headers.prototype[<span class="hljs-string">'delete'</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
+  <span class="hljs-keyword">delete</span> <span class="hljs-built_in">this</span>.map[normalizeName(name)]
+}
+
+Headers.prototype.get = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
+  name = normalizeName(name)
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.has(name) ? <span class="hljs-built_in">this</span>.map[name] : <span class="hljs-literal">null</span>
+}
+
+Headers.prototype.has = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.map.hasOwnProperty(normalizeName(name))
+}
+
+Headers.prototype.set = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name, value</span>) </span>{
+  <span class="hljs-built_in">this</span>.map[normalizeName(name)] = normalizeValue(value)
+}
+
+Headers.prototype.forEach = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback, thisArg</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> name <span class="hljs-keyword">in</span> <span class="hljs-built_in">this</span>.map) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.map.hasOwnProperty(name)) {
+      callback.call(thisArg, <span class="hljs-built_in">this</span>.map[name], name, <span class="hljs-built_in">this</span>)
+    }
+  }
+}
+
+Headers.prototype.keys = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> items = []
+  <span class="hljs-built_in">this</span>.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value, name</span>) </span>{
+    items.push(name)
+  })
+  <span class="hljs-keyword">return</span> iteratorFor(items)
+}
+
+Headers.prototype.values = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> items = []
+  <span class="hljs-built_in">this</span>.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>) </span>{
+    items.push(value)
+  })
+  <span class="hljs-keyword">return</span> iteratorFor(items)
+}
+
+Headers.prototype.entries = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> items = []
+  <span class="hljs-built_in">this</span>.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value, name</span>) </span>{
+    items.push([name, value])
+  })
+  <span class="hljs-keyword">return</span> iteratorFor(items)
+}
+
+<span class="hljs-keyword">if</span> (support.iterable) {
+  Headers.prototype[<span class="hljs-built_in">Symbol</span>.iterator] = Headers.prototype.entries
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">consumed</span>(<span class="hljs-params">body</span>) </span>{
+  <span class="hljs-keyword">if</span> (body.bodyUsed) {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">'Already read'</span>))
+  }
+  body.bodyUsed = <span class="hljs-literal">true</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fileReaderReady</span>(<span class="hljs-params">reader</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{
+    reader.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      resolve(reader.result)
+    }
+    reader.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      reject(reader.error)
+    }
+  })
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readBlobAsArrayBuffer</span>(<span class="hljs-params">blob</span>) </span>{
+  <span class="hljs-keyword">var</span> reader = <span class="hljs-keyword">new</span> FileReader()
+  <span class="hljs-keyword">var</span> promise = fileReaderReady(reader)
+  reader.readAsArrayBuffer(blob)
+  <span class="hljs-keyword">return</span> promise
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readBlobAsText</span>(<span class="hljs-params">blob</span>) </span>{
+  <span class="hljs-keyword">var</span> reader = <span class="hljs-keyword">new</span> FileReader()
+  <span class="hljs-keyword">var</span> promise = fileReaderReady(reader)
+  reader.readAsText(blob)
+  <span class="hljs-keyword">return</span> promise
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readArrayBufferAsText</span>(<span class="hljs-params">buf</span>) </span>{
+  <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(buf)
+  <span class="hljs-keyword">var</span> chars = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(view.length)
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; view.length; i++) {
+    chars[i] = <span class="hljs-built_in">String</span>.fromCharCode(view[i])
+  }
+  <span class="hljs-keyword">return</span> chars.join(<span class="hljs-string">''</span>)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bufferClone</span>(<span class="hljs-params">buf</span>) </span>{
+  <span class="hljs-keyword">if</span> (buf.slice) {
+    <span class="hljs-keyword">return</span> buf.slice(<span class="hljs-number">0</span>)
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(buf.byteLength)
+    view.set(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(buf))
+    <span class="hljs-keyword">return</span> view.buffer
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Body</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">this</span>.bodyUsed = <span class="hljs-literal">false</span>
+
+  <span class="hljs-built_in">this</span>._initBody = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-comment">/*
+      fetch-mock wraps the Response object in an ES6 Proxy to
+      provide useful test harness features such as flush. However, on
+      ES5 browsers without fetch or Proxy support pollyfills must be used;
+      the proxy-pollyfill is unable to proxy an attribute unless it exists
+      on the object before the Proxy is created. This change ensures
+      Response.bodyUsed exists on the instance, while maintaining the
+      semantic of setting Request.bodyUsed in the constructor before
+      _initBody is called.
+    */</span>
+    <span class="hljs-built_in">this</span>.bodyUsed = <span class="hljs-built_in">this</span>.bodyUsed
+    <span class="hljs-built_in">this</span>._bodyInit = body
+    <span class="hljs-keyword">if</span> (!body) {
+      <span class="hljs-built_in">this</span>._bodyText = <span class="hljs-string">''</span>
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> body === <span class="hljs-string">'string'</span>) {
+      <span class="hljs-built_in">this</span>._bodyText = body
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (support.blob &amp;&amp; Blob.prototype.isPrototypeOf(body)) {
+      <span class="hljs-built_in">this</span>._bodyBlob = body
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (support.formData &amp;&amp; FormData.prototype.isPrototypeOf(body)) {
+      <span class="hljs-built_in">this</span>._bodyFormData = body
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (support.searchParams &amp;&amp; URLSearchParams.prototype.isPrototypeOf(body)) {
+      <span class="hljs-built_in">this</span>._bodyText = body.toString()
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (support.arrayBuffer &amp;&amp; support.blob &amp;&amp; isDataView(body)) {
+      <span class="hljs-built_in">this</span>._bodyArrayBuffer = bufferClone(body.buffer)
+      <span class="hljs-comment">// IE 10-11 can't handle a DataView body.</span>
+      <span class="hljs-built_in">this</span>._bodyInit = <span class="hljs-keyword">new</span> Blob([<span class="hljs-built_in">this</span>._bodyArrayBuffer])
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (support.arrayBuffer &amp;&amp; (<span class="hljs-built_in">ArrayBuffer</span>.prototype.isPrototypeOf(body) || isArrayBufferView(body))) {
+      <span class="hljs-built_in">this</span>._bodyArrayBuffer = bufferClone(body)
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">this</span>._bodyText = body = <span class="hljs-built_in">Object</span>.prototype.toString.call(body)
+    }
+
+    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.headers.get(<span class="hljs-string">'content-type'</span>)) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> body === <span class="hljs-string">'string'</span>) {
+        <span class="hljs-built_in">this</span>.headers.set(<span class="hljs-string">'content-type'</span>, <span class="hljs-string">'text/plain;charset=UTF-8'</span>)
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>._bodyBlob &amp;&amp; <span class="hljs-built_in">this</span>._bodyBlob.type) {
+        <span class="hljs-built_in">this</span>.headers.set(<span class="hljs-string">'content-type'</span>, <span class="hljs-built_in">this</span>._bodyBlob.type)
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (support.searchParams &amp;&amp; URLSearchParams.prototype.isPrototypeOf(body)) {
+        <span class="hljs-built_in">this</span>.headers.set(<span class="hljs-string">'content-type'</span>, <span class="hljs-string">'application/x-www-form-urlencoded;charset=UTF-8'</span>)
+      }
+    }
+  }
+
+  <span class="hljs-keyword">if</span> (support.blob) {
+    <span class="hljs-built_in">this</span>.blob = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> rejected = consumed(<span class="hljs-built_in">this</span>)
+      <span class="hljs-keyword">if</span> (rejected) {
+        <span class="hljs-keyword">return</span> rejected
+      }
+
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>._bodyBlob) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-built_in">this</span>._bodyBlob)
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>._bodyArrayBuffer) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-keyword">new</span> Blob([<span class="hljs-built_in">this</span>._bodyArrayBuffer]))
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>._bodyFormData) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'could not read FormData body as blob'</span>)
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-keyword">new</span> Blob([<span class="hljs-built_in">this</span>._bodyText]))
+      }
+    }
+
+    <span class="hljs-built_in">this</span>.arrayBuffer = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>._bodyArrayBuffer) {
+        <span class="hljs-keyword">var</span> isConsumed = consumed(<span class="hljs-built_in">this</span>)
+        <span class="hljs-keyword">if</span> (isConsumed) {
+          <span class="hljs-keyword">return</span> isConsumed
+        }
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">ArrayBuffer</span>.isView(<span class="hljs-built_in">this</span>._bodyArrayBuffer)) {
+          <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(
+            <span class="hljs-built_in">this</span>._bodyArrayBuffer.buffer.slice(
+              <span class="hljs-built_in">this</span>._bodyArrayBuffer.byteOffset,
+              <span class="hljs-built_in">this</span>._bodyArrayBuffer.byteOffset + <span class="hljs-built_in">this</span>._bodyArrayBuffer.byteLength
+            )
+          )
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-built_in">this</span>._bodyArrayBuffer)
+        }
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.blob().then(readBlobAsArrayBuffer)
+      }
+    }
+  }
+
+  <span class="hljs-built_in">this</span>.text = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> rejected = consumed(<span class="hljs-built_in">this</span>)
+    <span class="hljs-keyword">if</span> (rejected) {
+      <span class="hljs-keyword">return</span> rejected
+    }
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>._bodyBlob) {
+      <span class="hljs-keyword">return</span> readBlobAsText(<span class="hljs-built_in">this</span>._bodyBlob)
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>._bodyArrayBuffer) {
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(readArrayBufferAsText(<span class="hljs-built_in">this</span>._bodyArrayBuffer))
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>._bodyFormData) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'could not read FormData body as text'</span>)
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-built_in">this</span>._bodyText)
+    }
+  }
+
+  <span class="hljs-keyword">if</span> (support.formData) {
+    <span class="hljs-built_in">this</span>.formData = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.text().then(decode)
+    }
+  }
+
+  <span class="hljs-built_in">this</span>.json = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.text().then(<span class="hljs-built_in">JSON</span>.parse)
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>
+}
+
+<span class="hljs-comment">// HTTP methods whose capitalization should be normalized</span>
+<span class="hljs-keyword">var</span> methods = [<span class="hljs-string">'CONNECT'</span>, <span class="hljs-string">'DELETE'</span>, <span class="hljs-string">'GET'</span>, <span class="hljs-string">'HEAD'</span>, <span class="hljs-string">'OPTIONS'</span>, <span class="hljs-string">'PATCH'</span>, <span class="hljs-string">'POST'</span>, <span class="hljs-string">'PUT'</span>, <span class="hljs-string">'TRACE'</span>]
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">normalizeMethod</span>(<span class="hljs-params">method</span>) </span>{
+  <span class="hljs-keyword">var</span> upcased = method.toUpperCase()
+  <span class="hljs-keyword">return</span> methods.indexOf(upcased) &gt; -<span class="hljs-number">1</span> ? upcased : method
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Request</span>(<span class="hljs-params">input, options</span>) </span>{
+  <span class="hljs-keyword">if</span> (!(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> Request)) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">'Please use the "new" operator, this DOM object constructor cannot be called as a function.'</span>)
+  }
+
+  options = options || {}
+  <span class="hljs-keyword">var</span> body = options.body
+
+  <span class="hljs-keyword">if</span> (input <span class="hljs-keyword">instanceof</span> Request) {
+    <span class="hljs-keyword">if</span> (input.bodyUsed) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">'Already read'</span>)
+    }
+    <span class="hljs-built_in">this</span>.url = input.url
+    <span class="hljs-built_in">this</span>.credentials = input.credentials
+    <span class="hljs-keyword">if</span> (!options.headers) {
+      <span class="hljs-built_in">this</span>.headers = <span class="hljs-keyword">new</span> Headers(input.headers)
+    }
+    <span class="hljs-built_in">this</span>.method = input.method
+    <span class="hljs-built_in">this</span>.mode = input.mode
+    <span class="hljs-built_in">this</span>.signal = input.signal
+    <span class="hljs-keyword">if</span> (!body &amp;&amp; input._bodyInit != <span class="hljs-literal">null</span>) {
+      body = input._bodyInit
+      input.bodyUsed = <span class="hljs-literal">true</span>
+    }
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">this</span>.url = <span class="hljs-built_in">String</span>(input)
+  }
+
+  <span class="hljs-built_in">this</span>.credentials = options.credentials || <span class="hljs-built_in">this</span>.credentials || <span class="hljs-string">'same-origin'</span>
+  <span class="hljs-keyword">if</span> (options.headers || !<span class="hljs-built_in">this</span>.headers) {
+    <span class="hljs-built_in">this</span>.headers = <span class="hljs-keyword">new</span> Headers(options.headers)
+  }
+  <span class="hljs-built_in">this</span>.method = normalizeMethod(options.method || <span class="hljs-built_in">this</span>.method || <span class="hljs-string">'GET'</span>)
+  <span class="hljs-built_in">this</span>.mode = options.mode || <span class="hljs-built_in">this</span>.mode || <span class="hljs-literal">null</span>
+  <span class="hljs-built_in">this</span>.signal = options.signal || <span class="hljs-built_in">this</span>.signal || (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-string">'AbortController'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">global</span>) {
+      <span class="hljs-keyword">var</span> ctrl = <span class="hljs-keyword">new</span> AbortController();
+      <span class="hljs-keyword">return</span> ctrl.signal;
+    }
+  }());
+  <span class="hljs-built_in">this</span>.referrer = <span class="hljs-literal">null</span>
+
+  <span class="hljs-keyword">if</span> ((<span class="hljs-built_in">this</span>.method === <span class="hljs-string">'GET'</span> || <span class="hljs-built_in">this</span>.method === <span class="hljs-string">'HEAD'</span>) &amp;&amp; body) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">'Body not allowed for GET or HEAD requests'</span>)
+  }
+  <span class="hljs-built_in">this</span>._initBody(body)
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.method === <span class="hljs-string">'GET'</span> || <span class="hljs-built_in">this</span>.method === <span class="hljs-string">'HEAD'</span>) {
+    <span class="hljs-keyword">if</span> (options.cache === <span class="hljs-string">'no-store'</span> || options.cache === <span class="hljs-string">'no-cache'</span>) {
+      <span class="hljs-comment">// Search for a '_' parameter in the query string</span>
+      <span class="hljs-keyword">var</span> reParamSearch = <span class="hljs-regexp">/([?&amp;])_=[^&amp;]*/</span>
+      <span class="hljs-keyword">if</span> (reParamSearch.test(<span class="hljs-built_in">this</span>.url)) {
+        <span class="hljs-comment">// If it already exists then set the value with the current time</span>
+        <span class="hljs-built_in">this</span>.url = <span class="hljs-built_in">this</span>.url.replace(reParamSearch, <span class="hljs-string">'$1_='</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime())
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Otherwise add a new '_' parameter to the end with the current time</span>
+        <span class="hljs-keyword">var</span> reQueryString = <span class="hljs-regexp">/\?/</span>
+        <span class="hljs-built_in">this</span>.url += (reQueryString.test(<span class="hljs-built_in">this</span>.url) ? <span class="hljs-string">'&amp;'</span> : <span class="hljs-string">'?'</span>) + <span class="hljs-string">'_='</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()
+      }
+    }
+  }
+}
+
+Request.prototype.clone = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Request(<span class="hljs-built_in">this</span>, {<span class="hljs-attr">body</span>: <span class="hljs-built_in">this</span>._bodyInit})
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decode</span>(<span class="hljs-params">body</span>) </span>{
+  <span class="hljs-keyword">var</span> form = <span class="hljs-keyword">new</span> FormData()
+  body
+    .trim()
+    .split(<span class="hljs-string">'&amp;'</span>)
+    .forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">bytes</span>) </span>{
+      <span class="hljs-keyword">if</span> (bytes) {
+        <span class="hljs-keyword">var</span> split = bytes.split(<span class="hljs-string">'='</span>)
+        <span class="hljs-keyword">var</span> name = split.shift().replace(<span class="hljs-regexp">/\+/g</span>, <span class="hljs-string">' '</span>)
+        <span class="hljs-keyword">var</span> value = split.join(<span class="hljs-string">'='</span>).replace(<span class="hljs-regexp">/\+/g</span>, <span class="hljs-string">' '</span>)
+        form.append(<span class="hljs-built_in">decodeURIComponent</span>(name), <span class="hljs-built_in">decodeURIComponent</span>(value))
+      }
+    })
+  <span class="hljs-keyword">return</span> form
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parseHeaders</span>(<span class="hljs-params">rawHeaders</span>) </span>{
+  <span class="hljs-keyword">var</span> headers = <span class="hljs-keyword">new</span> Headers()
+  <span class="hljs-comment">// Replace instances of \r\n and \n followed by at least one space or horizontal tab with a space</span>
+  <span class="hljs-comment">// https://tools.ietf.org/html/rfc7230#section-3.2</span>
+  <span class="hljs-keyword">var</span> preProcessedHeaders = rawHeaders.replace(<span class="hljs-regexp">/\r?\n[\t ]+/g</span>, <span class="hljs-string">' '</span>)
+  <span class="hljs-comment">// Avoiding split via regex to work around a common IE11 bug with the core-js 3.6.0 regex polyfill</span>
+  <span class="hljs-comment">// https://github.com/github/fetch/issues/748</span>
+  <span class="hljs-comment">// https://github.com/zloirock/core-js/issues/751</span>
+  preProcessedHeaders
+    .split(<span class="hljs-string">'\r'</span>)
+    .map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">header</span>) </span>{
+      <span class="hljs-keyword">return</span> header.indexOf(<span class="hljs-string">'\n'</span>) === <span class="hljs-number">0</span> ? header.substr(<span class="hljs-number">1</span>, header.length) : header
+    })
+    .forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">line</span>) </span>{
+      <span class="hljs-keyword">var</span> parts = line.split(<span class="hljs-string">':'</span>)
+      <span class="hljs-keyword">var</span> key = parts.shift().trim()
+      <span class="hljs-keyword">if</span> (key) {
+        <span class="hljs-keyword">var</span> value = parts.join(<span class="hljs-string">':'</span>).trim()
+        <span class="hljs-keyword">try</span> {
+          headers.append(key, value)
+        } <span class="hljs-keyword">catch</span> (error) {
+          <span class="hljs-built_in">console</span>.warn(<span class="hljs-string">'Response '</span> + error.message)
+        }
+      }
+    })
+  <span class="hljs-keyword">return</span> headers
+}
+
+Body.call(Request.prototype)
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Response</span>(<span class="hljs-params">bodyInit, options</span>) </span>{
+  <span class="hljs-keyword">if</span> (!(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> Response)) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">'Please use the "new" operator, this DOM object constructor cannot be called as a function.'</span>)
+  }
+  <span class="hljs-keyword">if</span> (!options) {
+    options = {}
+  }
+
+  <span class="hljs-built_in">this</span>.type = <span class="hljs-string">'default'</span>
+  <span class="hljs-built_in">this</span>.status = options.status === <span class="hljs-literal">undefined</span> ? <span class="hljs-number">200</span> : options.status
+  <span class="hljs-built_in">this</span>.ok = <span class="hljs-built_in">this</span>.status &gt;= <span class="hljs-number">200</span> &amp;&amp; <span class="hljs-built_in">this</span>.status &lt; <span class="hljs-number">300</span>
+  <span class="hljs-built_in">this</span>.statusText = options.statusText === <span class="hljs-literal">undefined</span> ? <span class="hljs-string">''</span> : <span class="hljs-string">''</span> + options.statusText
+  <span class="hljs-built_in">this</span>.headers = <span class="hljs-keyword">new</span> Headers(options.headers)
+  <span class="hljs-built_in">this</span>.url = options.url || <span class="hljs-string">''</span>
+  <span class="hljs-built_in">this</span>._initBody(bodyInit)
+}
+
+Body.call(Response.prototype)
+
+Response.prototype.clone = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Response(<span class="hljs-built_in">this</span>._bodyInit, {
+    <span class="hljs-attr">status</span>: <span class="hljs-built_in">this</span>.status,
+    <span class="hljs-attr">statusText</span>: <span class="hljs-built_in">this</span>.statusText,
+    <span class="hljs-attr">headers</span>: <span class="hljs-keyword">new</span> Headers(<span class="hljs-built_in">this</span>.headers),
+    <span class="hljs-attr">url</span>: <span class="hljs-built_in">this</span>.url
+  })
+}
+
+Response.error = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> response = <span class="hljs-keyword">new</span> Response(<span class="hljs-literal">null</span>, {<span class="hljs-attr">status</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">statusText</span>: <span class="hljs-string">''</span>})
+  response.type = <span class="hljs-string">'error'</span>
+  <span class="hljs-keyword">return</span> response
+}
+
+<span class="hljs-keyword">var</span> redirectStatuses = [<span class="hljs-number">301</span>, <span class="hljs-number">302</span>, <span class="hljs-number">303</span>, <span class="hljs-number">307</span>, <span class="hljs-number">308</span>]
+
+Response.redirect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">url, status</span>) </span>{
+  <span class="hljs-keyword">if</span> (redirectStatuses.indexOf(status) === -<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">'Invalid status code'</span>)
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Response(<span class="hljs-literal">null</span>, {<span class="hljs-attr">status</span>: status, <span class="hljs-attr">headers</span>: {<span class="hljs-attr">location</span>: url}})
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> DOMException = <span class="hljs-built_in">global</span>.DOMException
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">new</span> DOMException()
+} <span class="hljs-keyword">catch</span> (err) {
+  DOMException = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">message, name</span>) </span>{
+    <span class="hljs-built_in">this</span>.message = message
+    <span class="hljs-built_in">this</span>.name = name
+    <span class="hljs-keyword">var</span> error = <span class="hljs-built_in">Error</span>(message)
+    <span class="hljs-built_in">this</span>.stack = error.stack
+  }
+  DOMException.prototype = <span class="hljs-built_in">Object</span>.create(<span class="hljs-built_in">Error</span>.prototype)
+  DOMException.prototype.constructor = DOMException
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetch</span>(<span class="hljs-params">input, init</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{
+    <span class="hljs-keyword">var</span> request = <span class="hljs-keyword">new</span> Request(input, init)
+
+    <span class="hljs-keyword">if</span> (request.signal &amp;&amp; request.signal.aborted) {
+      <span class="hljs-keyword">return</span> reject(<span class="hljs-keyword">new</span> DOMException(<span class="hljs-string">'Aborted'</span>, <span class="hljs-string">'AbortError'</span>))
+    }
+
+    <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest()
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">abortXhr</span>(<span class="hljs-params"></span>) </span>{
+      xhr.abort()
+    }
+
+    xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> options = {
+        <span class="hljs-attr">status</span>: xhr.status,
+        <span class="hljs-attr">statusText</span>: xhr.statusText,
+        <span class="hljs-attr">headers</span>: parseHeaders(xhr.getAllResponseHeaders() || <span class="hljs-string">''</span>)
+      }
+      options.url = <span class="hljs-string">'responseURL'</span> <span class="hljs-keyword">in</span> xhr ? xhr.responseURL : options.headers.get(<span class="hljs-string">'X-Request-URL'</span>)
+      <span class="hljs-keyword">var</span> body = <span class="hljs-string">'response'</span> <span class="hljs-keyword">in</span> xhr ? xhr.response : xhr.responseText
+      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        resolve(<span class="hljs-keyword">new</span> Response(body, options))
+      }, <span class="hljs-number">0</span>)
+    }
+
+    xhr.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">'Network request failed'</span>))
+      }, <span class="hljs-number">0</span>)
+    }
+
+    xhr.ontimeout = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">'Network request failed'</span>))
+      }, <span class="hljs-number">0</span>)
+    }
+
+    xhr.onabort = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        reject(<span class="hljs-keyword">new</span> DOMException(<span class="hljs-string">'Aborted'</span>, <span class="hljs-string">'AbortError'</span>))
+      }, <span class="hljs-number">0</span>)
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fixUrl</span>(<span class="hljs-params">url</span>) </span>{
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">return</span> url === <span class="hljs-string">''</span> &amp;&amp; <span class="hljs-built_in">global</span>.location.href ? <span class="hljs-built_in">global</span>.location.href : url
+      } <span class="hljs-keyword">catch</span> (e) {
+        <span class="hljs-keyword">return</span> url
+      }
+    }
+
+    xhr.open(request.method, fixUrl(request.url), <span class="hljs-literal">true</span>)
+
+    <span class="hljs-keyword">if</span> (request.credentials === <span class="hljs-string">'include'</span>) {
+      xhr.withCredentials = <span class="hljs-literal">true</span>
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (request.credentials === <span class="hljs-string">'omit'</span>) {
+      xhr.withCredentials = <span class="hljs-literal">false</span>
+    }
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-string">'responseType'</span> <span class="hljs-keyword">in</span> xhr) {
+      <span class="hljs-keyword">if</span> (support.blob) {
+        xhr.responseType = <span class="hljs-string">'blob'</span>
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (
+        support.arrayBuffer &amp;&amp;
+        request.headers.get(<span class="hljs-string">'Content-Type'</span>) &amp;&amp;
+        request.headers.get(<span class="hljs-string">'Content-Type'</span>).indexOf(<span class="hljs-string">'application/octet-stream'</span>) !== -<span class="hljs-number">1</span>
+      ) {
+        xhr.responseType = <span class="hljs-string">'arraybuffer'</span>
+      }
+    }
+
+    <span class="hljs-keyword">if</span> (init &amp;&amp; <span class="hljs-keyword">typeof</span> init.headers === <span class="hljs-string">'object'</span> &amp;&amp; !(init.headers <span class="hljs-keyword">instanceof</span> Headers)) {
+      <span class="hljs-built_in">Object</span>.getOwnPropertyNames(init.headers).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
+        xhr.setRequestHeader(name, normalizeValue(init.headers[name]))
+      })
+    } <span class="hljs-keyword">else</span> {
+      request.headers.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value, name</span>) </span>{
+        xhr.setRequestHeader(name, value)
+      })
+    }
+
+    <span class="hljs-keyword">if</span> (request.signal) {
+      request.signal.addEventListener(<span class="hljs-string">'abort'</span>, abortXhr)
+
+      xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// DONE (success or failure)</span>
+        <span class="hljs-keyword">if</span> (xhr.readyState === <span class="hljs-number">4</span>) {
+          request.signal.removeEventListener(<span class="hljs-string">'abort'</span>, abortXhr)
+        }
+      }
+    }
+
+    xhr.send(<span class="hljs-keyword">typeof</span> request._bodyInit === <span class="hljs-string">'undefined'</span> ? <span class="hljs-literal">null</span> : request._bodyInit)
+  })
+}
+
+fetch.polyfill = <span class="hljs-literal">true</span>
+
+<span class="hljs-keyword">if</span> (!<span class="hljs-built_in">global</span>.fetch) {
+  <span class="hljs-built_in">global</span>.fetch = fetch
+  <span class="hljs-built_in">global</span>.Headers = Headers
+  <span class="hljs-built_in">global</span>.Request = Request
+  <span class="hljs-built_in">global</span>.Response = Response
+}</code></pre><p></p><p></p><p></p>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://www.cnblogs.com/mq0036/p/14372997.html" target="_blank">fetch的用法</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：fetch
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/135" class="imgbox">
+                <img src="/statics/blog/2021/0714/55ecfb0e5af67e9e543924cb051e546a.jpg">
+            </a>
+            <a href="/blog/articles/135" class="title" title="百度分享share.baidu各配置详解及解决https支持问题">
+                百度分享share.baidu各配置详解及解决https支持问题
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/585" class="imgbox">
+                <img src="/statics/blog/2025/0312/770a3c7de9b0652534d8341f1cf59ccd.png">
+            </a>
+            <a href="/blog/articles/585" class="title" title="pygal库的使用">
+                pygal库的使用
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/349" class="imgbox">
+                <img src="/statics/blog/2023/0113/f4903279c3679179e9701953254ea3ca.png">
+            </a>
+            <a href="/blog/articles/349" class="title" title="win11底部任务栏上的图标变白纸，恢复的方法">
+                win11底部任务栏上的图标变白纸，恢复的方法
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/js">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/391">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        JS使用cssText给元素动态添加style
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/248">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        搞透JS中的继承
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/537">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        php和axios允许跨域携带cookie的基本设置
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/166">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        浏览器原生的HTML5语音合成功能
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/328">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        js获取浏览器、屏幕的宽高(多浏览器)
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

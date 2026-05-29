@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="【php】个人对PDO的封装以及使用 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>【php】个人对PDO的封装以及使用 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="pdo"/>
+<meta name="description" content="自己对PDO进行二次封装的数据库操作类，方便日后使用。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 399,
+            article_title: '【php】个人对PDO的封装以及使用',
+            article_desc: '自己对PDO进行二次封装的数据库操作类，方便日后使用。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal active">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" class="active">
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/php">PHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">【php】个人对PDO的封装以及使用</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>7793</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>541</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2023-04-12 16:01:04</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>类封装</h2><p>类只适合简单的，原生PHP开发的简单项目使用。</p><p>这个类中，一共分为3个文件：</p><ul><li>db_config.php</li><li>db.class.php</li><li>mypdo.class.php</li></ul><div>我们将这3个php文件都放在名为db的文件夹中。</div><h3>db_config.php</h3><div>主要用于设置链接数据库的密码、账号。</div><div></div><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+$config = <span class="hljs-keyword">array</span>(
+    <span class="hljs-string">'dbhost'</span> =&gt; <span class="hljs-string">'localhost'</span>,
+    <span class="hljs-string">'dbuser'</span> =&gt; <span class="hljs-string">'design0505'</span>,
+    <span class="hljs-string">'dbpsw'</span> =&gt; <span class="hljs-string">'sj0505'</span>,
+    <span class="hljs-string">'dbname'</span> =&gt; <span class="hljs-string">'xincards'</span>,
+    <span class="hljs-string">'dbcharset'</span> =&gt; <span class="hljs-string">'utf8'</span>
+);</code></pre><h3>db.class.php</h3><p>主要用于对mypdo.class类进行二次的封装，让类静态化，方便调用。</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'db_config.php'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DB</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">static</span> $conn;
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params">$config</span>) </span>{
+        <span class="hljs-keyword">require</span>(<span class="hljs-string">'mypdo.class.php'</span>);
+        <span class="hljs-built_in">self</span>::$conn = <span class="hljs-keyword">new</span> Mypdo($config);
+        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">self</span>::$conn) {
+            $res = [
+                <span class="hljs-string">'error'</span> =&gt; <span class="hljs-number">5</span>,
+                <span class="hljs-string">'msg'</span> =&gt; <span class="hljs-string">'数据库链接错误'</span>,
+                <span class="hljs-string">'data'</span> =&gt; <span class="hljs-literal">false</span>
+            ];
+            <span class="hljs-keyword">echo</span> json_encode($res, JSON_UNESCAPED_UNICODE);
+            <span class="hljs-keyword">exit</span>;
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handle</span>(<span class="hljs-params">$sql, $parameters = []</span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">self</span>::$conn-&gt;handle($sql, $parameters);
+    }
+
+    <span class="hljs-comment">// 执行查询</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">query</span>(<span class="hljs-params">$sql, $parameters = []</span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">self</span>::$conn-&gt;query($sql, $parameters);
+    }
+
+
+    <span class="hljs-comment">/**
+     * [增 删 改 返回受影响的行数以及 最后插入的id]
+     * array(2) { ["row"]=&gt;int(1)  ["lastId"]=&gt; "0"}
+     * <span class="hljs-doctag">@return</span>   [arr]             [插入返回成功的Id 和受影响的行数]
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getResult</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">self</span>::$conn-&gt;getResult();
+    }
+
+    <span class="hljs-comment">// 返回失败状态的信息</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getError</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">self</span>::$conn-&gt;getError();
+    }
+
+}
+
+DB::init($config);</code></pre><h3>mypdo.class.php</h3><p>核心库，实现对sql的查询以及其他操作。</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mypdo</span> </span>{
+    <span class="hljs-comment">// mysql链接</span>
+    <span class="hljs-keyword">private</span> $dsn;
+    <span class="hljs-comment">// 数据库用户名</span>
+    <span class="hljs-keyword">private</span> $user;
+    <span class="hljs-comment">// 数据库密码</span>
+    <span class="hljs-keyword">private</span> $password;
+    <span class="hljs-comment">// 数据库字符集</span>
+    <span class="hljs-keyword">private</span> $charset;
+    <span class="hljs-comment">// PDO对象</span>
+    <span class="hljs-keyword">private</span> $pdoInstance;
+    <span class="hljs-comment">// sql对象 查询获取的资源</span>
+    <span class="hljs-keyword">private</span> $pdoStmt;
+    <span class="hljs-comment">// 存储错误码</span>
+    <span class="hljs-keyword">private</span> $errArr;
+    <span class="hljs-comment">// 存储更新成功后影响的行数以及插入的id</span>
+    <span class="hljs-keyword">private</span> $result;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params">$config</span>) </span>{
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">isset</span>($config)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+        <span class="hljs-keyword">$this</span>-&gt;dsn = <span class="hljs-string">"mysql:host=<span class="hljs-subst">{$config['dbhost']}</span>;dbname=<span class="hljs-subst">{$config['dbname']}</span>"</span>;
+        <span class="hljs-keyword">$this</span>-&gt;user = $config[<span class="hljs-string">'dbuser'</span>];
+        <span class="hljs-keyword">$this</span>-&gt;password = $config[<span class="hljs-string">'dbpsw'</span>];
+        <span class="hljs-keyword">$this</span>-&gt;charset = $config[<span class="hljs-string">'dbcharset'</span>];
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">$this</span>-&gt;connect()) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connect</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">$this</span>-&gt;pdoInstance) {
+            $options = <span class="hljs-keyword">array</span>(
+                PDO::MYSQL_ATTR_INIT_COMMAND =&gt; <span class="hljs-string">'SET NAMES '</span>.<span class="hljs-keyword">$this</span>-&gt;charset
+            );
+
+            <span class="hljs-keyword">$this</span>-&gt;pdoInstance = <span class="hljs-keyword">new</span> PDO(<span class="hljs-keyword">$this</span>-&gt;dsn, <span class="hljs-keyword">$this</span>-&gt;user, <span class="hljs-keyword">$this</span>-&gt;password, $options);
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">$this</span>-&gt;pdoInstance) {
+               <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            }
+            <span class="hljs-keyword">$this</span>-&gt;pdoInstance-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">query</span>(<span class="hljs-params">$sql, $parameters = []</span>) </span>{
+        <span class="hljs-keyword">if</span> (!is_array($parameters)) {
+            $parameters = <span class="hljs-keyword">array</span>($parameters);
+        }
+        <span class="hljs-keyword">$this</span>-&gt;pdoStmt = <span class="hljs-keyword">$this</span>-&gt;pdoInstance-&gt;prepare($sql);
+        $index = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">foreach</span> ($parameters <span class="hljs-keyword">as</span> $parameter) {
+            <span class="hljs-keyword">$this</span>-&gt;pdoStmt-&gt;bindValue($index++, $parameter[<span class="hljs-number">0</span>], $parameter[<span class="hljs-number">1</span>]);
+        }
+        $execRe = <span class="hljs-keyword">$this</span>-&gt;pdoStmt-&gt;execute();
+        <span class="hljs-keyword">if</span> (!$execRe) {
+            <span class="hljs-keyword">$this</span>-&gt;errArr = <span class="hljs-keyword">array</span>(
+                <span class="hljs-string">'code'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;pdoStmt-&gt;errorCode(),
+                <span class="hljs-string">'info'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;pdoStmt-&gt;errorInfo()[<span class="hljs-number">2</span>]
+            );
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+        $data = <span class="hljs-keyword">$this</span>-&gt;pdoStmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+        <span class="hljs-keyword">return</span> $data;
+    }
+
+    <span class="hljs-comment">// 增 删 改 操作</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handle</span>(<span class="hljs-params">$sql, $parameters = []</span>)
+    </span>{
+        <span class="hljs-keyword">if</span> (!is_array($parameters)) {
+            $parameters = <span class="hljs-keyword">array</span>($parameters);
+        }
+        <span class="hljs-keyword">$this</span>-&gt;pdoStmt = <span class="hljs-keyword">$this</span>-&gt;pdoInstance-&gt;prepare($sql);
+        <span class="hljs-keyword">if</span> (count($parameters) &gt; <span class="hljs-number">0</span>) {
+            $index = <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">foreach</span> ($parameters <span class="hljs-keyword">as</span> $parameter) {
+                <span class="hljs-comment">// var_dump($parameter);</span>
+                <span class="hljs-keyword">$this</span>-&gt;pdoStmt-&gt;bindValue($index++, $parameter[<span class="hljs-number">0</span>], $parameter[<span class="hljs-number">1</span>]);
+            }
+        }
+        $execRe = <span class="hljs-keyword">$this</span>-&gt;pdoStmt-&gt;execute();
+        <span class="hljs-comment">// var_dump($sql);</span>
+        <span class="hljs-comment">// exit();</span>
+        <span class="hljs-keyword">if</span> (!$execRe) {
+            <span class="hljs-keyword">$this</span>-&gt;errArr = <span class="hljs-keyword">array</span>(
+                <span class="hljs-string">'code'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;pdoStmt-&gt;errorCode(),
+                <span class="hljs-string">'info'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;pdoStmt-&gt;errorInfo()[<span class="hljs-number">2</span>]
+            );
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+        <span class="hljs-keyword">$this</span>-&gt;result = [
+            <span class="hljs-comment">// 影响的行数</span>
+            <span class="hljs-string">'row'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;pdoStmt-&gt;rowCount(),
+            <span class="hljs-comment">// 插入的id</span>
+            <span class="hljs-string">'lastId'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;pdoInstance-&gt;lastInsertId()
+        ];
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getError</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-comment">// 如果错误状态数组返回true</span>
+        <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">bool</span>)<span class="hljs-keyword">$this</span>-&gt;errArr) {
+            $err = <span class="hljs-keyword">$this</span>-&gt;errArr;
+        } <span class="hljs-keyword">else</span> {
+            $err = <span class="hljs-keyword">array</span>();
+        }
+        <span class="hljs-keyword">return</span> $err;
+    }
+
+    <span class="hljs-comment">// 返回插入 修改 删除的结果</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getResult</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">if</span> (!is_array(<span class="hljs-keyword">$this</span>-&gt;result) &amp;&amp; <span class="hljs-keyword">empty</span>(<span class="hljs-keyword">$this</span>-&gt;result)) {
+            <span class="hljs-keyword">$this</span>-&gt;result = <span class="hljs-keyword">array</span>();
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;result;
+    }
+
+
+}</code></pre><h2>使用例</h2><h3>查询</h3><pre type="PHP"><code>$pageSize = <span class="hljs-number">10</span>;
+$offset = $pageSize * (<span class="hljs-number">2</span> - <span class="hljs-number">1</span>);
+ $sql = <span class="hljs-string">"
+       SELECT template_id,
+              template_name as template_title,
+              template_preview,
+              template_public,
+              created_at
+       FROM `<span class="hljs-subst">{$table}</span>`
+       ORDER BY template_id DESC
+       LIMIT ? OFFSET ?
+"</span>;
+$res = DB::query($sql, [
+    [ $pageSize, PDO::PARAM_INT ],
+    [ $offset, PDO::PARAM_INT ]
+]);
+
+<span class="hljs-keyword">if</span>(!($res === <span class="hljs-literal">false</span>) &amp;&amp; 
+    is_array($res) &amp;&amp;
+    count($res) &gt;= <span class="hljs-number">0</span>
+) {
+    <span class="hljs-comment">// 查询成功</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// 查询失败</span>
+}</code></pre><blockquote>这里注意，如果查询失败，那么会返回false，但是不能仅仅使用!$res来判断，因为当没有相匹配的条数，但是查询是成功的，那么返回的就是空数组，这时候![] 得到的也是true！</blockquote><h3>insert</h3><pre type="PHP"><code>$sql = <span class="hljs-string">"
+       INSERT INTO `<span class="hljs-subst">{$table}</span>` (
+       template_id,
+       card_name,
+       card_data,
+       card_template_bak,
+       card_author,
+       created_at,
+       updated_at
+       ) VALUES (
+       ?,
+       ?,
+       ?,
+       ?,
+       ?,
+       NOW(),
+       NOW()
+       )
+"</span>;
+
+<span class="hljs-keyword">try</span> {
+       $res_db = DB::handle($sql, [
+              [ $template_id, PDO::PARAM_INT ],
+              [ $title, PDO::PARAM_STR ],
+              [ $template[<span class="hljs-string">'compdata'</span>], PDO::PARAM_STR ],
+              [ $template[<span class="hljs-string">'html'</span>], PDO::PARAM_STR ],
+              [ $realname, PDO::PARAM_STR ]
+       ]);
+       <span class="hljs-keyword">if</span> ($res_db &amp;&amp; DB::getResult()[<span class="hljs-string">'row'</span>] &gt; <span class="hljs-number">0</span>) {
+              <span class="hljs-comment">// 插入成功</span>
+       } <span class="hljs-keyword">else</span> {
+              <span class="hljs-comment">// 插入失败</span>
+       }
+} <span class="hljs-keyword">catch</span> (<span class="hljs-built_in">Exception</span> $e) {
+       $msg = <span class="hljs-string">'插入失败, '</span> . $e-&gt;getMessage();
+       <span class="hljs-keyword">exit</span>($msg);
+}</code></pre><h3>update</h3><pre type="PHP"><code>$sql = <span class="hljs-string">"
+    UPDATE `<span class="hljs-subst">{$table}</span>`
+    SET template_name = ?,
+        template_preview = ?,
+        template_public = ?,
+        template_path = ?,
+        template_html = ?,
+        template_data = ?,
+        updated_at = NOW()
+    WHERE template_id = ?
+"</span>;
+$res = DB::handle($sql, [
+    [$title, PDO::PARAM_STR],
+    [$preview, PDO::PARAM_STR],
+    [$public, PDO::PARAM_INT],
+    [$path, PDO::PARAM_STR],
+    [$html, PDO::PARAM_STR],
+    [$data, PDO::PARAM_STR],
+    [$templateId, PDO::PARAM_INT]
+]);
+
+<span class="hljs-keyword">if</span>($res &amp;&amp; DB::getResult()[<span class="hljs-string">'row'</span>] &gt;= <span class="hljs-number">1</span>) {
+    <span class="hljs-comment">// 更新成功</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// 更新失败    </span>
+}</code></pre><h3>delete</h3><pre type="PHP"><code>$sql = <span class="hljs-string">"
+    DELETE FROM `<span class="hljs-subst">{$table}</span>`
+    WHERE card_id = ?
+"</span>;
+$res = DB::handle($sql, [
+    [ $cardId, PDO::PARAM_INT ]
+]);
+<span class="hljs-keyword">if</span>($res &amp;&amp; DB::getResult()[<span class="hljs-string">'row'</span>] &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-comment">// 删除成功</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// 删除失败</span>
+}</code></pre><h2>PDO中的常量列表</h2><p>PDO使用类常量自PHP 5.1。</p><table><tbody><tr><td>PDO::PARAM_BOOL (integer)</td><td>表示布尔数据类型。</td></tr><tr><td>PDO::PARAM_NULL (integer)</td><td>表示 SQL 中的 NULL 数据类型。</td></tr><tr><td><b><font color="#c24f4a">PDO::PARAM_INT</font></b> (integer)</td><td>表示 SQL 中的整型。</td></tr><tr><td><font color="#c24f4a"><b>PDO::PARAM_STR</b></font> (integer)</td><td>表示 SQL 中的 CHAR、VARCHAR 或其他字符串类型。</td></tr><tr><td>PDO::PARAM_LOB (integer)</td><td>表示 SQL 中大对象数据类型。</td></tr><tr><td>PDO::PARAM_STMT (integer)</td><td>表示一个记录集类型。当前尚未被任何驱动支持。</td></tr><tr><td>PDO::PARAM_INPUT_OUTPUT (integer)</td><td>指定参数为一个存储过程的 INOUT 参数。必须用一个明确的 PDO::PARAM_* 数据类型跟此值进行按位或。</td></tr><tr><td>PDO::FETCH_LAZY (integer)</td><td>指定获取方式，将结果集中的每一行作为一个对象返回，此对象的变量名对应着列名。PDO::FETCH_LAZY 创建用来访问的对象变量名。在 PDOStatement::fetchAll() 中无效。</td></tr><tr><td>PDO::FETCH_ASSOC (integer)</td><td>指定获取方式，将对应结果集中的每一行作为一个由列名索引的数组返回。如果结果集中包含多个名称相同的列，则PDO::FETCH_ASSOC每个列名只返回一个值。</td></tr><tr><td>PDO::FETCH_NAMED (integer)</td><td>指定获取方式，将对应结果集中的每一行作为一个由列名索引的数组返回。如果结果集中包含多个名称相同的列，则PDO::FETCH_ASSOC每个列名 返回一个包含值的数组。</td></tr><tr><td>PDO::FETCH_NUM (integer)</td><td>指定获取方式，将对应结果集中的每一行作为一个由列号索引的数组返回，从第 0 列开始。</td></tr><tr><td>PDO::FETCH_BOTH (integer)</td><td>指定获取方式，将对应结果集中的每一行作为一个由列号和列名索引的数组返回，从第 0 列开始。</td></tr><tr><td>PDO::FETCH_OBJ (integer)</td><td>指定获取方式，将结果集中的每一行作为一个属性名对应列名的对象返回。</td></tr><tr><td>PDO::FETCH_BOUND (integer)</td><td>指定获取方式，返回 TRUE 且将结果集中的列值分配给通过 PDOStatement::bindParam() 或 PDOStatement::bindColumn() 方法绑定的 PHP 变量。</td></tr><tr><td>PDO::FETCH_COLUMN (integer)</td><td>指定获取方式，从结果集中的下一行返回所需要的那一列。</td></tr><tr><td>PDO::FETCH_CLASS (integer)</td><td>指定获取方式，返回一个所请求类的新实例，映射列到类中对应的属性名。<p>注意: 如果所请求的类中不存在该属性，则调用 __set() 魔术方法</p></td></tr><tr><td>PDO::FETCH_INTO (integer)</td><td>指定获取方式，更新一个请求类的现有实例，映射列到类中对应的属性名。</td></tr><tr><td>PDO::FETCH_FUNC (integer)</td><td>允许在运行中完全用自定义的方式处理数据。（仅在 PDOStatement::fetchAll() 中有效）。</td></tr><tr><td>PDO::FETCH_GROUP (integer)</td><td>根据值分组返回。通常和 PDO::FETCH_COLUMN 或 PDO::FETCH_KEY_PAIR 一起使用。</td></tr><tr><td>PDO::FETCH_UNIQUE (integer)</td><td>只取唯一值。</td></tr><tr><td>PDO::FETCH_KEY_PAIR (integer)</td><td>获取一个有两列的结果集到一个数组，其中第一列为键名，第二列为值。自 PHP 5.2.3 起可用。</td></tr><tr><td>PDO::FETCH_CLASSTYPE (integer)</td><td>根据第一列的值确定类名。</td></tr><tr><td>PDO::FETCH_SERIALIZE (integer)</td><td>类似 PDO::FETCH_INTO ，但是以一个序列化的字符串表示对象。自 PHP 5.1.0 起可用。从 PHP 5.3.0 开始，如果设置此标志，则类的构造函数从不会被调用。</td></tr><tr><td>PDO::FETCH_PROPS_LATE (integer)</td><td>设置属性前调用构造函数。自 PHP 5.2.0 起可用。</td></tr><tr><td>PDO::ATTR_AUTOCOMMIT (integer)</td><td>如果此值为 FALSE ，PDO 将试图禁用自动提交以便数据库连接开始一个事务。</td></tr><tr><td>PDO::ATTR_PREFETCH (integer)</td><td>设置预取大小来为你的应用平衡速度和内存使用。并非所有的数据库/驱动组合都支持设置预取大小。较大的预取大小导致性能提高的同时也会占用更多的内存。</td></tr><tr><td>PDO::ATTR_TIMEOUT (integer)</td><td>设置连接数据库的超时秒数。</td></tr><tr><td>PDO::ATTR_ERRMODE (integer)</td><td>关于此属性的更多信息请参见 错误及错误处理 部分。</td></tr><tr><td>PDO::ATTR_SERVER_VERSION (integer)</td><td>此为只读属性；返回 PDO 所连接的数据库服务的版本信息。</td></tr><tr><td>PDO::ATTR_CLIENT_VERSION (integer)</td><td>此为只读属性；返回 PDO 驱动所用客户端库的版本信息。</td></tr><tr><td>PDO::ATTR_SERVER_INFO (integer)</td><td>此为只读属性。返回一些关于 PDO 所连接的数据库服务的元信息。</td></tr><tr><td>PDO::ATTR_CONNECTION_STATUS (integer)</td><td></td></tr><tr><td>PDO::ATTR_CASE (integer)</td><td>用类似 PDO::CASE_* 的常量强制列名为指定的大小写。</td></tr><tr><td>PDO::ATTR_CURSOR_NAME (integer)</td><td>获取或设置使用游标的名称。当使用可滚动游标和定位更新时候非常有用。</td></tr><tr><td>PDO::ATTR_CURSOR (integer)</td><td>选择游标类型。 PDO 当前支持 PDO::CURSOR_FWDONLY 和 PDO::CURSOR_SCROLL。一般为 PDO::CURSOR_FWDONLY，除非确实需要一个可滚动游标。</td></tr><tr><td>PDO::ATTR_DRIVER_NAME (string)</td><td>返回驱动名称。使用 PDO::ATTR_DRIVER_NAME 的例子：<p>if ($db-&gt;getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {</p><p>&nbsp; &nbsp;echo "Running on mysql; doing something mysql specific here\n";</p><p>}</p></td></tr><tr><td>PDO::ATTR_ORACLE_NULLS (integer)</td><td>在获取数据时将空字符串转换成 SQL 中的 NULL 。</td></tr><tr><td>PDO::ATTR_PERSISTENT (integer)</td><td>请求一个持久连接，而非创建一个新连接。关于此属性的更多信息请参见 连接与连接管理 。</td></tr><tr><td>PDO::ATTR_STATEMENT_CLASS (integer)</td><td></td></tr><tr><td>PDO::ATTR_FETCH_CATALOG_NAMES (integer)</td><td>将包含的目录名添加到结果集中的每个列名前面。目录名和列名由一个小数点分开（.）。此属性在驱动层面支持，所以有些驱动可能不支持此属性。</td></tr><tr><td>PDO::ATTR_FETCH_TABLE_NAMES (integer)</td><td>将包含的表名添加到结果集中的每个列名前面。表名和列名由一个小数点分开（.）。此属性在驱动层面支持，所以有些驱动可能不支持此属性。</td></tr><tr><td>PDO::ATTR_STRINGIFY_FETCHES (integer)</td><td></td></tr><tr><td>PDO::ATTR_MAX_COLUMN_LEN (integer)</td><td></td></tr><tr><td>PDO::ATTR_DEFAULT_FETCH_MODE (integer)</td><td>自 PHP 5.2.0 起可用。</td></tr><tr><td>PDO::ATTR_EMULATE_PREPARES (integer)</td><td>自 PHP 5.1.3 起可用。</td></tr><tr><td>PDO::ERRMODE_SILENT (integer)</td><td>如果发生错误，则不显示错误或异常。希望开发人员显式地检查错误。此为默认模式。关于此属性的更多信息请参见 错误与错误处理 。</td></tr><tr><td>PDO::ERRMODE_WARNING (integer)</td><td>如果发生错误，则显示一个 PHP E_WARNING 消息。关于此属性的更多信息请参见 错误与错误处理。</td></tr><tr><td>PDO::ERRMODE_EXCEPTION (integer)</td><td>如果发生错误，则抛出一个 PDOException 异常。关于此属性的更多信息请参见 错误与错误处理。</td></tr><tr><td>PDO::CASE_NATURAL (integer)</td><td>保留数据库驱动返回的列名。</td></tr><tr><td>PDO::CASE_LOWER (integer)</td><td>强制列名小写。</td></tr><tr><td>PDO::CASE_UPPER (integer)</td><td>强制列名大写。</td></tr><tr><td>PDO::NULL_NATURAL (integer)</td><td></td></tr><tr><td>PDO::NULL_EMPTY_STRING (integer)</td><td></td></tr><tr><td>PDO::NULL_TO_STRING (integer)</td><td></td></tr><tr><td>PDO::FETCH_ORI_NEXT (integer)</td><td>在结果集中获取下一行。仅对可滚动游标有效。</td></tr><tr><td>PDO::FETCH_ORI_PRIOR (integer)</td><td>在结果集中获取上一行。仅对可滚动游标有效。</td></tr><tr><td>PDO::FETCH_ORI_FIRST (integer)</td><td>在结果集中获取第一行。仅对可滚动游标有效。</td></tr><tr><td>PDO::FETCH_ORI_LAST (integer)</td><td>在结果集中获取最后一行。仅对可滚动游标有效。</td></tr><tr><td>PDO::FETCH_ORI_ABS (integer)</td><td>根据行号从结果集中获取需要的行。仅对可滚动游标有效。</td></tr><tr><td>PDO::FETCH_ORI_REL (integer)</td><td>根据当前游标位置的相对位置从结果集中获取需要的行。仅对可滚动游标有效。</td></tr><tr><td>PDO::CURSOR_FWDONLY (integer)</td><td>创建一个只进游标的 PDOStatement 对象。此为默认的游标选项，因为此游标最快且是 PHP 中最常用的数据访问模式。</td></tr><tr><td>PDO::CURSOR_SCROLL (integer)</td><td>创建一个可滚动游标的 PDOStatement 对象。通过 PDO::FETCH_ORI_* 常量来控制结果集中获取的行。</td></tr><tr><td>PDO::ERR_NONE (string)</td><td>对应 SQLSTATE '00000'，表示 SQL 语句没有错误或警告地成功发出。当用 PDO::errorCode() 或 PDOStatement::errorCode() 来确定是否有错误发生时，此常量非常方便。在检查上述方法返回的错误状态代码时，会经常用到。</td></tr><tr><td>PDO::PARAM_EVT_ALLOC (integer)</td><td>分配事件</td></tr><tr><td>PDO::PARAM_EVT_FREE (integer)</td><td>解除分配事件</td></tr><tr><td>PDO::PARAM_EVT_EXEC_PRE (integer)</td><td>执行一条预处理语句之前触发事件。</td></tr><tr><td>PDO::PARAM_EVT_EXEC_POST (integer)</td><td>执行一条预处理语句之后触发事件。</td></tr><tr><td>PDO::PARAM_EVT_FETCH_PRE (integer)</td><td>从一个结果集中取出一条结果之前触发事件。</td></tr><tr><td>PDO::PARAM_EVT_FETCH_POST (integer)</td><td>从一个结果集中取出一条结果之后触发事件。</td></tr><tr><td>PDO::PARAM_EVT_NORMALIZE (integer)</td><td>在绑定参数注册允许驱动程序正常化变量名时触发事件。</td></tr></tbody></table>
+                                            <h2>附件下载</h2>
+                        <div class="downloads-list">
+                                                            <div class="downloads-list-li">
+                                    <a href="//www.wubin.work/statics/blog/2023/0412/f3f558e092d6c25e778ca76213813789.zip" class="except-a" download="【php】个人对PDO的封装以及使用-附件-db">db</a>
+                                </div>
+                                                    </div>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://m.runoob.com/php/php-pdo-constants.html" target="_blank">PHPPDO预定义常量</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://m.runoob.com/php/php-pdo.html" target="_blank">PHPPDO基本使用</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：pdo
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/458" class="imgbox">
+                <img src="/statics/blog/2023/1220/ce75b6fa38b076a88e095b8ff8a60a46.jpg">
+            </a>
+            <a href="/blog/articles/458" class="title" title="安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题">
+                安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/19" class="imgbox">
+                <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+            </a>
+            <a href="/blog/articles/19" class="title" title="Vue+html2canvas截图空白的问题">
+                Vue+html2canvas截图空白的问题
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/171" class="imgbox">
+                <img src="/statics/blog/2021/0901/81191d5078efdc10e533077163e05bcf.jpg">
+            </a>
+            <a href="/blog/articles/171" class="title" title="Composer快速入门之基本使用">
+                Composer快速入门之基本使用
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/php">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/139">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        PHP使用程序实现文件的下载
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/554">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        PHP函数介绍—http-build-query()构建URL查询字符串
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/459">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        phpy：PHP与Python互调用库，为PHP引入Python生态，PHP也可以写AI了
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/235">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        getenv()函数详解
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/325">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        PHP中根据某一键值对多维数组进行排序的方法
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

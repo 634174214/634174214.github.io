@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="前端防调试攻防战：如何保护你的javascript代码不被“偷窥”？ | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>前端防调试攻防战：如何保护你的javascript代码不被“偷窥”？ | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="javascript，debugger"/>
+<meta name="description" content="本文将全面梳理前端防调试的各种技术手段，从简单的“骚扰式”反调试到终极的攻防对抗，带你了解这场没有硝烟的“调试与反调试”之战。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 625,
+            article_title: '前端防调试攻防战：如何保护你的javascript代码不被“偷窥”？',
+            article_desc: '本文将全面梳理前端防调试的各种技术手段，从简单的“骚扰式”反调试到终极的攻防对抗，带你了解这场没有硝烟的“调试与反调试”之战。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal active">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" class="active">
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/js">JS</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">前端防调试攻防战：如何保护你的javascript代码不被“偷窥”？</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>4308</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>59</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2026-04-08 11:20:09</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>防调试</h2><section>在Web开发中，我们投入大量心血编写的前端代码，往往暴露在无数双眼睛之下。对于商业项目、内部系统或一些特殊应用来说，防止他人随意调试代码、窃取逻辑或篡改数据，成为了一项重要的需求。</section><p>本文将全面梳理前端防调试的各种技术手段，从简单的“骚扰式”反调试到终极的攻防对抗，带你了解这场没有硝烟的“调试与反调试”之战。</p><p>在深入技术之前，我们需要明确防调试的目的。通常，前端开发者希望限制调试工具（如Chrome DevTools）的访问，主要出于以下考虑：</p><ol><li><p><strong>保护核心逻辑</strong>：防止竞争对手或攻击者通过断点调试，逆向工程你的核心算法或业务逻辑。</p></li><li><p><strong>防止数据篡改</strong>：阻止恶意用户修改JavaScript变量、跳过验证步骤，从而进行刷单、作弊等操作。</p></li><li><p><strong>增加攻击成本</strong>：虽然没有绝对的安全，但增加一层防护可以让普通攻击者知难而退，提高整体的攻击门槛。</p></li></ol><h2>基础防御：构建第一道防线</h2><p>最直接的思路，就是彻底阻断进入开发者工具的通道。</p><h3>禁止右键菜单</h3><p>很多用户习惯通过右键菜单点击“检查”来打开开发者工具。通过禁用右键菜单，可以阻止这一最常见的入口。</p><pre type="JavaScript"><code>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+&nbsp; &nbsp;&nbsp;<span class="hljs-built_in">setInterval</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="hljs-keyword">debugger</span>;
+&nbsp; &nbsp; },&nbsp;<span class="hljs-number">100</span>);
+})();</code></pre><h3>禁用F12及常用快捷键</h3><p>开发者工具的快捷键（F12、Ctrl+Shift+I/Cmd+Opt+I、Ctrl+Shift+C/Cmd+Opt+C）是专业用户的“快捷方式”。我们可以通过监听键盘事件来禁用它们。</p><pre type="JavaScript"><code><span class="hljs-built_in">document</span>.onkeydown=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+&nbsp; &nbsp;&nbsp;<span class="hljs-keyword">if</span>&nbsp;(e.key===<span class="hljs-string">'F12'</span>||
+&nbsp; &nbsp; &nbsp; &nbsp; (e.ctrlKey&amp;&amp;e.shiftKey&amp;&amp;e.key===<span class="hljs-string">'I'</span>)&nbsp;||<span class="hljs-comment">// Ctrl+Shift+I</span>
+&nbsp; &nbsp; &nbsp; &nbsp; (e.ctrlKey&amp;&amp;e.shiftKey&amp;&amp;e.key===<span class="hljs-string">'C'</span>)&nbsp;||<span class="hljs-comment">// Ctrl+Shift+C</span>
+&nbsp; &nbsp; &nbsp; &nbsp; (e.metaKey&amp;&amp;e.altKey&amp;&amp;e.key===<span class="hljs-string">'I'</span>)&nbsp;||&nbsp; &nbsp;<span class="hljs-comment">// Cmd+Opt+I (Mac)</span>
+&nbsp; &nbsp; &nbsp; &nbsp; (e.metaKey&amp;&amp;e.altKey&amp;&amp;e.key===<span class="hljs-string">'C'</span>)) { &nbsp;&nbsp;<span class="hljs-comment">// Cmd+Opt+C (Mac)</span>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;e.preventDefault();
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;returnfalse;
+&nbsp; &nbsp; }
+};</code></pre><h3>检测开发者工具状态</h3><p>这是一种“主动侦察”的思路。通过定时检测某些特征来判断开发者工具是否被打开，一旦发现，立即采取行动。</p><pre type="JavaScript"><code><span class="hljs-comment">// 定时检测控制台是否被打开</span>
+<span class="hljs-built_in">setInterval</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+&nbsp; &nbsp;&nbsp;<span class="hljs-comment">// 方法一：检测console是否被重新激活（一些早期方法）</span>
+&nbsp; &nbsp;&nbsp;<span class="hljs-comment">// 方法二：利用debugger的特性（见下文）</span>
+&nbsp; &nbsp;&nbsp;<span class="hljs-comment">// 方法三：检测窗口大小差异</span>
+&nbsp; &nbsp;&nbsp;constbefore=newDate();
+&nbsp; &nbsp;&nbsp;<span class="hljs-keyword">debugger</span>;&nbsp;<span class="hljs-comment">// 如果devtools打开，debugger会暂停执行，导致时间差增大</span>
+&nbsp; &nbsp;&nbsp;constafter=newDate();
+&nbsp; &nbsp;&nbsp;<span class="hljs-keyword">if</span>&nbsp;(after-before&gt;<span class="hljs-number">100</span>) {&nbsp;<span class="hljs-comment">// 如果时间差超过100ms，说明可能遇到了断点暂停</span>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="hljs-comment">// 执行反制措施，例如清空页面或跳转</span>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="hljs-built_in">window</span>.location.href=<span class="hljs-string">"about:blank"</span>;
+&nbsp; &nbsp; }
+},&nbsp;<span class="hljs-number">1000</span>);</code></pre><h2>进阶防御：“无限debugger”的攻防艺术</h2><p>当攻击者成功打开开发者工具后，最让他们头疼的就是无穷无尽的断点。这就是著名的&nbsp;<strong>“无限debugger”</strong>&nbsp;战术。</p><h3>基础版：无休止的断点</h3><p><code>debugger</code>&nbsp;语句会在控制台打开时强制执行。将其放入一个无限循环中，就能让任何试图调试的人寸步难行。</p><pre type="JavaScript"><code>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+&nbsp; &nbsp;&nbsp;<span class="hljs-built_in">setInterval</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="hljs-keyword">debugger</span>;
+&nbsp; &nbsp; },&nbsp;<span class="hljs-number">100</span>);
+})();</code></pre><p>然而，这种基础版本很容易被破解。攻击者只需点击DevTools中的&nbsp;<strong>“Deactivate breakpoints”</strong>&nbsp;按钮（或按&nbsp;<code>Ctrl+F8</code>），即可一键禁用所有断点。虽然禁用后无法再添加新的断点，但至少可以正常查看网络请求和DOM结构了。</p><h3>进阶版：混淆与单行代码</h3><p>为了对抗“停用断点”功能，我们可以将代码写得更加“反人类”。</p><ul><li><p><strong>单行压缩</strong>：将代码写在一行，让攻击者难以通过行号设置断点。即使他们尝试格式化代码，恢复的可读性也有限。</p></li><li><pre type="JavaScript"><code>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">setInterval</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">debugger</span>;},<span class="hljs-number">100</span>);})();</code></pre></li></ul><ul><li><p><strong>动态生成debugger</strong>：利用&nbsp;<code>Function</code>&nbsp;构造器来创建&nbsp;<code>debugger</code>。每次执行&nbsp;<code>Function('debugger')</code>&nbsp;都会在一个临时的、虚拟的JS文件中触发断点。这让攻击者难以通过“停用断点”或“添加脚本到忽略列表”来一次性屏蔽所有断点，因为他们需要忽略无数个动态生成的脚本。</p></li><li><pre type="JavaScript"><code>setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+&nbsp; &nbsp;&nbsp;<span class="hljs-function"><span class="hljs-keyword">Function</span>(<span class="hljs-params"><span class="hljs-string">'debugger'</span></span>)(<span class="hljs-params"></span>)</span>;
+},&nbsp;<span class="hljs-number">100</span>);</code></pre></li></ul><h3>终极版：递归调用与条件检测</h3><p>将上述技巧组合，并结合条件检测，可以实现非常强悍的反调试逻辑。</p><pre type="JavaScript"><code><span class="hljs-comment">// 定义一个难以被忽略的debugger生成函数</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+&nbsp; &nbsp;&nbsp;<span class="hljs-function"><span class="hljs-title">functionblock</span>(<span class="hljs-params"></span>)</span> {
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="hljs-comment">// 使用constructor来调用debugger</span>
+&nbsp; &nbsp; &nbsp; &nbsp; (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{returnfalse;})[<span class="hljs-string">'constructor'</span>](<span class="hljs-string">'debugger'</span>)[<span class="hljs-string">'call'</span>]();
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="hljs-comment">// 递归调用，形成无限循环</span>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;block();
+&nbsp; &nbsp; }
+&nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp;&nbsp;<span class="hljs-comment">// 启动，并添加一个条件检测（例如检测窗口大小）</span>
+&nbsp; &nbsp;&nbsp;<span class="hljs-built_in">setInterval</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="hljs-comment">// 如果窗口内外高度差过大，很可能是开发者工具以独立窗口形式打开</span>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="hljs-keyword">if</span>&nbsp;(<span class="hljs-built_in">window</span>.outerHeight-<span class="hljs-built_in">window</span>.innerHeight&gt;<span class="hljs-number">200</span>) {
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;block();
+&nbsp; &nbsp; &nbsp; &nbsp; }
+&nbsp; &nbsp; },&nbsp;<span class="hljs-number">1000</span>);
+})();</code></pre><p>这段代码的核心在于：</p><ol><li><p><strong>混淆</strong>：<code>(function(){return false;})['constructor']('debugger')['call']()</code>&nbsp;这种写法等同于&nbsp;<code>Function('debugger').call()</code>，但更加晦涩难懂。</p></li><li><p><strong>递归</strong>：<code>block</code>&nbsp;函数内部调用自身，形成了一个无法终止的递归调用链。即使攻击者跳过一次&nbsp;<code>debugger</code>，程序也会立即进入下一次递归，继续触发新的&nbsp;<code>debugger</code>。</p></li><li><p><strong>条件触发</strong>：结合检测开发者工具窗口的特征（如内外高度差），只在疑似被调试时才触发，减少了正常用户的性能开销。</p></li></ol><h2>代码保护的最后屏障：混淆与加密</h2><p>无论多精妙的防调试逻辑，其源代码始终暴露在攻击者面前。因此，在发布到生产环境前，对代码进行<strong>混淆</strong>和<strong>加密</strong>是至关重要的一步。</p><ol><li><p><strong>混淆</strong>：使用工具（如&nbsp;javascript-obfuscator）将变量名替换为无意义的字符（如&nbsp;<code>_0x1234</code>），打乱代码结构，移除注释和空格，让代码变得难以阅读和理解。</p></li><li><p><strong>加密</strong>：将核心逻辑进行编码或加密，在运行时动态解密执行。例如，将上面的反调试函数编码成一段看似无害的字符串，然后在内存中通过&nbsp;<code>eval</code>&nbsp;或&nbsp;<code>Function</code>&nbsp;执行。</p></li></ol><pre type="Html"><code>/ 极度简化的示例（真实场景会更复杂）
+<span class="hljs-comment">// 将核心代码进行Base64编码</span>
+varencoded=<span class="hljs-string">'KGZ1bmN0aW9uKCl7CmZ1bmN0aW9uIGJsb2NrKCl7CmZ1bmN0aW9uKCl7cmV0dXJuIGZhbHNlO31bJ2NvbnN0cnVjdG9yJ10oJ2RlYnVnZ2VyJylbJ2NhbGwnXSgpOwpibG9jaygpOwp9CnNldEludGVydmFsKGZ1bmN0aW9uKCl7aWYod2luZG93Lm91dGVySGVpZ2h0LXdpbmRvdy5pbm5lckhlaWdodD4yMDApe2Jsb2NrKCl9fSwxMDAwKTsKfSkoKTs='</span>;
+<span class="hljs-built_in">eval</span>(atob(encoded));&nbsp;<span class="hljs-comment">// 解码并执行</span></code></pre><p>攻击者即便打开了控制台，看到的也只是一堆乱码，极大地增加了分析难度。</p><h2>总结：没有绝对的安全，只有不断的对抗</h2><p>前端防调试是一场永无止境的“猫鼠游戏”。</p><ul><li><p><strong>攻击者</strong>总会有新的工具和技巧，例如使用无头浏览器、代理工具、甚至修改浏览器源码来绕过这些检测。</p></li><li><p><strong>防御者</strong>则需要不断升级自己的技术，从简单的禁用快捷键，到复杂的无限debugger，再到代码混淆和动态执行。</p></li></ul><p>因此，我们需要理性看待前端安全：</p><ol><li><p><strong>增加攻击成本是核心目标</strong>。我们的目的不是让代码100%无法破解（这在理论上几乎不可能），而是让破解成本远高于其带来的收益，让攻击者觉得“不值得”。</p></li><li><p><strong>纵深防御</strong>。不要依赖单一手段。结合<strong>网络请求验证、后端数据签名、用户行为分析</strong>等多种方式，构建一个立体的防御体系。</p></li><li><p><strong>保持更新</strong>。关注最新的反调试技术和绕过方法，持续迭代你的防护策略。</p></li></ol><p>最终，保护前端代码不仅是技术活，更是一场关于耐心和智慧的持久战。</p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：javascript，debugger
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/52" class="imgbox">
+                <img src="/statics/blog/2021/0430/741a276b15f404db809572b3fdba889b.jpg">
+            </a>
+            <a href="/blog/articles/52" class="title" title="vue.extend()+aysnc封装一个弹层组件【vue2】">
+                vue.extend()+aysnc封装一个弹层组件【vue2】
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/484" class="imgbox">
+                <img src="/statics/blog/2024/0326/90ea11d08a1726570ae38a9a226c9186.png">
+            </a>
+            <a href="/blog/articles/484" class="title" title="在phpstudy中配置composer">
+                在phpstudy中配置composer
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/121" class="imgbox">
+                <img src="/statics/blog/2021/0705/017dd7c4cc8f5767bce7f86ad2656a28.jpg">
+            </a>
+            <a href="/blog/articles/121" class="title" title="控制器之Session">
+                控制器之Session
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/js">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/144">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        苹果Iphone-IOS系统14版本以下不支持webp格式的图片
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/371">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        基于axios封装简单的基本请求函数
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/273">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        如何用js替换文本里的换行符n?
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/254">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        【JS实现JQuery方法】offset().left使用offsetLeft实现
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/293">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用javascript在网页上打印单张图片
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

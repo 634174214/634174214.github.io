@@ -1,0 +1,1470 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="vue3中setup使用方法和技巧 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>vue3中setup使用方法和技巧 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="setup，ref，nextTick"/>
+<meta name="description" content="如何在vue3中使用setup进行开发的一些基本操作。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 417,
+            article_title: 'vue3中setup使用方法和技巧',
+            article_desc: '如何在vue3中使用setup进行开发的一些基本操作。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal active">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" class="active">
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/vue">Vue</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">vue3中setup使用方法和技巧</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>9043</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>766</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2023-07-05 10:11:40</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>ref和nextTick</h2><p>在vue3中的setup里使用ref，需要先注册，再返回，并且使用.value去访问。</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">progress</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"barRef"</span> <span class="hljs-attr">:width</span>=<span class="hljs-string">"progress"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">progress</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/ecmascript-6"</span>&gt;</span><span class="javascript">
+<span class="hljs-comment">// setup中使用计算 监听 ref属性必须先获取</span>
+<span class="hljs-keyword">import</span> { computed, watch, ref, nextTick } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'player'</span>,
+    <span class="hljs-attr">components</span>: {
+        Progress,
+    },
+    <span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-comment">// 1、获取的时候要先定义,如果获取的是组件或者dom那么ref(null)</span>
+        <span class="hljs-keyword">const</span> barRef = ref(<span class="hljs-literal">null</span>);
+
+        <span class="hljs-comment">// 设置一个响应式的值，必须要返回到模板</span>
+        <span class="hljs-keyword">const</span> progress = ref(<span class="hljs-number">100</span>);
+        
+        <span class="hljs-comment">// 3、监听某个值 执行barRef组件中的方法</span>
+        watch(fullScreen, <span class="hljs-keyword">async</span> (newFullScreen) =&gt; {
+            <span class="hljs-keyword">if</span> (newFullScreen) {
+                <span class="hljs-comment">// 如果需要nextTick也必须要引用</span>
+                <span class="hljs-keyword">await</span> nextTick();
+                <span class="hljs-comment">// barRef.value就可以访问到这个组件实例</span>
+                <span class="hljs-comment">// 如果想要使用progress中的数值，必须访问progress.value</span>
+                barRef.value.setOffset(progress.value)
+            }
+        })
+
+
+        <span class="hljs-comment">// 2、要成功访问必须在setup中返回</span>
+        <span class="hljs-keyword">return</span> {
+            barRef,
+            progress
+        }
+    }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>当使用外部文件的时候，在外部文件中获取组件的ref，比如：</p><pre type="Html"><code><span class="hljs-comment">// 父组件中</span>
+&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"slider-wrapper"</span>
+      ref=<span class="hljs-string">"sliderWrapperRef"</span>
+&gt;
+  ...
+&lt;/div&gt;
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> useMiniSlider <span class="hljs-keyword">from</span> <span class="hljs-string">'./user-mini-slider'</span>
+
+  <span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">const</span> { sliderWrapperRef } = useMiniSlider()
+
+    <span class="hljs-keyword">return</span> {
+      sliderWrapperRef
+    }
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+
+<span class="hljs-comment">// 在同级目录下创建user-mini-slider.js</span>
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useMiniSlider</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> sliderWrapperRef = ref(<span class="hljs-literal">null</span>)</code><code>  // 这里如果要使用组件的实例，必须使用sliderWrapperRef.value</code><code>  // 比如使用组件中的方法sliderWrapperRef.value.xx()
+
+  <span class="hljs-keyword">return</span> {
+    sliderWrapperRef
+  }
+}</code></pre><h3>setup中引用外部文件，并在外部文件中请求数据</h3><pre type="Html"><code><span class="hljs-keyword">import</span> useSwiper <span class="hljs-keyword">from</span> <span class="hljs-string">'./useSwiper'</span>;
+<span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">const</span> {
+        videos
+    } = useSwiper();
+
+    <span class="hljs-built_in">console</span>.log(videos)
+
+    <span class="hljs-keyword">return</span> {
+        videos
+    }
+}
+
+<span class="hljs-comment">// useSwiper.js</span>
+<span class="hljs-keyword">import</span> { ref, onBeforeMount} <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { getData } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/api/get-data"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useSwiper</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// 所有视频数据</span>
+    <span class="hljs-keyword">const</span> videos = ref([]);
+
+    onBeforeMount( <span class="hljs-keyword">async</span>() =&gt; {
+        <span class="hljs-comment">// 注意！赋值一定要给value赋值！</span>
+        videos.value = <span class="hljs-keyword">await</span> getData(<span class="hljs-number">1</span>);
+        <span class="hljs-built_in">console</span>.log(videos)
+    });
+
+    <span class="hljs-keyword">return</span> {
+        videos
+    }
+}</code></pre><h3>在setup中以及外部js文件使用props，emits</h3><p>使用vue3的组合式，直接写：</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> useKonvaPhotoHandle <span class="hljs-keyword">from</span> <span class="hljs-string">'./useKonvaPhotoHandle'</span>;
+
+<span class="hljs-keyword">const</span> props = defineProps({
+  <span class="hljs-attr">currentIndex</span>: {
+    <span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>,
+    <span class="hljs-attr">default</span>: <span class="hljs-number">0</span>,
+  },
+  <span class="hljs-attr">imageUrls</span>: {
+    <span class="hljs-attr">type</span>: <span class="hljs-built_in">Array</span>,
+    <span class="hljs-function"><span class="hljs-title">default</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-keyword">return</span> [
+       ....
+      ];
+    },
+  },
+});
+
+<span class="hljs-keyword">const</span> emit = defineEmits([<span class="hljs-string">'select-image'</span>]);
+
+<span class="hljs-keyword">const</span> {
+  ...
+  selectImage,
+  selectWatermark,
+  downloadImage,
+} = useKonvaPhotoHandle(props, emit);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><blockquote>注意，defineProps是 Vue 3.2+ 才支持的语法糖，如果你的 Vue 版本 &lt; 3.2，会识别失败；</blockquote><p>而且有可能报错如下：</p><pre type="Html"><code><span class="hljs-number">77</span>:<span class="hljs-number">19</span>  error  <span class="hljs-string">'defineProps'</span> is <span class="hljs-keyword">not</span> <span class="hljs-keyword">defined</span>  <span class="hljs-keyword">no</span>-<span class="hljs-keyword">undef</span>
+  <span class="hljs-number">97</span>:<span class="hljs-number">18</span>  error  <span class="hljs-string">'defineEmits'</span> is <span class="hljs-keyword">not</span> <span class="hljs-keyword">defined</span>  <span class="hljs-keyword">no</span>-<span class="hljs-keyword">undef</span></code></pre><p>报错的核心原因是：<strong><code>defineProps</code>和<code>defineEmits</code>是 Vue 3<code>&lt;script setup&gt;</code>语法糖内置的 “宏函数”，不能在普通<code>&lt;script&gt;</code>标签（包括<code>type="text/ecmascript-6"</code>）中使用</strong>。</p><p>必须在如下结构中使用，如果eslint不能识别，报错undef，那么推荐直接如下忽略就行了：</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-comment">// 临时忽略 undef 错误</span>
+<span class="hljs-comment">/* eslint-disable no-undef */</span>
+...
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>检查版本：<code>npm list vue</code>，低于 3.2 则升级</p><p>Vue 2 选项式 API 和 Vue 3 组合式 API 中的语法表现形式不同：</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><thead><tr><th>对比维度</th><th>选项式 API（原写法）</th><th>组合式 API（新写法）</th></tr></thead><tbody><tr><td><strong>Props 定义</strong></td><td>通过<code>props</code>选项对象声明</td><td>通过<code>defineProps</code>宏函数声明</td></tr><tr><td><strong>Emits 定义</strong></td><td>通过<code>emits</code>选项数组声明</td><td>通过<code>defineEmits</code>宏函数声明</td></tr><tr><td><strong>在逻辑中使用</strong></td><td><code>setup(props, { emit })</code>解构获取</td><td>直接通过<code>defineProps</code>/<code>defineEmits</code>生成的变量使用</td></tr><tr><td><strong>语法风格</strong></td><td>基于 “选项分组” 的传统风格</td><td>基于 “逻辑内聚” 的组合式风格</td></tr></tbody></table><p><code>defineProps</code>等价于选项式的<code>props</code>选项，<code>defineEmits</code>等价于选项式的<code>emits</code>选项；在组合式 API 中，它们的作用是<strong>让你在<code>setup</code>函数（或<code>&lt;script setup&gt;</code>）中能以更简洁的方式声明和使用组件的 Props、自定义事件</strong>，底层逻辑是完全对齐的。</p><p>或者使用vue2的传统方式+setup：</p><p>比如我们基于bscroll封装一个scroll组件（真实可用）：</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- ref对象通常要加上Ref标识 --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"rootRef"</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 内容插槽 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/ecmascript-6"</span>&gt;</span><span class="javascript">
+<span class="hljs-comment">// https://better-scroll.github.io/docs/zh-CN/plugins/</span>
+<span class="hljs-keyword">import</span> useScroll <span class="hljs-keyword">from</span> <span class="hljs-string">'./use-scroll'</span>
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'scroll'</span>,
+  <span class="hljs-comment">// scroll的props全都是BS配置项的属性</span>
+  <span class="hljs-attr">props</span>: {
+    <span class="hljs-attr">click</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">Boolean</span>,
+      <span class="hljs-attr">default</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-comment">// 决定是否可以监听到向外派发的滚动事件 3就是只要滚动就派发</span>
+    <span class="hljs-attr">probeType</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>,
+      <span class="hljs-attr">default</span>: <span class="hljs-number">0</span>
+    }
+  },
+  <span class="hljs-comment">// 在vue3中 定义自定义事件（向外派发），建议在组件对象中配置emits属性(代表自定义事件的名称)</span>
+  <span class="hljs-attr">emits</span>: [<span class="hljs-string">'scroll'</span>],
+  <span class="hljs-comment">// setup(props)通过参数拿到props的值</span>
+  <span class="hljs-comment">// setup第二个参数是一个对象，在对象中可以拿到emit这个方法,在钩子函数中当参数穿进去</span>
+  <span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params">props, { emit }</span>)</span> {
+    <span class="hljs-keyword">const</span> rootRef = ref(<span class="hljs-literal">null</span>)
+    <span class="hljs-comment">// 接收到返回的scroll实例，并将返回的实例再暴漏(return)出去，之后就可以通过scroll组件的实例，就可以访问到这个scroll变量了</span>
+    <span class="hljs-comment">// 并通过这个变量拿到BS的实例了 通过在组件上添加ref拿到组件实例</span>
+    <span class="hljs-keyword">const</span> scroll = useScroll(rootRef, props, emit)
+
+    <span class="hljs-comment">// 一定要return一个对象包含这个ref才会有效</span>
+    <span class="hljs-keyword">return</span> {
+      rootRef,
+      scroll
+    }
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>use-scroll.js</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> BScroll <span class="hljs-keyword">from</span> <span class="hljs-string">'@better-scroll/core/'</span>
+<span class="hljs-comment">// 自动探测更新插件https://better-scroll.github.io/docs/zh-CN/plugins/observe-dom.html</span>
+<span class="hljs-keyword">import</span> ObserveDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'@better-scroll/observe-dom'</span>
+
+<span class="hljs-keyword">import</span> { onMounted, onUnmounted, ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-comment">// 在引入后一定要use一下插件</span>
+BScroll.use(ObserveDOM)
+
+<span class="hljs-comment">// 切记传入的一定要是一个ref对象 因为ref对象是响应式的 会在mounted的阶段得到dom元素</span>
+<span class="hljs-comment">// options传递进来的对bs的配置项 emit方法，外部传递进来获取向外派发的自定义事件名称</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useScroll</span>(<span class="hljs-params">wrapperRef, options, emit</span>) </span>{
+  <span class="hljs-keyword">const</span> scroll = ref(<span class="hljs-literal">null</span>)
+
+  onMounted(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// debugger 如果需要调试可以打一个debugger会中断当前进程 阻止后续代码执行</span>
+    <span class="hljs-comment">// 当debugger执行的时候 内容层实际是没有的 会导致不能滚动</span>
+    <span class="hljs-comment">// 当bs2.0有了一个新特性，当dom变化的时候会自动刷新高度</span>
+    <span class="hljs-comment">// 同样的还有observe-image插件</span>
+    <span class="hljs-comment">// scroll也是一个ref对象，所以他的值要存在value上，才会被数据响应</span>
+    <span class="hljs-keyword">const</span> scrollVal = scroll.value = <span class="hljs-keyword">new</span> BScroll(wrapperRef.value, {
+      <span class="hljs-attr">observeDOM</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-comment">// 使用扩展运算符传入options</span>
+      ...options
+    })
+    <span class="hljs-comment">// 当大于0的时候，监听scroll事件，拿到滚动的位置</span>
+    <span class="hljs-keyword">if</span> (options.probeType &gt; <span class="hljs-number">0</span>) {
+      scrollVal.on(<span class="hljs-string">'scroll'</span>, <span class="hljs-function">(<span class="hljs-params">pos</span>) =&gt;</span> {
+        <span class="hljs-comment">// 将位置信息向外派发出去</span>
+        emit(<span class="hljs-string">'scroll'</span>, pos)
+      })
+    }
+  })
+
+  <span class="hljs-comment">// 对scroll实例卸载逻辑</span>
+  onUnmounted(<span class="hljs-function">() =&gt;</span> {
+    scroll.value.destroy()
+  })
+
+  <span class="hljs-comment">// 将scroll实例暴漏出去</span>
+  <span class="hljs-keyword">return</span> scroll
+}</code></pre><p>在setup中，如果使用props,emits需要手工传入：</p><pre type="Html"><code> <span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params">props, { emit }</span>)</span> {
+  useScroll(props, emits)
+  。。。
+}</code></pre><h3>使用computed技巧，返回ref.value中的方法</h3><p>比如我们使用上面的组件，需要在scroll组件的基础上，返回scrollRef.value中的方法：</p><pre type="Html"><code>&lt;scroll <span class="hljs-keyword">ref</span>=<span class="hljs-string">"scrollRef"</span>&gt;&lt;/scroll&gt;
+
+setup() {
+    <span class="hljs-keyword">const</span> scrollRef = <span class="hljs-keyword">ref</span>(<span class="hljs-literal">null</span>);
+
+    <span class="hljs-comment">// 使用计算属性的技巧，返回scrollRef.value中的属性，这里返回的scroll是组件中的实例</span>
+    <span class="hljs-comment">// 当不访问计算属性的时候不会执行内部逻辑 只有当访问的时候才会执行</span>
+    <span class="hljs-keyword">const</span> scroll = computed(() =&gt; {
+       <span class="hljs-keyword">return</span> scrollRef.<span class="hljs-keyword">value</span>.scroll
+    })
+
+    <span class="hljs-keyword">return</span> {
+        scrollRef,
+        scroll
+    }
+}</code></pre><p><b><font color="#c24f4a">切记不能这样写：</font></b></p><pre type="Html"><code>&lt;scroll <span class="hljs-keyword">ref</span>=<span class="hljs-string">"scrollRef"</span>&gt;&lt;/scroll&gt;
+
+setup() {
+    <span class="hljs-keyword">const</span> scrollRef = <span class="hljs-keyword">ref</span>(<span class="hljs-literal">null</span>);
+
+
+    <span class="hljs-keyword">return</span> {
+        scrollRef,
+        <span class="hljs-comment">/* 返回不能这样写：scroll:scrollRef.value.scroll
+        因为开始定义的scrollRef是null，所以scrollRef.value也是null
+        所以在调用的时候必须保证scroll是已经渲染的，如果没渲染就返回肯定不行
+        */</span>
+        <font color="#c24f4a">scroll:scrollRef.<span class="hljs-keyword">value</span>.scroll 错的！！</font>
+    }
+}</code></pre><h3>获取ref组件的DOM元素-$el</h3><pre type="Html"><code>&lt;transition-<span class="hljs-keyword">group</span>
+  <span class="hljs-keyword">ref</span>=<span class="hljs-string">"listRef"</span>
+  name=<span class="hljs-string">"list"</span>
+  tag=<span class="hljs-string">"ul"</span>
+&gt;
+  &lt;li <span class="hljs-keyword">class</span>=<span class="hljs-string">"item"</span>&gt;...&lt;/li&gt;
+&lt;/transition-<span class="hljs-keyword">group</span>&gt;
+
+setup() {
+  <span class="hljs-keyword">const</span> listRef = <span class="hljs-keyword">ref</span>(<span class="hljs-literal">null</span>)
+  <span class="hljs-keyword">const</span> index = <span class="hljs-number">10</span>;
+
+  <span class="hljs-comment">// 获取ul中的所有li</span>
+  <span class="hljs-keyword">const</span> target2 = listRef.<span class="hljs-keyword">value</span>.$el.children;
+
+  <span class="hljs-comment">// 获取ul中的某一个li</span>
+  <span class="hljs-keyword">const</span> target1 = listRef.<span class="hljs-keyword">value</span>.$el.children[index]
+
+  <span class="hljs-keyword">return</span> {
+    listRef
+  }
+}</code></pre><h2>setup中使用钩子</h2><h3>mounted,onUnmounted,computed</h3><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { onMounted, onUnmounted, computed } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+onMounted(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    ...
+})
+
+onUnmounted(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    ...
+})
+
+const xx = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'xxxx'</span>
+});
+使用计算属性中的值的时候，要用xx.value</code></pre><blockquote>因为<code>setup</code>是围绕<code>beforeCreate</code>和<code>created</code>生命周期钩子运行的，所以不需要显式地定义它们。换句话说，在这些钩子中编写的任何代码都应该直接在<code>setup</code>函数中编写。</blockquote><p>生命周期函数有：<code>onBeforeMount</code>、<code>onMounted</code>、<code>onBeforeUpdate</code>、<code>onUpdated</code>、<code>onBeforeUnmount</code>、<code>onUnmounted</code>、<code>onErrorCaptured</code>、<code>onRenderTracked</code>、<code>onRenderTriggered</code>、<code>onActivated</code>、<code>onDeactivated</code>。</p><h3>reactive定义响应式的data数据</h3><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { reactive } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-keyword">const</span>  info = reactive ({
+            <span class="hljs-attr">name</span>:<span class="hljs-string">'张三'</span>，
+            <span class="hljs-attr">age</span>:<span class="hljs-number">18</span>
+        }),
+    }
+    <span class="hljs-keyword">return</span> { info};
+}
+</code></pre><p>在setup函数中使用数据也无需<strong>this.xxx，</strong>而是用你定义的名字，我定义的是info（也可也换成其他）<font color="#c24f4a">则用<strong>info.name</strong></font></p><ul><li><code>reactive</code>是 Vue3 中提供的实现响应式数据的方法。</li><li>reactive 参数必须是对象 (json / arr)</li><li>如果给 reactive 传递了其它对象</li><ul><li>默认情况下，修改对象无法实现界面的数据绑定更新。</li><li>如果需要更新，需要进行重新赋值。(即不允许直接操作数据，需要放个新的数据来替代原数据)</li></ul></ul><p>reactive不会实现响应式数据（渲染界面数据也变化）</p><p>如果在外部js文件或者setup中访问并使用该reactive数据时候，直接访问就行，比如：</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span>  info = reactive ({
+            <span class="hljs-attr">name</span>:<span class="hljs-string">'张三'</span>，
+            <span class="hljs-attr">age</span>:<span class="hljs-number">18</span>
+}),
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log( info.name ) 
+}
+
+<span class="hljs-keyword">return</span> { info, demo };</code></pre><p>如果需要监听reactive值的变化：</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> state = reactive({
+  <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>,
+});
+ 
+watch(
+  <span class="hljs-function">() =&gt;</span> state.count,
+  <span class="hljs-function">(<span class="hljs-params">newVal, oldVal</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`count 从 <span class="hljs-subst">${oldVal}</span> 变为 <span class="hljs-subst">${newVal}</span>`</span>);
+  }
+);</code></pre><p>或者使用deep：</p><pre type="JavaScript"><code>const state = reactive({
+  count: <span class="hljs-number">0</span>,
+  age:<span class="hljs-number">37</span>
+});
+
+watch(
+   <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> state,
+  <span class="hljs-function"><span class="hljs-params">(nv, ov)</span> =&gt;</span> {  ...   },
+  { deep: <span class="hljs-literal">true</span> }
+)</code></pre><p>如果要修改reactive的值，可以单个值式的修改，但是不能整体赋值，那样会失去响应性。</p><pre type="JavaScript"><code> <span class="hljs-keyword">import</span> {reactive} <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">let</span> obj = reactive({
+         <span class="hljs-attr">id</span>:<span class="hljs-number">1</span>,
+         <span class="hljs-attr">name</span>:<span class="hljs-string">'张三'</span>,
+         <span class="hljs-attr">age</span>:<span class="hljs-number">18</span>
+})
+<span class="hljs-comment">// 可以单个值的修改</span>
+obj.id = <span class="hljs-number">2</span>;
+obj.name = <span class="hljs-string">'李四'</span>;</code></pre><p>但是不能直接赋值，这样会失去响应性<b><font color="#c24f4a">（这样不行）</font></b></p><pre type="JavaScript"><code><span class="hljs-attr">obj</span> = {id:<span class="hljs-number">2</span>,name:<span class="hljs-string">'李四'</span>}</code></pre><p>所以如果涉及到多个属性值的修改，应该使用Object.assign</p><pre type="JavaScript"><code><span class="hljs-attr">obj</span> = Object.assign(obj, {id:<span class="hljs-number">2</span>,name:<span class="hljs-string">'李四'</span>})</code></pre><p>另附一些reactive修改的其他方法：</p><h4>清空reactive定义的数组</h4><pre type="JavaScript"><code><span class="hljs-attr">arr.length</span> = <span class="hljs-number">0</span></code></pre><h4>修改reactive定义的数组</h4><pre type="JavaScript"><code><span class="hljs-comment">// 先清空数组再赋值，防止arr中的数据遗留</span>
+arr.length = <span class="hljs-number">0</span> ;
+<span class="hljs-built_in">Object</span>.assign(arr,newArr)</code></pre><h4>清空reactive定义的对象</h4><pre type="JavaScript"><code><span class="hljs-comment">// 1、将obj中所有属性值变为null</span>
+<span class="hljs-built_in">Object</span>.keys(obj).forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> {
+  obj[key] = <span class="hljs-literal">null</span>
+})
+ 
+<span class="hljs-comment">// 2、将obj变为空对象</span>
+<span class="hljs-built_in">Object</span>.keys(obj).forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> {
+  <span class="hljs-keyword">delete</span> obj[key]
+})</code></pre><h4>修改reactive定义的对象</h4><pre type="JavaScript"><code><span class="hljs-comment">// 1、如果obj和newObj的键值对不一致  先清空obj再赋值</span>
+<span class="hljs-built_in">Object</span>.keys(obj).forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> {
+  <span class="hljs-keyword">delete</span> obj[key]
+})
+<span class="hljs-built_in">Object</span>.assign(obj,newObj);
+ 
+<span class="hljs-comment">// 2、如果一致</span>
+<span class="hljs-built_in">Object</span>.assign(obj,newObj);</code></pre><h3>watch</h3><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { watch } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+const sliderShow = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-regexp">//</span> ！！双非转换成布尔类型
+  <span class="hljs-keyword">return</span> !!xx.value
+})
+
+onMounted(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+
+    watch(sliderShow, <span class="hljs-function"><span class="hljs-params">(newSliderShow, old)</span> =&gt;</span> {
+        ...
+    })
+    
+})</code></pre><p>如果发现watch的参数，第一次不执行，只有第二次才执行的时候，需要为watch()方法添加额外的配置项。</p><p>比如我监听路由中的参数变化：</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { watch, ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { useRoute } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useTplget</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> route = useRoute();
+    <span class="hljs-keyword">const</span> template = ref(<span class="hljs-literal">null</span>);
+
+    <span class="hljs-comment">// 监听</span>
+    watch(
+        <span class="hljs-function">() =&gt;</span> route.params.id,
+        <span class="hljs-function">(<span class="hljs-params">newid</span>) =&gt;</span> {
+            <span class="hljs-built_in">console</span>.log(newid)
+            <span class="hljs-keyword">if</span> (!newid) {
+                <span class="hljs-keyword">return</span>;
+            }
+
+        },
+        <span class="hljs-comment">// 页面加载时自动执行一次</span>
+        {
+            <span class="hljs-attr">immediate</span>:<span class="hljs-literal">true</span>,
+            <span class="hljs-attr">deep</span>:<span class="hljs-literal">true</span> <span class="hljs-comment">// 开启深度监听 监听对象的变化等 一个值的时候不需要</span>
+        }
+    );
+
+    <span class="hljs-keyword">return</span> template;
+}
+
+</code></pre><h2>vuex和router</h2><p>在setup中使用vuex是比较繁琐，但是常用的方式也就那么几个，首先我们来构建一个vuex的store</p><p>store文件夹中包含：</p><ul><li>action.js</li><li>getters.js</li><li>index.js</li><li>mutation.js</li><li>state.js</li></ul><p>action.js 这里记录一些行为函数</p><pre type="JavaScript"><code><span class="hljs-comment">// 定义动作 对一个操作 可以操作多个mutations的一个封装</span>
+
+
+<span class="hljs-comment">// 定义选择播放的动作 action第一个参数是一个对象可以直接结构 第二个参数是他的参数</span>
+<span class="hljs-comment">// { list, index } 传入一个当前的列表 和 点击的索引</span>
+<span class="hljs-comment">// commit是提交的意思 提交mutation中定义的函数</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">selectPlay</span>(<span class="hljs-params">{ commit, state }, { list, index }</span>) </span>{
+  <span class="hljs-comment">// 点击的时候顺序播放</span>
+  commit(<span class="hljs-string">'setPlayMode'</span>, PLAY_MODE.sequence)
+  commit(<span class="hljs-string">'setSequenceList'</span>, list)
+  <span class="hljs-comment">// 当点击播放的时候，那么播放状态一定是true</span>
+  commit(<span class="hljs-string">'setPlayingState'</span>, <span class="hljs-literal">true</span>)
+  <span class="hljs-comment">// 播放的时候会全屏播放</span>
+  commit(<span class="hljs-string">'setFullScreen'</span>, <span class="hljs-literal">true</span>)
+  <span class="hljs-comment">// 当不随机播放的时候，播放列表和顺序播放列表相同</span>
+  commit(<span class="hljs-string">'setPlaylist'</span>, list)
+  <span class="hljs-comment">// 设置播放索引</span>
+  commit(<span class="hljs-string">'setCurrentIndex'</span>, index)
+}
+
+<span class="hljs-comment">// 实现随机播放 这里的参数就不需要一个对象 直接一个参数即可</span>
+<span class="hljs-comment">// 洗牌算法https://rosettacode.org/wiki/Knuth_shuffle</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">randomPlay</span> (<span class="hljs-params">{ commit }, list</span>) </span>{
+  <span class="hljs-comment">// 点击的时候顺序播放</span>
+  commit(<span class="hljs-string">'setPlayMode'</span>, PLAY_MODE.random)
+  commit(<span class="hljs-string">'setSequenceList'</span>, list)
+  <span class="hljs-comment">// 当点击播放的时候，那么播放状态一定是true</span>
+  commit(<span class="hljs-string">'setPlayingState'</span>, <span class="hljs-literal">true</span>)
+  <span class="hljs-comment">// 播放的时候会全屏播放</span>
+  commit(<span class="hljs-string">'setFullScreen'</span>, <span class="hljs-literal">true</span>)
+  <span class="hljs-comment">// 当不随机播放的时候，播放列表和顺序播放列表相同</span>
+  commit(<span class="hljs-string">'setPlaylist'</span>, list)
+  <span class="hljs-comment">// 设置播放索引,洗牌后播放第一首歌</span>
+  commit(<span class="hljs-string">'setCurrentIndex'</span>, <span class="hljs-number">0</span>)
+}
+
+<span class="hljs-comment">// 封装切换播放模式的方法 getters也可以被解构</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeMode</span>(<span class="hljs-params">{ commit, state, getters }, mode</span>) </span>{
+  
+  <span class="hljs-comment">// 从而保证这个新列表中 也是播放当前正在播放的歌曲， 就不会更改当前播放的这首歌了</span>
+  commit(<span class="hljs-string">'setCurrentIndex'</span>, index)
+  commit(<span class="hljs-string">'setPlayMode'</span>, mode)
+}</code></pre><p>getters.js</p><pre type="JavaScript"><code><span class="hljs-comment">// 定义一些获取数据的方法</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> currentSong = <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> {
+  <span class="hljs-comment">// 这里如果获取不到值 会返回undefined会引起一些报错，所以改为无值返回一个空对象</span>
+  <span class="hljs-keyword">return</span> state.playlist[state.currentIndex] || {}
+}
+</code></pre><p>mutations.js</p><pre type="JavaScript"><code><span class="hljs-comment">// 提交数据 对state数据做修改</span>
+
+<span class="hljs-keyword">const</span> mutations = {
+  <span class="hljs-comment">// 修改播放状态 第一个参数是state， 第二个参数是要修改为的值</span>
+  <span class="hljs-function"><span class="hljs-title">setPlayingState</span>(<span class="hljs-params">state, playing</span>)</span> {
+    state.playing = playing
+  },
+  <span class="hljs-comment">// 设置顺序(原始)播放列表</span>
+  <span class="hljs-function"><span class="hljs-title">setSequenceList</span>(<span class="hljs-params">state, list</span>)</span> {
+    state.sequenceList = list
+  },
+  <span class="hljs-comment">// 设置播放列表 当有随机播放情况的时候，playlist和sequencelist就会不同</span>
+  <span class="hljs-function"><span class="hljs-title">setPlaylist</span>(<span class="hljs-params">state, list</span>)</span> {
+    state.playlist = list
+  },
+  <span class="hljs-comment">// 设置播放模式</span>
+  <span class="hljs-function"><span class="hljs-title">setPlayMode</span>(<span class="hljs-params">state, mode</span>)</span> {
+    state.playMode = mode
+  },
+  <span class="hljs-comment">// 设置当前播放索引</span>
+  <span class="hljs-function"><span class="hljs-title">setCurrentIndex</span>(<span class="hljs-params">state, index</span>)</span> {
+    state.currentIndex = index
+  },
+  <span class="hljs-comment">// 设置播放器全屏或者折叠模式</span>
+  <span class="hljs-function"><span class="hljs-title">setFullScreen</span>(<span class="hljs-params">state, fullScreen</span>)</span> {
+    state.fullScreen = fullScreen
+  },
+  <span class="hljs-function"><span class="hljs-title">setFavoriteList</span>(<span class="hljs-params">state, list</span>)</span> {
+    state.favoriteList = list
+  },
+  <span class="hljs-comment">// 给song添加歌词的属性</span>
+  <span class="hljs-function"><span class="hljs-title">addSongLyric</span>(<span class="hljs-params">state, { song, lyric }</span>)</span> {
+    <span class="hljs-comment">// 使用这种方式修改sequenceList</span>
+    <span class="hljs-comment">// 这样是保留对象引用 一旦修改playlist也会发生变化 因为他们都指向了同一个对象</span>
+    state.sequenceList.map(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> {
+      <span class="hljs-comment">// 相等证明是同一首歌</span>
+      <span class="hljs-keyword">if</span> (item.mid === song.mid) {
+        item.lyric = lyric
+      }
+      <span class="hljs-keyword">return</span> item
+    })
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> mutationssstat</code></pre><p>state.js</p><pre type="JavaScript"><code><span class="hljs-comment">// 定义全局的基础数据 定义播放器的基本状态</span>
+<span class="hljs-comment">// vuex就是一个内存级别的存储，刷新的时候就会重置</span>
+<span class="hljs-comment">// 而本地存储就会永久存于浏览器中</span>
+
+<span class="hljs-keyword">import</span> { PLAY_MODE, FAVORITE_KEY } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/assets/js/constant'</span>
+
+<span class="hljs-keyword">const</span> state = {
+  <span class="hljs-comment">// 原始播放列表 歌曲列表</span>
+  <span class="hljs-attr">sequenceList</span>: [],
+  <span class="hljs-comment">// 真正的播放列表，因为有可能歌曲是顺序 逆序 倒序</span>
+  <span class="hljs-attr">playlist</span>: [],
+  <span class="hljs-comment">// 是否正在播放</span>
+  <span class="hljs-attr">playing</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-comment">// 播放模式 定义到常量文件中</span>
+  <span class="hljs-attr">playMode</span>: PLAY_MODE.sequence,
+  <span class="hljs-comment">// 当前播放的歌曲</span>
+  <span class="hljs-attr">currentIndex</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-comment">// 播放器的状态 全屏还是收缩</span>
+  <span class="hljs-attr">fullScreen</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-comment">// 歌曲收藏列表 将歌曲添加到收藏就是添加到favoriteList</span>
+  <span class="hljs-comment">// 取消收藏就是将歌曲从favoriteList中移除 维护一个已收藏的列表</span>
+  <span class="hljs-comment">// 初始数据不写死 从缓存中获取</span>
+  favoriteList: []
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> state
+</code></pre><p>index.js</p><pre type="JavaScript"><code><span class="hljs-comment">// createLogger 开发环境下可以查看状态</span>
+<span class="hljs-keyword">import</span> { createStore, createLogger } <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span>
+<span class="hljs-keyword">import</span> state <span class="hljs-keyword">from</span> <span class="hljs-string">'./state'</span>
+<span class="hljs-keyword">import</span> mutations <span class="hljs-keyword">from</span> <span class="hljs-string">'./mutations'</span>
+<span class="hljs-comment">// 引入文件中所有的方法</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> getters <span class="hljs-keyword">from</span> <span class="hljs-string">'./getters'</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> actions <span class="hljs-keyword">from</span> <span class="hljs-string">'./actions'</span>
+
+<span class="hljs-keyword">const</span> debug = process.env.NODE_ENV !== <span class="hljs-string">'production'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore({
+  <span class="hljs-attr">state</span>: state,
+  <span class="hljs-attr">mutations</span>: mutations,
+  <span class="hljs-comment">// 可以同下方这样写 也可以与上面一样写</span>
+  getters,
+  actions,
+  <span class="hljs-comment">// vuex提供了严格模式，帮忙检测state修改是否是在提交mutation的时候，如果不是就会报错，</span>
+<span class="hljs-comment">//开启时候会深度watch所以线上模式就关闭这个模式</span>
+  strict: debug,
+  <span class="hljs-comment">// 插件，如果线上模式就不用插件 线下模式使用插件</span>
+  <span class="hljs-attr">plugins</span>: debug ? [createLogger()] : []
+})</code></pre><p>在setup中使用</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { useStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span>
+
+<span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">const</span> store = useStore()
+}</code></pre><p>在外部文件中引用</p><p>比如有user-mini-slider.js，我们先在father.vue文件中</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> useMiniSlider <span class="hljs-keyword">from</span> <span class="hljs-string">'./user-mini-slider'</span>
+
+<span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">const</span> { sliderWrapperRef } = useMiniSlider()
+    <span class="hljs-keyword">return</span>{
+      sliderWrapperRef
+    }
+}</code></pre><p>在外部的js文件中：</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { ref,  computed } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">import</span> { useStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useMiniSlider</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> store = useStore()
+  <span class="hljs-comment">// 从state中获取数据 注意获取的数据要为响应式的，需要使用计算属性</span>
+  <span class="hljs-keyword">const</span> fullScreen = computed(<span class="hljs-function">() =&gt;</span> store.state.fullScreen)
+
+  <span class="hljs-comment">// 修改state中的属性的值，执行的是mutations.js文件中注册的方法</span>
+  store.commit(<span class="hljs-string">'setCurrentIndex'</span>, 99)
+}</code></pre><p>获取getters中的数据</p><pre type="JavaScript"><code>const currentSong = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> store.getters.currentSong)</code></pre><p>比如currentSong是一个对象，那么要获取这个对象中的id属性的值，需要：</p><pre type="JavaScript"><code>currentSong.<span class="hljs-keyword">value</span>.id
+注意 只要是用computed或者<span class="hljs-keyword">ref</span>之类得到的都是proxy，那么要获取它的真实值，必须使用.<span class="hljs-keyword">value</span></code></pre><h3>使用action</h3><p>在action.js中添加一个方法</p><pre type="JavaScript"><code><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeSong</span> (<span class="hljs-params">{ commit, state }, song</span>) </span>{
+  <span class="hljs-comment">// 从playlist和seqlist中找到并删除</span>
+  <span class="hljs-comment">// 这里必须使用.slice()创建一个副本获取</span>
+  <span class="hljs-keyword">const</span> sequenceList = state.sequenceList.slice()
+  <span class="hljs-keyword">const</span> playlist = state.playlist.slice()
+  <span class="hljs-comment">// 找出song在两个列表中的索引</span>
+  <span class="hljs-keyword">const</span> sequenceIndex = findIndex(sequenceList, song)
+  <span class="hljs-keyword">const</span> playIndex = findIndex(playlist, song)
+
+  sequenceList.splice(sequenceIndex, <span class="hljs-number">1</span>)
+  playlist.splice(playIndex, <span class="hljs-number">1</span>)
+
+  <span class="hljs-keyword">let</span> currentIndex = state.currentIndex
+
+  commit(<span class="hljs-string">'setSequenceList'</span>, sequenceList)
+  commit(<span class="hljs-string">'setPlaylist'</span>, playlist)
+  commit(<span class="hljs-string">'setCurrentIndex'</span>, currentIndex)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">findIndex</span> (<span class="hljs-params">list, song</span>) </span>{
+  <span class="hljs-keyword">return</span> list.findIndex(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> item.id === song.id
+  })
+}</code></pre><p>注意，如果从store中获取数组，然后直接对数组操作会报错！</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> sequenceList = state.sequenceList</code></pre><p><b>这样是错误的！，必须创建一个副本，然后对副本进行增加、删除操作，然后再commit提交到store中</b></p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> sequenceList = state.sequenceList.slice() <span class="hljs-comment">// 正确</span></code></pre><p>在vue文件的setup中使用：</p><pre type="JavaScript"><code> &lt;span <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"delete"</span> @click.stop=<span class="hljs-string">"removeSong(song)"</span>&gt;
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"icon-delete"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></span>
+ &lt;/span&gt;
+
+<span class="hljs-keyword">import</span> { useStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span>
+<span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span> {
+<span class="hljs-comment">// 执行action中的函数</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeSong</span> (<span class="hljs-params">song</span>) </span>{
+     store.dispatch(<span class="hljs-string">'removeSong'</span>, song)
+}
+
+<span class="hljs-keyword">return</span> { removeSong }
+}
+</code></pre><h3>watch组件中props中的值的变化</h3><p>比如一个组件中，props的值是这样：</p><pre type="JavaScript"><code><span class="hljs-attr">props:</span> {
+    <span class="hljs-attr">query:</span> <span class="hljs-string">String</span>,
+    <span class="hljs-attr">showSinger:</span> {
+      <span class="hljs-attr">type:</span> <span class="hljs-string">Boolean</span>,
+      <span class="hljs-attr">default:</span> <span class="hljs-literal">true</span>
+    }
+}</code></pre><p>当我们要监听props里面的query的变化的时候，我们不能这样写：</p><pre type="JavaScript"><code> watch(props.query, <span class="hljs-function"><span class="hljs-params">(newQuery)</span> =&gt;</span> {
+     ... 这样写不对，
+})</code></pre><p>watch除了可以watch一个响应式变量，也可以watch一个getter函数，要像这样写：</p><pre type="JavaScript"><code>watch(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> props.query, <span class="hljs-function"><span class="hljs-params">(newQuery)</span> =&gt;</span> {
+     这样才对，watch一个getter函数
+})</code></pre><h3>使用router</h3><p>首先在setup中引入useRouter，然后在使用：</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { useRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span>
+
+<span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params">props, { emit }</span>)</span> {
+    <span class="hljs-keyword">const</span> router = useRouter();
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">selectSinger</span> (<span class="hljs-params">singer</span>) </span>{
+        router.push({
+          <span class="hljs-attr">path</span>: <span class="hljs-string">`/search/<span class="hljs-subst">${singer.mid}</span>`</span>
+        })
+    }
+
+    <span class="hljs-keyword">return</span> {
+        selectSinger
+    }
+}</code></pre><p>其语法与this.$router.push等基本一致。</p><p>如果要获取路由中的参数，就要使用route了。</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { useRouter, useRoute } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">const</span> router = useRouter()
+    <span class="hljs-keyword">const</span> route = useRoute()
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pushWithQuery</span>(<span class="hljs-params">query</span>) </span>{
+      router.push({
+        <span class="hljs-attr">name</span>: <span class="hljs-string">'search'</span>,
+        <span class="hljs-attr">query</span>: {
+          ...route.query,
+          ...query,
+        },
+      })
+    }
+  },
+}</code></pre><p>route 对象是一个<a href="https://so.csdn.net/so/search?q=%E5%93%8D%E5%BA%94%E5%BC%8F&amp;spm=1001.2101.3001.7020" target="_blank">响应式</a>对象，所以它的任何属性都可以被监听，但你应该避免监听整个 route 对象。在大多数情况下，你应该直接监听你期望改变的参数。</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { useRoute } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span>
+<span class="hljs-keyword">import</span> { ref, watch } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">const</span> route = useRoute()
+    <span class="hljs-keyword">const</span> userData = ref()
+
+    <span class="hljs-comment">// 当参数更改时获取用户信息</span>
+    watch(
+      <span class="hljs-function">() =&gt;</span> route.params.id,
+      <span class="hljs-keyword">async</span> newId =&gt; {
+        userData.value = <span class="hljs-keyword">await</span> fetchUser(newId)
+      }
+    )
+  },
+}</code></pre><h2>问题快速定位</h2><h3>getters</h3><p><b>store.getters数据不更新</b></p><p>Vuex 4+中的getters默认是非响应式的，这意味着它们不会跟踪依赖的变化。如果getter依赖于state的某个属性，那么当这个属性变化时，getter的结果不会自动更新。<b></b></p><p>如果你在组件中通过store.getters.xx来调用getter，但没有正确地使用Vue的响应式系统，那么可能会遇到不更新的问题。比如</p><p>模板：</p><pre type="Html"><code>&lt;ul <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"layer-ul"</span>&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"(layer, lindex) in layersData"</span>
+        <span class="hljs-attr">:key</span>=<span class="hljs-string">"lindex"</span>
+    &gt;</span>
+       ....
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+&lt;/ul&gt;</code></pre><p>错误写法</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> {useStore} <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span>;
+
+<span class="hljs-keyword">const</span> store = useStore();
+<span class="hljs-keyword">const</span> layerData = store.getters.layers; // 错误！这样不是响应式
+
+<span class="hljs-keyword">return</span> {
+    layerData
+}</code></pre><p><b><font color="#c24f4a">正确写法</font></b></p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> {useStore} <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span>;
+<span class="hljs-keyword">import</span> { computed } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+
+const store = useStore();
+const layersData = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> store.getters.layersData);
+
+<span class="hljs-keyword">return</span> {
+    layerData
+}</code></pre><h3>外部js文件提交mutations</h3><p>比如mutations.js中有如下方法</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> mutations = {
+    <span class="hljs-function"><span class="hljs-title">setLayers</span>(<span class="hljs-params">state, layers</span>)</span> {
+      state.layers = layers;
+    },
+}</code></pre><p>在外部JS文件中提交</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> mutations = {
+    <span class="hljs-function"><span class="hljs-title">setLayers</span>(<span class="hljs-params">state, layers</span>)</span> {
+      state.layers = layers;
+    },
+}
+
+<span class="hljs-comment">// 提交</span>
+<span class="hljs-keyword">import</span> {useStore} <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span>;
+store = useStore()
+store.commit(<span class="hljs-string">'setLayers'</span>, 数据);</code></pre>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：setup，ref，nextTick
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/413" class="imgbox">
+                <img src="/statics/blog/2023/0620/e33543851ba74c1051000cd52cf0ef85.jpg">
+            </a>
+            <a href="/blog/articles/413" class="title" title="localStorage和indexedDB">
+                localStorage和indexedDB
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/239" class="imgbox">
+                <img src="/statics/blog/2021/1220/58b4554e4a0e238501706eb571f55c79.jpg">
+            </a>
+            <a href="/blog/articles/239" class="title" title="给你一个可以中断的Promise">
+                给你一个可以中断的Promise
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/578" class="imgbox">
+                <img src="/statics/blog/2025/0219/997f99e0d7f7edc722ee64f5e11fe116.jpg">
+            </a>
+            <a href="/blog/articles/578" class="title" title="PHP的session文件锁引发的问题">
+                PHP的session文件锁引发的问题
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/vue">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/18">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        【vue备忘】使用require引入图片、$emit、public文件夹、$refs以及视图不更新等问题
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/53">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Vue基础-Vue.extend
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/403">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        VUE中常用的4种高级方法：provide、inject、eventbus和render
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/405">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        十分钟，带你了解Vue3的新写法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/279">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        element-ui[plus]使用动态表单，并为每个动态表单项添加验证
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

@@ -1,0 +1,1368 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="axios-统一用拦截器在header请求头和请求体中添加参数并使用PHP获取 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>axios-统一用拦截器在header请求头和请求体中添加参数并使用PHP获取 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="axios，getallheaders，自定义请求头，拦截器，获取请求头"/>
+<meta name="description" content="用axios如何用拦截器统一添加自定义请求头和请求体？在后端获取时，又有哪些坑？"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 618,
+            article_title: 'axios-统一用拦截器在header请求头和请求体中添加参数并使用PHP获取',
+            article_desc: '用axios如何用拦截器统一添加自定义请求头和请求体？在后端获取时，又有哪些坑？',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal active">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" class="active">
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/php">PHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">axios-统一用拦截器在header请求头和请求体中添加参数并使用PHP获取</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>11194</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>958</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2025-11-14 09:01:11</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>axios封装和拦截器</h2><p>axios+拦截器+自定义请求头处理+自定义请求头导致的请求预检处理</p><p><a href="/blog/articles/618" target="_blank">axios-统一用拦截器在header请求头和请求体中添加参数并使用PHP获取</a></p><p><a href="/blog/articles/616" target="_blank">axios-关于封装一个底层axios请求和拦截器interceptors，catch错误（throw或reject）？</a></p><p><a href="/blog/articles/615" target="_blank">axios-options请求预检和Vue中axios封装以及withCredentialstrue</a></p><p><a href="/blog/articles/613" target="_blank">axios-abortController、signal配合axios实现一个可以中断请求的操作</a></p><pre type="Html"><code><span class="hljs-comment">/* eslint-disable */</span>
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>
+<span class="hljs-keyword">import</span> { ERR_OK, BASE_URL } <span class="hljs-keyword">from</span> <span class="hljs-string">"./config"</span>;
+<span class="hljs-keyword">import</span> { showAlert } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/common/js/sweet-alert"</span>;
+<span class="hljs-keyword">import</span> { getToken } <span class="hljs-keyword">from</span> <span class="hljs-string">"./jwt"</span>;
+
+axios.defaults.baseURL = BASE_URL;
+axios.defaults.headers.post[<span class="hljs-string">'Content-Type'</span>] = <span class="hljs-string">'application/x-www-form-urlencoded;charset=UTF-8'</span>;
+<span class="hljs-comment">// axios向跨域请求携带cookie 必须配合服务端header</span>
+axios.defaults.withCredentials = <span class="hljs-literal">true</span>;
+
+
+<span class="hljs-comment">// 请求拦截器：统一添加Token到请求头</span>
+axios.interceptors.request.use(
+    <span class="hljs-keyword">async</span> (config) =&gt; { <span class="hljs-comment">// 加 async</span>
+        <span class="hljs-keyword">const</span> token = getToken();
+        <span class="hljs-keyword">if</span> (token) {
+            config.headers.Authorization = <span class="hljs-string">`Bearer <span class="hljs-subst">${token}</span>`</span>;
+        }
+
+        <span class="hljs-keyword">const</span> APP_ID = <span class="hljs-built_in">window</span>.setting.app_id;
+        <span class="hljs-comment">// 在请求体中添加固定的参数</span>
+        <span class="hljs-keyword">if</span> (config.method === <span class="hljs-string">'get'</span>) {
+            <span class="hljs-comment">// GET 请求：添加到 URL 参数</span>
+            config.params = {
+                <span class="hljs-attr">app_id</span>: APP_ID,
+                <span class="hljs-comment">// 展开原有的 params，确保不会覆盖</span>
+                ...config.params
+            };
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ([<span class="hljs-string">'post'</span>, <span class="hljs-string">'put'</span>, <span class="hljs-string">'patch'</span>].includes(config.method)) {
+            <span class="hljs-comment">// POST 等请求：添加到请求体 区分 FormData 和普通对象</span>
+            <span class="hljs-keyword">if</span> (config.data <span class="hljs-keyword">instanceof</span> FormData) {
+                <span class="hljs-comment">// 如果是 FormData，直接追加 app_id</span>
+                config.data.append(<span class="hljs-string">'app_id'</span>, APP_ID);
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-comment">// 普通对象，合并 app_id</span>
+                config.data = {
+                    <span class="hljs-attr">app_id</span>: APP_ID,
+                    ...config.data
+                };
+            }
+        }
+        <span class="hljs-comment">// 异步函数返回的是 Promise，axios 处理更稳定</span>
+        <span class="hljs-keyword">return</span> config;
+    },
+    <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error);
+    }
+);
+
+axios.interceptors.response.use(
+    <span class="hljs-comment">// 在 Axios 的响应拦截器中，成功拦截器必须返回 response（或修改后的 response），否则后续的 .then 会接收到 undefined。</span>
+    <span class="hljs-keyword">async</span> (response) =&gt; {
+        <span class="hljs-comment">// 这里必须返回response，否则后续.then会拿到undefined</span>
+        <span class="hljs-keyword">return</span> response;
+    },
+    <span class="hljs-keyword">async</span> (error) =&gt; {
+        <span class="hljs-comment">// console.log(error.code)</span>
+        <span class="hljs-comment">// 统一处理比如超时等错误</span>
+        <span class="hljs-keyword">switch</span> (error.code) {
+            <span class="hljs-keyword">case</span> <span class="hljs-string">'ECONNABORTED'</span>:
+                showAlert({
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">'服务器繁忙'</span>,
+                    <span class="hljs-attr">text</span>: <span class="hljs-string">'请稍候刷新重试'</span>,
+                    <span class="hljs-attr">icon</span>: <span class="hljs-string">'error'</span>,
+                });
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">'ERR_NETWORK'</span>:
+                <span class="hljs-comment">// 网络错误（比如跨域等）</span>
+                showAlert({
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">'网络错误'</span>,
+                    <span class="hljs-attr">text</span>: <span class="hljs-string">'无法连接到服务器，请检查网络设置后，刷新重试'</span>,
+                    <span class="hljs-attr">icon</span>: <span class="hljs-string">'error'</span>,
+                });
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-comment">// 主动中断请求</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-string">'ERR_CANCELED'</span>:
+                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'主动中断请求'</span>, error.code);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-comment">// 处理其他网络错误</span>
+                showAlert({
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">'服务器繁忙'</span>,
+                    <span class="hljs-attr">text</span>: <span class="hljs-string">'服务器开小差了，请您稍候再试'</span>,
+                    <span class="hljs-attr">icon</span>: <span class="hljs-string">'error'</span>,
+                });
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error);
+    }
+);
+
+<span class="hljs-comment">/*
+* params 必须是一个对象
+* */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">url, params</span>) </span>{
+    <span class="hljs-comment">// 如果不是一个对象就包一下</span>
+    <span class="hljs-keyword">if</span> (!(<span class="hljs-keyword">typeof</span> params == <span class="hljs-string">'object'</span>)) {
+        params = { params }
+    }
+    <span class="hljs-keyword">return</span> axios.get(url, {
+        <span class="hljs-attr">params</span>: params
+    }).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> serverData = res.data;
+        <span class="hljs-keyword">if</span> (serverData.code === ERR_OK) {
+            <span class="hljs-keyword">return</span> serverData.data
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// 通用的错误处理</span>
+            errorHandle(serverData);
+            <span class="hljs-comment">// console.log(serverData.message);</span>
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(serverData.msg || <span class="hljs-string">'接口请求失败'</span>);
+        }
+    }).catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error(e);
+        <span class="hljs-comment">// 重新抛出错误，让上层调用者处理</span>
+        <span class="hljs-keyword">throw</span> e;
+        <span class="hljs-comment">// return null;</span>
+    })
+}
+
+<span class="hljs-comment">/*
+* params 必须是一个对象
+* */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">url, params</span>) </span>{
+    <span class="hljs-keyword">if</span> (!(params <span class="hljs-keyword">instanceof</span> FormData) &amp;&amp; <span class="hljs-keyword">typeof</span> params !== <span class="hljs-string">'object'</span>) {
+        params = { params };
+    }
+    <span class="hljs-keyword">return</span> axios.post(url, params).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> serverData = res.data;
+        <span class="hljs-keyword">if</span> (serverData.code === ERR_OK) {
+            <span class="hljs-keyword">return</span> serverData.data;
+        } <span class="hljs-keyword">else</span> {
+            errorHandle(serverData);
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(serverData.msg || <span class="hljs-string">'接口请求失败'</span>);
+        }
+    }).catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'post请求错误：'</span>, e);
+        <span class="hljs-keyword">throw</span> e;
+        <span class="hljs-comment">// return null;</span>
+    });
+}
+
+<span class="hljs-comment">// upload方法（专门处理文件上传，独立配置）</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upload</span>(<span class="hljs-params">url, formData</span>) </span>{
+    <span class="hljs-comment">// 校验参数：确保传递的是FormData（避免传错格式）</span>
+    <span class="hljs-keyword">if</span> (!(formData <span class="hljs-keyword">instanceof</span> FormData)) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'upload方法仅支持FormData参数！'</span>);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'参数格式错误，需传递FormData'</span>);
+        <span class="hljs-comment">// return Promise.reject(new Error('参数格式错误，需传递FormData'));</span>
+    }
+
+    <span class="hljs-comment">// 独立请求配置：覆盖默认头，确保文件格式正确</span>
+    <span class="hljs-keyword">const</span> requestConfig = {
+        <span class="hljs-attr">headers</span>: {
+            <span class="hljs-comment">// 关键：设置为multipart/form-data（axios也会自动识别FormData并生成，这里显式设置更保险）</span>
+            <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'multipart/form-data'</span>
+        }
+    };
+
+    <span class="hljs-comment">// 发送文件上传请求</span>
+    <span class="hljs-keyword">return</span> axios.post(url, formData, requestConfig).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+        <span class="hljs-comment">// console.log(res)</span>
+        <span class="hljs-keyword">const</span> serverData = res.data;
+        <span class="hljs-comment">// console.log(serverData)</span>
+        <span class="hljs-keyword">if</span> (serverData.code === ERR_OK) {
+            <span class="hljs-keyword">return</span> serverData.data; <span class="hljs-comment">// 返回后端的文件URL等数据</span>
+        } <span class="hljs-keyword">else</span> {
+            errorHandle(serverData);
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'文件上传失败：'</span>, serverData);
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(serverData.msg || <span class="hljs-string">'接口请求失败'</span>);
+        }
+    }).catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'图片上传失败：'</span>, e);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'图片上传失败，请稍候重试'</span>);
+    });
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">errorHandle</span>(<span class="hljs-params">serverData</span>) </span>{
+    <span class="hljs-keyword">switch</span> (serverData.code) {
+        <span class="hljs-comment">// 1000是登录方面的问题</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-number">1000</span>:
+            <span class="hljs-built_in">window</span>.alert(serverData.msg);
+            <span class="hljs-built_in">window</span>.location.href = serverData.data.login;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-comment">// 400是上传图片问题</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-number">400</span>:
+            showAlert({
+                <span class="hljs-attr">text</span>: serverData.msg
+            });
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            showAlert({
+                <span class="hljs-attr">text</span>: serverData.msg
+            });
+    }
+}</code></pre><p>以上是我在全局axios下，对axios进行的封装，里面包含了拦截器、基础的post\get、上传请求，并且在拦截器中统一添加了携带token的自定义请求头Header以及在请求体中添加了统一的app_id参数，这样就不需要每次在方法中单独设置app_id这个参数了。</p><pre type="Html"><code>注意，upload传进来的必须是一个formdata对象
+&lt;input
+        <span class="hljs-keyword">type</span>=<span class="hljs-string">"file"</span>
+        ref=<span class="hljs-string">"fileInput"</span>
+        accept=<span class="hljs-string">"image/png,image/jpg,image/jpeg"</span>
+        <span class="hljs-meta">@change</span>=<span class="hljs-string">"handleFileChange"</span>
+        <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"file-input"</span>
+&gt;
+<span class="hljs-function"><span class="hljs-title">handleFileChange</span>(<span class="hljs-params">e</span>)</span> {
+    <span class="hljs-keyword">const</span> file = e.target.files[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">const</span> formData = <span class="hljs-keyword">new</span> FormData();
+    formData.append(<span class="hljs-string">'image'</span>, file);
+    upload(<span class="hljs-string">'urlxxx'</span>, formData)
+},
+在拦截器中也是通过检测是不是formdata，如果是，那么就需要使用formData.append来添加参数。</code></pre><p>当然，以上axios封装是基于全局的（还可以创建单独的axios实例，避免全局污染），而且还可以在get\post等方法中，添加第三个config参数，通过用 AbortController 包装请求，还可以实现主动中断请求的操作。</p><p>参考：<a href="/blog/articles/613" target="_blank">/blog/articles/613</a></p><p>当然因为发送了自定义请求头，所以后端会触发请求预检，后端也需要添加修改。</p><p>参考：<a href="/blog/articles/615" target="_blank">/blog/articles/615</a></p><h2>PHP处理请求预检</h2><p>axios中的<code>withCredentials: true</code>不能单独使用，否则会触发跨域错误，需要后端配合设置两个关键响应头：</p><ul><li><p><strong>Access-Control-Allow-Credentials: true</strong>告诉浏览器：「允许这个跨域请求携带凭证」。</p></li><li><p><strong>Access-Control-Allow-Origin: 具体域名（如<a href="http://localhost:8081">http://localhost:8081</a>）</strong>必须指定明确的前端域名，不能用 *（浏览器规定：带凭证的跨域请求不允许 Origin 为 *）。</p></li></ul><p>所以当有自定义Header的时候PHP需要添加白名单机制：</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+header(<span class="hljs-string">"content-type:application/json;charset=utf-8"</span>);
+
+<span class="hljs-comment">// 定义允许的前端域名白名单（数组形式，末尾无斜杠）</span>
+$allowedOrigins = [
+    <span class="hljs-string">'http://192.168.1.101:8080'</span>,
+    <span class="hljs-string">'http://localhost:8080'</span>,
+    <span class="hljs-string">'https://yourdomain.com'</span> <span class="hljs-comment">// 可添加更多域名</span>
+];
+
+<span class="hljs-keyword">try</span>{
+	<span class="hljs-comment">// 动态获取前端请求源（可能为空，如非跨域请求）</span>
+	<span class="hljs-comment">/*
+    *  比如项目地址：https://ai2hinen9t1.thexin.cn/ai/article-chufa/
+    *  $_SERVER['HTTP_ORIGIN']得到的就是https://ai2hinen9t1.thexin.cn
+    *  所以白名单只需要添加https://ai2hinen9t1.thexin.cn 这个域名即可
+    */</span>
+    $origin = $_SERVER[<span class="hljs-string">'HTTP_ORIGIN'</span>] ?? <span class="hljs-string">''</span>;
+
+    <span class="hljs-comment">// 判断当前请求源是否在白名单中</span>
+    $isAllowed = in_array($origin, $allowedOrigins);
+
+    <span class="hljs-comment">// 1. 处理 OPTIONS 预检请求 不要执行业务逻辑</span>
+    <span class="hljs-keyword">if</span> ($_SERVER[<span class="hljs-string">'REQUEST_METHOD'</span>] === <span class="hljs-string">'OPTIONS'</span>) {
+        <span class="hljs-keyword">if</span> ($isAllowed) {
+            header(<span class="hljs-string">"Access-Control-Allow-Origin: <span class="hljs-subst">{$origin}</span>"</span>); <span class="hljs-comment">// 返回当前请求的域名</span>
+            header(<span class="hljs-string">"Access-Control-Allow-Headers: Authorization, Content-Type"</span>);
+            header(<span class="hljs-string">"Access-Control-Allow-Methods: GET, POST, OPTIONS"</span>);
+            header(<span class="hljs-string">"Access-Control-Allow-Credentials: true"</span>);
+            <span class="hljs-comment">// Access-Control-Max-Age 让浏览器缓存预检结果，减少 OPTIONS 请求次数，提升性能</span>
+            header(<span class="hljs-string">"Access-Control-Max-Age: 86400"</span>); <span class="hljs-comment">// 缓存预检结果24小时</span>
+        }
+        <span class="hljs-keyword">exit</span>;
+    }
+
+    <span class="hljs-comment">// 2. 处理实际请求（POST/GET）</span>
+    <span class="hljs-keyword">if</span> ($isAllowed) {
+        header(<span class="hljs-string">"Access-Control-Allow-Origin: <span class="hljs-subst">{$origin}</span>"</span>); <span class="hljs-comment">// 返回当前请求的域名</span>
+        header(<span class="hljs-string">"Access-Control-Allow-Credentials: true"</span>);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// 直接抛错，进入catch统一处理</span>
+    	<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">'当前请求不在白名单中，请与管理员联系'</span>, <span class="hljs-number">1003</span>);
+    }
+
+    <span class="hljs-comment">// 假设原有业务逻辑</span>
+    $log = <span class="hljs-string">"<span class="hljs-subst">{$_SERVER['REQUEST_METHOD']}</span> "</span> . date(<span class="hljs-string">'Y-m-d H:i:s'</span>) . <span class="hljs-string">"\n"</span>;
+    $filename = <span class="hljs-keyword">__DIR__</span>. <span class="hljs-string">'/debuglog/'</span> . uniqid() . <span class="hljs-string">'_debug.log'</span>;
+    $filecontent = $log . print_r(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
+    file_put_contents($filename, $filecontent, <span class="hljs-literal">true</span>) . <span class="hljs-string">"\n\n"</span>, FILE_APPEND);
+	
+} <span class="hljs-keyword">catch</span> (<span class="hljs-built_in">Exception</span> $e) {
+	<span class="hljs-comment">// 直接给错误状态</span>
+    http_response_code(<span class="hljs-number">401</span>);
+    <span class="hljs-comment">// 获取错误码和错误信息</span>
+    $errcode = $e-&gt;getCode();
+    $errmsg = $e-&gt;getMessage();
+    
+    <span class="hljs-keyword">exit</span>(输出json等)
+}
+
+<span class="hljs-meta">?&gt;</span></code></pre><p>在白名单检查那里，$_SERVER['HTTP_ORIGIN']当是同源请求（x1/a.html get访问 x1/server/xxx.php）、从浏览器直接访问url地址、服务端之间的CURL请求的时候，都会是空！所以需要额外加一个判断，只有有值的时候，才去检测来源，如果没有那么就默认它是来自同源的请求！然后服务端之间不要依赖origin！要用额外的自定义api_key去核实！</p><pre type="Html"><code>$allowedOrigins = [
+        <span class="hljs-string">'https://ai2hinen9t1.thexin.cn'</span>
+    ];
+
+    <span class="hljs-comment">// 动态获取前端请求源（可能为空，如非跨域请求）</span>
+    $origin = $_SERVER[<span class="hljs-string">'HTTP_ORIGIN'</span>] ?? <span class="hljs-string">''</span>;
+    
+    <span class="hljs-comment">// 如果是空 代表是一个同源的请求 不处理</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">empty</span>($origin)) {
+        $isAllowed = <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// 判断当前请求源是否在白名单中</span>
+        $isAllowed = in_array($origin, $allowedOrigins);
+    }</code></pre><h2>PHP获取自定义请求头的内容</h2><p>在 PHP 中获取 HTTP 请求头（Header）中的<code>Authorization</code>信息（也就是你说的 Token）有两种常用方法：</p><h3>方法一：使用<code>$_SERVER</code>超全局变量（最常用）</h3><p>PHP 会将大部分请求头转换为<code>$_SERVER</code>数组中的元素，格式通常是<code>HTTP_</code>前缀加上大写的 header 名称，并用下划线<code>_</code>替换横杠<code>-</code>。</p><p>对于<code>Authorization: Bearer 12345567888</code>这个 header，你可以这样获取：</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// 从 $_SERVER 数组中获取 Authorization header</span>
+$authorizationHeader = $_SERVER[<span class="hljs-string">'HTTP_AUTHORIZATION'</span>];
+
+<span class="hljs-comment">// 检查 header 是否存在</span>
+<span class="hljs-keyword">if</span> (!<span class="hljs-keyword">isset</span>($authorizationHeader)) {
+    <span class="hljs-comment">// 如果不存在，返回 401 Unauthorized 错误</span>
+    http_response_code(<span class="hljs-number">401</span>);
+    <span class="hljs-keyword">echo</span> json_encode([<span class="hljs-string">'error'</span> =&gt; <span class="hljs-string">'Authorization header is missing'</span>]);
+    <span class="hljs-keyword">exit</span>;
+}
+
+<span class="hljs-comment">// 检查 header 是否以 'Bearer ' 开头</span>
+$token = <span class="hljs-literal">null</span>;
+$pattern = <span class="hljs-string">'/^Bearer\s+(.*)$/i'</span>; <span class="hljs-comment">// 正则表达式，不区分大小写</span>
+<span class="hljs-keyword">if</span> (preg_match($pattern, $authorizationHeader, $matches)) {
+    $token = trim($matches[<span class="hljs-number">1</span>]);
+}
+
+<span class="hljs-keyword">if</span> ($token === <span class="hljs-literal">null</span>) {
+    <span class="hljs-comment">// 如果 Token 格式不正确</span>
+    http_response_code(<span class="hljs-number">401</span>);
+    <span class="hljs-keyword">echo</span> json_encode([<span class="hljs-string">'error'</span> =&gt; <span class="hljs-string">'Invalid token format'</span>]);
+    <span class="hljs-keyword">exit</span>;
+}
+
+<span class="hljs-comment">// 在这里使用你的 token</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"成功获取到 Token: "</span> . $token;
+<span class="hljs-comment">// 例如：12345567888</span>
+
+<span class="hljs-meta">?&gt;</span></code></pre><h3>方法二：使用<code>getallheaders()</code>函数（推荐在 PHP-FPM 等现代环境中使用）</h3><p><code>getallheaders()</code>函数会返回一个包含所有 HTTP 请求头的关联数组。这个方法的代码看起来更直观。</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// 获取所有请求头</span>
+$headers = getallheaders();
+
+<span class="hljs-comment">// 检查 'Authorization' header 是否存在</span>
+<span class="hljs-keyword">if</span> (!<span class="hljs-keyword">isset</span>($headers[<span class="hljs-string">'Authorization'</span>])) {
+    http_response_code(<span class="hljs-number">401</span>);
+    <span class="hljs-keyword">echo</span> json_encode([<span class="hljs-string">'error'</span> =&gt; <span class="hljs-string">'Authorization header is missing'</span>]);
+    <span class="hljs-keyword">exit</span>;
+}
+
+$authorizationHeader = $headers[<span class="hljs-string">'Authorization'</span>];
+
+<span class="hljs-comment">// 同样使用正则表达式提取 Token</span>
+$token = <span class="hljs-literal">null</span>;
+$pattern = <span class="hljs-string">'/^Bearer\s+(.*)$/i'</span>;
+<span class="hljs-keyword">if</span> (preg_match($pattern, $authorizationHeader, $matches)) {
+    $token = trim($matches[<span class="hljs-number">1</span>]);
+}
+
+<span class="hljs-keyword">if</span> ($token === <span class="hljs-literal">null</span>) {
+    http_response_code(<span class="hljs-number">401</span>);
+    <span class="hljs-keyword">echo</span> json_encode([<span class="hljs-string">'error'</span> =&gt; <span class="hljs-string">'Invalid token format'</span>]);
+    <span class="hljs-keyword">exit</span>;
+}
+
+<span class="hljs-comment">// 在这里使用你的 token</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"成功获取到 Token: "</span> . $token;
+<span class="hljs-comment">// 例如：12345567888</span>
+
+<span class="hljs-meta">?&gt;</span></code></pre><h3>两个方法的对比</h3><table><thead><tr><th>特性</th><th><code>$_SERVER['HTTP_AUTHORIZATION']</code></th><th><code>getallheaders()</code></th></tr></thead><tbody><tr><td><strong>兼容性</strong></td><td>非常好，兼容所有 PHP 版本和服务器环境（如 Apache, Nginx + PHP-FPM）。</td><td>在 Apache 下表现良好。在 Nginx + PHP-FPM 环境中，需要确保<code>fastcgi_param AUTHORIZATION $http_authorization;</code>已配置，否则可能获取不到。</td></tr><tr><td><strong>代码简洁性</strong></td><td>稍长，需要手动构造键名。</td><td>更简洁、直观，直接通过原始 header 名称获取。</td></tr></tbody></table><p>推荐<strong>优先使用方法一（<code>$_SERVER['HTTP_AUTHORIZATION']</code>）。</strong></p><h3>$_SERVER['HTTP_AUTHORIZATION']和getallheaders()返回是Null的问题</h3><p>如果$_SERVER['HTTP_AUTHORIZATION']和getallheaders()返回的都是Null，那么这是因为<strong>服务器（如 Apache）默认不会将<code>Authorization</code>头传递给 PHP</strong>，需要通过配置显式开启。</p><blockquote>出于安全和协议规范的考虑，Apache 等服务器默认会过滤<code>Authorization</code>头，不会将其暴露给 PHP 的<code>$_SERVER</code>变量。只有显式配置后，才能通过<code>$_SERVER['HTTP_AUTHORIZATION']</code>获取到该头信息。</blockquote><p><strong>Apache环境（局部配置）：</strong></p><p>在项目根目录的<code>.htaccess</code>文件中添加以下配置：</p><pre type="Html"><code><span class="hljs-comment"># 方法一：通过 SetEnvIf 传递 Authorization 头</span>
+<span class="hljs-attribute">SetEnvIf</span> Authorization <span class="hljs-string">"(.*)"</span> HTTP_AUTHORIZATION=$<span class="hljs-number">1</span>
+
+<span class="hljs-comment"># 方法二：通过 mod_rewrite 传递（需确保已启用 mod_rewrite）</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteEngine</span></span> <span class="hljs-literal">On</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteCond</span></span> <span class="hljs-variable">%{HTTP:Authorization}</span> .
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteRule</span></span> .* -<span class="hljs-meta"> [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]</span></code></pre><p>添加后重启 Apache 服务，即可通过<code>$_SERVER['HTTP_AUTHORIZATION']</code>正常获取 Token。</p><p>如果修改重启后还未生效，可能是 Apache 未启用<code>mod_rewrite</code>或<code>mod_setenvif</code>模块，在httpd.conf中：</p><pre type="Html"><code><span class="hljs-comment"># 启用 mod_setenvif（方法一依赖）</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">LoadModule</span></span> setenvif_module modules/mod_setenvif.so
+
+<span class="hljs-comment"># 启用 mod_rewrite（方法二依赖，若用方法二需开启）</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">LoadModule</span></span> rewrite_module modules/mod_rewrite.so</code></pre><p>还需要允许<code>.htaccess</code>生效：</p><p>在<code>httpd.conf</code>中搜索<code>`（或你项目所在的目录配置），确保以下参数为</code>All`：</p><pre type="Html"><code><span class="hljs-section">&lt;Directory <span class="hljs-string">"${INSTALL_DIR}/htdocs"</span>&gt;</span>
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Options</span></span> Indexes FollowSymLinks Includes ExecCGI
+    <span class="hljs-attribute">AllowOverride</span> <span class="hljs-literal">All</span>  # 必须设为 <span class="hljs-literal">All</span>，允许 .htaccess 生效
+    <span class="hljs-attribute">Require</span> local
+<span class="hljs-section">&lt;/Directory&gt;</span></code></pre><p><strong>Apache环境（全局配置）</strong>：</p><p>全局开启后，本地 Apache 所有项目都能直接获取<code>Authorization</code>头，无需每个项目单独配置<code>.htaccess</code>，核心是修改 Apache 主配置文件（我本地是phpstudy，找到http.conf文件）：</p><p>添加全局传递规则</p><p>在<code>httpd.conf</code>文件末尾(<em>推荐方法一</em>)：</p><pre type="Html"><code><span class="hljs-comment"># 方法一：全局传递 Authorization 头（优先选，无需启用重写模块）</span>
+<span class="hljs-attribute">SetEnvIf</span> Authorization <span class="hljs-string">"(.*)"</span> HTTP_AUTHORIZATION=<span class="hljs-variable">$1</span>
+
+<span class="hljs-comment"># 方法二：若需用重写模块传递（已启用 mod_rewrite 时可用）</span>
+<span class="hljs-comment"># RewriteEngine On</span>
+<span class="hljs-comment"># RewriteCond %{HTTP:Authorization} .</span>
+<span class="hljs-comment"># RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]</span></code></pre><p>文件内搜索mod_setenvif.so，必须确保mod_setenvif.so行处于解开注释的状态</p><pre type="Html"><code><span class="hljs-comment"># 启用 mod_setenvif（方法一必须开启）</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">LoadModule</span></span> setenvif_module modules/mod_setenvif.so
+
+<span class="hljs-comment"># 若用方法二，需启用 mod_rewrite</span>
+<span class="hljs-comment"># LoadModule rewrite_module modules/mod_rewrite.so</span></code></pre><p>修改好之后，记得重启apache服务器</p><p><strong>Nginx环境（未测试，仅记录）：</strong></p><p>如果使用 Nginx + PHP-FPM，需要在 Nginx 配置文件中显式传递<code>Authorization</code>头：</p><pre type="Html"><code><span class="hljs-attribute">location</span> <span class="hljs-regexp">~ \.php$</span> {
+    <span class="hljs-comment"># 其他配置...</span>
+    <span class="hljs-attribute">fastcgi_param</span> AUTHORIZATION <span class="hljs-variable">$http_authorization</span>;
+}</code></pre><h3>如何验证当前服务器设置是否能正常使用getallheaders()$_SERVER['HTTP_AUTHORIZATION']</h3><p>作为开发者，有时候也不知道服务器当前的设置是否支持getallheaders()和$_SERVER['HTTP_AUTHORIZATION']，我们该如何进行验证？很简单，做一个简单的请求即可：</p><p>前端HTML</p><pre type="Html"><code><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"zh-CN"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>jQuery Header 请求测试<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 引入 jQuery（使用 CDN） --&gt;</span>
+    <span class="hljs-comment">&lt;!-- &lt;script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"&gt;&lt;/script&gt; --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://www.qdxin.cn/js/xinquery.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>测试 jQuery 发送 Header 请求<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"sendRequest"</span>&gt;</span>发送请求<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"result"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+        $(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            $(<span class="hljs-string">'#sendRequest'</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+                <span class="hljs-comment">// 发起 POST 请求</span>
+                $.ajax({
+                    <span class="hljs-attr">url</span>: <span class="hljs-string">'test-1.php'</span>, <span class="hljs-comment">// 目标 PHP 文件</span>
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">'POST'</span>,      <span class="hljs-comment">// 请求方法（GET/POST 均可）</span>
+                    <span class="hljs-attr">headers</span>: {
+                        <span class="hljs-comment">// 自定义 Header（重点）</span>
+                        <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'Bearer 123456789'</span>, <span class="hljs-comment">// Token 示例</span>
+                        <span class="hljs-string">'X-Custom-Header'</span>: <span class="hljs-string">'Test-Value'</span>      <span class="hljs-comment">// 自定义其他 Header</span>
+                    },
+                    <span class="hljs-attr">data</span>: {
+                        <span class="hljs-attr">username</span>: <span class="hljs-string">'test'</span>,
+                        <span class="hljs-attr">age</span>: <span class="hljs-number">20</span>
+                    },
+                    <span class="hljs-attr">success</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+                        <span class="hljs-comment">// 请求成功后的处理</span>
+                        $(<span class="hljs-string">'#result'</span>).html(<span class="hljs-string">`
+                            &lt;h3&gt;请求成功！&lt;/h3&gt;
+                            &lt;pre&gt;<span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(response, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>)}</span>&lt;/pre&gt;
+                        `</span>);
+                    },
+                    <span class="hljs-attr">error</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr, status, error</span>) </span>{
+                        <span class="hljs-comment">// 请求失败后的处理</span>
+                        $(<span class="hljs-string">'#result'</span>).html(<span class="hljs-string">`
+                            &lt;h3&gt;请求失败！&lt;/h3&gt;
+                            &lt;p&gt;状态码：<span class="hljs-subst">${xhr.status}</span>&lt;/p&gt;
+                            &lt;p&gt;错误信息：<span class="hljs-subst">${error}</span>&lt;/p&gt;
+                        &lt;/pre&gt;
+                        `</span>);
+                    }
+                });
+            });
+        });
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><p>后端PHP，test-1.php</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// 输出 $_SERVER['HTTP_AUTHORIZATION'] 的值</span>
+$authHeader = $_SERVER[<span class="hljs-string">'HTTP_AUTHORIZATION'</span>] ?? <span class="hljs-string">'未获取到'</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"HTTP_AUTHORIZATION 的值："</span> . $authHeader . <span class="hljs-string">"\n"</span>;
+
+<span class="hljs-comment">// 同时输出 getallheaders() 的结果（用于对比）</span>
+<span class="hljs-keyword">if</span> (function_exists(<span class="hljs-string">'getallheaders'</span>)) {
+    $headers = getallheaders();
+    $authFromHeaders = <span class="hljs-keyword">isset</span>($headers[<span class="hljs-string">'Authorization'</span>]) ? $headers[<span class="hljs-string">'Authorization'</span>] : <span class="hljs-string">'未获取到'</span>;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"通过 getallheaders() 获取的 Authorization 头："</span> . $authFromHeaders . <span class="hljs-string">"\n"</span>;
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"服务器不支持 getallheaders() 函数\n"</span>;
+}</code></pre><p>简单测试服务器是否支持getallheaders函数：</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">if</span> (function_exists(<span class="hljs-string">'getallheaders'</span>)) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"服务器支持 getallheaders() 函数"</span>;
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"服务器不支持 getallheaders() 函数"</span>;
+}
+<span class="hljs-meta">?&gt;</span></code></pre><p>更加完善的测试代码（仅做记录，使用第一段代码足够）：</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// 设置响应为 JSON 格式</span>
+header(<span class="hljs-string">"Content-Type: application/json; charset=utf-8"</span>);
+
+<span class="hljs-comment">// 允许跨域（如果前端和后端不在同一域名下）</span>
+header(<span class="hljs-string">"Access-Control-Allow-Origin: *"</span>);
+header(<span class="hljs-string">"Access-Control-Allow-Headers: Authorization, X-Custom-Header, Content-Type"</span>);
+
+<span class="hljs-comment">// 收集所有请求头信息</span>
+$headers = [];
+<span class="hljs-keyword">if</span> (function_exists(<span class="hljs-string">'getallheaders'</span>)) {
+    $headers = getallheaders();
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// 兼容不支持 getallheaders() 的环境</span>
+    <span class="hljs-keyword">foreach</span> ($_SERVER <span class="hljs-keyword">as</span> $name =&gt; $value) {
+        <span class="hljs-keyword">if</span> (substr($name, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>) == <span class="hljs-string">'HTTP_'</span>) {
+            $headers[str_replace(<span class="hljs-string">' '</span>, <span class="hljs-string">'-'</span>, ucwords(strtolower(str_replace(<span class="hljs-string">'_'</span>, <span class="hljs-string">' '</span>, substr($name, <span class="hljs-number">5</span>)))))] = $value;
+        }
+    }
+}
+
+<span class="hljs-comment">// 构造返回数据</span>
+$response = [
+    <span class="hljs-string">'status'</span> =&gt; <span class="hljs-string">'success'</span>,
+    <span class="hljs-string">'received_headers'</span> =&gt; $headers,
+    <span class="hljs-string">'received_data'</span> =&gt; $_POST, <span class="hljs-comment">// 接收 POST 数据</span>
+    <span class="hljs-string">'server_auth_header'</span> =&gt; $_SERVER[<span class="hljs-string">'HTTP_AUTHORIZATION'</span>] ?? <span class="hljs-string">'未获取到'</span>
+];
+
+<span class="hljs-comment">// 返回 JSON 数据</span>
+<span class="hljs-keyword">echo</span> json_encode($response, JSON_UNESCAPED_UNICODE);
+<span class="hljs-meta">?&gt;</span></code></pre><h2>PHP完整获取自定义请求头和请求体+域名白名单</h2><p>注意，这里如果确定$origin = $_SERVER['HTTP_ORIGIN'] ?? ''; 此脚本只是通过浏览器进行访问，那么这么写没问题，一旦有服务器-&gt;服务器的curl通信，那么就需要注意，需要对服务器curl发起的请求，添加origin，如下：</p><pre type="Html"><code>$ch = curl_init();
+$options = <span class="hljs-keyword">array</span>(
+    CURLOPT_URL =&gt; $url,
+    CURLOPT_POST =&gt; <span class="hljs-literal">true</span>, 
+    CURLOPT_RETURNTRANSFER =&gt; <span class="hljs-literal">true</span>, 
+    CURLOPT_FOLLOWLOCATION =&gt; <span class="hljs-literal">true</span>,
+    CURLOPT_HEADER =&gt; <span class="hljs-literal">false</span>,
+    CURLOPT_POSTFIELDS =&gt; http_build_query($params),
+    CURLOPT_HTTPHEADER =&gt; [
+        <span class="hljs-string">'Content-Type: application/x-www-form-urlencoded'</span>,
+        <span class="hljs-comment">// 手动添加 Origin 头，值可以是你允许的任何一个白名单域名</span>
+        <span class="hljs-string">'Origin: https://ai2hinen9t1.thexin.cn'</span> 
+    ]
+);
+curl_setopt_array($ch, $options);
+$response = curl_exec($ch);
+<span class="hljs-keyword">if</span>(curl_error($ch)) {
+    $errMsg = <span class="hljs-string">'Error: '</span> . curl_error($ch);
+    curl_close($ch);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+ curl_close($ch);</code></pre><p>如果不加，那么服务端-&gt;服务端的通信，$_SERVER['HTTP_ORIGIN']就只会返回空值。这一点要特别注意。</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">try</span> {
+
+    <span class="hljs-comment">// 定义允许的前端域名白名单（数组形式，末尾无斜杠）</span>
+    <span class="hljs-comment">/**
+     *  比如项目地址：https://ai2hinen9t1.thexin.cn/ai/article-chufa/
+     *  $_SERVER['HTTP_ORIGIN']得到的就是https://ai2hinen9t1.thexin.cn
+     *  所以白名单只需要添加https://ai2hinen9t1.thexin.cn 这个域名即可
+     */</span>
+    $allowedOrigins = [
+        <span class="hljs-string">'http://192.168.1.101:8080'</span>
+    ];
+
+    <span class="hljs-comment">// 动态获取前端请求源（可能为空，如非跨域请求）</span>
+    $origin = $_SERVER[<span class="hljs-string">'HTTP_ORIGIN'</span>] ?? <span class="hljs-string">''</span>;
+
+    <span class="hljs-comment">// 判断当前请求源是否在白名单中</span>
+    $isAllowed = in_array($origin, $allowedOrigins);
+
+    <span class="hljs-comment">// 处理 OPTIONS 预检请求</span>
+    <span class="hljs-keyword">if</span> ($_SERVER[<span class="hljs-string">'REQUEST_METHOD'</span>] === <span class="hljs-string">'OPTIONS'</span>) {
+        <span class="hljs-keyword">if</span> ($isAllowed) {
+            header(<span class="hljs-string">"Access-Control-Allow-Origin: <span class="hljs-subst">{$origin}</span>"</span>); <span class="hljs-comment">// 返回当前请求的域名</span>
+            header(<span class="hljs-string">"Access-Control-Allow-Headers: Authorization, Content-Type"</span>);
+            header(<span class="hljs-string">"Access-Control-Allow-Methods: GET, POST, OPTIONS"</span>);
+            header(<span class="hljs-string">"Access-Control-Allow-Credentials: true"</span>);
+            header(<span class="hljs-string">"Access-Control-Max-Age: 86400"</span>); <span class="hljs-comment">// 缓存预检结果24小时</span>
+        }
+        <span class="hljs-keyword">exit</span>;
+    }
+
+    <span class="hljs-comment">// 处理实际请求（POST/GET）</span>
+    <span class="hljs-keyword">if</span> ($isAllowed) {
+        header(<span class="hljs-string">"Access-Control-Allow-Origin: <span class="hljs-subst">{$origin}</span>"</span>); <span class="hljs-comment">// 返回当前请求的域名</span>
+        header(<span class="hljs-string">"Access-Control-Allow-Credentials: true"</span>);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">'当前请求不在白名单中，请与管理员联系'</span>, <span class="hljs-number">1003</span>);
+    }
+
+    <span class="hljs-comment"># 验证用户权限</span>
+    <span class="hljs-comment">// 从 $_SERVER 数组中获取 Authorization header 这个依赖服务器配置</span>
+    $authorizationHeader = $_SERVER[<span class="hljs-string">'HTTP_AUTHORIZATION'</span>];
+    <span class="hljs-comment">// 检查 header 是否存在</span>
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">isset</span>($authorizationHeader)) {
+       <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">'header不存在'</span>, <span class="hljs-number">1003</span>);
+    }
+
+    <span class="hljs-comment">// 检查 header 是否以 'Bearer ' 开头</span>
+    $token = <span class="hljs-literal">null</span>;
+    <span class="hljs-comment">// 正则表达式，不区分大小写</span>
+    $pattern = <span class="hljs-string">'/^Bearer\s+(.*)$/i'</span>;
+    <span class="hljs-keyword">if</span> (preg_match($pattern, $authorizationHeader, $matches)) {
+        $token = trim($matches[<span class="hljs-number">1</span>]);
+    }
+    <span class="hljs-keyword">if</span> ($token === <span class="hljs-literal">null</span>) {
+        <span class="hljs-comment">// 如果 Token 格式不正确</span>
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">'Invalid token format'</span>, <span class="hljs-number">1003</span>);
+    }
+
+    <span class="hljs-comment">// 获取前端拦截器统一添加的app_id</span>
+    $appid = $_REQUEST[<span class="hljs-string">'app_id'</span>] ?? <span class="hljs-string">''</span>;
+    <span class="hljs-keyword">if</span>(!$appid) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">'appid is wrong'</span>, <span class="hljs-number">1003</span>);
+    }
+} <span class="hljs-keyword">catch</span>(<span class="hljs-built_in">Exception</span> $e) {
+    <span class="hljs-comment">// 直接给401状态</span>
+    http_response_code(<span class="hljs-number">401</span>);
+
+    $errcode = $e-&gt;getCode();
+    $errmsg = $e-&gt;getMessage();
+
+    $json = json_encode([
+        <span class="hljs-string">'code'</span>  =&gt; $errcode,
+        <span class="hljs-string">'msg'</span>   =&gt; $errmsg,
+        <span class="hljs-string">'data'</span>  =&gt; []
+    ], JSON_UNESCAPED_UNICODE);
+    <span class="hljs-keyword">exit</span>($json);
+}</code></pre>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：axios，getallheaders，自定义请求头，拦截器，获取请求头
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/102" class="imgbox">
+                <img src="/statics/blog/2021/0623/bfc7d47f0760797375e85555d8d90956.jpg">
+            </a>
+            <a href="/blog/articles/102" class="title" title="vue.config文件常用配置详解">
+                vue.config文件常用配置详解
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/268" class="imgbox">
+                <img src="/statics/blog/2022/0530/ea057f87a73e254fd18fdb7d6d181bd4.png">
+            </a>
+            <a href="/blog/articles/268" class="title" title="uni-app本地打包安卓安装包">
+                uni-app本地打包安卓安装包
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/343" class="imgbox">
+                <img src="/statics/blog/2022/1214/d0620878a3295a25d82ac797d3b17d11.jpg">
+            </a>
+            <a href="/blog/articles/343" class="title" title="在苹果safari上实现全屏效果（让web页面以独立app的形式运行）">
+                在苹果safari上实现全屏效果（让web页面以独立app的形式运行）
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/php">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/617">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        PHP中的SERVER全局变量中如何准确获取实际请求的文件名？
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/215">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        通过url获取图片、视频、json、html文件的大小
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/139">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        PHP使用程序实现文件的下载
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/149">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        http-build-query将数组转化为查询字符串以及可能遇到的转义问题
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/136">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        注意PDO-bindParam中的一个陷阱（不能在foreach循环中使用）
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

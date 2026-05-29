@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="PHP | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>PHP | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="一介武夫, 博客, PHP， 前端， js, es， 技术平台， mysql, javascript, ecmascript，个人建站"/>
+<meta name="description" content="全部频道分类 | 旨在共享设计、开发类的知识，交流开发中遇到的各种问题,涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery等前后端常用的技巧及知识点，欢迎交流学习。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script></head>
+<body class="preload" ontouchstart>
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal active">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" class="active">
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <!-- 所有频道目录 -->
+            <div class="all-channels-btns">
+    <div class="all-channels-inner">
+        <a href="/blog/list/all"  title="全部频道">全部频道</a>
+                    <a href="/blog/list/php" class="active" title="PHP">PHP</a>
+                    <a href="/blog/list/js"  title="JS">JS</a>
+                    <a href="/blog/list/thinkphp"  title="ThinkPHP">ThinkPHP</a>
+                    <a href="/blog/list/vue"  title="Vue">Vue</a>
+                    <a href="/blog/list/wechat"  title="微信开发">微信开发</a>
+                    <a href="/blog/list/uniapp"  title="uniapp">uniapp</a>
+                    <a href="/blog/list/css"  title="CSS">CSS</a>
+                    <a href="/blog/list/apache"  title="Apache">Apache</a>
+                    <a href="/blog/list/mysql"  title="MySQL">MySQL</a>
+                    <a href="/blog/list/godot"  title="Godot">Godot</a>
+                    <a href="/blog/list/focus"  title="社会关注">社会关注</a>
+                    <a href="/blog/list/design"  title="设计">设计</a>
+                    <a href="/blog/list/python"  title="Python">Python</a>
+                    <a href="/blog/list/xlyz"  title="心灵驿站">心灵驿站</a>
+                    <a href="/blog/list/zhichang"  title="聊聊职场">聊聊职场</a>
+                    <a href="/blog/list/java"  title="Java">Java</a>
+                    <a href="/blog/list/zatan"  title="经验杂谈">经验杂谈</a>
+                    <a href="/blog/list/default"  title="默认">默认</a>
+            </div>
+</div>
+            <!-- 所有频道目录 end -->
+            <!-- 文章列表 -->
+            <div class="detail-news-list margin-bot-l">
+                <div class="head-title">
+                    <em>PHP</em>
+                    <span>共 93 个结果</span>
+                </div>
+                                    <ul class="list-a line">
+                                                    <li>
+                                                                <div class="textbox no-preview">
+                                    <div class="channel-label smaller">
+                                        <a href="/blog/list/php">PHP</a>
+                                    </div>
+                                    <h3>
+                                        <a href="/blog/articles/573" title="PHP开启报错调试功能displayerrors">PHP开启报错调试功能displayerrors</a>
+                                    </h3>
+                                    <p>部分服务器关闭了PHP报错，导致一些报错看不到，很影响开发人员调试，我们可以通过下面手段打开报错功能.</p>
+                                    <div class="info">
+                                        <span class="readnum">
+                                            <i class="icon fa fa-eye"></i>
+                                            <em>7470次阅读</em>
+                                        </span>
+                                        <span class="goodnum">
+                                            <i class="icon fa fa-thumbs-o-up"></i>
+                                            <em>599人点赞</em>
+                                        </span>
+                                        <span class="date">
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <em>发布时间: 2025-02-11 15:10:09</em>
+                                        </span>
+                                        <a href="/blog/articles/573" class="go">
+                                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                                                    <li>
+                                                                <div class="textbox no-preview">
+                                    <div class="channel-label smaller">
+                                        <a href="/blog/list/php">PHP</a>
+                                    </div>
+                                    <h3>
+                                        <a href="/blog/articles/568" title="使用PHP在接口中模拟504状态码">使用PHP在接口中模拟504状态码</a>
+                                    </h3>
+                                    <p>最近在做项目，遇到接口超过1分钟就自动断开的问题，为了调试代码的健壮性，考虑如何在本地进行模拟调试。</p>
+                                    <div class="info">
+                                        <span class="readnum">
+                                            <i class="icon fa fa-eye"></i>
+                                            <em>5718次阅读</em>
+                                        </span>
+                                        <span class="goodnum">
+                                            <i class="icon fa fa-thumbs-o-up"></i>
+                                            <em>194人点赞</em>
+                                        </span>
+                                        <span class="date">
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <em>发布时间: 2024-11-25 15:08:54</em>
+                                        </span>
+                                        <a href="/blog/articles/568" class="go">
+                                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                                                    <li>
+                                                                <div class="textbox no-preview">
+                                    <div class="channel-label smaller">
+                                        <a href="/blog/list/php">PHP</a>
+                                    </div>
+                                    <h3>
+                                        <a href="/blog/articles/564" title="PHP获取当前文件路径以及上一级目录路径">PHP获取当前文件路径以及上一级目录路径</a>
+                                    </h3>
+                                    <p>使用PHP获取相对于当前文件的目录位置的路径。</p>
+                                    <div class="info">
+                                        <span class="readnum">
+                                            <i class="icon fa fa-eye"></i>
+                                            <em>9221次阅读</em>
+                                        </span>
+                                        <span class="goodnum">
+                                            <i class="icon fa fa-thumbs-o-up"></i>
+                                            <em>481人点赞</em>
+                                        </span>
+                                        <span class="date">
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <em>发布时间: 2024-11-12 11:00:59</em>
+                                        </span>
+                                        <a href="/blog/articles/564" class="go">
+                                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                                                    <li>
+                                                                <div class="textbox no-preview">
+                                    <div class="channel-label smaller">
+                                        <a href="/blog/list/php">PHP</a>
+                                    </div>
+                                    <h3>
+                                        <a href="/blog/articles/554" title="PHP函数介绍—http-build-query()构建URL查询字符串">PHP函数介绍—http-build-query()构建URL查询字符串</a>
+                                    </h3>
+                                    <p>在PHP开发中，经常会遇到需要将一些参数组成URL查询字符串的场景。为了方便开发者处理这些参数，并将其转换成符合URL规范的字符串，PHP提供了http_build_query()函数</p>
+                                    <div class="info">
+                                        <span class="readnum">
+                                            <i class="icon fa fa-eye"></i>
+                                            <em>5154次阅读</em>
+                                        </span>
+                                        <span class="goodnum">
+                                            <i class="icon fa fa-thumbs-o-up"></i>
+                                            <em>295人点赞</em>
+                                        </span>
+                                        <span class="date">
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <em>发布时间: 2024-08-08 16:17:32</em>
+                                        </span>
+                                        <a href="/blog/articles/554" class="go">
+                                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                                                    <li>
+                                                                <div class="textbox no-preview">
+                                    <div class="channel-label smaller">
+                                        <a href="/blog/list/php">PHP</a>
+                                    </div>
+                                    <h3>
+                                        <a href="/blog/articles/551" title="使用PHP获取文件夹中所有文件">使用PHP获取文件夹中所有文件</a>
+                                    </h3>
+                                    <p>使用PHP获取文件夹中的所有文件，或者筛选特定的后缀的文件。</p>
+                                    <div class="info">
+                                        <span class="readnum">
+                                            <i class="icon fa fa-eye"></i>
+                                            <em>3729次阅读</em>
+                                        </span>
+                                        <span class="goodnum">
+                                            <i class="icon fa fa-thumbs-o-up"></i>
+                                            <em>269人点赞</em>
+                                        </span>
+                                        <span class="date">
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <em>发布时间: 2024-07-22 10:51:51</em>
+                                        </span>
+                                        <a href="/blog/articles/551" class="go">
+                                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                                                    <li>
+                                                                <div class="textbox no-preview">
+                                    <div class="channel-label smaller">
+                                        <a href="/blog/list/php">PHP</a>
+                                    </div>
+                                    <h3>
+                                        <a href="/blog/articles/538" title="使用PHP中的domdocument替换HTML字符串中某个元素中的内容">使用PHP中的domdocument替换HTML字符串中某个元素中的内容</a>
+                                    </h3>
+                                    <p>使用正则表达式来解析或修改HTML通常不是一个好主意，因为HTML结构可以非常复杂，且正则表达式在处理嵌套标签时容易出错。在大多数情况下，使用专门的HTML解析库（如DOMDocument）是更好的选择。</p>
+                                    <div class="info">
+                                        <span class="readnum">
+                                            <i class="icon fa fa-eye"></i>
+                                            <em>3171次阅读</em>
+                                        </span>
+                                        <span class="goodnum">
+                                            <i class="icon fa fa-thumbs-o-up"></i>
+                                            <em>174人点赞</em>
+                                        </span>
+                                        <span class="date">
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <em>发布时间: 2024-06-17 16:56:21</em>
+                                        </span>
+                                        <a href="/blog/articles/538" class="go">
+                                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                                                    <li>
+                                                                <div class="textbox no-preview">
+                                    <div class="channel-label smaller">
+                                        <a href="/blog/list/php">PHP</a>
+                                    </div>
+                                    <h3>
+                                        <a href="/blog/articles/528" title="使用curl里面关于CURLOPT配置中的WRITEFUNCTION读取sse流">使用curl里面关于CURLOPT配置中的WRITEFUNCTION读取sse流</a>
+                                    </h3>
+                                    <p>CURLOPT_WRITEFUNCTION是PHP中的cURL库的一个选项，它用于指定一个回调函数，这个回调函数将会接收cURL下载的数据。</p>
+                                    <div class="info">
+                                        <span class="readnum">
+                                            <i class="icon fa fa-eye"></i>
+                                            <em>11241次阅读</em>
+                                        </span>
+                                        <span class="goodnum">
+                                            <i class="icon fa fa-thumbs-o-up"></i>
+                                            <em>898人点赞</em>
+                                        </span>
+                                        <span class="date">
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <em>发布时间: 2024-05-30 09:15:22</em>
+                                        </span>
+                                        <a href="/blog/articles/528" class="go">
+                                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                                                    <li>
+                                                                <div class="textbox no-preview">
+                                    <div class="channel-label smaller">
+                                        <a href="/blog/list/php">PHP</a>
+                                    </div>
+                                    <h3>
+                                        <a href="/blog/articles/527" title="php中curl请求第三方接口的使用">php中curl请求第三方接口的使用</a>
+                                    </h3>
+                                    <p>使用php的curl请求第三方接口服务，获取sse结果和非sse的结果。</p>
+                                    <div class="info">
+                                        <span class="readnum">
+                                            <i class="icon fa fa-eye"></i>
+                                            <em>6156次阅读</em>
+                                        </span>
+                                        <span class="goodnum">
+                                            <i class="icon fa fa-thumbs-o-up"></i>
+                                            <em>498人点赞</em>
+                                        </span>
+                                        <span class="date">
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <em>发布时间: 2024-05-29 16:57:23</em>
+                                        </span>
+                                        <a href="/blog/articles/527" class="go">
+                                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                                                    <li>
+                                                                <a href="/blog/articles/484" class="imgbox">
+                                    <div class="inner-box">
+                                        <img src="/statics/blog/2024/0326/90ea11d08a1726570ae38a9a226c9186.png">
+                                    </div>
+                                </a>
+                                                                <div class="textbox ">
+                                    <div class="channel-label smaller">
+                                        <a href="/blog/list/php">PHP</a>
+                                    </div>
+                                    <h3>
+                                        <a href="/blog/articles/484" title="在phpstudy中配置composer">在phpstudy中配置composer</a>
+                                    </h3>
+                                    <p>主要讲解如何在phpstudy中安装并全局配置composer，做个记录。</p>
+                                    <div class="info">
+                                        <span class="readnum">
+                                            <i class="icon fa fa-eye"></i>
+                                            <em>7030次阅读</em>
+                                        </span>
+                                        <span class="goodnum">
+                                            <i class="icon fa fa-thumbs-o-up"></i>
+                                            <em>436人点赞</em>
+                                        </span>
+                                        <span class="date">
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <em>发布时间: 2024-03-26 10:06:27</em>
+                                        </span>
+                                        <a href="/blog/articles/484" class="go">
+                                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                                                    <li>
+                                                                <div class="textbox no-preview">
+                                    <div class="channel-label smaller">
+                                        <a href="/blog/list/php">PHP</a>
+                                    </div>
+                                    <h3>
+                                        <a href="/blog/articles/479" title="如何使用phpquery?">如何使用phpquery?</a>
+                                    </h3>
+                                    <p>phpQuery是一个基于PHP的服务端开源项目，它可以让PHP开发人员轻松处理DOM文档内容。更有意思的是，它采用了jQuery的思想，使得可以像使用jQuery一样处理页面内容，获取想要的页面信息。</p>
+                                    <div class="info">
+                                        <span class="readnum">
+                                            <i class="icon fa fa-eye"></i>
+                                            <em>9995次阅读</em>
+                                        </span>
+                                        <span class="goodnum">
+                                            <i class="icon fa fa-thumbs-o-up"></i>
+                                            <em>695人点赞</em>
+                                        </span>
+                                        <span class="date">
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <em>发布时间: 2024-03-15 14:42:51</em>
+                                        </span>
+                                        <a href="/blog/articles/479" class="go">
+                                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                                            </ul>
+                    <!-- 分页 -->
+                    <div class="pages">
+                                                    <a href="/blog/list/php/">首页</a>
+                            <a href="/blog/list/php/1">上一页</a>
+                                                                                                                                                <a href="/blog/list/php/1" class="circle">1</a>
+                                                                                                                                <span class="circle active">2</span>
+                                                                                                                                <a href="/blog/list/php/3" class="circle">3</a>
+                                                                                                                                <a href="/blog/list/php/4" class="circle">4</a>
+                                                                                                                                <a href="/blog/list/php/5" class="circle">5</a>
+                                                                                                                                <span>...</span>
+                                                                                                                                                                <a href="/blog/list/php/3">下一页</a>
+                            <a href="/blog/list/php/10">尾页</a>
+                                            </div>
+                    <!-- 分页 end -->
+                                </div>
+            <!-- 文章列表 end -->
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        浏览最多
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/288" title="uniapp开发的APP中，如何使用手机默认浏览器打开链接或打开外部应用">uniapp开发的APP中，如何使用手机默认浏览器打开链接或打开外部应用</a></h3>
+                    <p>在APP中打开其他APP或者打开应用市场的操作。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>89984次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>6651人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-08-12 15:51:21</em>
+                                </span>
+                        <a href="/blog/articles/288" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/default">默认</a>
+                    </div>
+                    <h3><a href="/blog/articles/170" title="记录一些访问过觉得不错的博客和各类网站【收藏】（持续更新）">记录一些访问过觉得不错的博客和各类网站【收藏】（持续更新）</a></h3>
+                    <p>收集一些有用并且个人觉得非常不错的的网站，为自己用，也分享一下，仅此而已。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>88091次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>6746人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-09-01 15:54:55</em>
+                                </span>
+                        <a href="/blog/articles/170" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/279" title="element-ui[plus]使用动态表单，并为每个动态表单项添加验证">element-ui[plus]使用动态表单，并为每个动态表单项添加验证</a></h3>
+                    <p>在使用ele-ui开发中，经常会用到对动态创建的表单进行字段验证，此时就需要使用到动态表单的验证，官方有示例，但是不够清晰。下面我将用一个简单的案例进行说明。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>64623次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>4304人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-07-19 17:06:39</em>
+                                </span>
+                        <a href="/blog/articles/279" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/48" class="imgbox">
+                <img src="/statics/blog/2021/0425/f393e0d0999de1d59de010b50682f2ff.jpg">
+            </a>
+            <a href="/blog/articles/48" class="title" title="使用$root从子组件中访问其他组件">
+                使用$root从子组件中访问其他组件
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/336" class="imgbox">
+                <img src="/statics/blog/2022/1206/0ef1feaeb86f5dee4f5a5fb13f81632a.png">
+            </a>
+            <a href="/blog/articles/336" class="title" title="可以随意切换node版本的工具nvm">
+                可以随意切换node版本的工具nvm
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/144" class="imgbox">
+                <img src="/statics/blog/2021/0727/e8653baf7e7a0d1e4891b5b3bce50d68.jpg">
+            </a>
+            <a href="/blog/articles/144" class="title" title="苹果Iphone-IOS系统14版本以下不支持webp格式的图片">
+                苹果Iphone-IOS系统14版本以下不支持webp格式的图片
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- 标签聚合 -->
+                <div class="tags-list" id="tags-list">
+    <div class="headline">
+        标签聚合
+    </div>
+            <!-- 超过14个就替换为 many样式 -->
+        <div class="list normal">
+                            <a href="https://v4.bootcss.com/" target="blank" title="bootstrap4文档">
+                    bootstrap4文档
+                </a>
+                            <a href="https://www.thinkphp.cn/doc" target="blank" title="thinkphp官方文档">
+                    thinkphp官方文档
+                </a>
+                            <a href="http://doc.wubin.work/56js-tool-function/" target="blank" title="常用JS工具函数">
+                    常用JS工具函数
+                </a>
+                            <a href="https://idesign.qq.com/#!index/feed" target="blank" title="设计订阅">
+                    设计订阅
+                </a>
+                            <a href="http://reference.yangjinjian.com/" target="blank" title="8哥技术手册">
+                    8哥技术手册
+                </a>
+                            <a href="https://vue3js.cn/docs/zh/guide/introduction.html" target="blank" title="VUE3文档">
+                    VUE3文档
+                </a>
+                            <a href="https://www.canvasapi.cn/" target="blank" title="canvasAPI速查">
+                    canvasAPI速查
+                </a>
+                            <a href="http://doc.wubin.work/my-css-code/" target="blank" title="常用CSS片段">
+                    常用CSS片段
+                </a>
+                            <a href="https://docs.godotengine.org/zh-cn/4.x/getting\_started/step\_by\_step/scripting\_languages.html#available-scripting-languages" target="blank" title="godot中文文档">
+                    godot中文文档
+                </a>
+                    </div>
+        </div>                <!-- 标签聚合 end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+
+<footer class="footer" id="footer">
+            <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer><script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_list.js?t=4445"></script></body>
+</html>

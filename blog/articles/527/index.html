@@ -1,0 +1,1166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="php中curl请求第三方接口的使用 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>php中curl请求第三方接口的使用 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="sse"/>
+<meta name="description" content="使用php的curl请求第三方接口服务，获取sse结果和非sse的结果。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 527,
+            article_title: 'php中curl请求第三方接口的使用',
+            article_desc: '使用php的curl请求第三方接口服务，获取sse结果和非sse的结果。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal active">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" class="active">
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/php">PHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">php中curl请求第三方接口的使用</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>6156</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>498</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2024-05-29 16:57:23</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>curl请求非SSE</h2><p>使用POST方式 从服务端发起请求</p><pre type="PHP"><code><span class="hljs-comment">// 传递的post参数</span>
+$paramsStr = json_encode([...数组...], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+
+$curl = curl_init();
+curl_setopt_array($curl, <span class="hljs-keyword">array</span>(
+    CURLOPT_URL =&gt; <span class="hljs-string">'请求的接口地址'</span>,
+    CURLOPT_TIMEOUT =&gt; <span class="hljs-number">30</span>,
+    CURLOPT_RETURNTRANSFER =&gt; <span class="hljs-literal">true</span>,
+    CURLOPT_SSL_VERIFYPEER  =&gt; <span class="hljs-literal">false</span>,
+    CURLOPT_SSL_VERIFYHOST  =&gt; <span class="hljs-literal">false</span>,
+    CURLOPT_CUSTOMREQUEST =&gt; <span class="hljs-string">'POST'</span>,
+    
+    CURLOPT_POSTFIELDS =&gt; $paramsStr,
+
+    <span class="hljs-comment">// 根据第三方的要求设置请求头</span>
+    CURLOPT_HTTPHEADER =&gt; <span class="hljs-keyword">array</span>(
+        <span class="hljs-string">'Content-Type: application/json'</span>,
+        <span class="hljs-string">"Authorization: Bearer <span class="hljs-subst">{$apikey}</span>"</span>
+    )
+
+));
+$response = curl_exec($curl);
+curl_close($curl);
+$res = json_decode($response, <span class="hljs-literal">true</span>);
+<span class="hljs-keyword">return</span> $res;</code></pre><p>由于是一次性的，最终结果直接输出到浏览器即可。</p><h2>curl请求SSE</h2><h3>注意这里有可能出现报错问题！</h3><blockquote>如果报错：<span >SSL certificate problem: unable to get local issuer certificate&nbsp;&nbsp;</span><a href="https://www.jb51.net/program/307306spr.htm" target="_blank" >问题参考</a></blockquote><p>简单说就是：cURL错误60通常表示SSL证书问题。本地开发环境下务必要设置：</p><pre type="PHP"><code> curl_setopt_array($curl, array(
+            <span class="hljs-function"><span class="hljs-params">CURLOPT_SSL_VERIFYPEER</span>  =&gt;</span> <span class="hljs-literal">false</span>,
+            <span class="hljs-function"><span class="hljs-params">CURLOPT_SSL_VERIFYHOST</span>  =&gt;</span> <span class="hljs-literal">false</span>,
+            ....
+));</code></pre><p>上面两项决定了是否验证SSL证书，设置为false则为不验证。</p><p>指定SSL证书路径：你可以通过设置cURL选项CURLOPT_CAINFO来指定SSL证书的路径。你需要提供一个有效的CA证书文件的绝对路径。例如：</p><pre type="PHP"><code>curl_setopt(<span class="hljs-variable">$ch</span>, CURLOPT_CAINFO, <span class="hljs-string">'/path/to/cacert.pem'</span>);</code></pre><blockquote>注意，在生产环境中禁用SSL证书验证是不安全的，仅在开发和测试阶段使用。</blockquote><h3>示例</h3><p>当使用php脚本做桥梁，从第三方请求SSE接口然后以SSE的流形式实时返回前端。我们先看一个简单的例子：</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+header(<span class="hljs-string">'Content-Type: text/event-stream'</span>);
+header(<span class="hljs-string">'Cache-Control: no-cache'</span>);
+
+<span class="hljs-comment">// 可以定义一个函数来发送事件</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendEvent</span>(<span class="hljs-params">$id, $event, $data</span>) </span>{
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"id: <span class="hljs-subst">$id</span>"</span> . PHP_EOL;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"event: <span class="hljs-subst">$event</span>"</span> . PHP_EOL;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"data: <span class="hljs-subst">$data</span>"</span> . PHP_EOL . PHP_EOL;
+    ob_flush();
+    flush();
+}
+
+<span class="hljs-comment">// 发送初始化的id</span>
+sendEvent(time(), <span class="hljs-string">'init'</span>, <span class="hljs-string">'initialized'</span>);
+
+<span class="hljs-comment">// 模拟一个无限循环以持续发送事件</span>
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+    <span class="hljs-comment">// 这里可以添加你的逻辑来检测事件并发送它们</span>
+    sendEvent(time(), <span class="hljs-string">'message'</span>, <span class="hljs-string">'Hello, EventSource!'</span>);
+
+    <span class="hljs-comment">// 为了简化，每隔一定时间发送一次事件</span>
+    sleep(<span class="hljs-number">1</span>);
+}
+<span class="hljs-meta">?&gt;</span></code></pre><p>再来看一个通过脚本直接实现将获取的SSE转化为本地SSE输出的例子</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+$API_KEY = <span class="hljs-string">'xxxxxxxxxxxxxxxxxxxxxxxx'</span>;
+$URL_TALKING = <span class="hljs-string">'xxxxxxxxxxxxxxxxxxxxx'</span>;
+$query = <span class="hljs-string">'我被人打了，我还手了，请问该如何维权'</span>;
+
+<span class="hljs-comment">// 假设你有一个要发送的数据数组</span>
+$params = [
+    <span class="hljs-string">"model"</span> =&gt; <span class="hljs-string">'farui-plus'</span>, 
+    <span class="hljs-string">'prompt'</span> =&gt; $query,
+    <span class="hljs-string">'input'</span> =&gt; [
+        <span class="hljs-string">'prompt'</span> =&gt; $query,
+        <span class="hljs-string">'message'</span> =&gt;  [
+            [
+                <span class="hljs-string">"role"</span> =&gt; <span class="hljs-string">"system"</span>,
+                <span class="hljs-string">"content"</span> =&gt; <span class="hljs-string">'You are a helpful assistant.'</span>
+            ],
+            [
+                <span class="hljs-string">"role"</span> =&gt; <span class="hljs-string">"user"</span>,
+                <span class="hljs-string">"content"</span> =&gt; $query
+            ]
+        ]
+    ],
+    <span class="hljs-string">'parameters'</span> =&gt; [
+        <span class="hljs-string">"result_format"</span> =&gt; <span class="hljs-string">"message"</span>
+    ]
+];
+
+ob_start();
+
+<span class="hljs-comment">// 初始化cURL</span>
+$ch = curl_init();
+
+<span class="hljs-comment">// 设置cURL选项</span>
+curl_setopt($ch, CURLOPT_URL, $URL_TALKING); <span class="hljs-comment">// SSE服务器URL</span>
+curl_setopt($ch, CURLOPT_POST, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 发送POST请求</span>
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params)); <span class="hljs-comment">// POST数据</span>
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 返回响应内容，而不是直接输出</span>
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 跟随重定向</span>
+curl_setopt($ch, CURLOPT_HEADER, <span class="hljs-literal">false</span>); <span class="hljs-comment">// 不返回头部信息</span>
+<span class="hljs-comment">// 设置请求头</span>
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    <span class="hljs-string">'Content-Type: application/json'</span>,
+    <span class="hljs-string">"Authorization: Bearer <span class="hljs-subst">{$API_KEY}</span>"</span>,
+    <span class="hljs-string">'X-DashScope-SSE: enable'</span>
+]); 
+<span class="hljs-comment">/**
+ * 它用于指定一个回调函数，这个回调函数将会接收 cURL 请求的数据。
+ * 这个回调函数应该有两个参数，第一个是 data，第二个是 回调函数
+ * 函数会在 cURL 接收到数据时被调用。
+ */</span>
+curl_setopt($ch, CURLOPT_WRITEFUNCTION, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$ch, $chunk</span>) </span>{
+    <span class="hljs-comment">// 将SSE响应直接输出给浏览器</span>
+    <span class="hljs-keyword">echo</span> $chunk;
+    ob_flush(); <span class="hljs-comment">// 刷新输出缓冲区</span>
+    flush(); <span class="hljs-comment">// 发送缓冲区内容到浏览器</span>
+    usleep(<span class="hljs-number">1000</span>);
+    <span class="hljs-keyword">return</span> strlen($chunk);
+});
+
+<span class="hljs-comment">// 执行cURL请求</span>
+curl_exec($ch);
+
+<span class="hljs-comment">// 关闭cURL资源</span>
+curl_close($ch);
+<span class="hljs-meta">?&gt;</span></code></pre><p>关于对CURLOPT_WRITEFUNCTION的解释，请参考这里：<a href="/blog/articles/528" target="_blank">/blog/articles/528</a></p><p>这里不深究对第三方SSE内容的格式化和输出，主要列出我实际项目中用到的最终代码：</p><p>可供参考的SSE-header头设置</p><pre type="PHP"><code><span class="hljs-comment">// 缓冲区没开启就开启</span>
+<span class="hljs-selector-tag">if</span> (ob_get_level() &lt;= <span class="hljs-number">0</span>) {
+    <span class="hljs-selector-tag">ob_start</span>();
+}
+
+<span class="hljs-selector-tag">set_time_limit</span>(<span class="hljs-number">0</span>);
+<span class="hljs-selector-tag">ini_set</span>(<span class="hljs-string">'output_buffering'</span>, <span class="hljs-string">'off'</span>);
+<span class="hljs-comment">// ini_set('zlib.output_compression', false);</span>
+
+<span class="hljs-selector-tag">header</span>(<span class="hljs-string">'Content-Type: text/event-stream; Charset=UTF-8'</span>);
+<span class="hljs-selector-tag">header</span>(<span class="hljs-string">'Cache-Control: no-cache'</span>);
+<span class="hljs-selector-tag">header</span>(<span class="hljs-string">'Connection: keep-alive'</span>);
+<span class="hljs-selector-tag">header</span>(<span class="hljs-string">'X-Accel-Buffering: no'</span>);</code></pre><pre type="PHP"><code>$paramsStr = json_encode([..传参数组..], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+
+<span class="hljs-comment">// 初始化cURL</span>
+$ch = curl_init();
+
+curl_setopt_array($ch, <span class="hljs-keyword">array</span>(
+    CURLOPT_URL =&gt; <span class="hljs-string">'第三方接口地址'</span>,
+    CURLOPT_POST =&gt; <span class="hljs-literal">true</span>,
+    CURLOPT_POSTFIELDS =&gt; $paramsStr, <span class="hljs-comment">// 携带的post参数</span>
+    CURLOPT_RETURNTRANSFER =&gt; <span class="hljs-literal">true</span>,
+    <span class="hljs-comment">// 如果有重定向，则跟随重定向</span>
+    CURLOPT_FOLLOWLOCATION =&gt; <span class="hljs-literal">true</span>,
+    CURLOPT_HEADER =&gt; <span class="hljs-literal">false</span>,
+    
+    <span class="hljs-comment">// 第三方要求的header</span>
+    CURLOPT_HTTPHEADER =&gt; <span class="hljs-keyword">array</span>(
+        <span class="hljs-string">'Content-Type: application/json'</span>,
+        <span class="hljs-string">"Authorization: Bearer <span class="hljs-subst">{$apikey}</span>"</span>,
+        <span class="hljs-string">'X-DashScope-SSE: enable'</span>
+    )
+
+));
+
+curl_setopt($ch, CURLOPT_WRITEFUNCTION, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$ch, $chunk</span>) </span>{
+    <span class="hljs-comment">// 输出间隔时间</span>
+    sleep(<span class="hljs-number">1</span>);
+
+    <span class="hljs-comment">// 将SSE响应直接输出给浏览器</span>
+    <span class="hljs-keyword">echo</span> $chunk;
+
+
+    ob_flush(); <span class="hljs-comment">// 刷新输出缓冲区</span>
+    flush(); <span class="hljs-comment">// 发送缓冲区内容到浏览器</span>
+    <span class="hljs-keyword">return</span> strlen($chunk);
+});
+
+<span class="hljs-comment">// 执行cURL请求</span>
+curl_exec($ch);
+
+<span class="hljs-keyword">if</span>(curl_error($ch)) {
+    $errMsg = <span class="hljs-string">'Error: '</span> . curl_error($ch);
+    <span class="hljs-keyword">echo</span>  $errMsg
+}
+
+<span class="hljs-comment">// 关闭cURL资源</span>
+curl_close($ch);</code></pre><blockquote>注意，对SSE每次轮询结果的格式化，推荐使用正则匹配+循环的方式，因为不同第三方在最后输出的格式不一定一样，比如通常使用\n\n或者PHP_EOL进行分隔，但是其最终结果中并不包含换行符。</blockquote><pre type="PHP"><code>$event = <span class="hljs-string">&lt;&lt;&lt;EOD
+id:2
+event:result
+:HTTP_STATUS/200
+data:{"output":{"choices":[{"message":{"content":"【相关法条】\n[1]《中华人民","role":"assistant"},"finish_reason":"null"}]},"usage":{"total_tokens":22,"input_tokens":11,"output_tokens":11},"request_id":"353b00ab-222a-9bae-ad03-ef66bc500c9b"}
+EOD</span>;
+
+$event = trim($event);
+$patterns = <span class="hljs-keyword">array</span>(
+    <span class="hljs-comment">// 匹配id:1</span>
+    <span class="hljs-string">'id'</span>          =&gt;    <span class="hljs-string">'/id:[\d]+/'</span>,  
+    <span class="hljs-comment">// 匹配event:result </span>
+    <span class="hljs-string">'event'</span>       =&gt;    <span class="hljs-string">'/event:[\w]+/'</span>,
+    <span class="hljs-comment">// 匹配 :HTTP_STATUS/200</span>
+    <span class="hljs-string">'http_status'</span> =&gt;    <span class="hljs-string">'/:HTTP_STATUS\/[\d]+/'</span>,
+    <span class="hljs-comment">// 匹配 data</span>
+    <span class="hljs-string">'data'</span>        =&gt;    <span class="hljs-string">'/data:[\s\S]*/'</span>
+);
+
+$resultArray = [];
+$outputRow = [];
+
+<span class="hljs-comment">// 遍历每个正则表达式模式</span>
+<span class="hljs-keyword">foreach</span> ($patterns <span class="hljs-keyword">as</span> $patternKey =&gt; $pattern) {
+    <span class="hljs-comment">// 执行正则表达式匹配，并将结果存储到 $matches 数组中</span>
+    preg_match($pattern, $event, $matches);
+    $line = <span class="hljs-keyword">isset</span>($matches[<span class="hljs-number">0</span>]) ? $matches[<span class="hljs-number">0</span>] : <span class="hljs-string">''</span>;
+    <span class="hljs-keyword">if</span>($line) {
+        <span class="hljs-comment">// 使用冒号分割键和值</span>
+        <span class="hljs-keyword">list</span>($key, $value) = explode(<span class="hljs-string">':'</span>, $line, <span class="hljs-number">2</span>);
+        $key = trim($key);
+        $value = trim($value);
+
+        <span class="hljs-comment">// 当key为空并且包含http等字符的时候 获取http状态码</span>
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">empty</span>($key) &amp;&amp; stripos($value, <span class="hljs-string">'HTTP_STATUS'</span>) !== <span class="hljs-literal">false</span>) {
+            $key = <span class="hljs-string">'http_status'</span>;
+            $value = explode(<span class="hljs-string">'/'</span>, $value)[<span class="hljs-number">1</span>];
+        }
+
+        <span class="hljs-comment">// 对于data键，我们需要进一步处理JSON字符串</span>
+        <span class="hljs-keyword">if</span> ($key === <span class="hljs-string">'data'</span>) {
+            $value = json_decode($value, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 将JSON字符串转换为数组</span>
+        }
+    } <span class="hljs-keyword">else</span> {
+        $value = <span class="hljs-string">''</span>;
+    }
+
+    $resultArray[$key] = $value;
+}
+
+$choices = $resultArray[<span class="hljs-string">'data'</span>][<span class="hljs-string">'output'</span>][<span class="hljs-string">'choices'</span>][<span class="hljs-number">0</span>];
+$usage = $resultArray[<span class="hljs-string">'data'</span>][<span class="hljs-string">'usage'</span>];
+$totalTokens = $usage[<span class="hljs-string">'total_tokens'</span>];
+
+<span class="hljs-comment">// 将最终结果进行格式化</span>
+$outputRow = [
+    <span class="hljs-string">'id'</span> =&gt; $resultArray[<span class="hljs-string">'id'</span>],
+    <span class="hljs-string">'event'</span> =&gt; <span class="hljs-string">'message'</span>,
+    <span class="hljs-string">'http_status'</span> =&gt; <span class="hljs-string">"HTTP_STATUS/<span class="hljs-subst">{$resultArray['http_status']}</span>"</span>,
+    <span class="hljs-string">'data'</span> =&gt; [
+        <span class="hljs-string">'role'</span> =&gt; $choices[<span class="hljs-string">'message'</span>][<span class="hljs-string">'role'</span>],
+        <span class="hljs-string">'message'</span> =&gt; $choices[<span class="hljs-string">'message'</span>][<span class="hljs-string">'content'</span>],
+        <span class="hljs-string">'finish_reason'</span> =&gt; $choices[<span class="hljs-string">'finish_reason'</span>],
+        <span class="hljs-string">'total_tokens'</span> =&gt; $totalTokens
+    ]
+];
+<span class="hljs-keyword">return</span> $outputRow;
+
+<span class="hljs-comment">/* 最终结果
+[
+    'id' =&gt; 2,
+    'event' =&gt; 'message',
+    'http_status' =&gt; "HTTP_STATUS/200",
+    'data' =&gt; [
+        'role' =&gt; 'assistant',
+        'message' =&gt; '【相关法条】\n[1]《中华人民"',
+        'finish_reason' =&gt; 'null',
+        'total_tokens' =&gt; 22
+    ]
+]
+*/</span></code></pre><h2>请求SSE的其他方法记录</h2><h3>获取并解析SSE的响应</h3><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// 初始化cURL会话</span>
+$ch = curl_init();
+ 
+<span class="hljs-comment">// 设置cURL选项</span>
+curl_setopt($ch, CURLOPT_URL, <span class="hljs-string">'http://your-sse-server.com/events'</span>); <span class="hljs-comment">// 替换为你的SSE服务器地址</span>
+curl_setopt($ch, CURLOPT_HEADER, <span class="hljs-number">0</span>);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="hljs-number">1</span>);
+ 
+<span class="hljs-comment">// 启用SSE流模式</span>
+curl_setopt($ch, CURLOPT_HTTPHEADER, <span class="hljs-keyword">array</span>(
+    <span class="hljs-string">'Accept: text/event-stream'</span>,
+    <span class="hljs-string">'Cache-Control: no-cache'</span>
+));
+ 
+<span class="hljs-comment">// 执行cURL请求</span>
+$response = curl_exec($ch);
+ 
+<span class="hljs-comment">// 解析SSE响应</span>
+$events = explode(<span class="hljs-string">"n"</span>, $response);
+<span class="hljs-keyword">foreach</span> ($events <span class="hljs-keyword">as</span> $event) {
+    <span class="hljs-keyword">if</span> (strpos($event, <span class="hljs-string">'event: '</span>) === <span class="hljs-number">0</span>) {
+        $eventParts = explode(<span class="hljs-string">":"</span>, $event, <span class="hljs-number">2</span>);
+        $eventName = trim(end($eventParts));
+        $data = <span class="hljs-string">''</span>;
+        <span class="hljs-keyword">continue</span>;
+    }
+    <span class="hljs-keyword">if</span> (strpos($event, <span class="hljs-string">'data: '</span>) === <span class="hljs-number">0</span>) {
+        $data .= trim(substr($event, <span class="hljs-number">6</span>));
+        <span class="hljs-keyword">if</span> (substr($data, <span class="hljs-number">-2</span>) == <span class="hljs-string">'n\n'</span>) {
+            $data = trim(substr($data, <span class="hljs-number">0</span>, <span class="hljs-number">-2</span>));
+            <span class="hljs-keyword">echo</span> <span class="hljs-string">"Received event '<span class="hljs-subst">{$eventName}</span>': <span class="hljs-subst">{$data}</span>n"</span>;
+            $data = <span class="hljs-string">''</span>;
+        }
+        <span class="hljs-keyword">continue</span>;
+    }
+    <span class="hljs-keyword">if</span> ($event == <span class="hljs-string">"n"</span>) {
+        <span class="hljs-comment">// 处理完整事件</span>
+        <span class="hljs-keyword">continue</span>;
+    }
+}
+ 
+<span class="hljs-comment">// 关闭cURL会话</span>
+curl_close($ch);
+<span class="hljs-meta">?&gt;</span></code></pre><h3>使用while循环实现SSE的输出</h3><pre type="PHP"><code><span class="xml"><span class="hljs-comment">&lt;!-- 若您想要使用PHP来请求另一个SSE（Server-Sent Events）源，并将这些事件以SSE的形式实时推送给您的客户端，您需要创建一个PHP脚本来作为中间代理。这个脚本会向SSE源发起请求，并实时将接收到的数据转发给连接该PHP脚本的客户端。
+
+以下是一个简单的PHP脚本示例，展示了如何实现这一功能：
+
+php --&gt;</span>
+</span><span class="php"><span class="hljs-meta">&lt;?php</span>
+header(<span class="hljs-string">'Content-Type: text/event-stream'</span>);
+header(<span class="hljs-string">'Cache-Control: no-cache'</span>);
+header(<span class="hljs-string">'Connection: keep-alive'</span>);
+
+<span class="hljs-comment">// 连接到SSE源</span>
+$sseUrl = <span class="hljs-string">'http://your-sse-source-url.com/events'</span>;
+$ch = curl_init($sseUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="hljs-literal">true</span>);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, <span class="hljs-literal">true</span>);
+curl_setopt($ch, CURLOPT_HEADER, <span class="hljs-literal">false</span>);
+curl_setopt($ch, CURLOPT_NOBODY, <span class="hljs-literal">true</span>);
+curl_exec($ch);
+curl_setopt($ch, CURLOPT_TIMEOUT, <span class="hljs-number">0</span>);
+
+<span class="hljs-comment">// 无限循环以持续读取SSE源并转发给客户端</span>
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+    <span class="hljs-comment">// 重置cURL的选项以准备下一次读取</span>
+    curl_setopt($ch, CURLOPT_HTTPHEADER, <span class="hljs-keyword">array</span>(
+        <span class="hljs-string">'Accept: text/event-stream'</span>,
+        <span class="hljs-string">'Cache-Control: no-cache'</span>,
+        <span class="hljs-string">'Connection: keep-alive'</span>
+    ));
+
+    <span class="hljs-comment">// 执行请求以读取SSE源的新数据</span>
+    $data = curl_exec($ch);
+
+    <span class="hljs-comment">// 检查是否有数据可读</span>
+    <span class="hljs-keyword">if</span> ($data === <span class="hljs-literal">false</span>) {
+        <span class="hljs-comment">// 可能是连接断开，重新连接SSE源</span>
+        curl_close($ch);
+        $ch = curl_init($sseUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="hljs-literal">true</span>);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, <span class="hljs-literal">true</span>);
+        curl_setopt($ch, CURLOPT_HEADER, <span class="hljs-literal">false</span>);
+        curl_setopt($ch, CURLOPT_NOBODY, <span class="hljs-literal">true</span>);
+        curl_exec($ch);
+        <span class="hljs-keyword">continue</span>;
+    }
+
+    <span class="hljs-comment">// 发送数据给客户端</span>
+    <span class="hljs-keyword">echo</span> $data;
+    flush(); <span class="hljs-comment">// 刷新输出缓冲区</span>
+
+    <span class="hljs-comment">// 稍微延迟一下，避免过于频繁地发送数据</span>
+    usleep(<span class="hljs-number">1000</span>);
+}
+
+<span class="hljs-comment">// 关闭cURL连接（这行代码实际上永远不会被执行，因为上面的循环是无限的）</span>
+curl_close($ch);
+
+<span class="hljs-comment">/*
+在这个脚本中，我们首先设置了适当的HTTP头部，以便告诉客户端这是一个SSE流。然后，我们使用cURL来连接到SSE源，并在一个无限循环中读取数据。每次我们读取到新的数据时，就将其发送（echo）给客户端，并使用flush()来确保数据被立即发送给客户端。
+
+注意，这个脚本假设SSE源是长连接的，并且会不断地推送事件。如果SSE源在任何时候断开连接，我们的脚本将尝试重新连接。
+
+安全性注意事项：
+
+确保您的服务器环境支持长时间运行的脚本。一些服务器配置可能会限制脚本执行的时间。
+如果SSE源需要身份验证，请确保在cURL请求中包含正确的身份验证信息。
+如果SSE源的数据量很大或发送频率很高，请考虑添加适当的缓冲机制，以避免服务器过载。
+最后，请注意，此示例代码是一个简单的起点，您可能需要根据您的具体需求和环境对其进行调整和优化。
+*/</span>
+<span class="hljs-meta">?&gt;</span></span><span class="xml">
+</span></code></pre><p></p><p></p><p></p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：sse
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/413" class="imgbox">
+                <img src="/statics/blog/2023/0620/e33543851ba74c1051000cd52cf0ef85.jpg">
+            </a>
+            <a href="/blog/articles/413" class="title" title="localStorage和indexedDB">
+                localStorage和indexedDB
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/119" class="imgbox">
+                <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+            </a>
+            <a href="/blog/articles/119" class="title" title="Vue3开发一个v-loading的自定义指令">
+                Vue3开发一个v-loading的自定义指令
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/291" class="imgbox">
+                <img src="//native-res.dcloud.net.cn/images/uniapp/share/modules.png">
+            </a>
+            <a href="/blog/articles/291" class="title" title="使用uni-share插件实现APP页面分享">
+                使用uni-share插件实现APP页面分享
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/php">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/161">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        获取当前域名$_SERVER的HTTP_HOST和SERVER_NAME区别
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/568">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用PHP在接口中模拟504状态码
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/573">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        PHP开启报错调试功能displayerrors
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/269">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        php简单统计中文个数的方法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/54">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        【课堂笔记】PHP开发APP接口【单例模式】(二)
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

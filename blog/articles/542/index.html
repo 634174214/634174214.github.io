@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="python基础-函数 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>python基础-函数 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="def"/>
+<meta name="description" content="python学习笔记-基础函数"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 542,
+            article_title: 'python基础-函数',
+            article_desc: 'python学习笔记-基础函数',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal active">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" class="active">
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/python">Python</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">python基础-函数</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>6065</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>424</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2024-06-19 17:27:35</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>函数</h2><p>下面是一个最基本的函数</p><pre type="Python"><code><span class="hljs-selector-tag">def</span> <span class="hljs-selector-tag">greet</span>():
+    <span class="hljs-selector-tag">print</span>(<span class="hljs-string">'esay'</span>)
+
+<span class="hljs-selector-tag">greet</span>()</code></pre><p>再看一个例子</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">animals</span>(<span class="hljs-params">name, age</span>):</span>
+    print(<span class="hljs-string">'动物的年龄是'</span> + <span class="hljs-built_in">str</span>(age) + <span class="hljs-string">'岁，名字是'</span> + name)
+
+animals(<span class="hljs-string">'dog'</span>, <span class="hljs-number">3</span>)
+animals(age = <span class="hljs-number">5</span>, name = <span class="hljs-string">'cat'</span>)</code></pre><p>形参与实参</p><p>animals(name, age)中，name和age是形参；而animals('dog',3)中的('dog',3)是实参。</p><p>实参又可以分为位置实参和关键字实参。</p><pre type="Python"><code><span class="hljs-comment">// 位置实参</span>
+<span class="hljs-selector-tag">animals</span>(<span class="hljs-string">'dog'</span>, <span class="hljs-number">3</span>) 传入的参数顺序与形参的顺序相同
+
+<span class="hljs-comment">// 关键字实参</span>
+<span class="hljs-selector-tag">animals</span>(age = <span class="hljs-number">5</span>, name = <span class="hljs-string">'cat'</span>) 通过关键字关联实参与形参的对应，顺序不重要</code></pre><p>设置函数默认参数值</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">animals</span>(<span class="hljs-params">name, age = <span class="hljs-number">16</span></span>):</span>
+   xxx</code></pre><p>让函数返回处理结果，并给其设置默认参数</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">connect_name</span>(<span class="hljs-params">firstName, lastName, middleName = <span class="hljs-string">''</span></span>):</span>
+    <span class="hljs-keyword">if</span> middleName:
+        fullName = firstName + middleName + lastName
+    <span class="hljs-keyword">else</span>:
+        fullName = firstName + lastName
+    <span class="hljs-keyword">return</span> fullName
+
+print( connect_name(<span class="hljs-string">'wu'</span>, <span class="hljs-string">'bin'</span>) )
+print( connect_name(<span class="hljs-string">'wu'</span>, <span class="hljs-string">'tong'</span>, <span class="hljs-string">'tong'</span>) )</code></pre><p>同样的函数也能返回字典</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getDirr</span>(<span class="hljs-params">first, last</span>):</span>
+    obj = { <span class="hljs-string">'first'</span>: first, <span class="hljs-string">'last'</span>: last }
+    <span class="hljs-keyword">return</span> obj
+
+print( getDirr(<span class="hljs-string">'wu'</span>, <span class="hljs-string">'bin'</span>) )</code></pre><blockquote>注意 函数中 不能写 return obj = {'..': xxxx} 连起来写就会报错 必须像上面例子那样分行写</blockquote><p>结合while实现一个用户输入姓名，然后返回名字的功能，输入q则结束循环</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inputerYourName</span>(<span class="hljs-params">first, last</span>):</span>
+    fullName = first + <span class="hljs-string">' '</span> + last;
+    <span class="hljs-keyword">return</span> fullName.title()
+
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    print(<span class="hljs-string">'请告诉我你姓什么：'</span>)
+    print(<span class="hljs-string">'输入q会跳出循环'</span>)
+
+    fname = <span class="hljs-built_in">input</span>(<span class="hljs-string">'姓'</span>)
+    <span class="hljs-keyword">if</span> fname == <span class="hljs-string">'q'</span>:
+        <span class="hljs-keyword">break</span>
+
+    lname = <span class="hljs-built_in">input</span>(<span class="hljs-string">'名'</span>)
+    <span class="hljs-keyword">if</span> lname == <span class="hljs-string">'q'</span>:
+        <span class="hljs-keyword">break</span>
+
+full_name = inputerYourName(fname, lname)
+print(full_name)</code></pre><h2>函数中是可以修改传入的列表的</h2><blockquote>将列表传递给函数后，函数就可以对其进行修改，而且函数对这个列表所做的任何修改都是永久性的！</blockquote><p>下面看一个例子</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">print_works</span>(<span class="hljs-params">works, finishs</span>):</span>
+    <span class="hljs-comment"># 遍历数组 直到遍历完所有元素</span>
+    <span class="hljs-keyword">while</span> works:
+        <span class="hljs-comment"># 从数组末尾中取一个项 pop()会从works列表末尾移除最后一项 并返回</span>
+        currentWork = works.pop()
+        print(<span class="hljs-string">'正在做的是'</span> + currentWork)
+        finishs.append(currentWork)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show_finish</span>(<span class="hljs-params">finishs</span>):</span>
+    print(<span class="hljs-string">'以下是全部完成的工作'</span>)
+    <span class="hljs-keyword">for</span> finish <span class="hljs-keyword">in</span> finishs:
+        print(finish)
+
+works = [<span class="hljs-string">'#1工作'</span>, <span class="hljs-string">'#2work'</span>, <span class="hljs-string">'#3work'</span>, <span class="hljs-string">'#4work'</span>]
+finishs = []
+
+print_works(works, finishs)
+show_finish(finishs)</code></pre><pre type="Html"><code>正在做的是<span class="hljs-comment">#4work</span>
+正在做的是<span class="hljs-comment">#3work</span>
+正在做的是<span class="hljs-comment">#2work</span>
+正在做的是<span class="hljs-comment">#1工作</span>
+<span class="hljs-comment">-----------以下是全部完成的工作--------</span>
+<span class="hljs-comment">#4work</span>
+<span class="hljs-comment">#3work</span>
+<span class="hljs-comment">#2work</span>
+<span class="hljs-comment">#1工作</span></code></pre><blockquote>pop()会从数组中移除最后一项，并返回被移除的项，直到works为空</blockquote><p>上面就是最终运行的结果，可以发现，数组变量已经被修改了</p><p>哪怕我修改变量名，结果也是一样</p><pre type="Python"><code><span class="hljs-attribute">works_ppp</span> = [<span class="hljs-string">'#1工作'</span>, <span class="hljs-string">'#2work'</span>, <span class="hljs-string">'#3work'</span>, <span class="hljs-string">'#4work'</span>]
+finishs_ppp = []
+
+print_works(works_ppp, finishs_ppp)
+show_finish(finishs_ppp)</code></pre><p>再来看一个更好理解的例子</p><pre type="Python"><code><span class="hljs-string">def</span> <span class="hljs-string">changelist(nums):</span>
+    <span class="hljs-attr">for item in nums:</span>
+        <span class="hljs-comment"># item = item + 1 这样写不会改变传递进来的nums数组</span>
+        <span class="hljs-string">nums[item</span> <span class="hljs-bullet">-</span> <span class="hljs-number">1</span><span class="hljs-string">]</span> <span class="hljs-string">=</span> <span class="hljs-string">item</span> <span class="hljs-string">+</span> <span class="hljs-number">1</span>
+
+<span class="hljs-string">testlist</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+<span class="hljs-string">changelist(testlist)</span>
+<span class="hljs-string">print(testlist)</span></code></pre><p>最终输出的结果就是：[2, 3, 4, 5]，testlist被改变了！</p><p>但是，如果在函数中，使用单纯的赋值，是改变不了传入的列表的！</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">changelist</span>(<span class="hljs-params">nums</span>):</span>
+    newarr = []
+    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> nums:
+        item = item + <span class="hljs-number">1</span> 
+        newarr.append(item)
+    nums = newarr // 赋值会改变nums，但不会改变外部的testlist
+    print(nums)
+    print(<span class="hljs-string">'---'</span>)
+
+testlist = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+changelist(testlist)
+print(testlist)</code></pre><p>运行结果</p><pre type="Python"><code>[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+<span class="hljs-meta">---</span>
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]</code></pre><blockquote>所以结论就是，如果要在函数内部修改传入的外部列表，只有直接修改传入列表中的项才可以</blockquote><h3>禁止函数修改传入的列表</h3><p>解决这个问题很简单，只要让传入的是一个列表的副本就行</p><pre type="Html"><code><span class="hljs-selector-tag">function_name</span>(<span class="hljs-selector-tag">list_name</span><span class="hljs-selector-attr">[:]</span>)</code></pre><p>切片表示法[:] 代表创建一个列表的副本，比如上面例子中，如果不想要清空外部的工作列表works，可以像下面这样使用：</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">print_works</span>(<span class="hljs-params">works, finishs</span>):</span>
+    <span class="hljs-comment"># 遍历数组 直到遍历完所有元素</span>
+    <span class="hljs-keyword">while</span> works:
+        <span class="hljs-comment"># 从数组末尾中取一个项</span>
+        currentWork = works.pop()
+        print(<span class="hljs-string">'正在做的是'</span> + currentWork)
+        finishs.append(currentWork)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show_finish</span>(<span class="hljs-params">finishs</span>):</span>
+    print(<span class="hljs-string">'-----------以下是全部完成的工作--------'</span>)
+    <span class="hljs-keyword">for</span> finish <span class="hljs-keyword">in</span> finishs:
+        print(finish)
+
+works = [<span class="hljs-string">'#1工作'</span>, <span class="hljs-string">'#2work'</span>, <span class="hljs-string">'#3work'</span>, <span class="hljs-string">'#4work'</span>]
+finishs = []
+
+print_works(works[:], finishs)
+show_finish(finishs)
+
+print(<span class="hljs-string">'=========以下是原本works==========='</span>)
+print(works)</code></pre><p>运行结果</p><pre type="JavaScript"><code>正在做的是<span class="hljs-comment">#4work</span>
+正在做的是<span class="hljs-comment">#3work</span>
+正在做的是<span class="hljs-comment">#2work</span>
+正在做的是<span class="hljs-comment">#1工作</span>
+-----------以下是全部完成的工作-------- 
+<span class="hljs-comment">#4work</span>
+<span class="hljs-comment">#3work</span>
+<span class="hljs-comment">#2work</span>
+<span class="hljs-comment">#1工作</span>
+=========以下是原本works===========     
+[<span class="hljs-string">'#1工作'</span>, <span class="hljs-string">'#2work'</span>, <span class="hljs-string">'#3work'</span>, <span class="hljs-string">'#4work'</span>]</code></pre><p>通过传入副本，让原本的works中的数据没有被删除。没有影响外部的列表。</p><blockquote>建议：还是推荐将原始列表传递给函数，因为让函数使用现成列表可以避免花时间和内存创建副本，从而提高效率，特别是列表比较大的时候。</blockquote><h2>任意数量的实参</h2><p>当预先不知道需要接收多少实参时，使用*形参名，无论传入多少实参，都会被其接收，如下</p><pre type="Python"><code><span class="hljs-selector-tag">def</span> <span class="hljs-selector-tag">make_cook</span>(*toppings):
+    <span class="hljs-selector-tag">print</span>(toppings)
+
+<span class="hljs-selector-tag">make_cook</span>(<span class="hljs-string">'面条'</span>, <span class="hljs-string">'米饭'</span>)
+<span class="hljs-selector-tag">make_cook</span>(<span class="hljs-string">'大头菜'</span>, <span class="hljs-string">'馒头'</span>, <span class="hljs-string">'鸡肉'</span>, <span class="hljs-string">'等等更多'</span>)</code></pre><blockquote>topping可以是任意名称，*everyname</blockquote><p>最终打印结果</p><pre type="Html"><code>(<span class="hljs-string">'面条'</span>, <span class="hljs-string">'米饭'</span>)
+(<span class="hljs-string">'大头菜'</span>, <span class="hljs-string">'馒头'</span>, <span class="hljs-string">'鸡肉'</span>, <span class="hljs-string">'等等更多'</span>)</code></pre><p>形参名*topping中的*让py创建了一个名为topping的空元组，并将接收到的所有值都封装到这个元组中。</p><p>即使一个值也会如此，比如('面条')</p><p>因此接下来就可以对元组进行遍历，以处理传入的所有参数。</p><pre type="Python"><code><span class="hljs-selector-tag">def</span> <span class="hljs-selector-tag">make_cook</span>(*everyname):
+    <span class="hljs-selector-tag">print</span>(everyname)
+    <span class="hljs-selector-tag">for</span> <span class="hljs-selector-tag">name</span> <span class="hljs-selector-tag">in</span> <span class="hljs-selector-tag">everyname</span>:
+        <span class="hljs-selector-tag">print</span>(<span class="hljs-string">'='</span> + name)
+
+<span class="hljs-selector-tag">make_cook</span>(<span class="hljs-string">'面条'</span>, <span class="hljs-string">'米饭'</span>)
+<span class="hljs-selector-tag">make_cook</span>(<span class="hljs-string">'大头菜'</span>, <span class="hljs-string">'馒头'</span>, <span class="hljs-string">'鸡肉'</span>, <span class="hljs-string">'等等更多'</span>)</code></pre><p>结果</p><pre type="JavaScript"><code>(<span class="hljs-string">'面条'</span>, <span class="hljs-string">'米饭'</span>)
+=面条
+=米饭
+(<span class="hljs-string">'大头菜'</span>, <span class="hljs-string">'馒头'</span>, <span class="hljs-string">'鸡肉'</span>, <span class="hljs-string">'等等更多'</span>)
+=大头菜
+=馒头
+=鸡肉
+=等等更多</code></pre><h3>结合位置实参和任意数量实参</h3><p>注意，任意数量的形参，比如放在最后</p><pre type="Python"><code><span class="hljs-selector-tag">def</span> <span class="hljs-selector-tag">make_cook</span>(size, *everyname):
+    <span class="hljs-selector-tag">print</span>(<span class="hljs-string">'要做的菜尺寸是'</span> + str(size))
+    <span class="hljs-selector-tag">for</span> <span class="hljs-selector-tag">name</span> <span class="hljs-selector-tag">in</span> <span class="hljs-selector-tag">everyname</span>:
+        <span class="hljs-selector-tag">print</span>(<span class="hljs-string">'='</span> + name)
+
+<span class="hljs-selector-tag">make_cook</span>(<span class="hljs-number">16</span>, <span class="hljs-string">'大头菜'</span>, <span class="hljs-string">'馒头'</span>, <span class="hljs-string">'鸡肉'</span>, <span class="hljs-string">'等等更多'</span>)</code></pre><pre type="Html"><code>要做的菜尺寸是16
+=大头菜
+=馒头
+=鸡肉
+=等等更多</code></pre><p>有时候，需要接收任意数量的实参，但预先不知道传递给函数的会是什么样的信息，这时，可将函数编写成能接受任意数量的键值对。</p><p>比如，将收到用户有关信息，但不确定是什么样的信息。</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build_profile</span>(<span class="hljs-params">first, last, **user_info</span>):</span>
+    <span class="hljs-comment"># 创建一个字典</span>
+    profile = {}
+    profile[<span class="hljs-string">'first'</span>] = first
+    profile[<span class="hljs-string">'last'</span>] = last
+    <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> user_info.items():
+        profile[key] = value
+    <span class="hljs-keyword">return</span> profile
+
+user_profile = build_profile(
+    <span class="hljs-string">'wu'</span>,
+    <span class="hljs-string">'bin'</span>,
+    age = <span class="hljs-number">35</span>,
+    sex = <span class="hljs-string">'男'</span>,
+    job = <span class="hljs-string">'信网'</span>
+)
+
+print(user_profile)</code></pre><p>此函数要求提供姓名，以及允许用户根据需求提供任意数量的 名称=“值”，这样形式的键值对。</p><p>形参**user_info中的两个星号让py创建一个名为user_info的空字典，并将所有接收到的 名称=值 都封装到这个字典中，可以像访问其他字典那样访问user_info中的名称=值对。</p><p>在build_profile函数中，将固定的姓名首先加入字典，其次遍历**user_info字典中的键值对，将每个属性以及对应的值也加入到profile字典中，最后返回这个字典。</p><p>结果：{'first': 'wu', 'last': 'bin', 'age': 35, 'sex': '男', 'job': '信网'}</p><p>在实际开发中，可以混用位置实参、关键字实参、任意数量实参。</p><h2>函数存储在模块中</h2><p>函数可以存储在独立的文件中，叫做模块。</p><p>import允许当前主程序中使用模块中的代码。</p><p>在同一个目录下创建两个文件，test.py和fns.py</p><p>在fns.py中写函数：</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">funtest</span>(<span class="hljs-params">num</span>):</span>
+    print( num + <span class="hljs-number">1</span> )</code></pre><p>在test.py中</p><pre type="Python"><code><span class="hljs-keyword">import</span> fns <span class="hljs-comment"># 引入整个函数模块</span>
+<span class="hljs-comment"># 调用fns文件中的函数</span>
+fns.funtest(<span class="hljs-number">2</span>)</code></pre><p>使用import导入了名为module_name.py的整个模块，就可以使用</p><pre type="Html"><code><span class="hljs-selector-tag">module_name</span><span class="hljs-selector-class">.function_name</span>()</code></pre><p>来使用其中任何一个函数。</p><h3>导入特定的函数</h3><pre type="Html"><code><span class="hljs-keyword">from</span> module_name <span class="hljs-keyword">import</span> function_name</code></pre><p>还可以用逗号分隔函数名，从模块中导入任意数量的函数</p><pre type="Html"><code><span class="hljs-attribute">from</span> module_name import function_<span class="hljs-number">0</span>, function_<span class="hljs-number">1</span>, function_<span class="hljs-number">2</span></code></pre><p>比如，fns.py</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fun1</span>(<span class="hljs-params">num</span>):</span>
+    print( num + <span class="hljs-number">1</span> )
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fun2</span>(<span class="hljs-params">num</span>):</span>
+    print(num - <span class="hljs-number">1</span>)</code></pre><p>test.py</p><pre type="Python"><code><span class="hljs-attribute">from</span> fns import fun<span class="hljs-number">1</span>
+
+<span class="hljs-attribute">fun1</span>(<span class="hljs-number">2</span>)</code></pre><pre type="Python"><code><span class="hljs-attribute">from</span> fns import fun<span class="hljs-number">1</span>, fun<span class="hljs-number">2</span>
+
+<span class="hljs-attribute">fun1</span>(<span class="hljs-number">2</span>)
+<span class="hljs-attribute">fun2</span>(<span class="hljs-number">10</span>)</code></pre><p>使用这种形式的时候，就不用使用fns.xx了，因为都已经显示的导入了函数，所以就无需再指定其名称了。</p><h3>使用别名as</h3><p>如果导入的函数名与现有的函数名有冲突，那么就使用as起一个别名。</p><pre type="Python"><code><span class="hljs-attribute">from</span> fns import fun<span class="hljs-number">1</span> as lovew, fun<span class="hljs-number">2</span> as love
+
+<span class="hljs-attribute">lovew</span>(<span class="hljs-number">2</span>)
+<span class="hljs-attribute">love</span>(<span class="hljs-number">4</span>)</code></pre><p>使用as给模块指定别名</p><p>给模块指定别名，可以更加简短的使用模块</p><pre type="Python"><code><span class="hljs-attribute">import</span> fns as small
+
+<span class="hljs-attribute">small</span>.fun<span class="hljs-number">1</span>(<span class="hljs-number">5</span>)</code></pre><p>使用*导入模块中的所有函数</p><pre type="Python"><code><span class="hljs-keyword">from</span> fns <span class="hljs-keyword">import</span> *
+
+fun1(<span class="hljs-number">5</span>)</code></pre><p>非自己编写的模块文件，不建议这么用，因为会发生函数名冲突。</p><h2>函数名规范</h2><p>函数或者模块命名时，只在其中使用小写字母和下划线，</p><p>给形参指定默认值时，等号两边不要有空格</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function_name</span><span class="hljs-params">(param_<span class="hljs-number">0</span>, param_1=<span class="hljs-string">'default'</span>):</span></span></code></pre><p>在函数调用中的实参，也要遵守这个约定</p><pre type="Html"><code><span class="hljs-attribute">function_name</span>('<span class="hljs-number">1</span>', param_<span class="hljs-number">1</span>=<span class="hljs-number">20</span>)</code></pre><p>一般代码行长度不要超过79个字符，如果参数太长</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function_name</span>(<span class="hljs-params">
+        param1, param2,
+        param3, param4
+</span>):</span>
+         ...</code></pre><p>所有的Import都应该写在文件开头</p><p></p><p></p><p></p><p></p><p></p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：def
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/340" class="imgbox">
+                <img src="/statics/blog/2022/1209/fa4d3bfd65de4ada5f6d1e1375e872b0.png">
+            </a>
+            <a href="/blog/articles/340" class="title" title="uniapp打包APP上架相关问题【安卓】篇">
+                uniapp打包APP上架相关问题【安卓】篇
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/146" class="imgbox">
+                <img src="/statics/blog/2021/0728/528951a7001c6fa90f2b91fa706fbb0d.png">
+            </a>
+            <a href="/blog/articles/146" class="title" title="MySQL和Redis如何保证数据一致性？">
+                MySQL和Redis如何保证数据一致性？
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/328" class="imgbox">
+                <img src="/statics/blog/2022/1124/00f04e792579ed049a5bb01c4fa6eb09.png">
+            </a>
+            <a href="/blog/articles/328" class="title" title="js获取浏览器、屏幕的宽高(多浏览器)">
+                js获取浏览器、屏幕的宽高(多浏览器)
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/python">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/583">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python基础-注释
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/574">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python基础-文件和错误处理
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/535">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python基础-操作列表和迭代器
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/364">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python中如何使用pip
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/591">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        星号*运算符在python中的作用
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

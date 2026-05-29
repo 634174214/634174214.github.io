@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="python基础-下载解析JSON文件并使用pygal绘制折线图 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>python基础-下载解析JSON文件并使用pygal绘制折线图 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="json，urlopen"/>
+<meta name="description" content="从下载到解析，来看一个python解析json数据的例子。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 587,
+            article_title: 'python基础-下载解析JSON文件并使用pygal绘制折线图',
+            article_desc: '从下载到解析，来看一个python解析json数据的例子。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal active">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" class="active">
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/python">Python</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">python基础-下载解析JSON文件并使用pygal绘制折线图</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>3874</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>271</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2025-03-18 09:07:00</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>下载收盘价数据（内置urlopen）</h2><p>下面是一个下载收盘价数据的脚本：</p><pre type="Python"><code><span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> (absolute_import, division, print_function, unicode_literals)
+
+<span class="hljs-comment"># 使用try实现兼容2x和3x</span>
+<span class="hljs-keyword">try</span>:
+    <span class="hljs-comment"># python 2x版本</span>
+    <span class="hljs-keyword">from</span> urllib2 <span class="hljs-keyword">import</span> urlopen
+<span class="hljs-comment"># ImportError可以作为判断PY版本的方式</span>
+<span class="hljs-keyword">except</span> ImportError:
+    <span class="hljs-comment"># python 3x版本</span>
+    <span class="hljs-keyword">from</span> urllib.request <span class="hljs-keyword">import</span> urlopen
+
+<span class="hljs-keyword">import</span> json
+
+json_url = <span class="hljs-string">'https://raw.githubusercontent.com/muxuezi/btc/master/btc_close_2017.json'</span>
+<span class="hljs-comment"># urlopen执行后 便会向服务器发请求</span>
+response = urlopen(json_url)
+
+<span class="hljs-comment"># 读取请求到的数据</span>
+req = response.read()
+<span class="hljs-comment"># 将数据写入文件</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'btc_close_2017_urllib.json'</span>, <span class="hljs-string">'wb'</span>) <span class="hljs-keyword">as</span> f:
+    f.write(req)
+
+<span class="hljs-comment"># 加载下载的json 将文件内容转换成py能够处理的格式</span>
+file_urllib = json.loads(req)
+print(file_urllib)</code></pre><h3><b>__future__</b></h3><p>在 Python 里，<code>__future__</code>是一个内置模块，它的主要作用是让开发者在旧版本的 Python 中使用未来版本 Python 才会有的新特性。<b></b><code >__future__</code>模块来提供一个过渡机制，使得开发者可以在旧版本中提前体验和使用这些新特性。</p><h3><b>__future__常见特性及示例：</b></h3><h4><code>print_function</code></h4><p>在 Python 2 中，<code>print</code>是一个语句；而在 Python 3 中，<code>print</code>变成了一个函数。使用<code>__future__</code>模块可以在 Python 2 中使用 Python 3 的<code>print</code>函数语法。<b></b></p><pre type="Python"><code><span class="hljs-comment"># Python 2 代码示例</span>
+<span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> print_function
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'Hello, World!'</span>)</code></pre><p>在上述代码中，通过导入<code>print_function</code>，在 Python 2 里也能像 Python 3 那样使用<code>print</code>函数，需要用括号来调用。</p><h4><code>division</code></h4><div><p>Python 2 里，整数相除默认进行截断除法；Python 3 中则是真除法。借助<code>__future__</code>模块可以在 Python 2 中实现 Python 3 的真除法。</p></div><pre type="Python"><code><span class="hljs-comment"># Python 2 代码示例</span>
+<span class="hljs-attribute">from</span> __future__ import division
+<span class="hljs-attribute">result</span> = <span class="hljs-number">5</span> / <span class="hljs-number">2</span>
+<span class="hljs-attribute">print</span>(result)  # 输出 <span class="hljs-number">2</span>.<span class="hljs-number">5</span></code></pre><p>在导入<code>division</code>后，<code>5 / 2</code>的结果就不再是截断后的整数<code>2</code>，而是真除法的结果<code>2.5</code>。</p><h4><code>absolute_import</code></h4><div><p>Python 2 中默认的导入机制存在相对导入的问题，可能会优先导入当前目录下与标准库同名的模块。使用<code>absolute_import</code>可以让<code>import</code>语句默认使用绝对导入。</p></div><pre type="Python"><code><span class="hljs-comment"># Python 2 代码示例</span>
+<span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> absolute_import
+<span class="hljs-keyword">import</span> math  <span class="hljs-comment"># 会优先从标准库中导入 math 模块</span></code></pre><h4><code>unicode_literals</code></h4><p>Python 2 中字符串默认是字节串，要创建 Unicode 字符串需加<code>u</code>前缀；Python 3 中字符串默认就是 Unicode 字符串。在 Python 2 中使用<code>unicode_literals</code>可以让字符串字面量默认解释为 Unicode 字符串。</p><pre type="Python"><code><span class="hljs-comment"># Python 2 代码示例</span>
+<span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> unicode_literals
+s = <span class="hljs-string">'你好'</span>
+print(<span class="hljs-built_in">type</span>(s))  <span class="hljs-comment"># 输出 &lt;type 'unicode'&gt;</span></code></pre><h3>from__future__import</h3><p>from__future__import(absolute_import, division, print_function, unicode_literals) 解释如下：</p><p>它的作用是从<code>__future__</code>模块中导入一些特定的功能，以实现 Python 2 和 Python 3 之间的兼容性，或者在 Python 2 中提前使用 Python 3 的某些特性。</p><h3>1.<code>absolute_import</code></h3><ul><li><strong>Python 2 中的默认行为</strong>：在 Python 2 中，当你使用<code>import</code>语句导入模块时，如果当前目录下有一个与标准库模块同名的文件，Python 会优先导入当前目录下的文件，而不是标准库中的模块。这种行为被称为相对导入，可能会导致一些意外的问题。</li><li><strong><code>absolute_import</code>的作用</strong>：导入<code>absolute_import</code>后，<code>import</code>语句将默认使用绝对导入，即优先从标准库和<code>sys.path</code>中指定的路径中查找模块。如果需要使用相对导入，需要使用显式的相对导入语法（如<code>from . import module</code>）。</li><li><pre type="Python"><code><span class="hljs-comment"># Python 2 中未导入 absolute_import</span>
+<span class="hljs-comment"># 当前目录下有一个名为 math.py 的文件</span>
+<span class="hljs-keyword">import</span> math  <span class="hljs-comment"># 会优先导入当前目录下的 math.py 文件</span>
+
+<span class="hljs-comment"># 导入 absolute_import 后</span>
+<span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> absolute_import
+<span class="hljs-keyword">import</span> math  <span class="hljs-comment"># 会导入标准库中的 math 模块</span></code></pre></li></ul><h3>2.<code>division</code></h3><ul><li><strong>Python 2 中的默认行为</strong>：在 Python 2 中，整数除法（<code>/</code>）会截断结果，只保留整数部分。例如，<code>5 / 2</code>的结果是<code>2</code>，而不是<code>2.5</code>。</li><li><strong><code>division</code>的作用</strong>：导入<code>division</code>后，<code>/</code>运算符将执行真除法，即无论操作数是整数还是浮点数，都会返回一个浮点数结果。如果需要执行截断除法，可以使用<code>//</code>运算符。</li><li><pre type="Python"><code><span class="hljs-comment"># Python 2 中未导入 division</span>
+<span class="hljs-attribute">result</span> = <span class="hljs-number">5</span> / <span class="hljs-number">2</span>
+<span class="hljs-attribute">print</span>(result)  # 输出 <span class="hljs-number">2</span>
+
+<span class="hljs-comment"># 导入 division 后</span>
+<span class="hljs-attribute">from</span> __future__ import division
+<span class="hljs-attribute">result</span> = <span class="hljs-number">5</span> / <span class="hljs-number">2</span>
+<span class="hljs-attribute">print</span>(result)  # 输出 <span class="hljs-number">2</span>.<span class="hljs-number">5</span></code></pre></li></ul><h3><code>print_function</code></h3><ul><li><strong>Python 2 中的默认行为</strong>：在 Python 2 中，<code>print</code>是一个语句，而不是一个函数。你可以直接使用<code>print</code>后跟要输出的内容，中间用空格分隔，例如<code>print 'Hello, World!'</code>。</li><li><strong><code>print_function</code>的作用</strong>：导入<code>print_function</code>后，<code>print</code>变成了一个函数，需要使用括号来调用，就像 Python 3 中的用法一样。例如，<code>print('Hello, World!')</code>。</li><li><pre type="Python"><code><span class="hljs-comment"># Python 2 中未导入 print_function</span>
+<span class="hljs-built_in">print</span> <span class="hljs-string">'Hello, World!'</span>  <span class="hljs-comment"># 可以正常使用</span>
+
+<span class="hljs-comment"># 导入 print_function 后</span>
+<span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> print_function
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'Hello, World!'</span>)  <span class="hljs-comment"># 必须使用括号调用</span></code></pre></li></ul><h3>4.<code>unicode_literals</code></h3><ul><li><strong>Python 2 中的默认行为</strong>：在 Python 2 中，字符串字面量默认是字节串（<code>str</code>类型），而不是 Unicode 字符串。如果需要创建 Unicode 字符串，需要在字符串前面加上<code>u</code>前缀，例如<code>u'你好'</code>。</li><li><strong><code>unicode_literals</code>的作用</strong>：导入<code>unicode_literals</code>后，所有的字符串字面量都会被解释为 Unicode 字符串，而不需要显式地添加<code>u</code>前缀。</li><li><pre type="Python"><code><span class="hljs-comment"># Python 2 中未导入 unicode_literals</span>
+s = <span class="hljs-string">'你好'</span>  <span class="hljs-comment"># 这是一个字节串</span>
+print(<span class="hljs-built_in">type</span>(s))  <span class="hljs-comment"># 输出 &lt;type 'str'&gt;</span>
+
+<span class="hljs-comment"># 导入 unicode_literals 后</span>
+<span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> unicode_literals
+s = <span class="hljs-string">'你好'</span>  <span class="hljs-comment"># 这是一个 Unicode 字符串</span>
+print(<span class="hljs-built_in">type</span>(s))  <span class="hljs-comment"># 输出 &lt;type 'unicode'&gt;</span></code></pre></li></ul><blockquote>如果要实现2与3的兼容脚本，本例中的__future__ 是标准写法。</blockquote><h2>使用requests下载</h2><p><code>requests</code>是一个第三方库，用于发送 HTTP 请求，它并不是 Python 标准库的一部分，所以需要单独安装。</p><p>使用pip安装：</p><pre type="Python"><code><span class="hljs-attribute">pip</span> install requests</code></pre><p>先看一个错误的示例：</p><pre type="Python"><code>import requests
+json_url = <span class="hljs-string">'https://raw.githubusercontent.com/muxuezi/btc/master/btc_close_2017.json'</span>
+req = requests.<span class="hljs-keyword">get</span>(json_url)
+<span class="hljs-meta"># 将数据写入文件</span>
+<span class="hljs-function"><span class="hljs-keyword">with</span> <span class="hljs-title">open</span>(<span class="hljs-params"><span class="hljs-string">'btc_close_2017_request.json'</span>, <span class="hljs-string">'wb'</span></span>) <span class="hljs-keyword">as</span> f:
+    f.<span class="hljs-title">write</span>(<span class="hljs-params">req.text</span>)
+file_requests</span> = res.json()</code></pre><p>requests通过get向服务器发送请求，并将响应结果存在req中，req.text可以直接读取文件数据（格式是字符串）。</p><p>req.json() 可以将文件数据转换成py列表file_requests。</p><p>但是使用上面代码的这个例子，会报错：</p><pre type="Python"><code>Traceback (most recent <span class="hljs-keyword">call</span> <span class="hljs-keyword">last</span>):
+  <span class="hljs-keyword">File</span> <span class="hljs-string">"D:\python-work\py-bigdata\json_download_requests.py"</span>, line <span class="hljs-number">9</span>, <span class="hljs-keyword">in</span> &lt;<span class="hljs-keyword">module</span>&gt;
+    f.write(req.text)
+TypeError: a <span class="hljs-keyword">bytes</span>-<span class="hljs-keyword">like</span> <span class="hljs-keyword">object</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">required</span>, <span class="hljs-keyword">not</span> <span class="hljs-string">'str'</span></code></pre><p>这个错误<code>TypeError: a bytes-like object is required, not 'str'</code>是因为你以二进制写入模式（<code>'wb'</code>）打开文件，而<code>req.text</code>返回的是一个字符串（<code>str</code>类型），在二进制写入模式下，文件对象的<code>write</code>方法需要的是字节类型（<code>bytes</code>类型）的数据。</p><p>所以要解决这个问题有两种方法，分别是使用'wb'二进制打开，然后也写入二进制；再是使用文本模式打开，再写入文本。</p><h3>使用二进制模式写入</h3><p>使用 req.content 代替 req.text，<code >req.content</code>返回的是响应内容的二进制形式（<code >bytes</code>类型），适合以二进制模式写入文件。</p><pre type="Python"><code><span class="hljs-keyword">import</span> requests
+json_url = <span class="hljs-string">'https://raw.githubusercontent.com/muxuezi/btc/master/btc_close_2017.json'</span>
+req = requests.get(json_url)
+<span class="hljs-comment"># 将数据写入文件</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'btc_close_2017_request.json'</span>, <span class="hljs-string">'wb'</span>) <span class="hljs-keyword">as</span> f:
+    f.write(<b>req.content</b>)
+
+file_requests = req.json()
+print(file_requests)</code></pre><h3>以文本模式打开文件</h3><p>如果你想继续使用<code>req.text</code>，可以将文件以文本模式（<code>'w'</code>）打开，同时指定合适的编码（通常是<code>'utf-8'</code>）。</p><pre type="Html"><code><span class="hljs-keyword">import</span> requests
+json_url = <span class="hljs-string">'https://raw.githubusercontent.com/muxuezi/btc/master/btc_close_2017.json'</span>
+req = requests.get(json_url)
+<span class="hljs-comment"># 将数据写入文件</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'btc_close_2017_request.json'</span>, <span class="hljs-string"><b>'w'</b></span>, encoding=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:
+    f.write(<b>req.text</b>)
+file_requests = req.json()
+print(file_requests)</code></pre><blockquote>建议使用第一种方法，因为它能避免一些潜在的编码问题，并且对于大多数网络请求响应内容的保存来说是更安全和通用的做法。</blockquote><p>最终打印出来的列表如下所示：</p><pre type="Html"><code>[
+    {<span class="hljs-string">'date'</span>: <span class="hljs-string">'2017-01-01'</span>, <span class="hljs-string">'month'</span>: <span class="hljs-string">'01'</span>, <span class="hljs-string">'week'</span>: <span class="hljs-string">'52'</span>, <span class="hljs-string">'weekday'</span>: <span class="hljs-string">'Sunday'</span>, <span class="hljs-string">'close'</span>: <span class="hljs-string">'6928.6492'</span>}, 
+    ... 
+   {<span class="hljs-string">'date'</span>: <span class="hljs-string">'2017-12-12'</span>, <span class="hljs-string">'month'</span>: <span class="hljs-string">'12'</span>, <span class="hljs-string">'week'</span>: <span class="hljs-string">'50'</span>, <span class="hljs-string">'weekday'</span>: <span class="hljs-string">'Tuesday'</span>, <span class="hljs-string">'close'</span>: <span class="hljs-string">'113732.6745'</span>}
+]</code></pre><h2>从文件中读取并解析JSON</h2><h3>解析JSON文件为列表</h3><p>我们下载文件到本地后，就可以加载文件并解析了：</p><pre type="Html"><code>import json
+
+<span class="hljs-comment"># 将数据加载到一个列表中</span>
+filename = 'btc_close_2017_request.json'
+<span class="hljs-keyword">with</span> <span class="hljs-keyword">open</span>(filename) <span class="hljs-keyword">as</span> f:
+    btc_data = json.load(f)
+
+<span class="hljs-comment"># 打印每一天的信息  btc_dict存储字典中每个键值对</span>
+<span class="hljs-keyword">for</span> btc_dict <span class="hljs-keyword">in</span> btc_data:
+    <span class="hljs-built_in">date</span> = btc_dict[<span class="hljs-string">'date'</span>]
+    <span class="hljs-keyword">month</span> = btc_dict[<span class="hljs-string">'month'</span>]
+    <span class="hljs-keyword">week</span> = btc_dict[<span class="hljs-string">'week'</span>]
+    <span class="hljs-keyword">weekday</span> = btc_dict[<span class="hljs-string">'weekday'</span>]
+    <span class="hljs-keyword">close</span> = btc_dict[<span class="hljs-string">'close'</span>]
+    print(<span class="hljs-string">"{}月 {} 周 {}, {}, 闭市价 {} RMB"</span> . <span class="hljs-keyword">format</span>(<span class="hljs-built_in">date</span>, <span class="hljs-keyword">month</span>, <span class="hljs-keyword">week</span>, <span class="hljs-keyword">weekday</span>, <span class="hljs-keyword">close</span>))</code></pre><p>json.load(f)：将文件对象中的JSON数据解码为列表</p><p><b>format：</b>是一个强大的字符串方法，用于格式化字符串。它能把变量的值插入到字符串的特定位置，进而生成格式化的输出。</p><p>可以使用大括号<code>{}</code>当作占位符，然后按照顺序在<code>format()</code>方法中传入参数。比如，使用使用<font color="#c24f4a">位置参数</font>写法：</p><pre type="Python"><code>name = <span class="hljs-string">"Alice"</span>
+age = <span class="hljs-number">25</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"My name is {} and I am {} years old."</span>.<span class="hljs-built_in">format</span>(name, age))</code></pre><p><font color="#c24f4a">关键字参数</font>：你能够在大括号里指定关键字，然后在<code >format()</code>方法中使用关键字参数。</p><pre type="Python"><code><span class="hljs-built_in">print</span>(<span class="hljs-string">"My name is {name} and I am {age} years old."</span>.<span class="hljs-built_in">format</span>(name=<span class="hljs-string">"Bob"</span>, age=<span class="hljs-number">30</span>))</code></pre><p><font color="#c24f4a">索引参数：</font>可以在大括号中指定索引，索引从 0 开始。{charlie}对应的就是20，{0}对应的 20</p><pre type="Python"><code><span class="hljs-built_in">print</span>(<span class="hljs-string">"{1} is {0} years old."</span>.<span class="hljs-built_in">format</span>(<span class="hljs-number">20</span>, <span class="hljs-string">"Charlie"</span>)) // Charlie is 20 years old.</code></pre><p><font color="#c24f4a">结合字典使用：</font>当有字典数据时，可以利用<code >**</code>解包字典，然后通过键来引用值。</p><pre type="Python"><code>person = {<span class="hljs-string">'name'</span>: <span class="hljs-string">'David'</span>, <span class="hljs-string">'age'</span>: <span class="hljs-number">35</span>}
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"My name is {name} and I am {age} years old."</span>.<span class="hljs-built_in">format</span>(**person)) // My name is David and I am 35 years old.</code></pre><p>自 Python 3.6 起，还引入了 f - 字符串（f - strings），在字符串前加<code>f</code>或<code>F</code>，然后在字符串里使用<code>{}</code>包裹变量名，Python 会自动把变量的值插入到对应的位置。format的简单写法：</p><pre type="Python"><code>name = <span class="hljs-string">"Eve"</span>
+age = <span class="hljs-number">40</span>
+print(<span class="hljs-string"><b><font color="#1c487f">f</font></b>"My name is <span class="hljs-subst">{name}</span> and I am <span class="hljs-subst">{age}</span> years old."</span>)
+<span class="hljs-comment"># 与下面等价</span>
+print(<span class="hljs-string">"My name is {name} and I am {age} years old."</span> . <span class="hljs-built_in">format</span>(name=name, age=age))
+print(<span class="hljs-string">"My name is {} and I am {} years old."</span> . <span class="hljs-built_in">format</span>(name, age))</code></pre><p>另外format还可以：</p><ul><li>格式化数字，例如指定小数位数。</li></ul><pre type="Python"><code><span class="hljs-built_in">pi</span> = <span class="hljs-number">3.1415926</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"The value of pi is {:.2f}"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">pi</span>))</code></pre><ul><li>填充和对齐，用<code >:</code>来指定填充字符、对齐方式和宽度。</li></ul><pre type="Python"><code><span class="hljs-comment"># 左对齐</span>
+print(<span class="hljs-string">"{:&lt;10}"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">"left"</span>))
+<span class="hljs-comment"># 右对齐</span>
+print(<span class="hljs-string">"{:&gt;10}"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">"right"</span>))
+<span class="hljs-comment"># 居中对齐</span>
+print(<span class="hljs-string">"{:^10}"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">"center"</span>))</code></pre><ul><li>千位分隔符：在格式化数字时，可以使用逗号作为千位分隔符。</li></ul><div></div><pre type="Python"><code>number = <span class="hljs-number">1234567</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"{:,}"</span>.<span class="hljs-built_in">format</span>(number))</code></pre><h3>将字符串转换为整数</h3><p>为了使用pygal将数据生成图表，需要对一些字段的值转换为整数：</p><pre type="Html"><code><span class="hljs-attr">month</span> = int(btc_dict[<span class="hljs-string">'month'</span>])
+<span class="hljs-attr">week</span> = int(btc_dict[<span class="hljs-string">'week'</span>])
+<span class="hljs-attr">close</span> = int(btc_dict[<span class="hljs-string">'close'</span>]) // 这里报错了</code></pre><p>修改后发现报错了：</p><pre type="Python"><code>Traceback (most recent <span class="hljs-keyword">call</span> <span class="hljs-keyword">last</span>):
+  <span class="hljs-keyword">File</span> <span class="hljs-string">"D:\python-work\py-bigdata\btc_close_2017.py"</span>, line <span class="hljs-number">25</span>, <span class="hljs-keyword">in</span> &lt;<span class="hljs-keyword">module</span>&gt;
+    <span class="hljs-keyword">close</span> = <span class="hljs-built_in">int</span>(btc_dict[<span class="hljs-string">'close'</span>])
+            ^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal <span class="hljs-keyword">for</span> <span class="hljs-built_in">int</span>() <span class="hljs-keyword">with</span> base <span class="hljs-number">10</span>: <span class="hljs-string">'6928.6492'</span></code></pre><p>原因在于：通常原始数据格式经常不统一，<b>这里原因是py不能直接将包含小数点的字符串‘6928.6942’转换为整数，<font color="#c24f4a">所以需要先将字符串转换为浮点数(float)，再将浮点数转换为整数。</font></b></p><pre type="Python"><code>close = <span class="hljs-built_in">int</span>( <span class="hljs-built_in">float</span>(btc_dict[<span class="hljs-string">'close'</span>]) )</code></pre><p>这里先用float将字符串转换为小鼠，再用int去掉小数（截取取整），返回整数部分。</p><h2>使用pygal绘制折线图</h2><pre type="Python"><code>import json
+import pygal
+
+filename = 'btc_close_2017_request.json'
+<span class="hljs-keyword">with</span> <span class="hljs-keyword">open</span>(filename) <span class="hljs-keyword">as</span> f:
+    btc_data = json.load(f)
+
+dates, <span class="hljs-keyword">months</span>, weeks, weekdays, closes = [], [], [], [], []
+
+<span class="hljs-keyword">for</span> btc_dict <span class="hljs-keyword">in</span> btc_data:
+    <span class="hljs-built_in">date</span> = btc_dict[<span class="hljs-string">'date'</span>]
+    <span class="hljs-keyword">month</span> = <span class="hljs-built_in">int</span>(btc_dict[<span class="hljs-string">'month'</span>])
+    <span class="hljs-keyword">week</span> = <span class="hljs-built_in">int</span>(btc_dict[<span class="hljs-string">'week'</span>])
+    <span class="hljs-keyword">weekday</span> = btc_dict[<span class="hljs-string">'weekday'</span>]
+    <span class="hljs-keyword">close</span> = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">float</span>(btc_dict[<span class="hljs-string">'close'</span>]))
+
+    dates.append(<span class="hljs-built_in">date</span>)
+    months.append(<span class="hljs-keyword">month</span>)
+    weeks.append(<span class="hljs-keyword">week</span>)
+    weekdays.append(<span class="hljs-keyword">weekday</span>)
+    closes.append(<span class="hljs-keyword">close</span>)
+
+<span class="hljs-comment"># pygal.Line 创建pygal折线图 并设置配置项</span>
+<span class="hljs-comment"># x_label_rotation = 20让X轴上的日期标签顺时针旋转20度</span>
+<span class="hljs-comment"># show_minor_x_labels=False 告诉图形不用显示所有x轴标签</span>
+line_chart = pygal.Line(x_label_rotation = <span class="hljs-number">20</span>, show_minor_x_labels=<span class="hljs-literal">False</span>)
+line_chart.title = <span class="hljs-string">'收盘价'</span>
+line_chart.x_labels = dates
+<span class="hljs-comment"># X轴每个20天显示一次</span>
+N = <span class="hljs-number">20</span> 
+<span class="hljs-comment"># x_labels_major属性：</span>
+<span class="hljs-comment"># dates[::20]让x轴坐标从0开始切片直到dates数组末尾，步长为20（每隔20天显示一次) import json</span>
+<span class="hljs-keyword">import</span> pygal
+
+<span class="hljs-comment"># 将数据加载到一个列表中</span>
+filename = <span class="hljs-string">'btc_close_2017_request.json'</span>
+<span class="hljs-keyword">with</span> <span class="hljs-keyword">open</span>(filename) <span class="hljs-keyword">as</span> f:
+    btc_data = json.load(f)
+
+dates, <span class="hljs-keyword">months</span>, weeks, weekdays, closes = [], [], [], [], []
+
+<span class="hljs-comment"># 打印每一天的信息  btc_dict存储字典中每个键值对</span>
+<span class="hljs-keyword">for</span> btc_dict <span class="hljs-keyword">in</span> btc_data:
+    <span class="hljs-built_in">date</span> = btc_dict[<span class="hljs-string">'date'</span>]
+    <span class="hljs-keyword">month</span> = <span class="hljs-built_in">int</span>(btc_dict[<span class="hljs-string">'month'</span>])
+    <span class="hljs-keyword">week</span> = <span class="hljs-built_in">int</span>(btc_dict[<span class="hljs-string">'week'</span>])
+    <span class="hljs-keyword">weekday</span> = btc_dict[<span class="hljs-string">'weekday'</span>]
+    <span class="hljs-keyword">close</span> = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">float</span>(btc_dict[<span class="hljs-string">'close'</span>]))
+
+    dates.append(<span class="hljs-built_in">date</span>)
+    months.append(<span class="hljs-keyword">month</span>)
+    weeks.append(<span class="hljs-keyword">week</span>)
+    weekdays.append(<span class="hljs-keyword">weekday</span>)
+    closes.append(<span class="hljs-keyword">close</span>)
+
+<span class="hljs-comment"># pygal.Line 创建pygal折线图 并设置配置项</span>
+<span class="hljs-comment"># x_label_rotation = 20让X轴上的日期标签顺时针旋转20度</span>
+<span class="hljs-comment"># show_minor_x_labels=False 告诉图形不用显示所有x轴标签</span>
+line_chart = pygal.Line(x_label_rotation = <span class="hljs-number">20</span>, show_minor_x_labels=<span class="hljs-literal">False</span>)
+line_chart.title = <span class="hljs-string">'收盘价'</span>
+line_chart.x_labels = dates
+<span class="hljs-comment"># X轴每个20天显示一次</span>
+N = <span class="hljs-number">20</span> 
+<span class="hljs-comment"># x_labels_major属性：让x轴坐标从0开始切片直到dates数组末尾，切片步长为20（每隔20天显示一次)，避免x轴太拥挤</span>
+line_chart.x_labels_major = dates[::N]
+line_chart.add(<span class="hljs-string">'收盘价'</span>, closes)
+line_chart.render_to_file(<span class="hljs-string">'收盘价折线图.svg'</span>)
+line_chart.x_labels_major = dates[::N]
+line_chart.add(<span class="hljs-string">'收盘价'</span>, closes) // 添加数据
+line_chart.render_to_file(<span class="hljs-string">'收盘价折线图.svg'</span>)</code></pre><p>line_chart.x_labels_major：是设置主标签，用于设置折线图中 x 轴上主标签的显示。在某些情况下，x 轴上的标签可能会很多，全部显示可能会让图表显得杂乱，此时你可以通过设置 x_labels_major 来指定只显示一部分重要的标签。</p><p>比如：</p><pre type="Python"><code><span class="hljs-comment"># 创建一个折线图对象</span>
+<span class="hljs-attr">line_chart</span> = pygal.Line()
+
+<span class="hljs-comment"># 设置 x 轴标签</span>
+<span class="hljs-attr">line_chart.x_labels</span> = map(str, range(<span class="hljs-number">2000</span>, <span class="hljs-number">2025</span>))
+
+<span class="hljs-comment"># 设置主标签</span>
+<span class="hljs-attr">line_chart.x_labels_major</span> = [<span class="hljs-string">'2000'</span>, <span class="hljs-string">'2010'</span>, <span class="hljs-string">'2020'</span>]</code></pre><p><code>line_chart.x_labels_major = ['2000', '2010', '2020']</code>指定了只显示 2000、2010 和 2020 这三个主标签。</p><h3>时间序列特征</h3><p>要验证周期性假设，就要将非线性的趋势消除，对数变换时常用的处理方法。这里使用PY标准库中的数学模块math来解决。这里用以10为底的对数函数math.log10计算收盘价，日期仍然不变，这种方式称为半对数变换。</p><pre type="Python"><code>import <span class="hljs-built_in">math</span>
+
+# 跳过相同代码
+close_log = [<span class="hljs-built_in">math</span>.<span class="hljs-built_in">log10</span>(_) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> closes]
+line_chart.add(<span class="hljs-string">'log收盘价'</span>, close_log)
+line_chart.render_to_file(<span class="hljs-string">'收盘价对数变换折线图.svg'</span>)</code></pre><p><b>close_log = [math.log10(<font color="#c24f4a">_</font>) for <font color="#c24f4a">_</font> incloses]：</b></p><ul><li>这是一个列表推导式。列表推导式是一种简洁的语法，用于从现有的可迭代对象（如列表、元组等）创建新的列表。</li><li>这里的下划线 _ 是一个临时变量名，在 Python 中，下划线常被用作一个 “一次性” 的变量名，表明该变量在代码后续部分不会再被使用。它的作用是遍历 closes 中的每个元素。 这里的_是遍历的closes列表中的每一项，同时将当前遍历的项_ 传入math.log10( 参数，这里传入的参数就是 临时变量_ ) 中</li><li>math.log10(_) 计算该临时变量元素以 10 为底的对数, 最终将所有计算得到的对数值存储在一个新的列表 close_log 中。</li><li>关于math.log10()的运算，如果 closes = [10, 100, 1000] ，那么 close_log 将是 [1.0, 2.0, 3.0] ，因为 math.log10(10) 等于 1.0 ，math.log10(100) 等于 2.0 ，math.log10(1000) 等于 3.0 。</li><li>import math ：这是导入 Python 的标准库 math ，该库提供了许多数学函数，例如常见的三角函数、对数函数等。</li></ul><div></div><h2>完整的代码及注释</h2><p>完整代码中，使用pygal绘制svg的矢量图表，并最终将所有图表放到了一个仪表盘中。其中包含了很多关于列表操作的库、列表推导式等相关知识点，建议仔细看。</p><p>下面代码，可以配合 这篇文章&nbsp;<a href="/blog/articles/535" target="_blank">《PY基础操作-操作列表和迭代器》</a>进行阅读</p><pre type="Python"><code><span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> pygal
+<span class="hljs-keyword">import</span> math
+
+<span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> groupby, tee
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">draw_line</span>(<span class="hljs-params">x_data, y_data, title, y_legend</span>):</span>
+    <span class="hljs-comment"># 创建一个空列表，用于存储分组后计算得到的 x 值和对应的 y 均值</span>
+    xy_map = []
+    
+    zipedXy = <span class="hljs-built_in">zip</span>(x_data, y_data);
+    <span class="hljs-comment"># print(list(zipedXy))</span>
+    <span class="hljs-comment"># [(1, 6928), (1, 7070), (1, 7175),... (11, 64890), (11, 65583)]</span>
+
+    <span class="hljs-comment"># 对得到的元组进行排序-升序 先按照第一位进行排序 再按照第二位排</span>
+    sortedList = <span class="hljs-built_in">sorted</span>(zipedXy)
+    <span class="hljs-comment"># print(list(sortedList))</span>
+    <span class="hljs-comment"># [(1, 5383), (1, 5566), (1, 5648),... (2, 8206), (3, 6437),.. (9, 28208),.. (11, 65458), (11, 65583)]</span>
+
+    <span class="hljs-comment"># 使用 zip 函数将 x_data 和 y_data 打包成元组对，再对这些元组对进行排序，</span>
+    <span class="hljs-comment"># 最后使用 groupby 函数根据 x 值进行分组</span>
+    <span class="hljs-comment"># for x,y in groupby( sorted( zip(x_data, y_data) ), key=lambda _:_[0] ):</span>
+    <span class="hljs-keyword">for</span> x,y <span class="hljs-keyword">in</span> groupby( sortedList, key=<span class="hljs-keyword">lambda</span> _:_[<span class="hljs-number">0</span>] ):
+
+        <span class="hljs-comment"># x就是lambda匿名函数执行结果，返回 每个元组中的第一个值</span>
+        <span class="hljs-comment"># print('依据分组的x', x);</span>
+        <span class="hljs-comment"># y就是根据返回的值(迭代器)，进行分组的结果</span>
+        <span class="hljs-comment"># 这里直接list(y) 会将迭代器转换成列表，那么迭代器就会被耗尽 后续就无法使用它了。</span>
+        <span class="hljs-comment"># 如果想打印 y 的副本，同时又不影响后续操作，可借助 itertools.tee 函数创建迭代器的副本。</span>
+        <span class="hljs-comment"># tee 函数返回的是一个包含多个迭代器的元组，而非迭代器的副本内容。要打印副本内容，</span>
+        <span class="hljs-comment"># 需要对 tee 返回的迭代器进行解包，然后将其中一个迭代器转换为列表来打印。</span>
+        <span class="hljs-comment"># y_copy, y_original = tee(y) 把 tee 返回的元组解包成两个迭代器，y_copy 用于打印，y_original 用于后续操作。</span>
+        <span class="hljs-comment"># 创建迭代器的副本</span>
+        y_copy, y_original = tee(y)
+        <span class="hljs-comment"># print('分组的结果y', list(y_copy))</span>
+        <span class="hljs-string">"""
+        ( 结果均为部分示例，实际是1~11 )
+        依据分组的x 1
+        分组的结果y [(1, 5383), (1, 5566), ...(1, 7175), (1, 7835)]
+        依据分组的x 3
+        分组的结果y [(3, 6437), (3, 6623), ... (3, 8832), (3, 8900)]
+        依据分组的x 8
+        分组的结果y [(8, 18305), (8, 18376), ...(8, 30656), (8, 31391)]
+        依据分组的x 11
+        分组的结果y [(11, 38904), (11, 42085), ...(11, 65458), (11, 65583)]
+        """</span>
+        <span class="hljs-comment"># 从每个分组的结果y(迭代器) 进行解包， _对应 [0],v对应[1]，以(11, 65583)为例，_对应11，v对应65583</span>
+        y_list = [v <span class="hljs-keyword">for</span> _, v <span class="hljs-keyword">in</span> y_original]
+        <span class="hljs-string">"""
+        print(y_list)
+        [5383, 5566, ...7175, 7835] // 1
+        [6437, 6623, ... 8832, 8900] // 3
+        [18305, 18376, ... 30656, 31391] // 8
+        [38904, 42085, ... 65458, 65583] // 11
+        """</span>
+        xy_map.append([x, <span class="hljs-built_in">sum</span>(y_list) / <span class="hljs-built_in">len</span>(y_list)])
+
+   
+    <span class="hljs-string">"""
+     print(list(xy_map))
+    [[1, 6285.870967741936],.. [3, 7789.032258064516],... [8, 26092.645161290322], ..., [11, 51436.166666666664]]
+    """</span>
+
+    <span class="hljs-string">"""
+    x_unique, y_mean = [*zip(*xy_map)]
+    首先来看 zip(*xy_map) 这部分，zip 函数的作用是将多个可迭代对象的对应元素打包成元组。
+    而 * 作为解包运算符，*xy_map 会把 xy_map 这个列表里的元素解包。
+    例如 xy_map = [[1, 6285.87], [2, 7789.03], ...]，
+    *xy_map 就相当于把列表里的子列表依次取出，即 [1, 6285.87], [2, 7789.03], ...。
+    接着 zip(*xy_map) 会把这些子列表对应位置的元素组合成元组，最终返回一个由元组构成的迭代器，
+    这里第一个元组包含所有的 x 值，第二个元组包含所有的 y 均值。
+    后 [*zip(*xy_map)] 中的 * 又对 zip(*xy_map) 返回的迭代器进行解包，把这些元组放到一个列表里，
+    最终得到一个包含两个元组的列表，分别对应 x 唯一值和 y 均值。
+    下面是以拆解的步骤实现的
+    """</span>
+    
+
+    <span class="hljs-comment"># *是实现解包的操作, 将*xy_map 中的子列表依次取出，zip再将这些子列表对应位置的元素组合成元组，</span>
+    <span class="hljs-comment"># 即0索引跟0索引拼成组，1索引跟1索引拼成组，最终返回由元组构成的迭代器</span>
+    <span class="hljs-comment"># 第一个元组包含所有的x值，第二个元组包含所有的y值</span>
+    xymap_unzipped = <span class="hljs-built_in">zip</span>(*xy_map)
+    
+    <span class="hljs-string">"""
+    不解包 结果保存在一个迭代器中
+    print(list(xymap_unzipped))
+    [(1, .., 3, ..., 8, ... 11), (6285.870967741936, .., 7789.032258064516, ... 26092.645161290322, ... 51436.166666666664)]
+
+    x_unzipped, y_unzippen = zip(*xy_map) 解包 结果分别存储
+    # (1, .., 3, ..., 8, ... 11)
+    #  (6285.870967741936, .., 7789.032258064516, ... 26092.645161290322, ... 51436.166666666664)
+    """</span>
+    <span class="hljs-comment"># 又对这个迭代器进行解包，拆成两项， 将这些元组放到一个列表里，最终得到一个包含两个元组的列表</span>
+    x_unique, y_mean = [*xymap_unzipped]
+    <span class="hljs-string">"""
+    [*xymap_unzipped] 形成的列表
+    [(1, .. 3, .. 8, .. 11), (6285.870967741936,.., 7789.032258064516,..., 26092.645161290322, ..., 51436.166666666664)]
+    因为在py中，当有一个可迭代对象，并知晓该可迭代对象元素数量时候，
+    就可以用解包赋值将可迭代对象中的元素分别赋值给不同变量
+    所以使用两个变量分别接收 对列表解包的两个元组
+    """</span>
+    <span class="hljs-string">"""
+    最终解包得到的两个元组
+    print(x_unique, y_mean)
+    (1, ..., 3, ..., 8, ..., 11) (6285.870967741936, .., 7789.032258064516,..., 26092.645161290322, ..., 51436.166666666664)
+    """</span>
+
+    
+    line_chart = pygal.Line()
+    line_chart.title = title
+    line_chart.x_labels = x_unique
+    line_chart.add(y_legend, y_mean)
+    line_chart.render_to_file(title+<span class="hljs-string">'.svg'</span>)
+    <span class="hljs-keyword">return</span> line_chart
+
+
+filename = <span class="hljs-string">'btc_close_2017_request.json'</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(filename) <span class="hljs-keyword">as</span> f:
+    btc_data = json.load(f)
+
+dates, months, weeks, weekdays, closes = [], [], [], [], []
+
+<span class="hljs-comment"># 打印每一天的信息  btc_dict存储字典中每个键值对</span>
+<span class="hljs-keyword">for</span> btc_dict <span class="hljs-keyword">in</span> btc_data:
+    date = btc_dict[<span class="hljs-string">'date'</span>]
+    month = <span class="hljs-built_in">int</span>(btc_dict[<span class="hljs-string">'month'</span>])
+    week = <span class="hljs-built_in">int</span>(btc_dict[<span class="hljs-string">'week'</span>])
+    weekday = btc_dict[<span class="hljs-string">'weekday'</span>]
+    <span class="hljs-comment"># 原始数据格式经常不统一，这里原因是py不能直接将包含小数点的字符串‘6928.6942’转换为整数</span>
+    <span class="hljs-comment"># 所以需要先将字符串转换为浮点数(float)，再将浮点数转换为整数</span>
+    close = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">float</span>(btc_dict[<span class="hljs-string">'close'</span>]))
+    <span class="hljs-comment"># print("{}月 {} 周 {}, {}, 闭市价 {} RMB" . format(date, month, week, weekday, close))</span>
+
+    dates.append(date)
+    months.append(month)
+    weeks.append(week)
+    weekdays.append(weekday)
+    closes.append(close)
+
+<span class="hljs-comment"># 从日期中找到2017-12-01这一天的索引 得到334 即334对应的是2017-12-01</span>
+idx_month = dates.index(<span class="hljs-string">'2017-12-01'</span>)
+line_chart_month = draw_line(
+    <span class="hljs-comment"># 按照索引 对months进行切片 [start:stop:step] 截取从0到idx_month -1</span>
+    <span class="hljs-comment"># （索引0~333，对应的截止日期是2017-11-31） 之间的所有数据</span>
+    months[:idx_month],
+    closes[:idx_month],
+    <span class="hljs-string">'收盘价日均值'</span>,
+    <span class="hljs-string">'月日均值'</span>
+)
+<span class="hljs-comment"># line_chart_month</span>
+
+idx_week = dates.index(<span class="hljs-string">'2017-12-11'</span>)
+<span class="hljs-comment"># print( weekdays[1:idx_week] )</span>
+<span class="hljs-comment"># ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', ...]</span>
+wd = [<span class="hljs-string">'Monday'</span>, <span class="hljs-string">'Tuesday'</span>, <span class="hljs-string">'Wednesday'</span>, <span class="hljs-string">'Thursday'</span>, <span class="hljs-string">'Friday'</span>, <span class="hljs-string">'Saturday'</span>, <span class="hljs-string">'Sunday'</span>]
+<span class="hljs-comment"># 找到weekdays中的 星期几英文，并找出在wd数组中的索引 再+1</span>
+weekdays_int = [ wd.index(w) + <span class="hljs-number">1</span> <span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> weekdays[<span class="hljs-number">1</span>:idx_week] ]
+line_chart_week = draw_line(
+    weekdays_int,
+    closes[<span class="hljs-number">1</span>: idx_week],
+    <span class="hljs-string">'收盘价星期均值'</span>,
+    <span class="hljs-string">'星期均值'</span>
+)
+line_chart_week.x_labels = [<span class="hljs-string">'周一'</span>,<span class="hljs-string">'周二'</span>,<span class="hljs-string">'周三'</span>,<span class="hljs-string">'周四'</span>,<span class="hljs-string">'周五'</span>,<span class="hljs-string">'周六'</span>,<span class="hljs-string">'周日'</span>]
+line_chart_week.render_to_file(<span class="hljs-string">'收盘价星期均值.svg'</span>)
+
+<span class="hljs-comment"># 绘制数据仪表盘 将所有图表都放一起</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'收盘价仪表盘.html'</span>, <span class="hljs-string">'w'</span>, encoding=<span class="hljs-string">'utf8'</span>) <span class="hljs-keyword">as</span> html_file:
+    html_file.write(<span class="hljs-string">'&lt;html&lt;head&gt;&lt;title&gt;收盘价仪表盘&lt;/title&gt;&lt;meta charset=utf-8&gt;&lt;/head&gt;&lt;body&gt;\n'</span>)
+    svgs_arr = [
+        <span class="hljs-string">'收盘价折线图.svg'</span>,
+        <span class="hljs-string">'收盘价对数变换折线图.svg'</span>,
+        <span class="hljs-string">'收盘价日均值.svg'</span>,
+        <span class="hljs-string">'收盘价周日均值.svg'</span>,
+        <span class="hljs-string">'收盘价星期均值.svg'</span>
+    ]
+    <span class="hljs-comment"># 因为svg是矢量图 可以缩放并且不失真</span>
+    <span class="hljs-keyword">for</span> svg <span class="hljs-keyword">in</span> svgs_arr:
+        html_file.write(<span class="hljs-string">'&lt;object type="image/svg+xml" data="{0}" height=500&gt;&lt;/object&gt;\n'</span>.<span class="hljs-built_in">format</span>(svg))
+    html_file.write(<span class="hljs-string">'&lt;/body&gt;&lt;/html&gt;'</span>)</code></pre><p>网上有很多免费的JSON格式数据：比如：</p><p>open knowledge&nbsp;&nbsp;<a href="https://okfn.org/en/" target="_blank">https://okfn.org/en/</a></p><p>还有很多第三方数据分析的库，除了matplotlib，还有：</p><p>科学计算工具包 Numpy&nbsp;<a href="https://numpy.org/" target="_blank">https://numpy.org/</a></p><p>scipy&nbsp;&nbsp;<a href="https://scipy.org/" target="_blank">https://scipy.org/</a></p><p>快速数据分析工具 pandas&nbsp;<a href="https://pandas.pydata.org/" target="_blank">https://pandas.pydata.org/</a></p><p>机器学习工具 scikit-learn&nbsp;<a href="https://scikit-learn.org/" target="_blank">https://scikit-learn.org/</a></p><p>深度学习 Keras&nbsp;<a href="https://keras.io/" target="_blank">https://keras.io/</a></p><p>比如这个案例可以用pandas读取JSON文件数据，并进行格式转换和数据聚合，时间序列分析，并结合scikit-learn对收盘价进行回归分析与预测。</p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：json，urlopen
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/495" class="imgbox">
+                <img src="/statics/blog/2024/0408/1747785422f94bcc3d4cdb294609e9a0.jpg">
+            </a>
+            <a href="/blog/articles/495" class="title" title="在vue3中使用fabricjs导致图形无法缩放的问题解决">
+                在vue3中使用fabricjs导致图形无法缩放的问题解决
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/436" class="imgbox">
+                <img src="/statics/blog/2023/0821/2be25e89dd125f199f8809862e86fdea.jpg">
+            </a>
+            <a href="/blog/articles/436" class="title" title="vue-cli+router实现异步组件配合路由进行性能优化">
+                vue-cli+router实现异步组件配合路由进行性能优化
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/80" class="imgbox">
+                <img src="/statics/blog/2021/0607/8689f61084c7693639b4a4ae09eb99e7.jpg">
+            </a>
+            <a href="/blog/articles/80" class="title" title="Vue3.0基础项目的创建【配合gitee】">
+                Vue3.0基础项目的创建【配合gitee】
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/python">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/591">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        星号*运算符在python中的作用
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/577">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python基础-pip命令行注解
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/581">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python中的matplotlib库的基本使用
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/586">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python中的csv+matp的使用案例
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/550">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python基础-类和import
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

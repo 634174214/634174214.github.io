@@ -1,0 +1,1067 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="python基础-操作列表和迭代器 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>python基础-操作列表和迭代器 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="python列表"/>
+<meta name="description" content="python基础笔记-操作列表和迭代器的相关方法"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 535,
+            article_title: 'python基础-操作列表和迭代器',
+            article_desc: 'python基础笔记-操作列表和迭代器的相关方法',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal active">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" class="active">
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/python">Python</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">python基础-操作列表和迭代器</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                            <span class="isrecommend">
+                                <i class="icon fa fa-star"></i>
+                                <em>推荐</em>
+                            </span>
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>7611</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>236</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2024-06-13 13:26:27</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>数组基本操作</h2><h3>定义多个空列表</h3><pre type="Python"><code><span class="hljs-attribute">dates</span>, highs, lows =<span class="hljs-meta"> [], [], []</span></code></pre><h3>创建数组并执行循环</h3><pre type="Python"><code>arr = [<span class="hljs-string">'wu'</span>, <span class="hljs-string">'bin'</span>, <span class="hljs-string">'work'</span>]
+
+<span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> arr:
+    <span class="hljs-built_in">print</span>(item)</code></pre><h3>range</h3><p>range(min默认0, max必须指定，step默认1)</p><pre type="Python"><code><span class="hljs-comment"># range() 函数示例</span>
+<span class="hljs-attribute">for</span> i in range(<span class="hljs-number">5</span>):  # 相当于 range(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>)
+    <span class="hljs-attribute">print</span>(i)  # 输出 <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre><p>创建数字数组range</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">for</span> <span class="hljs-keyword">value</span> <span class="hljs-keyword">in</span> <span class="hljs-title">range</span>(<span class="hljs-params"><span class="hljs-number">1</span>, <span class="hljs-number">10</span></span>):
+    <span class="hljs-title">print</span>(<span class="hljs-params"><span class="hljs-keyword">value</span></span>)</span>;</code></pre><blockquote>注意这里生成的数字是1-9，没有10</blockquote><p><b><font color="#c24f4a">特别注意：</font></b></p><pre type="Python"><code>print( <font color="#c24f4a"><span class="hljs-built_in">list</span>(</font> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>) <font color="#c24f4a">)</font> );</code></pre><p>这里生成的结果是：[1, 2, 3, 4, 5]，如果要生成1-6，那么：</p><pre type="Python"><code><span class="hljs-attribute">print</span>( list( range(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>+<span class="hljs-number">1</span>) ) );</code></pre><blockquote>所以要谨记，使用range(min, max)生成数值的时候，如果要包含max,就必须给max + 1</blockquote><p>如果要将创建的数字转化为数字列表（数组）</p><pre type="Python"><code>number=<span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>))
+print(number)</code></pre><p>输出：[1,2,3,4,5]</p><p>range第三个参数还可以指定步长</p><pre type="Python"><code><span class="hljs-string">range(2,</span> <span class="hljs-number">11</span><span class="hljs-string">,</span> <span class="hljs-number">2</span><span class="hljs-string">)</span> <span class="hljs-string">//</span> [<span class="hljs-number">2</span>, , <span class="hljs-number">6</span>, <span class="hljs-number">8</span>, <span class="hljs-number">10</span>]</code></pre><blockquote>在python中，**表示乘方，number**2，表示Number二次方，2**3，表示2的立方</blockquote><pre type="Html"><code><span class="hljs-attr">arr</span> = <span class="hljs-string">[]</span>
+<span class="hljs-attr">for</span> <span class="hljs-string">item in arr:</span>
+   <span class="hljs-attr">val</span> = <span class="hljs-string">item**2</span>
+   <span class="hljs-attr">arr.append(val)</span></code></pre><p>当然也有简便的方法</p><pre type="Python"><code><span class="hljs-attribute">for</span> item in arr:
+   <span class="hljs-attribute">arr</span>.append( item**<span class="hljs-number">2</span> )</code></pre><p>还可以求数组中最大值、最小值、数字和</p><pre type="Python"><code><span class="hljs-string">arr</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+<span class="hljs-string">min(arr)</span>
+<span class="hljs-string">max(arr)</span>
+<span class="hljs-string">sum(arr)</span></code></pre><h3>列表解析（<b >列表推导式</b><span >）</span></h3><div><pre type="Python"><code>[表达式 for 变量 in 可迭代对象 if 条件]</code></pre></div><p>同<b>列表推导式。本页可搜：</b><b>列表推导式</b><b>。</b></p><pre type="Python"><code>arrs = [<span class="hljs-keyword">value</span>**<span class="hljs-number">2</span> <span class="hljs-function"><span class="hljs-keyword">for</span> <span class="hljs-keyword">value</span> <span class="hljs-keyword">in</span> <span class="hljs-title">range</span>(<span class="hljs-params"><span class="hljs-number">1</span>, <span class="hljs-number">11</span></span>)]
+<span class="hljs-title">print</span>(<span class="hljs-params">arrs</span>)</span>;</code></pre><p>value**2是表达式，代表平方，比如：</p><pre type="Python"><code><span class="hljs-keyword">value</span> = <span class="hljs-number">3</span> 
+<span class="hljs-keyword">value</span> = <span class="hljs-keyword">value</span>**<span class="hljs-number">2</span>
+print(<span class="hljs-keyword">value</span>) <span class="hljs-comment">// 9</span></code></pre><p>for value in range(1,11)：for循环为表达式提供值</p><p>最终arrs输出：[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</p><p>其他例子：</p><pre type="Python"><code><span class="hljs-comment"># 生成一个包含 0 到 9 中偶数的平方的列表</span>
+even_squares = [x**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">if</span> x % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>]
+print(even_squares)</code></pre><pre type="Python"><code><span class="hljs-comment"># 从一个字符串列表中筛选出长度大于 3 的字符串</span>
+words = [<span class="hljs-string">"apple"</span>, <span class="hljs-string">"cat"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"dog"</span>]
+long_words = [word for word in words if len(word) &gt; 3]
+print(long_words)</code></pre><h2>解包</h2><p>在 Python 中，当你有一个可迭代对象（像列表、元组之类的），并且知晓该可迭代对象的元素数量时，就能使用解包赋值把可迭代对象中的元素分别赋值给不同的变量。解包赋值的基本语法为：</p><pre type="Python"><code><span class="hljs-attribute">var1</span>, var<span class="hljs-number">2</span>, ..., varN = iterable</code></pre><p>这里的<code>iterable</code>是一个可迭代对象，<code>var1</code>到<code>varN</code>是要接收可迭代对象中元素的变量，而且变量的数量要和可迭代对象中元素的数量一致。</p><pre type="Html"><code><span class="hljs-attribute">arr</span> = [(<span class="hljs-number">1</span>, <span class="hljs-string">'a'</span>), (<span class="hljs-number">2</span>, <span class="hljs-string">'b'</span>)]
+arr1, arr2 = arr</code></pre><p>最终，<code >arr1</code>的值是<code >(1, 'a')</code>，<code >arr2</code>的值是<code >(2, 'b')</code>。</p><p>应用示例：</p><pre type="Html"><code><span class="hljs-comment"># 交换变量值</span>
+<span class="hljs-attribute">a</span> = <span class="hljs-number">1</span>
+<span class="hljs-attribute">b</span> = <span class="hljs-number">2</span>
+<span class="hljs-attribute">a</span>, b = b, a
+
+</code></pre><p>通过解包赋值轻松实现了<code>a</code>和<code>b</code>值的交换。</p><pre type="Python"><code>接收函数返回的多个值：
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_name_and_age</span><span class="hljs-params">()</span></span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Alice"</span>, <span class="hljs-number">25</span>
+
+name, age = get_name_and_age()</code></pre><p>这个例子中，函数<code>get_name_and_age</code>返回一个包含姓名和年龄的元组，使用解包赋值可以把元组中的元素分别赋值给<code>name</code>和<code>age</code>变量。</p><blockquote><span >在 Python 里，当在</span><code >return</code><span >语句中使用逗号分隔多个值时，即使没有显式地使用括号，Python 也会将这些值封装成一个元组返回。也就是说，</span><code >return "Alice", 25</code><span >和</span><code >return ("Alice", 25)</code><span >这两种写法在功能上是等价的，最终返回的都是一个包含</span><code >"Alice"</code><span >和</span><code >25</code><span >这两个元素的元组。</span></blockquote><p><b>解包运算符 *</b></p><ul><li><strong>在函数调用时解包参数</strong>：<code>*</code>可以把列表、元组或其他可迭代对象解包成单独的参数。</li></ul><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_numbers</span>(<span class="hljs-params">a, b, c</span>):</span>
+    <span class="hljs-keyword">return</span> a + b + c
+
+numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+result = add_numbers(*numbers)
+print(result)  </code></pre><p>上面这个就是将列表中的元素拆开，分别当作单独的参数传入。</p><p>再看一个复杂点的例子：</p><pre type="Python"><code><span class="hljs-string">xy_map</span> <span class="hljs-string">=</span> [
+    [<span class="hljs-number">1</span>, <span class="hljs-number">10</span>],
+    [<span class="hljs-number">2</span>, <span class="hljs-number">20</span>],
+    [<span class="hljs-number">3</span>, <span class="hljs-number">30</span>],
+    [<span class="hljs-number">4</span>, <span class="hljs-number">40</span>]
+]
+
+<span class="hljs-comment"># 使用 zip(*xy_map) 对 xy_map 进行解包和重新组合</span>
+<span class="hljs-comment"># *xy_map 会将 xy_map 中的子列表解包，然后 zip 函数将这些解包后的元素重新组合成元组</span>
+<span class="hljs-comment"># 最后 [*zip(*xy_map)] 将这些元组放入一个列表中</span>
+<span class="hljs-string">x_unique,</span> <span class="hljs-string">y_mean</span> <span class="hljs-string">=</span> [<span class="hljs-string">*zip(*xy_map)</span>]
+
+<span class="hljs-comment"># 打印结果</span>
+<span class="hljs-string">print("x</span> <span class="hljs-string">唯一值:",</span> <span class="hljs-string">x_unique)</span>
+<span class="hljs-string">print("y</span> <span class="hljs-string">均值:",</span> <span class="hljs-string">y_mean)</span></code></pre><p>代码解释：</p><ul><li><code>xy_map</code>是一个包含多个子列表的列表，每个子列表包含一个<code>x</code>值和对应的<code>y</code>均值。</li><li><code>zip(*xy_map)</code>把<code>xy_map</code>中的子列表解包（xy_map解包后是<code>[1, 10], [2, 20], [3, 30], [4, 40]</code>），然后zip将对应位置的元素组合成元组。然后再返回一个迭代器，这个迭代器中包含了两个元组 &lt;迭代器 (1,2,3,4) (10,20,30,40)&nbsp; /迭代器&gt;</li><li><b><font color="#c24f4a">*</font></b>zip(*xy_map) 是 对上一步中zip返回的迭代器再进行解包，比如到这一步 可以使用两个参数进行解包接收,比如 x,y=<b>*</b>zip(*xy_map)，这样x=(1,2,3,4)，y=(10,20,30,40)。</li><li><code>[*zip(*xy_map)]</code><code>*</code>操作符用于对<code>zip(*xy_map)</code>生成的迭代器进行解包。解包后，迭代器中的元组会被依次放入列表中，最终得到一个包含这些元组的列表<code>[(1, 2, 3, 4), (10, 20, 30, 40)]</code>。。</li><li><code>x_unique, y_mean = [*zip(*xy_map)]</code>把列表中的两个元组分别赋值给<code>x_unique</code>和<code>y_mean</code>。</li></ul><p>输出结果：</p><pre><code>x 唯一值: (1, 2, 3, 4)
+y 均值: (10, 20, 30, 40)</code></pre><h2>切片</h2><p>处理列表的部分元素，叫做切片。</p><h3>基本概念</h3><p>切片操作符的一般形式是<code>[start:stop:step]</code>，</p><ul><li><code>start</code>是切片的起始位置（包含该位置的元素），如果省略，则默认从列表的开头开始。</li><li><code>stop</code>是切片的结束位置（不包含该位置的元素），如果省略，则默认到列表的末尾结束。</li><li><code>step</code>是切片的步长，即每隔多少个元素取一个。比如<code>[::20]</code>中，<code>step</code>的值为<code>20</code>，意味从0开始切片直到数组末尾，且着每隔<code>20</code>个元素取一个。</li></ul><blockquote><span >在切片操作中，start默认值是0，表示从序列的开头开始切片；stop的默认值是序列的长度，表示切片到序列的末尾；step的默认值是1，表示每次切片的步长为1，即逐个元素进行切片。注意，切片操作中，</span><span >步长不能为 0，否则会引发</span><code >ValueError</code><span >异常。</span></blockquote><pre type="Python"><code><span class="hljs-string">my_list</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+<span class="hljs-string">print(my_list[::])</span>  <span class="hljs-comment"># 输出 [1, 2, 3, 4, 5]，相当于从开头到末尾，步长为1进行切片</span></code></pre><p>取出出列表中前3个元素 start=0 stop=3 step=1</p><pre type="Python"><code><span class="hljs-string">arr</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-number">16</span>, <span class="hljs-number">25</span>, <span class="hljs-number">36</span>, <span class="hljs-number">49</span>, <span class="hljs-number">64</span>, <span class="hljs-number">81</span>, <span class="hljs-number">100</span>]
+<span class="hljs-string">print(</span> <span class="hljs-string">arr[0:3]</span> <span class="hljs-string">)</span>
+<span class="hljs-string">//</span> [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>]</code></pre><p>如果是第2~4元素</p><pre type="Python"><code><span class="hljs-attribute">print</span>(arrs[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>])</code></pre><p>如果没有指定第一个索引，那么默认从0开始</p><pre type="Python"><code><span class="hljs-attribute">print</span>(arrs[:<span class="hljs-number">3</span>])</code></pre><p>如果从第三个元素开始~末尾，那么可以省略末尾索引</p><pre type="Python"><code><span class="hljs-attribute">print</span>(arrs[<span class="hljs-number">3</span>:])</code></pre><p>负数索引则从列表末尾开始计算，如下返回最后3个元素</p><pre type="Python"><code><span class="hljs-selector-tag">print</span>(arrs[<span class="hljs-attribute">-3</span>:])</code></pre><p>结果：[64, 81, 100]</p><p>获取列表长度</p><pre type="Python"><code><span class="hljs-built_in">len</span>(arrs)</code></pre><p>切片之后的也是一个数组，也能遍历</p><pre type="Python"><code><span class="hljs-keyword">for</span> <span class="hljs-keyword">value</span> <span class="hljs-keyword">in</span> arr[:<span class="hljs-number">3</span>]:
+    print(<span class="hljs-keyword">value</span>)</code></pre><p>复制列表，同时省略起止索引，[:]</p><pre type="Python"><code><span class="hljs-attr">arr_copy</span> = arrs[:]</code></pre><blockquote>注意！arrs=arr_copy 这不是复制！！这只是让arr_copy关联到arrs指向的列表，所以这样做只是让两个变量指向同一个列表！</blockquote><pre type="Python"><code>arr_same = arrs;
+arrs.<span class="hljs-built_in">append</span>(<span class="hljs-number">199</span>)
+<span class="hljs-built_in">print</span>(arr_same) <span class="hljs-comment">// arr_same 最后一个元素是199</span></code></pre><h3>使用切片反转列表</h3><p>切片操作的语法是<code>[start:stop:step]</code>，当<code>step</code>为负数时，表示从后往前取值，利用这个特性可以实现列表的反转。</p><pre><code>my_list=[1,2,3,4,5]reversed_list=my_list[::-1]print(reversed_list)</code></pre><p>my_list[::-1]表示从列表的开头到末尾，以步长为-1进行切片</p><pre><code>结果：[5,4,3,2,1]</code></pre><h2>元组</h2><p>列表是可以修改的，而不可以被修改的列表叫做元组。</p><p>定义元组，要使用括号（）</p><pre type="Python"><code><span class="hljs-attribute">dimensions</span> = (<span class="hljs-number">200</span>, <span class="hljs-number">50</span>)
+<span class="hljs-attribute">dimensions</span>[<span class="hljs-number">0</span>] // 读取使用
+<span class="hljs-attribute">dimensions</span>[<span class="hljs-number">1</span>]</code></pre><p>修改元组中的数据会报错</p><pre type="Python"><code>dimensions[<span class="hljs-number">0</span>] = <span class="hljs-number">20</span>
+// TypeError: <span class="hljs-string">'tuple'</span> <span class="hljs-built_in">object</span> does <span class="hljs-keyword">not</span> support item assignment</code></pre><p>元组也可以使用for循环</p><pre type="Python"><code><span class="hljs-attribute">dimensions</span> = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+<span class="hljs-attribute">for</span> item in dimensions:
+    <span class="hljs-attribute">print</span>(item)</code></pre><p>虽然不能改变元组中的值，但是可以改变存储元组值的变量</p><pre type="Python"><code><span class="hljs-attribute">dimensions</span> = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+<span class="hljs-attribute">dimensions</span> = (<span class="hljs-number">3</span>, <span class="hljs-number">4</span> , <span class="hljs-number">5</span>) // 不会报错</code></pre><h2>列表常用方法</h2><h3>列表长度len</h3><p><code>len()</code>是 Python 内置函数，专门用于返回对象的长度或元素个数，对于列表而言，它可以快速准确地返回列表中元素的数量。</p><pre type="Python"><code><span class="hljs-string">my_list</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+<span class="hljs-string">length</span> <span class="hljs-string">=</span> <span class="hljs-string">len(my_list)</span>
+<span class="hljs-string">print(f"列表的长度是:</span> {<span class="hljs-string">length</span>}<span class="hljs-string">")</span></code></pre><h3>index查找某个元素在列表中首次出现的位置</h3><pre type="Python"><code>sequence.index(value, start=0, end=len(sequence))</code></pre><ul><li><strong><code>sequence</code></strong>：这是要操作的序列对象，例如列表、元组等。</li><li><strong><code>value</code></strong>：代表要查找的元素。</li><li><strong><code>start</code></strong>：是可选参数，指定开始查找的索引位置，默认值为 0，也就是从序列的起始位置开始查找。</li><li><strong><code>end</code></strong>：同样是可选参数，指定查找结束的索引位置，默认值是序列的长度，意味着查找至序列的末尾。</li></ul><pre type="Python"><code>fruits = [<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"cherry"</span>, <span class="hljs-string">"banana"</span>]
+<span class="hljs-comment"># 查找 "banana" 首次出现的索引</span>
+<span class="hljs-keyword">index</span> = fruits.index(<span class="hljs-string">"banana"</span>)
+<span class="hljs-keyword">print</span>(<span class="hljs-keyword">index</span>)</code></pre><p><code>fruits.index("banana")</code>会查找<code>"banana"</code>在<code>fruits</code>列表中首次出现的索引，输出结果为<code>1</code>。</p><p>指定查找范围：</p><pre type="Python"><code>fruits = [<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"cherry"</span>, <span class="hljs-string">"banana"</span>] // 元组也是一样
+<span class="hljs-comment"># 从索引 2 开始查找 "banana"</span>
+<span class="hljs-keyword">index</span> = fruits.index(<span class="hljs-string">"banana"</span>, <span class="hljs-number">2</span>)
+<span class="hljs-keyword">print</span>(<span class="hljs-keyword">index</span>)</code></pre><p>指定从索引 2 开始查找<code>"banana"</code>，输出结果为<code>3</code>。</p><p><b>异常处理</b></p><p>要查找的元素不在序列中，<code>index()</code>方法会抛出<code>ValueError</code>异常。</p><pre type="Python"><code>fruits = [<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"cherry"</span>]
+try:
+    <span class="hljs-keyword">index</span> = fruits.index(<span class="hljs-string">"date"</span>)
+    <span class="hljs-keyword">print</span>(<span class="hljs-keyword">index</span>)
+except ValueError:
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">"元素未找到"</span>)</code></pre><h3>统计指定元素出现次数count</h3><p><code>count</code>方法可以用来统计列表中指定元素出现的次数。</p><pre type="Html"><code><span class="hljs-string">numbers</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>]
+<span class="hljs-comment"># 统计数字 2 出现的次数</span>
+<span class="hljs-string">count_2</span> <span class="hljs-string">=</span> <span class="hljs-string">numbers.count(2)</span>
+<span class="hljs-string">print(f"数字</span> <span class="hljs-number">2</span> <span class="hljs-string">在列表中出现的次数:</span> {<span class="hljs-string">count_2</span>}<span class="hljs-string">")
+</span></code></pre><ul><li><code>numbers.count(2)</code>：统计列表<code>numbers</code>中元素<code>2</code>出现的次数，结果为<code>2</code>。代表出现了两次。</li></ul><p><b>元组是 Python 中的不可变序列，同样可以使用<code>count</code>方法来统计元素出现的次数。</b></p><pre type="Html"><code>fruits = (<span class="hljs-string">'apple'</span>, <span class="hljs-string">'banana'</span>, <span class="hljs-string">'apple'</span>, <span class="hljs-string">'cherry'</span>, <span class="hljs-string">'apple'</span>)
+<span class="hljs-comment"># 统计 'apple' 出现的次数</span>
+count_apple = fruits.count(<span class="hljs-string">'apple'</span>)
+print(<span class="hljs-string">f"'apple' 在元组中出现的次数: <span class="hljs-subst">{count_apple}</span>"</span>)</code></pre><ul><li><code>fruits.count('apple')</code>：统计元组<code>fruits</code>中元素<code>'apple'</code>出现的次数，结果为<code>3</code>。</li></ul><p><b>字符串也是一种序列类型，<code>count</code>方法可以用来统计字符串中某个子字符串出现的次数。</b></p><pre type="Python"><code>sentence = <span class="hljs-string">"Hello, hello, world!"</span>
+<span class="hljs-comment"># 统计 'hello' 出现的次数（区分大小写）</span>
+count_hello = sentence.count(<span class="hljs-string">'hello'</span>)
+print(<span class="hljs-string">f"'hello' 在字符串中出现的次数: <span class="hljs-subst">{count_hello}</span>"</span>)
+
+<span class="hljs-comment"># 统计 'o' 出现的次数</span>
+count_o = sentence.count(<span class="hljs-string">'o'</span>)
+print(<span class="hljs-string">f"'o' 在字符串中出现的次数: <span class="hljs-subst">{count_o}</span>"</span>)</code></pre><ul><li><code>sentence.count('hello')</code>：统计字符串<code>sentence</code>中子字符串<code>'hello'</code>出现的次数，结果为<code>1</code>。<b>注意，该方法区分大小写，所以<code>'Hello'</code>不会被统计在内。</b></li><li><code>sentence.count('o')</code>：统计字符串<code>sentence</code>中字符<code>'o'</code>出现的次数，结果为<code>2</code>。</li></ul><h3>enumerate获取列表中每个元素值与索引值</h3><pre type="Python"><code>alist = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]
+<span class="hljs-keyword">for</span> <span class="hljs-keyword">index</span>, item in enumerate(alist):
+    <span class="hljs-keyword">print</span>(<span class="hljs-keyword">index</span>, item)</code></pre><p>最终执行结果：</p><pre type="Python"><code><span class="hljs-attr">0</span> <span class="hljs-string">a</span>
+<span class="hljs-attr">1</span> <span class="hljs-string">b</span>
+<span class="hljs-attr">2</span> <span class="hljs-string">c</span></code></pre><p>enumerate(arr)：可以获取列表中每个元素的索引 和它对应的值。</p><h3>zip</h3><p><code>zip()</code>是一个内置函数，其主要功能是将多个可迭代对象（像列表、元组、字符串等）中的对应元素打包成一个个元组，接着返回由这些元组构成的迭代器。</p><h4><b>基本用法</b></h4><p><code>zip()</code>函数的基本语法为<code>zip(*iterables)</code>，其中<code>*iterables</code>表示接收任意数量的可迭代对象作为参数。</p><pre type="Python"><code><span class="hljs-comment"># 定义两个列表</span>
+list1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+list2 = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]
+
+<span class="hljs-comment"># 使用 zip 函数将两个列表打包</span>
+zipped = <span class="hljs-built_in">zip</span>(list1, list2)
+
+<span class="hljs-comment"># 将 zip 对象转换为列表，方便查看结果</span>
+result = <span class="hljs-built_in">list</span>(zipped)
+print(result)</code></pre><p>在上述代码中，<code>zip(list1, list2)</code>会把<code>list1</code>和<code>list2</code>中对应位置的元素打包成元组，最终得到<code>[(1, 'a'), (2, 'b'), (3, 'c')]</code>。</p><h4><b>处理不同长度的可迭代对象</b></h4><p>当传入的可迭代对象长度不一致时，<code>zip()</code>函数会以最短的可迭代对象为基准进行打包，多余的元素会被忽略。示例如下：</p><pre type="Python"><code>list1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+list2 = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>]
+
+zipped = <span class="hljs-built_in">zip</span>(list1, list2)
+result = <span class="hljs-built_in">list</span>(zipped)
+print(result)</code></pre><p><code>list2</code>的长度比<code>list1</code>短，因此<code>zip()</code>函数只会打包前两个元素，结果为<code>[(1, 'a'), (2, 'b')]</code>。</p><h4><b>与<code>*</code>运算符结合使用</b></h4><p><code>zip()</code>函数可以和<code>*</code>运算符配合使用来实现解包操作。</p><pre type="Python"><code>zipped = [(<span class="hljs-number">1</span>, <span class="hljs-string">'a'</span>), (<span class="hljs-number">2</span>, <span class="hljs-string">'b'</span>), (<span class="hljs-number">3</span>, <span class="hljs-string">'c'</span>)]
+
+<span class="hljs-comment"># 使用 * 运算符解包</span>
+unzipped = <span class="hljs-built_in">zip</span>(*zipped)
+
+<span class="hljs-comment"># 将解包后的结果转换为列表</span>
+list1, list2 = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">list</span>, unzipped)
+print(list1)
+print(list2)</code></pre><p>在上述代码中，<code>zip(*zipped)</code>对<code>zipped</code>进行解包操作，将元组中的元素重新拆分成两个列表，最终输出<code>[1, 2, 3]</code>和<code>['a', 'b', 'c']</code>。</p><h3>map</h3><p><code>map()</code>是一个内置函数，它的主要作用是将一个函数应用到可迭代对象（如列表、元组等）的每个元素上，并返回一个包含结果的迭代器。</p><pre type="Html"><code>map(<span class="hljs-function"><span class="hljs-keyword">function</span>, <span class="hljs-title">iterable</span>, ...)</span></code></pre><ul><li><code>function</code>：这是一个需要应用到可迭代对象每个元素上的函数。</li><li><code>iterable</code>：表示一个或多个可迭代对象，<code>map()</code>会依次将<code>function</code>应用到这些可迭代对象的对应元素上。如果提供了多个可迭代对象，<code>function</code>必须能够接受与可迭代对象数量相同的参数。</li></ul><p>使用<code>map()</code>函数将列表中的每个元素都乘以 2：</p><pre type="Python"><code><span class="hljs-comment"># 定义一个函数，用于将输入的数字乘以 2</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">multiply_by_two</span>(<span class="hljs-params">x</span>):</span>
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">2</span>
+
+<span class="hljs-comment"># 定义一个列表</span>
+numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+
+<span class="hljs-comment"># 使用 map() 函数将 multiply_by_two 应用到 numbers 列表的每个元素上</span>
+result = <span class="hljs-built_in">map</span>(multiply_by_two, numbers)
+
+<span class="hljs-comment"># 将 map 对象转换为列表，方便查看结果</span>
+result_list = <span class="hljs-built_in">list</span>(result)
+print(result_list)</code></pre><p>将<code >multiply_by_two</code>函数应用到<code >numbers</code>列表的每个元素上，最终返回一个包含结果的迭代器，将迭代器转化为list后打印，得到<code>[2, 4, 6, 8, 10]</code></p><h4><b>处理多个可迭代对象</b></h4><pre type="Python"><code><span class="hljs-comment"># 定义一个函数，用于将两个数字相加</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add</span>(<span class="hljs-params">x, y</span>):</span>
+    <span class="hljs-keyword">return</span> x + y
+
+<span class="hljs-comment"># 定义两个列表</span>
+list1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+list2 = [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]
+
+<span class="hljs-comment"># 使用 map() 函数将 add 函数应用到两个列表的对应元素上</span>
+result = <span class="hljs-built_in">map</span>(add, list1, list2)
+
+<span class="hljs-comment"># 将 map 对象转换为列表</span>
+result_list = <span class="hljs-built_in">list</span>(result)
+print(result_list)</code></pre><p>将<code>add</code>函数应用到<code>list1</code>和<code>list2</code>对应位置的元素上，这里是让让list1[0]+list2[0]，list1[1]+list2[1]等，最终得到<code >[5, 7, 9]</code>。</p><h4><b>与<code>lambda</code>函数结合使用</b></h4><p>通常，我们会使用<code>lambda</code>函数（匿名函数）与<code>map()</code>函数结合。</p><pre type="Python"><code><span class="hljs-comment"># 使用 lambda 函数和 map() 实现元素乘以 2</span>
+<span class="hljs-string">numbers</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+<span class="hljs-string">result</span> <span class="hljs-string">=</span> <span class="hljs-string">map(lambda</span> <span class="hljs-attr">x:</span> <span class="hljs-string">x</span> <span class="hljs-string">*</span> <span class="hljs-number">2</span><span class="hljs-string">,</span> <span class="hljs-string">numbers)</span>
+<span class="hljs-string">print(list(result))</span>
+
+<span class="hljs-comment"># 使用 lambda 函数和 map() 实现两个列表对应元素相加</span>
+<span class="hljs-string">list1</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+<span class="hljs-string">list2</span> <span class="hljs-string">=</span> [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]
+<span class="hljs-string">result</span> <span class="hljs-string">=</span> <span class="hljs-string">map(lambda</span> <span class="hljs-string">x,</span> <span class="hljs-attr">y:</span> <span class="hljs-string">x</span> <span class="hljs-string">+</span> <span class="hljs-string">y,</span> <span class="hljs-string">list1,</span> <span class="hljs-string">list2)</span>
+<span class="hljs-string">print(list(result))</span></code></pre><p><code>map()</code>返回的是一个迭代器，通常需要将其转换为列表或其他序列类型才能查看完整的结果。</p><h3>sorted排序</h3><p><code>sorted()</code>是一个内置函数，对可迭代对象（像列表、元组、字符串等）进行排序操作，并且会返回一个新的已排序列表，而不会改变原始的可迭代对象。</p><pre type="Python"><code><span class="hljs-built_in">sorted</span>(iterable, key=<span class="hljs-literal">None</span>, reverse=<span class="hljs-literal">False</span>)</code></pre><ul><li><strong><code>iterable</code></strong>：这是必须提供的参数，代表要进行排序的可迭代对象，比如列表、元组、字符串等。</li><li><strong><code>key</code></strong>：这是一个可选参数，是一个函数，它会作用于可迭代对象中的每个元素，排序时会依据这个函数的返回值来进行。默认值为<code>None</code>，表示直接比较元素本身。</li><li><strong><code>reverse</code></strong>：同样是可选参数，是一个布尔值。若设置为<code>True</code>，则进行降序排序；若为<code>False</code>（默认值），则进行升序排序。</li></ul><pre type="Python"><code><span class="hljs-string">numbers</span> <span class="hljs-string">=</span> [<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>]
+<span class="hljs-string">sorted_numbers</span> <span class="hljs-string">=</span> <span class="hljs-string">sorted(numbers)</span>
+<span class="hljs-string">print(sorted_numbers)</span></code></pre><p><code>sorted(numbers)</code>会对<code>numbers</code>列表进行升序排序，最终输出<code>[1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]</code>。</p><pre type="Python"><code><span class="hljs-string">numbers</span> <span class="hljs-string">=</span> [<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>]
+<span class="hljs-string">sorted_numbers</span> <span class="hljs-string">=</span> <span class="hljs-string">sorted(numbers,</span> <span class="hljs-string">reverse=True)</span>
+<span class="hljs-string">print(sorted_numbers)</span></code></pre><p>对<code>numbers</code>列表进行降序排序，输出结果为<code>[9, 6, 5, 5, 5, 4, 3, 3, 2, 1, 1]</code>。</p><pre type="Python"><code>words = [<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"cherry"</span>, <span class="hljs-string">"date"</span>]
+<span class="hljs-comment"># 按照字符串的长度进行排序</span>
+sorted_words = <span class="hljs-built_in">sorted</span>(words, key=<span class="hljs-built_in">len</span>)
+print(sorted_words)</code></pre><p><code>key=len</code>表示按照字符串的长度来排序，最终输出<code>['date', 'apple', 'banana', 'cherry']</code>。</p><pre type="Python"><code>students = [(<span class="hljs-string">"Alice"</span>, <span class="hljs-number">25</span>), (<span class="hljs-string">"Bob"</span>, <span class="hljs-number">20</span>), (<span class="hljs-string">"Charlie"</span>, <span class="hljs-number">22</span>)]
+<span class="hljs-comment"># 按照年龄进行排序</span>
+sorted_students = <span class="hljs-built_in">sorted</span>(students, key=<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">1</span>])
+print(sorted_students)</code></pre><p><code>lambda</code>函数<code>lambda x: x[1]</code>作为<code>key</code>参数，意味着按照元组的第二个元素（年龄）进行排序，输出结果为<code>[('Bob', 20), ('Charlie', 22), ('Alice', 25)]</code>。</p><p>也可以对 可迭代对象（列表、元组）进行排序：</p><pre type="Python"><code><span class="hljs-string">data</span> <span class="hljs-string">=</span> [<span class="hljs-string">(1</span>, <span class="hljs-number">3</span><span class="hljs-string">)</span>, <span class="hljs-string">(2</span>, <span class="hljs-number">2</span><span class="hljs-string">)</span>, <span class="hljs-string">(1</span>, <span class="hljs-number">2</span><span class="hljs-string">)</span>]
+<span class="hljs-string">sortedList</span> <span class="hljs-string">=</span> <span class="hljs-string">sorted(data)</span>
+<span class="hljs-string">print(sortedList)</span></code></pre><p>当使用<code>sorted()</code>函数对可迭代对象进行排序，且不传入<code >key</code>参数时，默认会按照元素的<strong>字典序</strong>进行排序。</p><p>对于由<code>zip</code>函数创建的可迭代对象，其元素是元组。在这种情况下，排序首先比较元组的第一个元素，如果相等，则继续比较第二个元素，以此类推，直到找到不同的元素或到达元组的末尾。</p><p>上述代码中，<code>sorted</code>函数会先比较每个元组的第一个元素，所以<code>(1, 3)</code>和<code>(1, 2)</code>会排在<code>(2, 2)</code>前面，而对于<code>(1, 3)</code>和<code>(1, 2)</code>，由于第一个元素相同，会继续比较第二个元素，从而确定它们的顺序。最终结果为<code>[(1, 2), (1, 3), (2, 2)]</code>。</p><p>当然也可以使用匿名函数进行指定，按照指定的位数进行排序：</p><pre type="Python"><code>data = [(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)]
+
+<span class="hljs-comment"># 按照元组的第一个元素升序排序</span>
+sorted_by_first = <span class="hljs-built_in">sorted</span>(data, key=<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">0</span>])
+print(sorted_by_first)
+
+<span class="hljs-comment"># 按照元组的第二个元素升序排序</span>
+sorted_by_second = <span class="hljs-built_in">sorted</span>(data, key=<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">1</span>])
+print(sorted_by_second)</code></pre><p>上述代码中，<code>sorted(data, key=lambda x: x[0])</code>表示按照元组的第一个元素进行升序排序，<code>sorted(data, key=lambda x: x[1])</code>表示按照元组的第二个元素进行升序排序。<code>key</code>参数是一个函数，它指定了排序的依据。</p><h3>sum求总和</h3><p><code>sum()</code>是一个内置函数，主要用于计算可迭代对象（像列表、元组、集合等）中所有元素的总和。</p><pre type="Python"><code><span class="hljs-attribute">sum</span>(iterable, start=<span class="hljs-number">0</span>)</code></pre><ul><li><code>iterable</code>：这是一个可迭代对象，比如列表、元组、集合等，其元素应当是可以进行加法运算的类型，像数字类型。</li><li><code>start</code>：这是一个可选参数，代表求和的起始值，默认值为 0。</li></ul><pre type="Python"><code><span class="hljs-comment"># 对列表中的数字求和</span>
+<span class="hljs-string">numbers</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+<span class="hljs-string">result</span> <span class="hljs-string">=</span> <span class="hljs-string">sum(numbers)</span>
+<span class="hljs-string">print(result)</span>
+<span class="hljs-comment"># 指定起始值求和</span>
+<span class="hljs-string">numbers</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+<span class="hljs-string">result</span> <span class="hljs-string">=</span> <span class="hljs-string">sum(numbers,</span> <span class="hljs-number">10</span><span class="hljs-string">)</span>
+<span class="hljs-string">print(result)</span></code></pre><p>将起始值设定为 10，所以<code>sum()</code>函数会先把列表中的元素相加得到 15，再加上起始值 10，最终输出结果 25。</p><p>注意：</p><ul><li><code>iterable</code>里的元素必须是能够进行加法运算的类型，不然会引发类型错误。</li><li>对于浮点数求和，要留意浮点数精度问题。要是需要高精度计算，可以考虑使用<code>decimal</code>模块。</li></ul><h2>标准库数组工具</h2><h3>groupby</h3><pre type="Html"><code><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> groupby</code></pre><p>py标准库中模块itertools的函数groupby，可将迭代器中相邻的重复元素分组。来看一个简单的例子：</p><pre type="Python"><code><span class="hljs-string">from</span> <span class="hljs-string">itertools</span> <span class="hljs-string">import</span> <span class="hljs-string">groupby</span>
+
+<span class="hljs-comment"># 定义一个已排序的列表</span>
+<span class="hljs-string">data</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>]
+
+<span class="hljs-comment"># 使用 groupby 进行分组</span>
+<span class="hljs-string">for</span> <span class="hljs-string">key,</span> <span class="hljs-string">group</span> <span class="hljs-string">in</span> <span class="hljs-string">groupby(data):</span>
+    <span class="hljs-string">print(f"Key:</span> {<span class="hljs-string">key</span>}<span class="hljs-string">,</span> <span class="hljs-attr">Group:</span> {<span class="hljs-string">list(group)</span>}<span class="hljs-string">")</span></code></pre><p>运行结果：</p><pre type="Python"><code><span class="hljs-attr">Key:</span> <span class="hljs-number">1</span><span class="hljs-string">,</span> <span class="hljs-attr">Group:</span> [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>]
+<span class="hljs-attr">Key:</span> <span class="hljs-number">2</span><span class="hljs-string">,</span> <span class="hljs-attr">Group:</span> [<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>]
+<span class="hljs-attr">Key:</span> <span class="hljs-number">3</span><span class="hljs-string">,</span> <span class="hljs-attr">Group:</span> [<span class="hljs-number">3</span>]
+<span class="hljs-attr">Key:</span> <span class="hljs-number">4</span><span class="hljs-string">,</span> <span class="hljs-attr">Group:</span> [<span class="hljs-number">4</span>, <span class="hljs-number">4</span>]</code></pre><p><code>groupby</code>函数把相邻的相同元素划分成组，<code>key</code>代表每组的元素值，<code>group</code>是一个迭代器，它包含了该组的所有元素。</p><p>再考虑一下，<b>在使用 groupby 函数时，如何保留分组的索引信息？</b></p><pre type="Python"><code><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> groupby
+
+<span class="hljs-comment"># 示例数据</span>
+data = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'d'</span>]
+
+<span class="hljs-comment"># 为每个元素添加索引</span>
+indexed_data = <span class="hljs-built_in">enumerate</span>(data)
+<span class="hljs-string">"""
+print(list(indexed_data))
+# 得到 [(0, 'a'), (1, 'a'), (2, 'b'), (3, 'b'), (4, 'b'), (5, 'c'), (6, 'd'), (7, 'd')]
+"""</span>
+
+<span class="hljs-comment"># 使用 groupby 进行分组</span>
+groups = []
+<span class="hljs-keyword">for</span> key, group <span class="hljs-keyword">in</span> groupby(indexed_data, key=<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">1</span>]):
+    <span class="hljs-string">"""
+    print(f"分组依据的值（key）: {key}")
+    print(list(group))
+    分组依据的值（key）: a
+    [(0, 'a'), (1, 'a')]
+    分组依据的值（key）: b
+    [(2, 'b'), (3, 'b'), (4, 'b')]
+    分组依据的值（key）: c
+    [(5, 'c')]
+    分组依据的值（key）: d
+    [(6, 'd'), (7, 'd')]
+    """</span>
+
+    indices = [index <span class="hljs-keyword">for</span> index, _ <span class="hljs-keyword">in</span> group]
+    groups.append((key, indices))
+
+<span class="hljs-comment"># 输出分组结果及索引</span>
+<span class="hljs-keyword">for</span> key, indices <span class="hljs-keyword">in</span> groups:
+    print(<span class="hljs-string">f"Key: <span class="hljs-subst">{key}</span>, Indices: <span class="hljs-subst">{indices}</span>"</span>)    </code></pre><p><b>indexed_data =enumerate(data)</b></p><p><code>enumerate</code>是一个内置函数，其作用是为可迭代对象（像列表、元组、字符串等）添加索引。<code>enumerate</code>函数会<b>返回一个枚举对象，此对象包含了一系列的元组</b>，每个元组由索引和对应的元素值构成。这个对象里的每个元组包含两个元素：第一个元素是索引（从 0 开始），第二个元素是<code >data</code>列表中对应位置的元素。</p><p>转化为列表，最终打印出：[(0, 'a'), (1, 'a'), (2, 'b'), (3, 'b'), (4, 'b'), (5, 'c'), (6, 'd'), (7, 'd')]&nbsp;</p><p><b>groupby(indexed_data, key=lambda x: x[1])</b></p><p><b>1、key</b></p><p><strong><code>for后面的key</code></strong>：表示当前分组的依据，也就是<code>lambda</code>函数针对分组内元素执行后所返回的值 这里是x:x[1]，以第一个为例就是'a'。<b></b></p><p>在<code>groupby</code>函数里，<code>key=</code>参数的作用是指定一个回调函数（这里是指定匿名函数lambda），该函数会对数组中每个元素执行，然后依据处理结果进行分组，分组后的结果存入for .. group in .. 的group中。</p><p>2、lambda</p><p><code>lambda x: x[1]</code>是一个<font color="#c24f4a">回调函数！，用于指定对indexed_data中的每个元素执行的函数！最终的结果赋予for key...的key！</font></p><p><b><font color="#4d80bf">lambda函数简介</font></b></p><p><code>lambda</code>函数也被称作匿名函数，它是一种小型的、临时的、一次性使用的函数。与常规函数不同，<code>lambda</code>函数不需要使用<code>def</code>关键字来定义，也没有函数名。其语法格式为：<font color="#c24f4a"></font></p><pre type="Python"><code><span class="hljs-attribute">lambda</span> 参数列表: 表达式</code></pre><p><code>lambda</code>函数会接收参数列表中的参数，然后对表达式进行求值，并返回表达式的结果。</p><p><font color="#000000">对于</font>lambda x: x[1]</p><ul><li><code>x</code>代表<code>indexed_data</code>中的每个元素。由于<code>indexed_data</code>是通过<code>enumerate(data)</code>得到的，所以<code>x</code>是一个包含索引和元素值的元组，例如<code>(0, 1)</code>、<code>(1, 1)</code>等。</li><li><code>x[1]</code>表示取元组<code>x</code>的第二个元素，也等价于原始数据列表<code>data</code>中的元素值。</li><li><code>lambda x: x[1]</code>这个匿名函数的功能是接收一个元组<code>x</code>，（这个x就是遍历的indexed_data中的每一个元素）然后返回该元组的第二个元素（比如 （0， ‘a’） 就返回'a'），因此每轮循环，将得到的比如'a'，赋值给for后面的Key。然后groupby就会根据这个key (‘a’)进行分组，并将分组结果保存到for 后面的group中。</li></ul><p><b>3、indices = [index for index, _ in group]</b></p><p>这里使用了列表推导式（list comprehension）。其目的是从<code >group</code>这个迭代器中提取出所有元素的索引，然后将这些索引存储在一个新的列表<code >indices</code>中。</p><p>这里我们挑一轮遍历得到的group，[(2, 'b'), (3, 'b'), (4, 'b')] 为例：</p><p><font color="#4d80bf"><b>列表推导式简介</b></font></p><p>列表推导式是 Python 中一种简洁且高效的创建列表的方式，它允许你通过一种紧凑的语法来生成列表。其基本语法如下：<font color="#4d80bf"><b></b></font></p><pre type="Python"><code>[表达式 for 变量 in 可迭代对象 if 条件]</code></pre><p>其中，<code>表达式</code>是对每个元素进行处理的表达式，<code>变量</code>是从<code>可迭代对象</code>中取出的元素，<code>if 条件</code>是可选的过滤条件。</p><ul><li><strong><code>index, _</code></strong>：这是元组解包（tuple unpacking）的操作。<code>index</code>用于接收元组中的第一个元素，也就是索引；<code>_</code>是 Python 中的一个惯用符号，通常用于表示一个临时变量，在这里它接收元组中的第二个元素（即值），但由于我们只关心索引，所以使用<code>_</code>来忽略这个值。</li><li><strong><code>[index for index, _ in group]</code></strong>：这是一个列表推导式，它会遍历<code>group</code>中的每个元组，将元组中的索引提取出来（分别遍历 【index是2，_是'b'】【index是3，_是'b'】【index是4，_是'b'】 ），并将这些结果中的index（索引）依次添加到一个新的列表中。最终，这个新列表会被赋值给变量<code>indices</code>。</li></ul><pre type="Html"><code>indices = [<span class="hljs-keyword">index</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">index</span>, <span class="hljs-number">_</span> in group]
+<span class="hljs-keyword">print</span>(f<span class="hljs-string">"得到的indices: {indices}"</span>)</code></pre><p>遍历打印得到的结果：</p><pre type="Python"><code><span class="hljs-string">得到的indices:</span> [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]
+<span class="hljs-string">得到的indices:</span> [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+<span class="hljs-string">得到的indices:</span> [<span class="hljs-number">5</span>]
+<span class="hljs-string">得到的indices:</span> [<span class="hljs-number">6</span>, <span class="hljs-number">7</span>]</code></pre><p>如果是这样写：</p><pre type="Python"><code>indices = [<span class="hljs-number">_</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">index</span>, <span class="hljs-number">_</span> in group]
+<span class="hljs-keyword">print</span>(f<span class="hljs-string">"得到的indices: {indices}"</span>)</code></pre><pre type="Python"><code>得到的<span class="hljs-selector-tag">indices</span>: <span class="hljs-selector-attr">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'a'</span>]</span>
+得到的<span class="hljs-selector-tag">indices</span>: <span class="hljs-selector-attr">[<span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>]</span>
+得到的<span class="hljs-selector-tag">indices</span>: <span class="hljs-selector-attr">[<span class="hljs-string">'c'</span>]</span>
+得到的<span class="hljs-selector-tag">indices</span>: <span class="hljs-selector-attr">[<span class="hljs-string">'d'</span>, <span class="hljs-string">'d'</span>]</span></code></pre><p>最终for key, indices in groups:该函数执行的结果：</p><pre type="Python"><code><span class="hljs-attr">Key:</span> <span class="hljs-string">a,</span> <span class="hljs-attr">Indices:</span> [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]
+<span class="hljs-attr">Key:</span> <span class="hljs-string">b,</span> <span class="hljs-attr">Indices:</span> [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+<span class="hljs-attr">Key:</span> <span class="hljs-string">c,</span> <span class="hljs-attr">Indices:</span> [<span class="hljs-number">5</span>]
+<span class="hljs-attr">Key:</span> <span class="hljs-string">d,</span> <span class="hljs-attr">Indices:</span> [<span class="hljs-number">6</span>, <span class="hljs-number">7</span>]</code></pre><p>实现了将每个值进行分组，并且获取了原本该值对应的索引。</p><h3>tee</h3><p><code>itertools.tee</code>是 Python 标准库<code>itertools</code>模块中的一个函数，其主要作用是将一个迭代器复制成多个独立的迭代器，这些新生成的迭代器可以独立地对原迭代器的数据进行遍历，而不会相互干扰。</p><pre type="Python"><code><span class="hljs-attribute">itertools</span>.tee(iterable, n=<span class="hljs-number">2</span>)</code></pre><ul><li><strong><code>iterable</code></strong>：这是必需的参数，代表要进行复制的原始迭代器或者可迭代对象，例如列表、元组、生成器等。</li><li><strong><code>n</code></strong>：该参数是可选的，默认值为 2。它表示要生成的独立迭代器的数量。</li><li>返回值：<code>tee</code>函数会返回一个包含<code>n</code>个独立迭代器的元组。这些迭代器可以独立地对原迭代器的数据进行遍历。</li></ul><p>比如我有下面这段代码：</p><pre type="Python"><code><span class="hljs-string">sortedList</span> <span class="hljs-string">=</span> [<span class="hljs-string">(1</span>, <span class="hljs-number">5383</span><span class="hljs-string">)</span>, <span class="hljs-string">(1</span>, <span class="hljs-number">5566</span><span class="hljs-string">)</span>, <span class="hljs-string">(1</span>, <span class="hljs-number">5648</span><span class="hljs-string">)</span>,<span class="hljs-string">...</span> <span class="hljs-string">(2</span>, <span class="hljs-number">8206</span><span class="hljs-string">)</span>, <span class="hljs-string">(3</span>, <span class="hljs-number">6437</span><span class="hljs-string">)</span>,<span class="hljs-string">..</span> <span class="hljs-string">(9</span>, <span class="hljs-number">28208</span><span class="hljs-string">)</span>,<span class="hljs-string">..</span> <span class="hljs-string">(11</span>, <span class="hljs-number">65458</span><span class="hljs-string">)</span>, <span class="hljs-string">(11</span>, <span class="hljs-number">65583</span><span class="hljs-string">)</span>]
+<span class="hljs-string">for</span> <span class="hljs-string">x,y</span> <span class="hljs-string">in</span> <span class="hljs-string">groupby(</span> <span class="hljs-string">sortedList,</span> <span class="hljs-string">key=lambda</span> <span class="hljs-string">_:_[0]</span> <span class="hljs-string">):</span>
+    <span class="hljs-string">print('依据分组的x',</span> <span class="hljs-string">x); # x是1...3..9..11</span>
+    <span class="hljs-string">print('分组的结果y',</span> <span class="hljs-string">list(y)) # y正常是 所有的[(1, 5383)] ,所有的 [(11, 65458), (11, 65583)] 这些，分别找出x是1..9..11的集合</span>
+    <span class="hljs-comment"># 仅仅获取 元组中 5383 5566... 65583 这样的 第二个值 组成一个列表</span>
+    <span class="hljs-string">y_list</span> <span class="hljs-string">=</span> [<span class="hljs-string">v</span> <span class="hljs-string">for</span> <span class="hljs-string">_</span>, <span class="hljs-string">v</span> <span class="hljs-string">in</span> <span class="hljs-string">y</span>]</code></pre><p>这里会发现，程序会报错，提示y不能用了。</p><p>这是因为在打印的时候，输出了 list(y)，迭代器就会被耗尽，后续就无法再次使用它。若你想打印<code >y</code>的副本，同时又不影响后续操作，可借助<code >itertools.tee</code>函数创建迭代器的副本。</p><p>我们可以这样修改：</p><pre type="Python"><code><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> groupby, tee</code></pre><pre type="Python"><code><span class="hljs-keyword">for</span> x, y <span class="hljs-keyword">in</span> groupby(sortedList, key=<span class="hljs-keyword">lambda</span> _: _[<span class="hljs-number">0</span>]):
+        <span class="hljs-comment"># 创建迭代器的副本</span>
+        y_copy, y_original = tee(y)
+
+        <span class="hljs-comment"># x就是lambda匿名函数执行结果，返回 每个元组中的第一个值</span>
+        print(<span class="hljs-string">'依据分组的x'</span>, x)
+        <span class="hljs-comment"># y就是根据返回的值，进行分组的结果</span>
+        print(<span class="hljs-string">'分组的结果y'</span>, <span class="hljs-built_in">list</span>(y_copy))
+        y_list = [v <span class="hljs-keyword">for</span> _, v <span class="hljs-keyword">in</span> y_original]
+</code></pre><blockquote><code>tee</code>函数返回的是一个包含多个迭代器的元组，而非迭代器的副本内容。要打印副本内容，需要对<code>tee</code>返回的迭代器进行解包，然后将其中一个迭代器转换为列表来打印。tee(要复制的迭代器，复制的数量=2【默认是2】)，所以对结果要进行解包。</blockquote><pre type="Python"><code>ycopy = tee(y) 错！！
+y_copy, y_original = tee(y) 对</code></pre><ol><li><strong><code>tee</code>函数使用</strong>：<code>y_copy, y_original = tee(y)</code>把<code>tee</code>返回的元组解包成两个迭代器，<code>y_copy</code>用于打印，<code>y_original</code>用于后续操作。</li></ol><p>再看个单独使用的简单的例子：</p><pre type="Python"><code><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> tee
+
+<span class="hljs-comment"># 创建一个简单的可迭代对象</span>
+numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+
+<span class="hljs-comment"># 使用 tee 函数复制迭代器，默认生成 2 个迭代器</span>
+iter1, iter2 = tee(numbers)
+
+<span class="hljs-comment"># 遍历第一个迭代器</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第一个迭代器的元素:"</span>)
+<span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> iter1:
+    <span class="hljs-built_in">print</span>(num)
+
+<span class="hljs-comment"># 遍历第二个迭代器</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第二个迭代器的元素:"</span>)
+<span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> iter2:
+    <span class="hljs-built_in">print</span>(num)</code></pre><p>首先创建了一个列表<code>numbers</code>。接着使用<code>tee</code>函数将这个列表的迭代器复制成两个独立的迭代器<code>iter1</code>和<code>iter2</code>。之后分别对这两个迭代器进行遍历，会发现它们都能完整地输出原列表中的元素。</p><h4><b>注意事项</b></h4><div><ul><li><strong>内存消耗</strong>：由于<code>tee</code>函数需要使用缓冲队列来存储数据，若原迭代器的数据量非常大，或者生成的迭代器数量过多，可能会导致较高的内存消耗。</li><li><strong>原迭代器的使用</strong>：一旦使用<code>tee</code>函数复制了迭代器，就不应该再直接使用原迭代器，否则可能会导致数据不一致的问题。</li><li><strong>迭代器耗尽</strong>：每个新生成的迭代器都是独立的，当其中一个迭代器耗尽时，不会影响其他迭代器的使用。不过，所有迭代器共享同一个缓冲队列，若某个迭代器消耗数据的速度远快于其他迭代器，可能会导致缓冲队列占用大量内存。</li></ul></div>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：python列表
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/1" class="imgbox">
+                <img src="/statics/blog/2021/0208/c16248bdc1b7f5a5358f16f377684b3f.jpg">
+            </a>
+            <a href="/blog/articles/1" class="title" title="第一篇文章-网站更新记录">
+                第一篇文章-网站更新记录
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/31" class="imgbox">
+                <img src="/statics/blog/2021/0322/770048cfd291d762e53efdc0933c7340.jpg">
+            </a>
+            <a href="/blog/articles/31" class="title" title="【课堂笔记】PHP开发APP接口(一)">
+                【课堂笔记】PHP开发APP接口(一)
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/495" class="imgbox">
+                <img src="/statics/blog/2024/0408/1747785422f94bcc3d4cdb294609e9a0.jpg">
+            </a>
+            <a href="/blog/articles/495" class="title" title="在vue3中使用fabricjs导致图形无法缩放的问题解决">
+                在vue3中使用fabricjs导致图形无法缩放的问题解决
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/python">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/365">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        cv2中的imdecode和imencode
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/608">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python中的全局变量
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/587">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python基础-下载解析JSON文件并使用pygal绘制折线图
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/581">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python中的matplotlib库的基本使用
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/591">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        星号*运算符在python中的作用
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="19个console实用调试技巧 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>19个console实用调试技巧 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="console"/>
+<meta name="description" content="众所周知，浏览器的开发者工具为我们提供了强大的调试系统，可以用来查看DOM树结构、CSS样式调试、动画调试、javascript代码断点调试等。今天我们就来看看console调试的那些实用的调试技巧。​"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 212,
+            article_title: '19个console实用调试技巧',
+            article_desc: '众所周知，浏览器的开发者工具为我们提供了强大的调试系统，可以用来查看DOM树结构、CSS样式调试、动画调试、javascript代码断点调试等。今天我们就来看看console调试的那些实用的调试技巧。​',
+            article_img: '/statics/blog/2021/1109/34b3afcc2e19c518ebd8920b5e37b1dd.jpg',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal active">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" class="active">
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/js">JS</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">19个console实用调试技巧</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>5935</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>324</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2021-11-09 08:44:10</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>基本打印</h2><p>如今，我们项目的开发通常会使用React、Vue等前端框架，前端调试也变得更加有难度，除了使用React Dev Tools，Vue Dev Tools等插件之外，我们使用最多的就是console.log()，当然多数情况下，console.log()就能满足我们的需求，但是当数据变得比较复杂时，console.log()就显得有些单一。其实console对象为我们提供了很多打印的方法，下面是console对象包含的方法（这里使用的是Chrome浏览器，版本为 95.0.4638.54（正式版本） (arm64)）：</p><p><img src="/statics/blog/2021/1109/34b3afcc2e19c518ebd8920b5e37b1dd.jpg"></p><p>console 对象提供了浏览器控制台调试的接口，我们可以从任何全局对象中访问到它，如果你平时只是用console.log()来输出一些变量，那你可能没有用过console那些强大的功能。下面带你用console玩玩花式调试。</p><h3>1. console.log()</h3><p>console.log()就是最基本、最常用的用法了。它可以用在JavaScript代码的任何地方，然后就可以浏览器的控制台中看到打印的信息。其基本使用方法如下：</p><pre type="JavaScript"><code><span class="hljs-keyword">let</span> name = <span class="hljs-string">"wubin"</span>;
+<span class="hljs-keyword">let</span> age = <span class="hljs-number">18</span>;
+<span class="hljs-built_in">console</span>.log(name)                    <span class="hljs-comment">// wubin</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`my name is: <span class="hljs-subst">${name}</span>`</span>)   <span class="hljs-comment">// wubin</span>
+<span class="hljs-built_in">console</span>.log(name, age)               <span class="hljs-comment">// wubin 18</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"message:"</span>, name, age)   <span class="hljs-comment">// message: wubin18</span>
+</code></pre><p>除此之外，console.log()还支持下面这种输出方式：</p><pre type="JavaScript"><code><span class="hljs-string">let</span> <span class="hljs-string">name</span> <span class="hljs-string">=</span> <span class="hljs-string">"wubin"</span><span class="hljs-string">;</span>
+<span class="hljs-string">let</span> <span class="hljs-string">age</span> <span class="hljs-string">=</span> <span class="hljs-number">18</span><span class="hljs-string">;</span>
+<span class="hljs-string">let</span> <span class="hljs-string">height</span> <span class="hljs-string">=</span> <span class="hljs-number">180</span><span class="hljs-string">;</span>
+<span class="hljs-string">console.log('Name:</span> <span class="hljs-string">%s,</span> <span class="hljs-attr">Age:</span> <span class="hljs-string">%d',</span> <span class="hljs-string">name,</span> <span class="hljs-string">age)</span>     <span class="hljs-string">//</span> <span class="hljs-attr">Name:</span> <span class="hljs-string">wubin,</span> <span class="hljs-attr">Age:</span> <span class="hljs-number">18</span>
+<span class="hljs-string">console.log('Age:</span> <span class="hljs-string">%d,</span> <span class="hljs-attr">Height:</span> <span class="hljs-string">%d',</span> <span class="hljs-string">age,</span> <span class="hljs-string">height)</span> <span class="hljs-string">//</span> <span class="hljs-attr">Age:</span> <span class="hljs-number">18</span><span class="hljs-string">,</span> <span class="hljs-attr">Height:</span> <span class="hljs-number">180</span>
+</code></pre><p>这里将后面的变量赋值给了前面的占位符的位置，他们是一一对应的。这种写法在复杂的输出时，能保证模板和数据分离，结构更加清晰。不过如果是简单的输出，就没必要这样写了。在console.log中，支持的占位符格式如下：</p><ul><li>字符串：%s</li><li>整数：%d</li><li>浮点数：%f</li><li>对象：%o或%O</li><li>CSS样式：%c</li></ul><p>可以看到，除了最基本的几种类型之外，它还支持定义CSS样式：</p><pre type="JavaScript"><code><span class="hljs-keyword">let</span> name = <span class="hljs-string">"wubin"</span>;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'My Name is %cwubin'</span>, <span class="hljs-string">'color: skyblue; font-size: 30px;'</span>) 
+</code></pre><p>这个样式打印可能有用的地方就是打印图片，用来查看图片是否正确：</p><pre type="JavaScript"><code><span class="hljs-attribute">console</span>.log('%c ','background-image:url(<span class="hljs-string">"http://iyeslogo.orbrand.com/150902Google/005.gif"</span>);background-size:<span class="hljs-number">120</span>% <span class="hljs-number">120</span>%;background-repeat:no-repeat;background-position:center center;line-height:<span class="hljs-number">60</span>px;padding:<span class="hljs-number">30</span>px <span class="hljs-number">120</span>px;');
+</code></pre><p>严格地说，console.log()并不支持打印图片，但是可以使用CSS的背景图来打印图片，不过并不能直接打印，因为是不支持设置图片的宽高属性，所以就需要使用line-heigh和padding来撑开图片，使其可以正常显示出来。</p><p>我们可以使用console.log()来打印字符画，可以使用字符画在线生成工具，将生成的字符粘贴到console.log()即可。在线工具：<a href="http://www.degraeve.com/img2txt.php" target="_blank">mg2txt</a>。</p><p>除此之外，可以看到，当占位符表示一个对象时，有两种写法：%o或者%O，那它们两个有什么区别呢？当我们指定的对象是普通的object对象时，它们两个是没有区别的，如果是DOM节点，那就有有区别了。</p><blockquote>使用 %o 打印的是DOM节点的内容，包含其子节点。而%O打印的是该DOM节点的对象属性，可以根据需求来选择性的打印。</blockquote><h3>&nbsp;console.warn()</h3><p>console.warn() 方法用于在控制台输出警告信息。它的用法和console.log是完全一样的，只是显示的样式不太一样，信息最前面加一个黄色三角，表示警告：</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> app = [<span class="hljs-string">"facebook"</span>, <span class="hljs-string">"google"</span>, <span class="hljs-string">"twitter"</span>];
+<span class="hljs-built_in">console</span>.warn(app);
+</code></pre><h3>console.error()</h3><p>console.error()可以用于在控制台输出错误信息。它和上面的两个方法的用法是一样的，只是显示样式不一样：</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> app = [<span class="hljs-string">"facebook"</span>, <span class="hljs-string">"google"</span>, <span class="hljs-string">"twitter"</span>];
+<span class="hljs-built_in">console</span>.error(app);
+</code></pre><p>需要注意，console.exception() 是 console.error() 的别名，它们功能是相同的。</p><p>当然，console.error()还有一个console.log()不具备的功能，那就是打印函数的调用栈：</p><pre type="JavaScript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>{
+  b();
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.error(<span class="hljs-string">"error"</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">c</span>(<span class="hljs-params"></span>) </span>{
+  a();
+}
+c();
+</code></pre><p>可以看到，这里打印出来了函数函数调用栈的信息：b→a→c。</p><p>console对象提供了专门的方法来打印函数的调用栈（console.trace()），这个下面会介绍到。</p><h3>console.info()</h3><p>console.info()可以用来打印资讯类说明信息，它和console.log()的用法一致，打印出来的效果也是一样的。</p><h2>打印时间</h2><h3>1. console.time() &amp; console.timeEnd()</h3><p>如果我们想要获取一段代码的执行时间，就可以使用console对象的console.time() 和console.timeEnd()方法，来看下面的例子：</p><pre type="JavaScript"><code><span class="hljs-built_in">console</span>.time();
+
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-built_in">console</span>.timeEnd();
+}, <span class="hljs-number">1000</span>);
+
+<span class="hljs-regexp">//</span> default: <span class="hljs-number">1001.9140625</span> ms
+</code></pre><p>它们都可以传递一个参数，该参数是一个字符串，用来标记唯一的计时器。如果页面只有一个计时器时，就不需要传这个参数 ，如果有多个计时器，就需要使用这个标签来标记每一个计时器：</p><pre type="JavaScript"><code><span class="hljs-built_in">console</span>.time(<span class="hljs-string">"timer1"</span>);
+<span class="hljs-built_in">console</span>.time(<span class="hljs-string">"timer2"</span>);
+
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-built_in">console</span>.timeEnd(<span class="hljs-string">"timer1"</span>);
+}, <span class="hljs-number">1000</span>);
+
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-built_in">console</span>.timeEnd(<span class="hljs-string">"timer2"</span>);
+}, <span class="hljs-number">2000</span>);
+
+<span class="hljs-regexp">//</span> timer1: <span class="hljs-number">1004.666259765625</span> ms
+<span class="hljs-regexp">//</span> timer2: <span class="hljs-number">2004.654052734375</span> ms
+</code></pre><h3>console.timeLog()</h3><p>这里的console.timeLog()上面的console.timeEnd()类似，但是也有一定的差别。他们都需要使用console.time()来启动一个计时器。然后console.timeLog()就是打印计时器<strong>当前的时间</strong>，而console.timeEnd()是打印计时器，直到结束的时间。下面来看例子：</p><pre type="JavaScript"><code><span class="hljs-built_in">console</span>.time(<span class="hljs-string">"timer"</span>);
+
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.timeLog(<span class="hljs-string">"timer"</span>)
+		<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	    <span class="hljs-built_in">console</span>.timeLog(<span class="hljs-string">"timer"</span>);
+    }, <span class="hljs-number">2000</span>);
+}, <span class="hljs-number">1000</span>);
+
+<span class="hljs-regexp">//</span> timer: <span class="hljs-number">1002.80224609375</span> ms
+<span class="hljs-regexp">//</span> timer: <span class="hljs-number">3008.044189453125</span> ms
+</code></pre><p>而使用console.timeEnd()时：</p><pre type="JavaScript"><code><span class="hljs-built_in">console</span>.time(<span class="hljs-string">"timer"</span>);
+
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.timeEnd(<span class="hljs-string">"timer"</span>)
+	<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	    <span class="hljs-built_in">console</span>.timeLog(<span class="hljs-string">"timer"</span>);
+    }, <span class="hljs-number">2000</span>);
+}, <span class="hljs-number">1000</span>);</code></pre><p>打印结果：</p><p>timer:1002.46118164</p><p>timer: 1013.14404296875 msVM80:6 Timer 'timer' does not exist</p><p>可以看到，它会终止当前的计时器，所以里面的timeLog就无法在找到timer计数器了。 所以两者的区别就在于，是否会终止当前的计时。</p><h2>分组打印</h2><h3>console.group() &amp; console.groupEnd()</h3><p>这两个方法用于在控制台创建一个信息分组。 一个完整的信息分组以 console.group() 开始，console.groupEnd() 结束。来看下面的例子：</p><pre type="JavaScript"><code><span class="hljs-built_in">console</span>.group();
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'First Group'</span>);
+<span class="hljs-built_in">console</span>.group();
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Second Group'</span>)
+<span class="hljs-built_in">console</span>.groupEnd();
+<span class="hljs-built_in">console</span>.groupEnd();
+</code></pre><p>再来看一个复杂点的：</p><pre type="JavaScript"><code><span class="hljs-built_in">console</span>.group(<span class="hljs-string">"Alphabet"</span>)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"A"</span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"B"</span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"C"</span>);
+  <span class="hljs-built_in">console</span>.group(<span class="hljs-string">"Numbers"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"One"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Two"</span>);
+  <span class="hljs-built_in">console</span>.groupEnd(<span class="hljs-string">"Numbers"</span>);
+<span class="hljs-built_in">console</span>.groupEnd(<span class="hljs-string">"Alphabet"</span>);
+</code></pre><p>可以看到，这些分组是可以嵌套的。当前我们需要调试一大堆调试输出，就可以选择使用分组输出，</p><h3>console.groupCollapsed()</h3><p>console.groupCollapsed()方法类似于console.group()，它们都需要使用console.groupEnd()来结束分组。不同的是，该方法默认打印的信息是折叠展示的，而group()是默认展开的。来对上面的例子进行改写：</p><pre type="JavaScript"><code><span class="hljs-built_in">console</span>.groupCollapsed(<span class="hljs-string">"Alphabet"</span>)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"A"</span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"B"</span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"C"</span>);
+  <span class="hljs-built_in">console</span>.groupCollapsed(<span class="hljs-string">"Numbers"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"One"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Two"</span>);
+  <span class="hljs-built_in">console</span>.groupEnd(<span class="hljs-string">"Numbers"</span>);
+<span class="hljs-built_in">console</span>.groupEnd(<span class="hljs-string">"Alphabet"</span>);
+</code></pre><p>可以看到，和上面方法唯一的不同就是，打印的结果被折叠了，需要手动展开来看。</p><h2>打印计次</h2><h3>console.count()</h3><p>可以使用使用console.count()来获取当前执行的次数。来看下面的例子：</p><pre type="JavaScript"><code><span class="hljs-string">for</span> <span class="hljs-string">(i</span> <span class="hljs-string">=</span> <span class="hljs-number">0</span><span class="hljs-string">;</span> <span class="hljs-string">i</span> <span class="hljs-string">&lt;</span> <span class="hljs-number">5</span><span class="hljs-string">;</span> <span class="hljs-string">i++)</span> {
+    <span class="hljs-string">console.count();</span>
+}
+
+<span class="hljs-string">//</span> <span class="hljs-string">输出结果如下</span>
+<span class="hljs-attr">default:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">default:</span> <span class="hljs-number">2</span>
+<span class="hljs-attr">default:</span> <span class="hljs-number">3</span>
+<span class="hljs-attr">default:</span> <span class="hljs-number">4</span>
+<span class="hljs-attr">default:</span> <span class="hljs-number">5</span>
+</code></pre><p>它也可以传一个参数来进行标记（如果为空，则为默认标签default）：</p><pre type="JavaScript"><code><span class="hljs-string">for</span> <span class="hljs-string">(i</span> <span class="hljs-string">=</span> <span class="hljs-number">0</span><span class="hljs-string">;</span> <span class="hljs-string">i</span> <span class="hljs-string">&lt;</span> <span class="hljs-number">5</span><span class="hljs-string">;</span> <span class="hljs-string">i++)</span> {
+    <span class="hljs-string">console.count("hello");</span>
+}
+
+<span class="hljs-string">//</span> <span class="hljs-string">输出结果如下</span>
+<span class="hljs-attr">hello:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">hello:</span> <span class="hljs-number">2</span>
+<span class="hljs-attr">hello:</span> <span class="hljs-number">3</span>
+<span class="hljs-attr">hello:</span> <span class="hljs-number">4</span>
+<span class="hljs-attr">hello:</span> <span class="hljs-number">5</span>
+</code></pre><p>这个方法主要用于一些比较复杂的场景，有时候一个函数被多个地方调用，就可以使用这个方法来确定是否少调用或者重复调用了该方法。</p><h3>console.countReset()</h3><p>顾顾名思义，console.countReset()就是重置计算器，它会需要配合上面的console.count()方法使用。它有一个可选的参数label：</p><ul><li>如果提供了参数label，此函数会重置与label关联的计数，将count重置为0。</li><li>如果省略了参数label，此函数会重置默认的计数器，将count重置为0。</li></ul><pre type="JavaScript"><code><span class="hljs-built_in">console</span>.count(); 
+<span class="hljs-built_in">console</span>.count(<span class="hljs-string">"a"</span>); 
+<span class="hljs-built_in">console</span>.count(<span class="hljs-string">"b"</span>); 
+<span class="hljs-built_in">console</span>.count(<span class="hljs-string">"a"</span>); 
+<span class="hljs-built_in">console</span>.count(<span class="hljs-string">"a"</span>); 
+<span class="hljs-built_in">console</span>.count(); 
+<span class="hljs-built_in">console</span>.count(); 
+  
+<span class="hljs-built_in">console</span>.countReset(); 
+<span class="hljs-built_in">console</span>.countReset(<span class="hljs-string">"a"</span>); 
+<span class="hljs-built_in">console</span>.countReset(<span class="hljs-string">"b"</span>); 
+  
+<span class="hljs-built_in">console</span>.count(); 
+<span class="hljs-built_in">console</span>.count(<span class="hljs-string">"a"</span>); 
+<span class="hljs-built_in">console</span>.count(<span class="hljs-string">"b"</span>);
+</code></pre><p>打印结果如下：</p><pre type="JavaScript"><code><span class="hljs-attribute">default</span>:<span class="hljs-number">1</span>
+<span class="hljs-attribute">a</span>:<span class="hljs-number">1</span>
+<span class="hljs-attribute">b</span>:<span class="hljs-number">1</span>
+<span class="hljs-attribute">a</span>:<span class="hljs-number">2</span>
+<span class="hljs-attribute">a</span>:<span class="hljs-number">3</span>
+<span class="hljs-attribute">default</span>:<span class="hljs-number">2</span>
+<span class="hljs-attribute">default</span>:<span class="hljs-number">3</span>
+<span class="hljs-attribute">default</span>:<span class="hljs-number">1</span>
+<span class="hljs-attribute">a</span>:<span class="hljs-number">1</span>
+<span class="hljs-attribute">b</span>:<span class="hljs-number">1</span>
+</code></pre><h2>其他打印</h2><h3>console.table()</h3><p>我们平时使用console.log较多，其实console对象还有很多属性可以使用，比如console.table()，使用它可以方便的打印数组对象的属性，打印结果是一个表格。console.table() 方法有两个参数，第一个参数是需要打印的对象，第二个参数是需要打印的表格的标题，这里就是数组对象的属性值。来看下面的例子：</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> users = [ 
+   { 
+      <span class="hljs-string">"first_name"</span>:<span class="hljs-string">"Harcourt"</span>,
+      <span class="hljs-string">"last_name"</span>:<span class="hljs-string">"Huckerbe"</span>,
+      <span class="hljs-string">"gender"</span>:<span class="hljs-string">"Male"</span>,
+      <span class="hljs-string">"city"</span>:<span class="hljs-string">"Linchen"</span>,
+      <span class="hljs-string">"birth_country"</span>:<span class="hljs-string">"China"</span>
+   },
+   { 
+      <span class="hljs-string">"first_name"</span>:<span class="hljs-string">"Allyn"</span>,
+      <span class="hljs-string">"last_name"</span>:<span class="hljs-string">"McEttigen"</span>,
+      <span class="hljs-string">"gender"</span>:<span class="hljs-string">"Male"</span>,
+      <span class="hljs-string">"city"</span>:<span class="hljs-string">"Ambelókipoi"</span>,
+      <span class="hljs-string">"birth_country"</span>:<span class="hljs-string">"Greece"</span>
+   },
+   { 
+      <span class="hljs-string">"first_name"</span>:<span class="hljs-string">"Sandor"</span>,
+      <span class="hljs-string">"last_name"</span>:<span class="hljs-string">"Degg"</span>,
+      <span class="hljs-string">"gender"</span>:<span class="hljs-string">"Male"</span>,
+      <span class="hljs-string">"city"</span>:<span class="hljs-string">"Mthatha"</span>,
+      <span class="hljs-string">"birth_country"</span>:<span class="hljs-string">"South Africa"</span>
+   }
+]
+
+<span class="hljs-built_in">console</span>.table(users, [<span class="hljs-string">'first_name'</span>, <span class="hljs-string">'last_name'</span>, <span class="hljs-string">'city'</span>]);
+</code></pre><p>（请在控制台打印上面结果）通过这种方式，可以更加清晰的看到数组对象中的指定属性。</p><p>除此之外，还可以使用console.table()来打印数组元素：</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> app = [<span class="hljs-string">"facebook"</span>, <span class="hljs-string">"google"</span>, <span class="hljs-string">"twitter"</span>];
+<span class="hljs-built_in">console</span>.table(app);
+</code></pre><p>通过这种方式，我们可以更清晰的看到数组中的元素。</p><p>需要注意，console.table() 只能处理最多1000行，因此它可能不适合所有数据集。但是也能适用于多数场景了。</p><h3>console.clear()</h3><p>console.clear() 顾名思义就是清除控制台的信息。当清空控制台之后，会打印一句：“Console was clered”:</p><h3>console.assert()</h3><p>console.assert()方法用于语句断言，当断言为 false时，则在信息到控制台输出错误信息。它的语法如下：</p><pre type="JavaScript"><code><span class="hljs-built_in">console</span>.assert(expression, message)
+</code></pre><p>它有两个参数：</p><ul><li>expression: 条件语句，语句会被解析成 Boolean，且为 false 的时候会触发message语句输出；</li><li>message: 输出语句，可以是任意类型。</li></ul><p>该方法会在expression条件语句为false时，就会打印message信息。当在特定情况下才输出语句时，就可以使用console.assert()方法。</p><p>比如，当列表元素的子节点数量大于等于100时，打印错误信息：</p><pre type="JavaScript"><code><span class="hljs-selector-tag">console</span><span class="hljs-selector-class">.assert</span>(<span class="hljs-selector-tag">list</span><span class="hljs-selector-class">.childNodes</span><span class="hljs-selector-class">.length</span> &lt; 100, "<span class="hljs-selector-tag">Node</span> <span class="hljs-selector-tag">count</span> <span class="hljs-selector-tag">is</span> &gt; 100");
+</code></pre><h3>console.trace()</h3><p>console.trace()方法可以用于打印当前执行的代码在堆栈中的调用路径。它和上面的console.error()的功一致，不过打印的样式就和console.log()是一样的了。来看下面的例子：</p><pre type="JavaScript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>{
+  b();
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.trace();
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">c</span>(<span class="hljs-params"></span>) </span>{
+  a();
+}
+c();
+</code></pre><p>可以看到（在控制台中查看），这里输出了调用栈的信息：b→a→c，这个堆栈信息是从调用位置开始的。</p><h3>console.dir()</h3><p>console.dir()方法可以在控制台中显示指定JavaScript对象的属性，并通过类似文件树样式的交互列表显示。它的语法如下：</p><pre type="JavaScript"><code>console.<span class="hljs-built_in">dir</span>(<span class="hljs-built_in">object</span>);
+</code></pre><p>它的参数是一个对象，最终会打印出该对象所有的属性和属性值。
+</p><p>在多数情况下，使用consoledir()和使用console.log()的效果是一样的。但是当打印元素结构时，就会有很大的差异了，console.log()打印的是元素的DOM结构，而console.dir()打印的是元素的属性：</p><h3>console.dirxml()</h3><p>console.dirxml()方法用于显示一个明确的XML/HTML元素的包括所有后代元素的交互树。 如果无法作为一个element被显示，那么会以JavaScript对象的形式作为替代。 它的输出是一个继承的扩展的节点列表，可以让你看到子节点的内容。其语法如下：</p><pre type="JavaScript"><code><span class="hljs-built_in">console</span>.dirxml(<span class="hljs-built_in">object</span>);
+</code></pre><p>该方法会打印输出XML元素及其后代元素，对于XML和HTML元素调用console.log()和console.dirxml()是等价的。</p><h3>console.memory</h3><p>console.memory是console对象的一个属性，而不是一个方法。它可以用来查看当前内存的使用情况，如果使用过多的console.log()会占用较多的内存，导致浏览器出现卡顿情况。</p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：console
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/111" class="imgbox">
+                <img src="/statics/blog/2021/0630/44ae8f1b19d83bb722a0ea023daadd1a.jpg">
+            </a>
+            <a href="/blog/articles/111" class="title" title="Blade模板引擎简介及模板继承的使用">
+                Blade模板引擎简介及模板继承的使用
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/378" class="imgbox">
+                <img src="/statics/blog/2023/0308/58b1c0457439f0c19833931b81c972a5.png">
+            </a>
+            <a href="/blog/articles/378" class="title" title="SpringBoot解决跨域问题">
+                SpringBoot解决跨域问题
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/121" class="imgbox">
+                <img src="/statics/blog/2021/0705/017dd7c4cc8f5767bce7f86ad2656a28.jpg">
+            </a>
+            <a href="/blog/articles/121" class="title" title="控制器之Session">
+                控制器之Session
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/js">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/362">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        JS实现一个base64的加密解密方法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/157">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        百度语音合成使用方法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/331">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        jQuery获取页面及个元素高度、宽度的总结
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/210">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        点击a标签实现QQ对话、邮件发送、拨打电话功能
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/250">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        html2canvas日常使用与大坑总结
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

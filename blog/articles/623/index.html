@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="PHP接口数据加密实战 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>PHP接口数据加密实战 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="加密"/>
+<meta name="description" content="接口加密没那么复杂，不用懂高深的加密算法，今天这篇，就给你一套**生产环境可用的PHP接口加密方案**，覆盖“数据加密+签名防篡改”，从基础到进阶，代码直接复制可用，小白也能快速上手。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 623,
+            article_title: 'PHP接口数据加密实战',
+            article_desc: '接口加密没那么复杂，不用懂高深的加密算法，今天这篇，就给你一套**生产环境可用的PHP接口加密方案**，覆盖“数据加密+签名防篡改”，从基础到进阶，代码直接复制可用，小白也能快速上手。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal active">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" class="active">
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/php">PHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">PHP接口数据加密实战</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>3921</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>272</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2026-03-27 11:11:49</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>先理清：3个核心概念，避免用错场景</h2><p>很多人混淆“加密”“哈希”“签名”，用错场景反而增加安全隐患，先花1分钟搞懂，避免踩坑：</p><ul><li><p><strong>加密</strong>：可逆操作，把明文（比如手机号13800138000）变成密文，拿到密钥就能解密回明文，适合敏感数据传输（如手机号、身份证）；</p></li><li><p><strong>哈希</strong>：不可逆操作，把数据变成固定长度的字符串（比如密码加密），无法还原回原文，适合密码存储、数据完整性校验；</p></li><li><p><strong>签名</strong>：结合哈希+密钥，验证数据是否被篡改，发送方生成签名，接收方验证签名，不一致则拒绝处理，适合接口请求防篡改。</p></li></ul><p>记住一句话：<strong>敏感数据用加密，密码存储用哈希，接口防篡改用签名</strong>，三者结合，才能真正保障接口数据安全。</p><h2>实战方案1：AES对称加密（前后端数据传输首选）</h2><div><p>AES是目前最常用的对称加密算法，加密和解密用同一个密钥，速度快、兼容性好，适合前后端敏感数据传输（如手机号、地址、订单信息），PHP原生支持，不用额外安装扩展。</p><p>步骤1：封装AES加密工具类（直接复制用）</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">/**&nbsp;
+* AES加密工具类（AES-256-CBC，生产环境首选）&nbsp;
+* 前后端需统一：密钥、加密算法、编码方式
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title">AesEncrypt</span></span>{
+	&nbsp; &nbsp;&nbsp;
+	  <span class="hljs-comment">// 密钥（重点：前后端必须一致，建议32位，可自定义，不要泄露）&nbsp; &nbsp;&nbsp;private&nbsp;static&nbsp;$key&nbsp;=&nbsp;'your_32_byte_aes_secret_key_2026';&nbsp; &nbsp;&nbsp;</span>
+	<span class="hljs-comment">// 加密算法（固定AES-256-CBC，兼容性最好）&nbsp; &nbsp;&nbsp;</span>
+	<span class="hljs-keyword">private</span>&nbsp;<span class="hljs-built_in">static</span>&nbsp;$cipher&nbsp;=&nbsp;<span class="hljs-string">'aes-256-cbc'</span>;
+	&nbsp; &nbsp;&nbsp;
+	<span class="hljs-comment">/**&nbsp; &nbsp; &nbsp;
+  * AES加密（明文转密文，方便传输）&nbsp; &nbsp; &nbsp;
+  *&nbsp;<span class="hljs-doctag">@param</span>&nbsp;string $data 待加密明文（可传字符串、数组）&nbsp; &nbsp; &nbsp;
+  *&nbsp;<span class="hljs-doctag">@return</span>&nbsp;string 加密后的密文（base64编码，避免乱码）&nbsp; &nbsp; &nbsp;
+  */</span>
+	&nbsp; &nbsp;&nbsp;
+	  <span class="hljs-keyword">public</span>&nbsp;<span class="hljs-built_in">static</span>&nbsp;<span class="hljs-function"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title">encrypt</span>(<span class="hljs-params">$data</span>)&nbsp; &nbsp; 
+	  </span>{
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+		  <span class="hljs-comment">// 处理数组：先JSON编码，再加密&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+		<span class="hljs-keyword">if</span>&nbsp;(is_array($data)) {
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+			  $data&nbsp;=&nbsp;json_encode($data, JSON_UNESCAPED_UNICODE);
+			&nbsp; &nbsp; &nbsp; &nbsp;
+		}
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+		  <span class="hljs-comment">// 生成初始化向量IV（16位，AES-256-CBC固定要求）&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;$iv&nbsp;=&nbsp;openssl_random_pseudo_bytes(openssl_cipher_iv_length(self::$cipher));&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+		<span class="hljs-comment">// 执行加密&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+		$encrypted&nbsp;=&nbsp;openssl_encrypt($data,&nbsp;<span class="hljs-built_in">self</span>::$cipher,&nbsp;<span class="hljs-built_in">self</span>::$key, OPENSSL_RAW_DATA,&nbsp;$iv);
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+		  <span class="hljs-comment">// 拼接IV和密文，base64编码（方便传输，避免乱码）&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;return&nbsp;base64_encode($iv&nbsp;.&nbsp;$encrypted);&nbsp; &nbsp;</span>
+	}
+	&nbsp; &nbsp;
+	<span class="hljs-comment">/**&nbsp; &nbsp; &nbsp;
+  * AES解密（密文转明文）&nbsp; &nbsp; &nbsp;
+  *&nbsp;<span class="hljs-doctag">@param</span>&nbsp;string $encryptedData 加密后的密文（base64编码）&nbsp; &nbsp; &nbsp;
+  *&nbsp;<span class="hljs-doctag">@return</span>&nbsp;string|array 解密后的明文（数组会自动JSON解码）&nbsp; &nbsp; &nbsp;
+  *&nbsp;<span class="hljs-doctag">@throws</span>&nbsp;Exception 解密失败抛出异常&nbsp; &nbsp; &nbsp;
+  */</span>
+	&nbsp; &nbsp;&nbsp;
+	  <span class="hljs-keyword">public</span>&nbsp;<span class="hljs-built_in">static</span>&nbsp;<span class="hljs-function"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title">decrypt</span>(<span class="hljs-params">$encryptedData</span>)&nbsp; &nbsp; 
+	  </span>{
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+		  <span class="hljs-comment">// 先base64解码&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+		$decoded&nbsp;=&nbsp;base64_decode($encryptedData);
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+		  <span class="hljs-keyword">if</span>&nbsp;($decoded&nbsp;===&nbsp;<span class="hljs-literal">false</span>) {
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+			  <span class="hljs-keyword">throw</span>&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-built_in">Exception</span>(<span class="hljs-string">"加密数据格式错误，无法解码"</span>);
+			&nbsp; &nbsp; &nbsp; &nbsp;
+		}
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+		  <span class="hljs-comment">// 拆分IV和密文（IV固定16位）&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+		$ivLength&nbsp;=&nbsp;openssl_cipher_iv_length(<span class="hljs-built_in">self</span>::$cipher);
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;$iv&nbsp;=&nbsp;substr($decoded,&nbsp;<span class="hljs-number">0</span>,&nbsp;$ivLength);
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+		  $encrypted&nbsp;=&nbsp;substr($decoded,&nbsp;$ivLength);
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+		  <span class="hljs-comment">// 执行解密&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+		$decrypted&nbsp;=&nbsp;openssl_decrypt($encrypted,&nbsp;<span class="hljs-built_in">self</span>::$cipher,&nbsp;<span class="hljs-built_in">self</span>::$key,OPENSSL_RAW_DATA,&nbsp;$iv);
+		&nbsp; &nbsp; &nbsp; &nbsp;
+		  <span class="hljs-keyword">if</span>&nbsp;($decrypted&nbsp;===&nbsp;<span class="hljs-literal">false</span>) {
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			  <span class="hljs-keyword">throw</span>&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-built_in">Exception</span>(<span class="hljs-string">"解密失败，密钥或数据错误"</span>);
+			&nbsp; &nbsp; &nbsp; &nbsp;
+		}
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+		  <span class="hljs-comment">// 尝试JSON解码（如果是数组，自动还原）&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+		$jsonDecoded&nbsp;=&nbsp;json_decode($decrypted,&nbsp;<span class="hljs-literal">true</span>);
+		&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;$jsonDecoded&nbsp;??&nbsp;$decrypted;
+		&nbsp; &nbsp;
+	}
+}
+<span class="hljs-meta">?&gt;</span></code></pre></div><p>步骤2：接口中实战使用（前后端对接示例）</p><p>后端加密返回数据，前端解密展示；前端加密请求参数，后端解密处理，完美实现敏感数据隐藏。</p><div><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// 示例1：后端加密返回敏感数据（比如用户信息）</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUserInfo</span>(<span class="hljs-params"></span>)
+</span>{
+	<span class="hljs-comment">// 模拟用户敏感数据    </span>
+	$userInfo = [        
+	<span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">1001</span>,       
+	<span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'张三'</span>,        
+	<span class="hljs-string">'phone'</span> =&gt; <span class="hljs-string">'13800138000'</span>, 
+	<span class="hljs-comment">// 敏感数据，需要加密       </span>
+	<span class="hljs-string">'address'</span> =&gt; <span class="hljs-string">'北京市朝阳区'</span> 
+	<span class="hljs-comment">// 敏感数据，需要加密    </span>
+	];
+	<span class="hljs-keyword">try</span> {
+		<span class="hljs-comment">// 加密敏感数据       </span>
+		$encryptedUserInfo = AesEncrypt::encrypt($userInfo);
+		<span class="hljs-comment">// 接口返回密文        </span>
+		apiResponse(
+		<span class="hljs-number">0</span>, 
+		<span class="hljs-string">'success'</span>, 
+		[           
+		<span class="hljs-string">'user_info'</span> =&gt; $encryptedUserInfo        
+		]);
+	}
+	<span class="hljs-keyword">catch</span> (<span class="hljs-built_in">Exception</span> $e) {
+		apiResponse(<span class="hljs-number">500</span>, $e-&gt;getMessage());
+	}
+}
+<span class="hljs-comment">// 示例2：后端解密前端加密的请求参数（比如提交订单）</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">submitOrder</span>(<span class="hljs-params"></span>)</span>{
+	<span class="hljs-comment">// 接收前端加密后的参数    </span>
+	$encryptedParams = $_POST[<span class="hljs-string">'encrypted_params'</span>] ?? <span class="hljs-string">''</span>;
+	<span class="hljs-keyword">if</span> (<span class="hljs-keyword">empty</span>($encryptedParams)) {
+		apiResponse(<span class="hljs-number">400</span>, <span class="hljs-string">'请提交加密参数'</span>);
+	}
+	<span class="hljs-keyword">try</span> {
+		<span class="hljs-comment">// 解密参数        </span>
+		$params = AesEncrypt::decrypt($encryptedParams);
+		<span class="hljs-comment">// 解密后执行业务逻辑（比如订单处理）        </span>
+		$orderId = <span class="hljs-keyword">$this</span>-&gt;createOrder($params[<span class="hljs-string">'goods_id'</span>], $params[<span class="hljs-string">'amount'</span>]);
+		apiResponse(<span class="hljs-number">0</span>, <span class="hljs-string">'订单提交成功'</span>, [<span class="hljs-string">'order_id'</span> =&gt; $orderId]);
+	}
+	<span class="hljs-keyword">catch</span> (<span class="hljs-built_in">Exception</span> $e) {
+		apiResponse(<span class="hljs-number">400</span>, $e-&gt;getMessage());
+	}
+}
+<span class="hljs-meta">?&gt;</span></code></pre></div><p>前端配合示例（简单易懂，适配Vue/React）</p><p>前端用相同的密钥和算法，实现加密解密，和后端保持一致即可（以JS为例）</p><div><pre type="Html"><code><span class="hljs-comment">// 前端AES加密解密（和PHP后端保持一致</span>
+<span class="hljs-keyword">const</span> key = <span class="hljs-string">'your_32_byte_aes_secret_key_2026'</span>;
+<span class="hljs-comment">// 和后端密钥一致</span>
+<span class="hljs-keyword">const</span> cipher = <span class="hljs-string">'AES-256-CBC'</span>;
+<span class="hljs-comment">// 加密函数（和PHP逻辑对应）</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">aesEncrypt</span>(<span class="hljs-params">data</span>) </span>{
+	<span class="hljs-keyword">const</span> dataStr = <span class="hljs-keyword">typeof</span> data === <span class="hljs-string">'object'</span> ? <span class="hljs-built_in">JSON</span>.stringify(data) : data;
+	<span class="hljs-keyword">const</span> iv = crypto.getRandomValues(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(<span class="hljs-number">16</span>));
+	<span class="hljs-comment">// 16位IV    </span>
+	<span class="hljs-keyword">const</span> encrypted = crypto.subtle.encrypt(       
+	{ <span class="hljs-attr">name</span>: cipher, <span class="hljs-attr">iv</span>: iv },        key,        <span class="hljs-keyword">new</span> TextEncoder().encode(dataStr)    );
+	<span class="hljs-comment">// 拼接IV和密文，base64编码   </span>
+	<span class="hljs-keyword">return</span> btoa(<span class="hljs-built_in">String</span>.fromCharCode(...new <span class="hljs-built_in">Uint8Array</span>(<span class="hljs-keyword">await</span> encrypted)));
+}
+<span class="hljs-comment">// 解密函数async function aesDecrypt(encryptedData) </span>
+{
+	<span class="hljs-keyword">const</span> decoded = atob(encryptedData);
+	<span class="hljs-keyword">const</span> iv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(<span class="hljs-built_in">Array</span>.from(decoded.slice(<span class="hljs-number">0</span>, <span class="hljs-number">16</span>)).map(<span class="hljs-function"><span class="hljs-params">char</span> =&gt;</span> char.charCodeAt(<span class="hljs-number">0</span>)));
+	<span class="hljs-keyword">const</span> encrypted = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(<span class="hljs-built_in">Array</span>.from(decoded.slice(<span class="hljs-number">16</span>)).map(<span class="hljs-function"><span class="hljs-params">char</span> =&gt;</span> char.charCodeAt(<span class="hljs-number">0</span>)));
+	<span class="hljs-keyword">const</span> decrypted = <span class="hljs-keyword">await</span> crypto.subtle.decrypt(      
+	{ <span class="hljs-attr">name</span>: cipher, <span class="hljs-attr">iv</span>: iv },       
+	key,        
+	encrypted   
+	);
+	<span class="hljs-keyword">const</span> dataStr = <span class="hljs-keyword">new</span> TextDecoder().decode(decrypted);
+	<span class="hljs-keyword">try</span> {
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.parse(dataStr);
+		<span class="hljs-comment">// 尝试解析为数组</span>
+	}
+	<span class="hljs-keyword">catch</span> (e) {
+		<span class="hljs-keyword">return</span> dataStr;
+	}
+}
+<span class="hljs-comment">// 调用示例：加密请求参数提交</span>
+<span class="hljs-keyword">const</span> params = { <span class="hljs-attr">goods_id</span>: <span class="hljs-number">101</span>, <span class="hljs-attr">amount</span>: <span class="hljs-number">199</span> };
+<span class="hljs-keyword">const</span> encryptedParams = <span class="hljs-keyword">await</span> aesEncrypt(params);
+<span class="hljs-comment">// 发起请求，提交加密后的参数axios.post('/api/submitOrder', </span>
+{
+	<span class="hljs-attr">encrypted_params</span>: encryptedParams
+}
+);</code></pre></div><h2>实战方案2：HMAC签名（接口防篡改首选）</h2><p>有些场景不需要加密数据（比如公开列表），但需要防止参数被篡改（比如订单金额、用户ID），这时候就用HMAC签名——发送方生成签名，接收方验证签名，只要参数被篡改，签名就会不一致，直接拒绝请求。</p><p>核心优势：不用加密数据，只验证完整性，速度快，适合高频接口、第三方对接。</p><p>步骤1：封装签名工具类（直接复制用）</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">/** * HMAC签名工具类（防篡改，支持GET/POST请求） 
+* 前后端需统一：签名密钥、参数排序规则、签名算法 *
+/class HmacSign{    
+// 签名密钥（重点：前后端必须一致，不要泄露，和AES密钥可不同）   
+private static $secret = 'your_hmac_secret_key_2026';   
+// 签名算法（固定SHA256，安全性高）    
+private static $algorithm = 'sha256'; 
+/**     
+* 生成签名    
+* <span class="hljs-doctag">@param</span> array $params 待签名的请求参数（不含sign字段）    
+* <span class="hljs-doctag">@return</span> string 生成的签名     
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createSign</span>(<span class="hljs-params">$params</span>)    
+</span>{
+	<span class="hljs-comment">// 1. 移除sign字段（避免重复签名）        </span>
+	<span class="hljs-keyword">unset</span>($params[<span class="hljs-string">'sign'</span>]);
+	<span class="hljs-comment">// 2. 按参数名ASCII排序（前后端必须一致，否则签名不一致）        </span>
+	ksort($params);
+	<span class="hljs-comment">// 3. 拼接参数为字符串（key=value&amp;key=value）      </span>
+	$paramStr = http_build_query($params);
+	<span class="hljs-comment">// 4. 生成HMAC签名（密钥+参数字符串，SHA256算法）      </span>
+	<span class="hljs-keyword">return</span> hash_hmac(<span class="hljs-built_in">self</span>::$algorithm, $paramStr, <span class="hljs-built_in">self</span>::$secret);
+}
+<span class="hljs-comment">/**     
+* 验证签名     
+* <span class="hljs-doctag">@param</span> array $params 接收的请求参数（含sign字段）     
+* <span class="hljs-doctag">@return</span> bool 签名是否有效     
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">verifySign</span>(<span class="hljs-params">$params</span>)   
+</span>{
+	<span class="hljs-comment">// 1. 判断sign字段是否存在        </span>
+	<span class="hljs-keyword">if</span> (!<span class="hljs-keyword">isset</span>($params[<span class="hljs-string">'sign'</span>]) || <span class="hljs-keyword">empty</span>($params[<span class="hljs-string">'sign'</span>])) {
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+	}
+	<span class="hljs-comment">// 2. 保存接收的签名，然后移除sign字段    </span>
+	$receivedSign = $params[<span class="hljs-string">'sign'</span>];
+	<span class="hljs-keyword">unset</span>($params[<span class="hljs-string">'sign'</span>]);
+	<span class="hljs-comment">// 3. 重新生成签名，和接收的签名对比      </span>
+	$generatedSign = <span class="hljs-built_in">self</span>::createSign($params);
+	<span class="hljs-keyword">return</span> $generatedSign === $receivedSign;
+}
+}
+<span class="hljs-meta">?&gt;</span></code></pre><p>步骤2：接口中实战使用（防篡改示例）</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// 示例：订单支付接口（防止金额被篡改）</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">payOrder</span>(<span class="hljs-params"></span>)
+</span>{
+	<span class="hljs-comment">// 接收请求参数（含sign签名）   </span>
+	$params = $_POST;
+	<span class="hljs-comment">// 1. 验证签名    </span>
+	<span class="hljs-keyword">if</span> (!HmacSign::verifySign($params)) 
+	{
+		apiResponse(<span class="hljs-number">403</span>, <span class="hljs-string">'参数被篡改，请求无效'</span>);
+	}
+	<span class="hljs-comment">// 2. 签名验证通过，执行业务逻辑    </span>
+	$orderId = $params[<span class="hljs-string">'order_id'</span>] ?? <span class="hljs-string">''</span>;
+	$amount = $params[<span class="hljs-string">'amount'</span>] ?? <span class="hljs-number">0</span>;
+	<span class="hljs-comment">// 金额不会被篡改，可安全使用    </span>
+	<span class="hljs-comment">// 模拟支付逻辑   </span>
+	$payResult = <span class="hljs-keyword">$this</span>-&gt;doPay($orderId, $amount);
+	<span class="hljs-keyword">if</span> ($payResult) {
+		apiResponse(<span class="hljs-number">0</span>, <span class="hljs-string">'支付成功'</span>);
+	} <span class="hljs-keyword">else</span> {
+		apiResponse(<span class="hljs-number">400</span>, <span class="hljs-string">'支付失败，请重试'</span>);
+	}
+}
+<span class="hljs-comment">// 前端请求示例（生成签名）</span>
+<span class="hljs-comment">// 前端拼接参数：</span>
+$params = [<span class="hljs-string">'order_id'</span> =&gt; <span class="hljs-number">10001</span>, <span class="hljs-string">'amount'</span> =&gt; <span class="hljs-number">199</span>, <span class="hljs-string">'timestamp'</span> =&gt; time()];
+<span class="hljs-comment">// 生成签名：$sign = HmacSign::createSign($params);</span>
+<span class="hljs-comment">// 提交参数：$params['sign'] = $sign; 然后发起POST请求</span>
+<span class="hljs-meta">?&gt;</span></code></pre><h2>生产环境必加的4个安全细节（避坑关键）</h2><ol><li><p><strong>密钥绝对不能泄露</strong>：AES密钥、HMAC签名密钥，不要写死在代码里提交到GitHub，生产环境建议放在配置文件（如.env），权限设置为只读，避免被恶意获取；</p></li><li><p><strong>前后端配置必须完全一致</strong>：加密算法、密钥、参数排序规则、编码方式，只要有一点不一样，就会出现“加密成功、解密失败”“签名验证不通过”的问题，对接前一定要和前端确认；</p></li><li><p><strong>敏感数据必须加密</strong>：手机号、身份证、银行卡号、地址等敏感信息，必须用AES加密传输，禁止明文传输，即使有HTTPS，也建议加密（双重保障）；</p></li><li><p><strong>签名加时间戳防重放</strong>：在签名参数中加入timestamp（时间戳），验证时判断时间戳是否在有效范围内（比如±5分钟），防止恶意重复提交请求（比如重复支付）。</p></li></ol><p>接口数据安全，核心就是“加密+签名”，按场景选择即可：</p><p>敏感数据传输（手机号、身份证）：用AES对称加密，可逆、速度快，前后端统一密钥；</p><p>接口防篡改（订单金额、用户ID）：用HMAC签名，不用加密数据，只验证完整性；</p><p>密码存储：用PHP原生的password_hash()（哈希，不可逆），不要用AES加密密码（可逆，不安全）。</p><p>把今天的两个工具类复制到你的项目里，按需修改密钥，就能快速实现接口数据加密和防篡改，让你的接口更安全、更可靠。</p><p>接口安全没有“差不多”，只有“万无一失”——很多时候，一次数据泄露、一次参数篡改，就能造成无法挽回的损失。加密和签名，就是最基础、最有效的防护手段。</p><p></p><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：加密
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/321" class="imgbox">
+                <img src="/statics/blog/2022/1020/b585415b95b0a09b50a897e45b449245.jpg">
+            </a>
+            <a href="/blog/articles/321" class="title" title="uniapp项目中禁止横屏让app不自动旋转且始终保持竖屏">
+                uniapp项目中禁止横屏让app不自动旋转且始终保持竖屏
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/223" class="imgbox">
+                <img src="/statics/blog/2021/1118/cf0905e3451e094572aa603282caff76.jpg">
+            </a>
+            <a href="/blog/articles/223" class="title" title="在Vue中为什么不推荐用index做key">
+                在Vue中为什么不推荐用index做key
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/344" class="imgbox">
+                <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+            </a>
+            <a href="/blog/articles/344" class="title" title="uniapp实现被浏览器唤起的功能">
+                uniapp实现被浏览器唤起的功能
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/php">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/323">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        php获取目录中所有文件名及判断文件与目录的简单方法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/479">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        如何使用phpquery?
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/484">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        在phpstudy中配置composer
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/211">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用curl封装一个实现后端get和post请求的函数
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/51">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        PHP正确统计中文字数以及截取字符串给超出的部分打点
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

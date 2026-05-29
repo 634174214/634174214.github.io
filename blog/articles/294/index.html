@@ -1,0 +1,1238 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="8个鲜为人知但很实用的WebAPI | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>8个鲜为人知但很实用的WebAPI | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="浏览器原生，API"/>
+<meta name="description" content="在WebAPI中，有非常有用的对象、属性和函数可用于执行小到访问DOM这样的小任务，大到处理音频、视频这样的复杂任务。常见的API有Canvas、WebWorker、History、Fetch等。下面就来看一些不常见但很实用的WebAPI！"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 294,
+            article_title: '8个鲜为人知但很实用的WebAPI',
+            article_desc: '在WebAPI中，有非常有用的对象、属性和函数可用于执行小到访问DOM这样的小任务，大到处理音频、视频这样的复杂任务。常见的API有Canvas、WebWorker、History、Fetch等。下面就来看一些不常见但很实用的WebAPI！',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal active">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" class="active">
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/js">JS</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">8个鲜为人知但很实用的WebAPI</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>5052</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>386</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2022-08-19 10:42:31</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>Web Audio API</h2><p>Audio API 允许我们在 Web 上操作音频流，它可以用于 Web 上的音频源添加效果和过滤器。音频源可以来自<code>&lt;audio&gt;</code>、视频/音频源文件或音频网络流。</p><p>下面来看一个例子：</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Web APIs<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-cnt"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-head"</span>&gt;</span>
+                Demo - Audio
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-body"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"error"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"close"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">controls</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./audio.mp3"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"audio"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"audioFromAudioFile.init()"</span>&gt;</span>Init<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"audioFromAudioFile.play()"</span>&gt;</span>Play<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"audioFromAudioFile.pause()"</span>&gt;</span>Pause<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"audioFromAudioFile.stop()"</span>&gt;</span>Stop<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+
+                    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Vol: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">onchange</span>=<span class="hljs-string">"audioFromAudioFile.changeVolume()"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"range"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"vol"</span> <span class="hljs-attr">min</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">max</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">step</span>=<span class="hljs-string">"0.01"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Pan: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">onchange</span>=<span class="hljs-string">"audioFromAudioFile.changePan()"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"range"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"panner"</span> <span class="hljs-attr">min</span>=<span class="hljs-string">"-1"</span> <span class="hljs-attr">max</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">step</span>=<span class="hljs-string">"0.01"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"0"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">const</span> l = <span class="hljs-built_in">console</span>.log
+    <span class="hljs-keyword">let</span> audioFromAudioFile = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> audioContext
+        <span class="hljs-keyword">var</span> volNode
+        <span class="hljs-keyword">var</span> pannerNode
+        <span class="hljs-keyword">var</span> mediaSource
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+            l(<span class="hljs-string">"Init"</span>)
+        <span class="hljs-keyword">try</span> {
+                audioContext = <span class="hljs-keyword">new</span> AudioContext()        
+                mediaSource = audioContext.createMediaElementSource(audio)
+                volNode = audioContext.createGain()
+                volNode.gain.value = <span class="hljs-number">1</span>
+                pannerNode = <span class="hljs-keyword">new</span> StereoPannerNode(audioContext, { <span class="hljs-attr">pan</span>:<span class="hljs-number">0</span> })
+
+                mediaSource.connect(volNode).connect(pannerNode).connect(audioContext.destination)
+            }
+            <span class="hljs-function"><span class="hljs-title">catch</span>(<span class="hljs-params">e</span>)</span> {
+                error.innerHTML = <span class="hljs-string">"此设备不支持 Web Audio API"</span>
+                error.classList.remove(<span class="hljs-string">"close"</span>)
+            }
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">play</span>(<span class="hljs-params"></span>) </span>{
+            audio.play()            
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pause</span>(<span class="hljs-params"></span>) </span>{
+            audio.pause()
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stop</span>(<span class="hljs-params"></span>) </span>{
+            audio.stop()            
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeVolume</span>(<span class="hljs-params"></span>) </span>{
+            volNode.gain.value = <span class="hljs-built_in">this</span>.value
+            l(<span class="hljs-string">"Vol Range:"</span>,<span class="hljs-built_in">this</span>.value)
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changePan</span>(<span class="hljs-params"></span>) </span>{
+            pannerNode.gain.value = <span class="hljs-built_in">this</span>.value
+            l(<span class="hljs-string">"Pan Range:"</span>,<span class="hljs-built_in">this</span>.value)
+        }
+
+        <span class="hljs-keyword">return</span> {
+            init,
+            play,
+            pause,
+            stop,
+            changePan,
+            changeVolume
+        }
+    })()
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>这个例子中将音频从<code>&lt;audio&gt;</code>元素传输到<code>AudioContext</code>，声音效果（如平移）在被输出到音频输出（扬声器）之前被添加到音频源。</p><p>按钮 Init 在单击时调用<code>init</code>函数。 这将创建一个<code>AudioContext</code>实例并将其设置为<code>audioContext</code>。 接下来，它创建一个媒体源<code>createMediaElementSource(audio)</code>，将音频元素作为音频源传递。音量节点<code>volNode</code>由<code>createGain</code>创建，可以用来调节音量。接下来使用<code>StereoPannerNode</code>设置平移效果，最后将节点连接至媒体源。</p><p>点击按钮（Play、Pause、Stop）可以播放、暂停和停止音频。页面有一个音量和平移的范围滑块，滑动滑块就可以调节音频的音量和平移效果。</p><p><strong>相关资源：</strong></p><ul><li><strong>Demo：</strong><a href="https://web-api-examples.github.io/audio.html" target="_blank">https://web-api-examples.github.io/audio.html</a></li><li><strong>MDN 文档：</strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Audio_API" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Audio_API</a></li></ul><h2>Fullscreen API</h2><p>Fullscreen API 用于在 Web 应用程序中开启全屏模式，使用它就可以在全屏模式下查看页面/元素。在安卓手机中，它会溢出浏览器窗口和安卓顶部的状态栏（显示网络状态、电池状态等的地方）。</p><p>Fullscreen API 方法：</p><ul><li><code>requestFullscreen</code>：系统上以全屏模式显示所选元素，会关闭其他应用程序以及浏览器和系统 UI 元素。</li><li><code>exitFullscreen</code>：退出全屏模式并切换到正常模式。</li></ul><p>下面来看一个常见的例子，使用全屏模式观看视频：：</p><pre type="Html"><code>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Web APIs<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-cnt"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-head"</span>&gt;</span>
+            Demo - Fullscreen
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-body"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"error"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"close"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            This API makes fullscreen-mode of our webpage possible. It lets you select the Element you want to view in fullscreen-mode, then it shuts off the browsers window features like URL bar, the window pane, and presents the Element to take the entire width and height of the system.
+
+In Android phones, it will remove the browsers window and the Android UI where the network status, battery status are displayed, and display the Element in full width of the Android system.
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"video-stage"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"video"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./video.mp4"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"toggle()"</span>&gt;</span>Toogle Fullscreen<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            This API makes fullscreen-mode of our webpage possible. It lets you select the Element you want to view in fullscreen-mode, then it shuts off the browsers window features like URL bar, the window pane, and presents the Element to take the entire width and height of the system.
+
+In Android phones, it will remove the browsers window and the Android UI where the network status, battery status are displayed, and display the Element in full width of the Android system.
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">const</span> l =<span class="hljs-built_in">console</span>.log
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toggle</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">const</span> videoStageEl = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".video-stage"</span>)
+        <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">videoStageEl.requestFullscreen</span>)</span> {
+            <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">!<span class="hljs-built_in">document</span>.fullscreenElement</span>)</span>{
+                videoStageEl.requestFullscreen()
+            }
+            <span class="hljs-keyword">else</span> {
+                <span class="hljs-built_in">document</span>.exitFullscreen()
+            }
+        } <span class="hljs-keyword">else</span> {
+            error.innerHTML = <span class="hljs-string">"此设备不支持 Fullscreen API"</span>
+            error.classList.remove(<span class="hljs-string">"close"</span>)        
+        }
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>可以看到，video 元素在 div#video-stage 元素中，带有一个按钮 Toggle Fullscreen。</p><p>当点击按钮切换全屏时，我们想让元素<code>div#video-stage</code>全屏显示。<code>toggle</code>函数的实现如下：</p><pre type="JavaScript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toggle</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> videoStageEl = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".video-stage"</span>)
+  <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">document</span>.fullscreenElement)
+    videoStageEl.requestFullscreen()
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">document</span>.exitFullscreen()
+}</code></pre><p>这里通过<code>querySelector</code>查找<code>div#video-stage</code>元素并将其 HTMLDivElement 实例保存在<code>videoStageEl</code>上。</p><p>然后，使用<code>document.fullsreenElement</code>属性来确定<code>document</code>是否是全屏的，所以可以在<code>videoStageEl</code>上调用<code>requestFullscreen()</code>。 这将使<code>div#video-stage</code>占据整个设备的视图。</p><p>如果在全屏模式下点击 Toggle Fullscreen 按钮，就会在<code>document</code>上调用<code>exitFullcreen</code>，这样 UI 视图就会返回到普通视图（退出全屏）。</p><p><strong>相关资源：</strong></p><ul><li><strong>Demo：</strong><a href="https://web-api-examples.github.io/fullscreen.html" target="_blank">https://web-api-examples.github.io/fullscreen.html</a></li><li><strong>MDN 文档：</strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fullscreen_API" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/API/Fullscreen_API</a></li></ul><h2>Web Speech API</h2><p>Web Speech API 提供了将语音合成和语音识别添加到 Web 应用程序的功能。使用此 API，我们将能够向 Web 应用程序发出语音命令，就像在 Android 上通过其 Google Speech 或在 Windows 中使用 Cortana 一样。</p><p>下面来看一个简单的例子，使用 Web Speech API 实现文字转语音和语音转文字：</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Web APIs<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-cnt"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"error"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"close"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-head"</span>&gt;</span>
+                Demo - Text to Speech
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-body"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Enter text here"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"textToSpeech"</span> /&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"speak()"</span>&gt;</span>Tap to Speak<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-head"</span>&gt;</span>
+                Demo - Speech to Text
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-body"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Text will appear here when you start speeaking."</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"speechToText"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"tapToSpeak()"</span>&gt;</span>Tap and Speak into Mic<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">var</span> speech = <span class="hljs-keyword">new</span> SpeechSynthesisUtterance()
+        <span class="hljs-keyword">var</span> SpeechRecognition = SpeechRecognition;
+        <span class="hljs-keyword">var</span> recognition = <span class="hljs-keyword">new</span> SpeechRecognition()
+
+    } <span class="hljs-function"><span class="hljs-title">catch</span>(<span class="hljs-params">e</span>)</span> {
+        error.innerHTML = <span class="hljs-string">"此设备不支持 Web Speech API"</span>
+        error.classList.remove(<span class="hljs-string">"close"</span>)                
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">speak</span>(<span class="hljs-params"></span>) </span>{
+        speech.text = textToSpeech.value
+        speech.volume = <span class="hljs-number">1</span>
+        speech.rate=<span class="hljs-number">1</span>
+        speech.pitch=<span class="hljs-number">1</span>
+        <span class="hljs-built_in">window</span>.speechSynthesis.speak(speech)
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tapToSpeak</span>(<span class="hljs-params"></span>) </span>{
+        recognition.onstart = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ }
+
+        recognition.onresult = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>{
+            <span class="hljs-keyword">const</span> curr = event.resultIndex
+            <span class="hljs-keyword">const</span> transcript = event.results[curr][<span class="hljs-number">0</span>].transcript
+            speechToText.value = transcript
+        }
+
+        recognition.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ev</span>) </span>{
+            <span class="hljs-built_in">console</span>.error(ev)
+        }
+
+        recognition.start()
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>第一个演示 Demo - Text to Speech 演示了使用这个 API 和一个简单的输入字段，接收输入文本和一个按钮来执行语音操作。</p><pre type="JavaScript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">speak</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> speech = <span class="hljs-keyword">new</span> SpeechSynthesisUtterance()
+  speech.text = textToSpeech.value
+  speech.volume = <span class="hljs-number">1</span>
+  speech.rate = <span class="hljs-number">1</span>
+  speech.pitch = <span class="hljs-number">1</span>
+  <span class="hljs-built_in">window</span>.speechSynthesis.speak(speech)
+}</code></pre><p>它实例化了<code>SpeechSynthesisUtterance()</code>对象，将文本设置为从输入框中输入的文本中朗读。 然后，使用<code>speech</code>对象调用<code>SpeechSynthesis#speak</code>函数，在扬声器中说出输入框中的文本。</p><p>第二个演示 Demo - Speech to Text 将语音识别为文字。 点击 Tap and Speak into Mic 按钮并对着麦克风说话，我们说的话会被翻译成文本输入框中的内容。</p><p>点击 Tap and Speak into Mic 按钮会调用 tapToSpeak 函数：</p><pre type="JavaScript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tapToSpeak</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> SpeechRecognition = SpeechRecognition;
+  <span class="hljs-keyword">const</span> recognition = <span class="hljs-keyword">new</span> SpeechRecognition()
+  recognition.onstart = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ }
+  recognition.onresult = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>{
+    <span class="hljs-keyword">const</span> curr = event.resultIndex
+    <span class="hljs-keyword">const</span> transcript = event.results[curr][<span class="hljs-number">0</span>].transcript
+    speechToText.value = transcript
+  }
+  recognition.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ev</span>) </span>{
+    <span class="hljs-built_in">console</span>.error(ev)
+  }
+  recognition.start()
+}</code></pre><p>里实例化了<code>SpeechRecognition</code>，然后注册事件处理程序和回调。语音识别开始时调用<code>onstart</code>，发生错误时调用<code>onerror</code>。 每当语音识别捕获一条线时，就会调用<code>onresult</code>。</p><p>在<code>onresult</code>回调中，提取内容并将它们设置到<code>textarea</code>中。 因此，当我们对着麦克风说话时，文字会出现在<code>textarea</code>内容中。</p><p><strong>相关资源：</strong></p><ul><li><strong>Demo：</strong><a href="https://web-api-examples.github.io/speech.html" target="_blank">https://web-api-examples.github.io/speech.html</a></li><li><strong>MDN 文档：</strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Speech_API" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Speech_API</a></li></ul><h2>Web Bluetooth API</h2><p>Bluetooth API 让我们可以访问手机上的低功耗蓝牙设备，并使用它将网页上的数据共享到另一台设备。</p><p>基本 API 是<code>navigator.bluetooth.requestDevice</code>。 调用它将使浏览器提示用户使用设备选择器，用户可以在其中选择一个设备或取消请求。<code>navigator.bluetooth.requestDevice</code>需要一个强制对象。 此对象定义过滤器，用于返回与过滤器匹配的蓝牙设备。</p><p>下面来看一个简单的例子，使用<code>navigator.bluetooth.requestDevice</code>API 从 BLE 设备检索基本设备信息：</p><pre type="Html"><code>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Web APIs<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-cnt"</span>&gt;</span>
+        
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-head"</span>&gt;</span>
+            Demo - Bluetooth
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-body"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"error"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"close"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Device Name: <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dname"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Device ID: <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"did"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Device Connected: <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dconnected"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"bluetoothAction()"</span>&gt;</span>Get BLE Device<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+      <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bluetoothAction</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">navigator.bluetooth</span>)</span> {
+          navigator.bluetooth.requestDevice({
+            <span class="hljs-attr">acceptAllDevices</span>: <span class="hljs-literal">true</span>
+          }).then(<span class="hljs-function"><span class="hljs-params">device</span> =&gt;</span> {            
+            dname.innerHTML = device.name
+            did.innerHTML = device.id
+            dconnected.innerHTML = device.connected
+          }).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+            error.innerHTML = <span class="hljs-string">"Oh my!! Something went wrong."</span>
+            error.classList.remove(<span class="hljs-string">"close"</span>)
+          })
+        } <span class="hljs-keyword">else</span> {
+          error.innerHTML = <span class="hljs-string">"Bluetooth is not supported."</span>            
+          error.classList.remove(<span class="hljs-string">"close"</span>)
+        }
+      }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>这里会显示设备信息。 单击 Get BLE Device 按钮会调用<code>bluetoothAction</code>函数：</p><pre type="JavaScript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bluetoothAction</span>(<span class="hljs-params"></span>)</span>{
+  navigator.bluetooth.requestDevice({
+    <span class="hljs-attr">acceptAllDevices</span>: <span class="hljs-literal">true</span>
+  }).then(<span class="hljs-function"><span class="hljs-params">device</span> =&gt;</span> {            
+    dname.innerHTML = device.name
+    did.innerHTML = device.id
+    dconnected.innerHTML = device.connected
+  }).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">"Oh my!! Something went wrong."</span>)
+  })
+}</code></pre><p><code>bluetoothAction</code>函数调用带有<code>acceptAllDevices：true</code>选项的<code>navigator.bluetooth.requestDevice</code>API，这将使其扫描并列出所有附近的蓝牙活动设备。 它返回了一个<code>promise</code>，所以将它解析为从回调函数中获取一个参数 device，这个 device 参数将保存列出的蓝牙设备的信息。这是我们使用其属性在设备上显示信息的地方。</p><p><strong>相关资源：</strong></p><ul><li><strong>Demo：</strong><a href="https://web-api-examples.github.io/bluetooth.html" target="_blank">https://web-api-examples.github.io/bluetooth.html</a></li><li><strong>MDN 文档：</strong><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API</a></li></ul><h2>Vibration API</h2><p>Vibration API 可以使我们的设备振动，作为对我们应该响应的新数据或信息的通知或物理反馈的一种方式。</p><p>执行振动的方法是<code>navigator.vibrate(pattern)</code>。<code>pattern</code>是描述振动模式的单个数字或数字数组。</p><p>这将使设备振动在 200 毫秒之后停止：</p><pre type="JavaScript"><code><span class="hljs-selector-tag">navigator</span><span class="hljs-selector-class">.vibrate</span>(200)
+<span class="hljs-selector-tag">navigator</span><span class="hljs-selector-class">.vibrate</span>(<span class="hljs-selector-attr">[200]</span>)</code></pre><p>这将使设备先振动 200 毫秒，再暂停 300 毫秒，最后振动 400 毫秒并停止：</p><pre type="JavaScript"><code><span class="hljs-attribute">navigator</span>.vibrate([<span class="hljs-number">200</span>, <span class="hljs-number">300</span>, <span class="hljs-number">400</span>])</code></pre><p>可以通过传递 0、[]、[0,0,0] 来消除振动。</p><p>下面来看一个简单的例子：</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Web APIs<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-cnt"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-head"</span>&gt;</span>
+        Demo - Vibration
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-body"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"error"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"close"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"vibTime"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Vibration time"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"vibrate()"</span>&gt;</span>Vibrate<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+    
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+      <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">navigator.vibrate</span>)</span> {
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">vibrate</span>(<span class="hljs-params"></span>) </span>{
+          <span class="hljs-keyword">const</span> time = vibTime.value
+          <span class="hljs-keyword">if</span>(time != <span class="hljs-string">""</span>)
+            navigator.vibrate(time)
+        }
+      } <span class="hljs-keyword">else</span> {
+        error.innerHTML = <span class="hljs-string">"Vibrate API not supported in this device."</span>
+        error.classList.remove(<span class="hljs-string">"close"</span>)        
+      }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>这里有一个输入框和一个按钮。 在输入框中输入振动的持续时间并按下按钮。我们的设备将在输入的时间内振动。</p><p><strong>相关资源：</strong></p><ul><li><strong>Demo：</strong><a href="https://web-api-examples.github.io/vibration.html" target="_blank">https://web-api-examples.github.io/vibration.html</a></li><li><strong>MDN 文档：</strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Vibration_API" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/API/Vibration_API</a></li></ul><h2>Broadcast Channel API</h2><p>Broadcast Channel API 允许从<strong>同源</strong>的不同浏览上下文进行消息或数据的通信。其中，浏览上下文指的是窗口、选项卡、iframe、worker 等。</p><p><code>BroadcastChannel</code>类用于创建或加入频道：</p><pre type="JavaScript"><code><span class="hljs-keyword">const</span> politicsChannel = <span class="hljs-keyword">new</span> BroadcastChannel(<span class="hljs-string">"politics"</span>)</code></pre><p><code>politics</code>是频道的名称，任何使用<code>politics</code>始化<code>BroadcastChannel</code>构造函数的上下文都将加入<code>politics</code>频道，它将接收在频道上发送的任何消息，并可以将消息发送到频道中。</p><p>如果它是第一个具有<code>politics</code>的<code>BroadcastChannel</code>构造函数，则将创建该频道。可以使用<code>BroadcastChannel.postMessage API</code>来将消息发布到频道。使用<code>BroadcastChannel.onmessage</code>API 要订阅频道消息。</p><p>下面来看一个简单的聊天应用：</p><pre type="Html"><code>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Web APIs<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-cnt"</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-head"</span>&gt;</span>
+            Demo - BroadcastChannel
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"web-api-card-body"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-info"</span>&gt;</span>Open this page in another <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span>tab<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span>window<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span> or <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span>iframe<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span> to chat with them.<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"error"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"close"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"displayMsg"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"font-size:19px;text-align:left;"</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"chatArea"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"input"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Type your message"</span> /&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"sendMsg()"</span>&gt;</span>Send Msg to Channel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> 
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+      <span class="hljs-keyword">const</span> l = <span class="hljs-built_in">console</span>.log;
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">var</span> politicsChannel = <span class="hljs-keyword">new</span> BroadcastChannel(<span class="hljs-string">"politics"</span>)
+        politicsChannel.onmessage = onMessage
+        <span class="hljs-keyword">var</span> userId = <span class="hljs-built_in">Date</span>.now()
+        } <span class="hljs-function"><span class="hljs-title">catch</span>(<span class="hljs-params">e</span>)</span> {
+          error.innerHTML = <span class="hljs-string">"BroadcastChannel API not supported in this device."</span>
+          error.classList.remove(<span class="hljs-string">"close"</span>)
+        }
+      
+      input.addEventListener(<span class="hljs-string">"keydown"</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">e.keyCode === <span class="hljs-number">13</span> &amp;&amp; e.target.value.trim().length &gt; <span class="hljs-number">0</span></span>)</span> {
+          sendMsg()            
+        }
+      })
+      
+      <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onMessage</span>(<span class="hljs-params">e</span>) </span>{     
+        <span class="hljs-keyword">const</span> {msg,id}=e.data   
+        <span class="hljs-keyword">const</span> newHTML = <span class="hljs-string">"&lt;div class='chat-msg'&gt;&lt;span&gt;&lt;i&gt;"</span>+id+<span class="hljs-string">"&lt;/i&gt;: "</span>+msg+<span class="hljs-string">"&lt;/span&gt;&lt;/div&gt;"</span>
+        displayMsg.innerHTML = displayMsg.innerHTML + newHTML
+        displayMsg.scrollTop = displayMsg.scrollHeight
+      }
+      
+      <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendMsg</span>(<span class="hljs-params"></span>) </span>{
+        politicsChannel.postMessage({<span class="hljs-attr">msg</span>:input.value,<span class="hljs-attr">id</span>:userId})
+        
+        <span class="hljs-keyword">const</span> newHTML = <span class="hljs-string">"&lt;div class='chat-msg'&gt;&lt;span&gt;&lt;i&gt;Me&lt;/i&gt;: "</span>+input.value+<span class="hljs-string">"&lt;/span&gt;&lt;/div&gt;"</span>
+        displayMsg.innerHTML = displayMsg.innerHTML + newHTML
+        
+        input.value = <span class="hljs-string">""</span>
+        
+        displayMsg.scrollTop = displayMsg.scrollHeight
+      }   
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>这里有一个简单的文本和按钮。 输入消息，然后按按钮发送消息。下面初始化了<code>politicalChannel</code>，并在<code>politicalChannel</code>上设置了一个<code>onmessage</code>事件监听器，这样它就可以接收和显示消息。</p><p>点击按钮就会调用<code>sendMsg</code>函数。 它通过<code>BroadcastChannel#postMessage</code>API 将消息发送到<code>politics</code>频道。任何初始化此脚本的选项卡、iframe 或工作程序都将接收从此处发送的消息，因此此页面将接收从其他上下文发送的消息。</p><p><strong>相关资源：</strong></p><ul><li><strong>Demo：</strong><a href="https://web-api-examples.github.io/broadcastchannel.html" target="_blank">https://web-api-examples.github.io/broadcastchannel.html</a></li><li><strong>MDN 文档：</strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Broadcast_Channel_API" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/API/Broadcast_Channel_API</a></li></ul><h2>Clipboard API</h2><p>复制、剪切和粘贴等剪贴板操作是应用程序中最常见的一些功能。 Clipboard API 使 Web 用户能够访问系统剪贴板并执行基本的剪贴板操作。</p><p>以前，可以使用<code>document.execCommand</code>与系统剪贴板进行交互。 现代异步剪贴板 API 提供了直接读取和写入剪贴板内容的访问权限。</p><p>从剪贴板读取内容：</p><pre type="JavaScript"><code>navigator.clipboard.readText().then(<span class="hljs-function"><span class="hljs-params">clipText</span> =&gt;</span>
+  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"outbox"</span>).innerText = clipText
+);</code></pre><p>将内容写入剪贴板：</p><pre type="JavaScript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateClipboard</span>(<span class="hljs-params">newClip</span>) </span>{
+  navigator.clipboard.writeText(newClip).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">/* clipboard successfully set */</span>
+  }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">/* clipboard write failed */</span>
+  });
+}</code></pre><p><strong>相关资源：</strong></p><ul><li><strong>MDN 文档：</strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Clipboard_API" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/API/Clipboard_API</a></li></ul><h2>Web Share API</h2><p>Share API 可帮助我们在 web 应用上实现共享功能。它给人以移动原生共享的感觉。它使共享文本、文件和指向设备上其他应用程序的链接成为可能。</p><p>可通过<code>navigator.share</code>方法访问 Web Share API：</p><pre type="JavaScript"><code><span class="hljs-keyword">if</span> (navigator.share) {
+  navigator.share({
+    title: <span class="hljs-string">'百度'</span>,
+    text: <span class="hljs-string">'百度一下'</span>,
+    url: <span class="hljs-string">'&lt;https://www.baidu.com/&gt;'</span>,
+  })
+    .<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'分享成功'</span>))
+    .<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">(error)</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'分享失败'</span>, error));
+}</code></pre><p>上面的代码使用原生 JavaScript 实现了文本共享。需要注意，我们只能使用<code>onclick</code>事件调用此操作：</p><pre type="JavaScript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Share</span>(<span class="hljs-params">{ label, text, title }</span>) </span>{
+  <span class="hljs-keyword">const</span> shareDetails = { title, text };
+
+  <span class="hljs-keyword">const</span> handleSharing = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">if</span> (navigator.share) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">await</span> navigator.share(shareDetails).then(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Sent"</span>));
+      } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Oops! I couldn't share to the world because: <span class="hljs-subst">${error}</span>`</span>);
+      }
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-comment">// fallback code</span>
+      <span class="hljs-built_in">console</span>.log(
+        <span class="hljs-string">"Web share is currently not supported on this browser. Please provide a callback"</span>
+      );
+    }
+  };
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleSharing}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{label}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+  );
+}
+</code></pre><p><strong>相关资源：</strong></p><ul><li><strong>MDN 文档：</strong><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API</a></li></ul>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://juejin.cn/post/7133096500753596446#heading-7" target="_blank">原文链接</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://blog.logrocket.com/5-web-apis-mobile-functionality/" target="_blank">参考</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://blog.bitsrc.io/10-useful-web-apis-for-2020-8e43905cbdc5" target="_blank">参考</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：浏览器原生，API
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/484" class="imgbox">
+                <img src="/statics/blog/2024/0326/90ea11d08a1726570ae38a9a226c9186.png">
+            </a>
+            <a href="/blog/articles/484" class="title" title="在phpstudy中配置composer">
+                在phpstudy中配置composer
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/356" class="imgbox">
+                <img src="/statics/blog/2023/0206/ee82c85afbdcab2b35f68a093cbed012.png">
+            </a>
+            <a href="/blog/articles/356" class="title" title="uniapp生成分享图片(图片+二维码)，并保存到本地相册功能实现">
+                uniapp生成分享图片(图片+二维码)，并保存到本地相册功能实现
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/54" class="imgbox">
+                <img src="/statics/blog/2021/0430/da9c422e423825dfa9611987768bc41e.jpg">
+            </a>
+            <a href="/blog/articles/54" class="title" title="【课堂笔记】PHP开发APP接口【单例模式】(二)">
+                【课堂笔记】PHP开发APP接口【单例模式】(二)
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/js">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/157">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        百度语音合成使用方法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/317">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        关于base64格式的图片，在浏览器使用新标签打开无显示内容
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/57">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        原生JS获取节点元素
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/328">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        js获取浏览器、屏幕的宽高(多浏览器)
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/455">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        JS获取body、屏幕、屏幕可用区域等的宽高
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

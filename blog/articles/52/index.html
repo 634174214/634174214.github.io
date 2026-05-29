@@ -1,0 +1,1156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="vue.extend()+aysnc封装一个弹层组件【vue2】 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>vue.extend()+aysnc封装一个弹层组件【vue2】 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="vue.extend，$mount"/>
+<meta name="description" content="弹层组件是开发中最最最最最常用到的组件了，我们可以做一个组件每次都引用，也可以动态创建插入到body中。通过本篇文章就来看如何动态创建组件。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 52,
+            article_title: 'vue.extend()+aysnc封装一个弹层组件【vue2】',
+            article_desc: '弹层组件是开发中最最最最最常用到的组件了，我们可以做一个组件每次都引用，也可以动态创建插入到body中。通过本篇文章就来看如何动态创建组件。',
+            article_img: '/statics/blog/2021/0430/741a276b15f404db809572b3fdba889b.jpg',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal active">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" class="active">
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/vue">Vue</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">vue.extend()+aysnc封装一个弹层组件【vue2】</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>13941</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>562</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2021-04-29 16:48:46</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>介绍</h2><p>通过这篇文章，你将掌握：</p><ul><li><a href="/blog/articles/53" target="_blank">vue.extend</a></li><li>async + await在vue中的使用</li><li>$mount动态将组件挂载到body下</li><li>收获一个支持vue2的弹层组件（vue3由于更换api，需要修改，本文暂不进行说明）。</li></ul><h2>封装弹层组件</h2><p>首先要封装一个弹层组件<b>confirm.vue</b></p><pre type="Html"><code>// 模板
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">transition</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"confirm-fade"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cofirm"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"show"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cofirm-inner"</span> @<span class="hljs-attr">click.stop</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"head"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"head-text"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>{{content.headText ? content.headText : '系统提示'}}<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"close"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"cancel"</span>&gt;</span>×<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"body"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>{{content.title}}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tips-btn"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+                <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span>
+                <span class="hljs-attr">v-if</span>=<span class="hljs-string">"content.confirm"</span>
+                @<span class="hljs-attr">click</span>=<span class="hljs-string">"confirm"</span>
+                <span class="hljs-attr">class</span>=<span class="hljs-string">"btn confirm"</span>
+            &gt;</span>
+              {{content.confirm}}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span>
+                    <span class="hljs-attr">v-if</span>=<span class="hljs-string">"content.cancel"</span>
+                    @<span class="hljs-attr">click</span>=<span class="hljs-string">"cancel"</span>
+                    <span class="hljs-attr">class</span>=<span class="hljs-string">"btn"</span>
+            &gt;</span>{{content.cancel}}<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">transition</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre><pre type="JavaScript"><code><span class="hljs-comment">// JS</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-comment">// 决定是否显示</span>
+      <span class="hljs-attr">show</span> :<span class="hljs-literal">false</span>,
+      <span class="hljs-comment">// 弹窗的内容</span>
+      <span class="hljs-attr">content</span>: {
+        <span class="hljs-attr">headText</span>: <span class="hljs-string">''</span>,
+        <span class="hljs-attr">title</span>:<span class="hljs-string">''</span>,
+        <span class="hljs-attr">cancel</span>:<span class="hljs-string">''</span>,
+        <span class="hljs-attr">confirm</span>:<span class="hljs-string">''</span>
+      }
+    }
+  },
+  <span class="hljs-attr">methods</span>:{
+    <span class="hljs-function"><span class="hljs-title">confirm</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    },
+    <span class="hljs-function"><span class="hljs-title">cancel</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+};</code></pre><pre type="CSS"><code><span class="hljs-string">&lt;style</span> <span class="hljs-string">lang="less"</span> <span class="hljs-string">rel="stylesheet/less"</span> <span class="hljs-string">scoped&gt;</span>
+  <span class="hljs-string">@confirm-dialog-bg:</span> <span class="hljs-string">rgba(46,</span> <span class="hljs-number">62</span><span class="hljs-string">,</span> <span class="hljs-number">78</span><span class="hljs-string">,</span> <span class="hljs-number">0.85</span><span class="hljs-string">);</span>
+  <span class="hljs-string">@confirm-gray-lite:</span> <span class="hljs-comment">#e6e6e6;</span>
+  <span class="hljs-string">@confirm-brand:</span> <span class="hljs-comment">#518ACA;</span>
+  <span class="hljs-string">@confirm-gray-dark:</span> <span class="hljs-comment">#4d4d4d;</span>
+  <span class="hljs-string">@confirm-gray-middle:</span> <span class="hljs-comment">#dedede;</span>
+
+  <span class="hljs-string">@keyframes</span> <span class="hljs-string">confirmInDown</span> {
+    <span class="hljs-number">0</span><span class="hljs-string">%</span> {
+      <span class="hljs-attr">opacity:</span> <span class="hljs-number">0</span><span class="hljs-string">;</span>
+      <span class="hljs-attr">transform:</span> <span class="hljs-string">translate(-50%</span>, <span class="hljs-number">-80</span><span class="hljs-string">%);</span>
+    }
+    <span class="hljs-number">100</span><span class="hljs-string">%</span> {
+      <span class="hljs-attr">opacity:</span> <span class="hljs-number">1</span><span class="hljs-string">;</span>
+      <span class="hljs-attr">transform:</span> <span class="hljs-string">translate(-50%</span>, <span class="hljs-number">-50</span><span class="hljs-string">%);</span>
+    }
+  }
+
+  <span class="hljs-string">.cofirm{</span>
+    <span class="hljs-attr">background-color:</span> <span class="hljs-string">@confirm-dialog-bg;</span>
+    <span class="hljs-attr">position:</span> <span class="hljs-string">fixed;</span>
+    <span class="hljs-attr">top:</span> <span class="hljs-number">0</span><span class="hljs-string">;</span>
+    <span class="hljs-attr">bottom:</span> <span class="hljs-number">0</span><span class="hljs-string">;</span>
+    <span class="hljs-attr">left:</span> <span class="hljs-number">0</span><span class="hljs-string">;</span>
+    <span class="hljs-attr">right:</span> <span class="hljs-number">0</span><span class="hljs-string">;</span>
+    <span class="hljs-attr">z-index:</span> <span class="hljs-number">9999</span><span class="hljs-string">;</span>
+    <span class="hljs-attr">user-select:</span> <span class="hljs-string">none;</span>
+  <span class="hljs-string">}</span>
+  <span class="hljs-string">.confirm-fade-enter-active,</span>
+  <span class="hljs-string">.confirm-fade-leave-active</span> {
+    <span class="hljs-attr">transition:</span> <span class="hljs-string">opacity</span> <span class="hljs-number">0.</span><span class="hljs-string">5s</span> <span class="hljs-string">ease;</span>
+  }
+  <span class="hljs-string">.confirm-fade-enter,</span> <span class="hljs-string">.confirm-fade-leave-to</span> {
+    <span class="hljs-attr">opacity:</span> <span class="hljs-number">0</span><span class="hljs-string">;</span>
+  }
+  <span class="hljs-string">.cofirm-inner</span> {
+    <span class="hljs-attr">position:</span> <span class="hljs-string">absolute;</span>
+    <span class="hljs-attr">background-color:</span> <span class="hljs-comment">#fff;</span>
+    <span class="hljs-attr">overflow:</span> <span class="hljs-string">hidden;</span>
+    <span class="hljs-attr">border-radius:</span> <span class="hljs-string">5px;</span>
+    <span class="hljs-attr">box-shadow:</span> <span class="hljs-number">0</span> <span class="hljs-string">3px</span> <span class="hljs-string">3px</span> <span class="hljs-string">rgba(0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>, <span class="hljs-number">0.4</span><span class="hljs-string">);</span>
+    <span class="hljs-attr">width:</span> <span class="hljs-string">360px;</span>
+    <span class="hljs-attr">left:</span> <span class="hljs-number">50</span><span class="hljs-string">%;</span>
+    <span class="hljs-attr">top:</span> <span class="hljs-number">50</span><span class="hljs-string">%;</span>
+    <span class="hljs-attr">animation:</span> <span class="hljs-string">confirmInDown</span> <span class="hljs-number">0.</span><span class="hljs-string">4s</span> <span class="hljs-string">both;</span>
+    <span class="hljs-string">.head</span>{
+      <span class="hljs-attr">display:</span> <span class="hljs-string">flex;</span>
+      <span class="hljs-attr">justify-content:</span> <span class="hljs-string">space-between;</span>
+      <span class="hljs-attr">border-bottom:</span> <span class="hljs-string">1px</span> <span class="hljs-string">solid</span> <span class="hljs-string">@confirm-gray-lite;</span>
+      <span class="hljs-attr">height:</span> <span class="hljs-string">40px;</span>
+      <span class="hljs-attr">padding:</span> <span class="hljs-number">0</span> <span class="hljs-string">15px;</span>
+      <span class="hljs-attr">font-size:</span> <span class="hljs-string">14px;</span>
+      <span class="hljs-attr">line-height:</span> <span class="hljs-string">40px;</span>
+      <span class="hljs-attr">color:</span> <span class="hljs-string">darken(@confirm-gray-lite</span>, <span class="hljs-number">30</span><span class="hljs-string">%);</span>
+
+      <span class="hljs-string">.head-text</span>{
+        <span class="hljs-attr">font-size:</span> <span class="hljs-number">0</span><span class="hljs-string">;</span>
+        <span class="hljs-string">em</span>{
+          <span class="hljs-attr">font-size:</span> <span class="hljs-string">14px;</span>
+          <span class="hljs-attr">display:</span> <span class="hljs-string">inline-block;</span>
+        }
+      }
+      <span class="hljs-string">.head-text::before</span>{
+        <span class="hljs-attr">content:</span> <span class="hljs-string">"!"</span><span class="hljs-string">;</span>
+        <span class="hljs-attr">display:</span> <span class="hljs-string">inline-block;</span>
+        <span class="hljs-attr">font-size:</span> <span class="hljs-string">12px;</span>
+        <span class="hljs-attr">border:</span> <span class="hljs-string">1px</span> <span class="hljs-string">solid;</span>
+        <span class="hljs-attr">border-radius:</span> <span class="hljs-number">50</span><span class="hljs-string">%;</span>
+        <span class="hljs-attr">vertical-align:</span> <span class="hljs-string">2px;</span>
+        <span class="hljs-attr">width:</span> <span class="hljs-string">14px;</span>
+        <span class="hljs-attr">height:</span> <span class="hljs-string">14px;</span>
+        <span class="hljs-attr">line-height:</span> <span class="hljs-string">14px;</span>
+        <span class="hljs-attr">margin-right:</span> <span class="hljs-string">5px;</span>
+        <span class="hljs-attr">text-align:</span> <span class="hljs-string">center;</span>
+      }
+      <span class="hljs-string">.close</span> {
+        <span class="hljs-attr">text-align:</span> <span class="hljs-string">right;</span>
+        <span class="hljs-attr">font-size:</span> <span class="hljs-string">20px;</span>
+        <span class="hljs-attr">color:</span> <span class="hljs-string">darken(@confirm-gray-lite</span>, <span class="hljs-number">20</span><span class="hljs-string">%);</span>
+        <span class="hljs-attr">cursor:</span> <span class="hljs-string">pointer;</span>
+        <span class="hljs-string">&amp;:hover</span>{
+          <span class="hljs-attr">color:</span> <span class="hljs-string">@confirm-brand;</span>
+        }
+      }
+    }
+
+    <span class="hljs-string">.body</span>{
+      <span class="hljs-attr">padding:</span> <span class="hljs-string">15px;</span>
+
+      <span class="hljs-string">.content</span> {
+        <span class="hljs-attr">font-size:</span> <span class="hljs-string">16px;</span>
+        <span class="hljs-attr">color:</span> <span class="hljs-string">@confirm-gray-dark;</span>
+        <span class="hljs-attr">letter-spacing:</span> <span class="hljs-number">0</span><span class="hljs-string">;</span>
+        <span class="hljs-attr">line-height:</span> <span class="hljs-string">24px;</span>
+        <span class="hljs-attr">text-align:</span> <span class="hljs-string">left;</span>
+        <span class="hljs-attr">padding:</span> <span class="hljs-string">10px</span> <span class="hljs-number">0</span> <span class="hljs-string">25px;</span>
+      }
+
+      <span class="hljs-string">.tips-btn</span>{
+        <span class="hljs-attr">display:</span> <span class="hljs-string">flex;</span>
+        <span class="hljs-attr">width:</span> <span class="hljs-number">100</span><span class="hljs-string">%;</span>
+        <span class="hljs-attr">justify-content:</span> <span class="hljs-string">flex-end;</span>
+        <span class="hljs-attr">align-items:</span> <span class="hljs-string">center;</span>
+        <span class="hljs-string">.btn</span>{
+          <span class="hljs-attr">padding:</span> <span class="hljs-number">0</span> <span class="hljs-string">22px</span> <span class="hljs-string">;</span>
+          <span class="hljs-attr">height:</span> <span class="hljs-string">36px;</span>
+          <span class="hljs-attr">line-height:</span> <span class="hljs-string">36px;</span>
+          <span class="hljs-attr">border-radius:</span> <span class="hljs-string">6px;</span>
+          <span class="hljs-attr">background-color:</span> <span class="hljs-comment">#fff;</span>
+          <span class="hljs-attr">border:</span> <span class="hljs-string">1px</span> <span class="hljs-string">solid</span> <span class="hljs-string">@confirm-gray-middle;</span>
+          <span class="hljs-string">&amp;:hover</span>{
+            <span class="hljs-attr">background-color:</span> <span class="hljs-string">@confirm-gray-lite;</span>
+          }
+          <span class="hljs-string">&amp;</span> <span class="hljs-string">+</span> <span class="hljs-string">.btn</span>{
+            <span class="hljs-attr">margin-left:</span> <span class="hljs-string">10px;</span>
+          }
+          <span class="hljs-string">&amp;.confirm</span>{
+            <span class="hljs-attr">background-color:</span> <span class="hljs-string">@confirm-brand;</span>
+            <span class="hljs-attr">color:</span> <span class="hljs-comment">#fff;</span>
+            <span class="hljs-attr">border:</span> <span class="hljs-string">1px</span> <span class="hljs-string">solid</span> <span class="hljs-string">@confirm-brand;</span>
+            <span class="hljs-string">&amp;:hover</span>{
+              <span class="hljs-attr">background-color:</span> <span class="hljs-string">darken(@confirm-brand</span>, <span class="hljs-number">10</span><span class="hljs-string">%);</span>
+            }
+          }
+        }
+      }
+
+    }
+  }
+<span class="hljs-string">&lt;/style&gt;</span></code></pre><h2>编写引用的文件（重点）</h2><p>以我的目录为例，在<b>src/common/js/confirm.js,新建js文件</b></p><h3><b>先引入vue，将组件添加进Vue中</b></h3><div><pre type="JavaScript"><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-comment">// 引用组件</span>
+<span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'components/confirm/confirm'</span>;
+<span class="hljs-comment">// 使用基础 Vue 构造器，创建一个“子类”。</span>
+<span class="hljs-comment">// 参数是一个包含组件选项的对象。</span>
+<span class="hljs-keyword">const</span> confirmConstructor = Vue.extend(Confirm);</code></pre></div><p>将Confirm组件创建为一个子类，如果直接挂在的话,执行以下代码会直接挂载到&lt;div id="demo"&gt;&lt;/div&gt;</p><pre type="JavaScript"><code><span class="hljs-attribute">new</span> confirmConstructor().<span class="hljs-variable">$mount</span>(<span class="hljs-string">'#demo'</span>);</code></pre><p>如果newconfirmConstructor().$mount(); 那么就不会直接挂载在DOM上，而是先实例化成一个组件对象。（<span >$mount()为手动挂载 带元素id为挂载到指定元素上，不加元素不渲染, 只是实例化该组件</span>）</p><h3>将点击交互封装为Promise</h3><pre type="JavaScript"><code><span class="hljs-keyword">let</span> confirmer = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">msg</span>) </span>{
+  <span class="hljs-keyword">return</span>  <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    <span class="hljs-comment">// 將组件实例化</span>
+    <span class="hljs-keyword">let</span> confirmEl = <span class="hljs-keyword">new</span> confirmConstructor().$mount();
+    <span class="hljs-comment">// 通过confirmEl.$el获取组件的DOM元素 并插入到body下</span>
+    <span class="hljs-built_in">document</span>.body.appendChild(confirmEl.$el);
+    <span class="hljs-comment">// 如果每一项都要设置就使用这种方式,传值的时候就传一个对象</span>
+    <span class="hljs-comment">// confirmEl.content = content;</span>
+    <span class="hljs-comment">// 给组件的data-&gt;content属性进行赋值</span>
+    confirmEl.content = {
+      <span class="hljs-attr">title</span>: msg,
+      <span class="hljs-attr">confirm</span>: <span class="hljs-string">'确定'</span>,
+      <span class="hljs-attr">cancel</span>: <span class="hljs-string">'取消'</span>
+    };
+    confirmEl.show = <span class="hljs-literal">true</span>;
+    <span class="hljs-comment">// 监听确定的事件</span>
+    confirmEl.confirm = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      resolve(<span class="hljs-literal">true</span>);
+      confirmEl.show = <span class="hljs-literal">false</span>;
+    };
+    <span class="hljs-comment">// 接收取消的事件</span>
+    confirmEl.cancel = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      reject(<span class="hljs-literal">false</span>);
+      confirmEl.show = <span class="hljs-literal">false</span>;
+    };
+  });
+};</code></pre><p>这里需要特别注意的是，需要将点击事件，作为一个promise对象返回。这样就可以使用.then()进行链式调用和使用async+awit将这个“异步”交互转为同步！</p><p>在这里，$mount还有另外一种写法（他们的作用都是相同的）：</p><pre type="JavaScript"><code><span class="hljs-keyword">let</span> confirmEl = <span class="hljs-keyword">new</span> confirmConstructor().$mount();
+<span class="hljs-comment">// 等价于</span>
+<span class="hljs-keyword">let</span> confirmEl = <span class="hljs-keyword">new</span> confirmConstructor({
+   <span class="hljs-comment">//实例化后要绑定的元素</span>
+   <span class="hljs-attr">el</span>:  <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>)
+});
+<span class="hljs-comment">// 如官网案例中new Vue时 </span>
+<span class="hljs-keyword">new</span> Vue({ <span class="hljs-attr">el</span>: <span class="hljs-string">'#app'</span>, <span class="hljs-attr">data</span>: {...}}) 
+<span class="hljs-comment">// 等同于</span>
+<span class="hljs-keyword">new</span> Vue({ <span class="hljs-attr">data</span>: {...} }).$mount(<span class="hljs-string">'#app'</span>)</code></pre><h3>async+await同步异步操作</h3><pre type="JavaScript"><code><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">confirmChoose</span>(<span class="hljs-params">content</span>) </span>{
+  <span class="hljs-keyword">let</span> sure = <span class="hljs-literal">false</span>;
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// await后面是一个promise对象</span>
+    sure =  <span class="hljs-keyword">await</span> confirmer(content);
+  } <span class="hljs-keyword">catch</span> (e) {
+    <span class="hljs-comment">// 捕获到错误 转为立即resolve的promise对象</span>
+    sure = <span class="hljs-literal">false</span>;
+  }
+  <span class="hljs-keyword">return</span> sure;
+}</code></pre><p>使用async将异步操作阻断，等待(await）操作执行。<b><font color="#c24f4a">注意 async与await必须成对出现！！</font></b></p><h3>封装alert作用的组件</h3><pre type="JavaScript"><code><span class="hljs-comment">// 这个仅仅做提示用，无需根据返回值判断</span>
+<span class="hljs-keyword">let</span> alertChoose = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">msg</span>) </span>{
+  <span class="hljs-keyword">let</span> confirmEl = <span class="hljs-keyword">new</span> confirmConstructor({
+    <span class="hljs-comment">// 实例化后要绑定的元素</span>
+    <span class="hljs-attr">el</span>: <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>)
+  });
+  <span class="hljs-built_in">document</span>.body.appendChild(confirmEl.$el);
+  confirmEl.show = <span class="hljs-literal">true</span>;
+  confirmEl.content.title = msg;
+  confirmEl.content.confirm = <span class="hljs-string">'确定'</span>;
+  confirmEl.confirm = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    confirmEl.show = <span class="hljs-literal">false</span>;
+  };
+  confirmEl.cancel = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    confirmEl.show = <span class="hljs-literal">false</span>;
+  };
+};</code></pre><p>因为alert作用的弹层，无需根据点击按钮是哪个进行判断，只要点击，就隐藏弹层就行了。所以只改变show的状态即可。</p><h3>完整代码</h3><pre type="JavaScript"><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'components/confirm/confirm'</span>;
+
+<span class="hljs-keyword">const</span> confirmConstructor = Vue.extend(Confirm);
+
+<span class="hljs-keyword">let</span> confirmer = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">msg</span>) </span>{
+  <span class="hljs-keyword">return</span>  <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    <span class="hljs-keyword">let</span> confirmEl = <span class="hljs-keyword">new</span> confirmConstructor().$mount();
+    <span class="hljs-built_in">document</span>.body.appendChild(confirmEl.$el);
+    confirmEl.content = {
+      <span class="hljs-attr">title</span>: msg,
+      <span class="hljs-attr">confirm</span>: <span class="hljs-string">'确定'</span>,
+      <span class="hljs-attr">cancel</span>: <span class="hljs-string">'取消'</span>
+    };
+    confirmEl.show = <span class="hljs-literal">true</span>;
+    confirmEl.confirm = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      resolve(<span class="hljs-literal">true</span>);
+      confirmEl.show = <span class="hljs-literal">false</span>;
+    };
+    confirmEl.cancel = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      reject(<span class="hljs-literal">false</span>);
+      confirmEl.show = <span class="hljs-literal">false</span>;
+    };
+  });
+};
+
+<span class="hljs-keyword">let</span> alertChoose = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">msg</span>) </span>{
+  <span class="hljs-keyword">let</span> confirmEl = <span class="hljs-keyword">new</span> confirmConstructor({
+    <span class="hljs-attr">el</span>: <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>)
+  });
+  <span class="hljs-built_in">document</span>.body.appendChild(confirmEl.$el);
+  confirmEl.show = <span class="hljs-literal">true</span>;
+  confirmEl.content.title = msg;
+  confirmEl.content.confirm = <span class="hljs-string">'确定'</span>;
+  confirmEl.confirm = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    confirmEl.show = <span class="hljs-literal">false</span>;
+  };
+  confirmEl.cancel = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    confirmEl.show = <span class="hljs-literal">false</span>;
+  };
+};
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">confirmChoose</span>(<span class="hljs-params">content</span>) </span>{
+  <span class="hljs-keyword">let</span> sure = <span class="hljs-literal">false</span>;
+  <span class="hljs-keyword">try</span> {
+    sure =  <span class="hljs-keyword">await</span> confirmer(content);
+  } <span class="hljs-keyword">catch</span> (e) {
+    sure = <span class="hljs-literal">false</span>;
+  }
+  <span class="hljs-keyword">return</span> sure;
+}
+<span class="hljs-keyword">export</span> { confirmChoose, alertChoose };</code></pre><h2>在main.js中引用</h2><pre type="JavaScript"><code><span class="hljs-regexp">//</span> 引入封装的方法
+<span class="hljs-keyword">import</span> { confirmChoose, alertChoose } <span class="hljs-keyword">from</span> <span class="hljs-string">"common/js/confirm"</span>;
+<span class="hljs-regexp">//</span> 将方法挂载到vue的原型链上 使用：<span class="hljs-built_in">this</span>.$confirm(msg)
+Vue.prototype.$confirm = confirmChoose;
+<span class="hljs-regexp">//</span> 挂载到<span class="hljs-built_in">window</span>上,直接覆盖原来的方法 使用 <span class="hljs-built_in">window</span>.alert(msg)
+<span class="hljs-built_in">window</span>.alert = alertChoose;</code></pre><pre type="JavaScript"><code><span class="hljs-comment">// 可以先保存旧的弹窗备用</span>
+<span class="hljs-built_in">window</span>.alertOld = <span class="hljs-built_in">window</span>.alert;
+<span class="hljs-comment">// 再将原本的弹窗进行覆盖</span>
+<span class="hljs-built_in">window</span>.alert = alertChoose;</code></pre><h2>如何使用</h2><h3>使用单按钮弹层</h3><p>使用单按钮弹层，最简单不过了，直接在点击的时候执行window.alert('我的信息')即可。如</p><pre type="JavaScript"><code><span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.arr.includes(url)) {
+        window.alert(<span class="hljs-string">'抱歉,请不要提交重复的视频地址！'</span>);
+        <span class="hljs-keyword">return</span>;
+}</code></pre><h3>使用询问框弹层</h3><p>使用的时候有两种方式，先说我推荐的使用方式吧。</p><h4>使用async+await</h4><p>前面说过了，使用async+await必须成对出现！如在一个组件中，执行点击删除，出现询问框的操作。</p><pre type="JavaScript"><code>methods: {
+   <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-title">deleteResourceItem</span>(<span class="hljs-params">url, index, <span class="hljs-keyword">type</span></span>)</span> {
+       <span class="hljs-keyword">let</span> sure = <span class="hljs-keyword">await</span> <span class="hljs-built_in">this</span>.$confirm(<span class="hljs-string">'确定要删除当前资源吗？'</span>);
+       <span class="hljs-keyword">if</span> (!sure) {
+           <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+        ...
+   }
+} </code></pre><p>需要在函数的名称前面加上<font color="#c24f4a">async！！他的作用就是告诉浏览器，这里面有个异步操作，需要转为同步！</font></p><p><font color="#c24f4a">然后在返回promise的异步操作前面加上await将异步转为同步操作！</font></p><p><font color="#000000">这样就可以根据点击的按钮接收到返回的值了。</font></p><p>还有一些操作是在异步操作之中使用async的情况，来看一个例子：</p><pre type="JavaScript"><code>methods: {
+  <span class="hljs-function"><span class="hljs-title">getDetailInfo</span>()</span> {
+    getInfo(url).then(<span class="hljs-keyword">async</span> res =&gt; {
+        <span class="hljs-comment">// 判断是否是本站的链接</span>
+        <span class="hljs-keyword">if</span> (istrue) {
+          <span class="hljs-keyword">let</span> sure = <span class="hljs-keyword">await</span> <span class="hljs-built_in">this</span>.$confirm(msg);
+          <span class="hljs-keyword">if</span> (sure) {
+            <span class="hljs-built_in">this</span>.dosomething();
+          }
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-built_in">window</span>.alert(...);
+        }
+    }).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-built_in">window</span>.alert(....);
+    }).finally(<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-comment">// 始终都执行</span>
+    });
+  }
+}</code></pre><blockquote>async+await的使用原则就是就近原则！哪个函数里面有异步操作需要转化为同步的，就在哪个函数外面加async，等待哪个异步操作，就在操作之前加await。如果遇到报错：await is a reserved word，是因为async没放到应用await的函数上，async和await是成对出现的，就算匿名函数也要加上。加上async的函数会被await阻塞，await会跳出async让出线程。</blockquote><h4>使用then</h4><pre type="JavaScript"><code><span class="hljs-built_in">this</span>.$confirm(<span class="hljs-string">'确定要删除当前资源吗？'</span>)
+    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+        <span class="hljs-comment">// ..</span>
+    }).catch(<span class="hljs-function"><span class="hljs-params">rej</span> =&gt;</span> {
+        <span class="hljs-comment">// .. 捕获promise reject的错误</span>
+    });</code></pre>
+                                            <h2>附件下载</h2>
+                        <div class="downloads-list">
+                                                            <div class="downloads-list-li">
+                                    <a href="//www.wubin.work/statics/blog/2021/0430/ab7395295fb8d5d926ff7c0e2dcd453f.zip" class="except-a" download="vue.extend()+aysnc封装一个弹层组件【vue2】-附件-confirm">confirm</a>
+                                </div>
+                                                    </div>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://cn.vuejs.org/v2/api/#el" target="_blank">vm-$el访问组件的DOM元素</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://cn.vuejs.org/v2/api/#Vue-extend" target="_blank">Vue-extend官方说明</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：vue.extend，$mount
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/22" class="imgbox">
+                <img src="/statics/blog/2021/0305/00c65a58fab8d9059d0dfbf5c0b9c9ee.jpg">
+            </a>
+            <a href="/blog/articles/22" class="title" title="https网页请求http的接口">
+                https网页请求http的接口
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/171" class="imgbox">
+                <img src="/statics/blog/2021/0901/81191d5078efdc10e533077163e05bcf.jpg">
+            </a>
+            <a href="/blog/articles/171" class="title" title="Composer快速入门之基本使用">
+                Composer快速入门之基本使用
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/335" class="imgbox">
+                <img src="/statics/blog/2022/1202/1b99821cd5d8a084d0a7b9ae8302a502.png">
+            </a>
+            <a href="/blog/articles/335" class="title" title="总结uniapp中做开屏广告的操作流程">
+                总结uniapp中做开屏广告的操作流程
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/vue">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/255">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        【Vue3】开发技巧-createVNode、jsx、provide和inject以及CompositionAPI
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/17">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue-route4参数的传递
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/423">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue中的transition组件常用
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/458">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/279">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        element-ui[plus]使用动态表单，并为每个动态表单项添加验证
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

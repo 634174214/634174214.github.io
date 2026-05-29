@@ -1,0 +1,1067 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="axios-options请求预检和Vue中axios封装以及withCredentialstrue | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>axios-options请求预检和Vue中axios封装以及withCredentialstrue | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="withCredentials，options，请求预检"/>
+<meta name="description" content="一个请求预检，让我排查了半天，顺道也搞懂了axios中的withCredentials:true配置作用。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 615,
+            article_title: 'axios-options请求预检和Vue中axios封装以及withCredentialstrue',
+            article_desc: '一个请求预检，让我排查了半天，顺道也搞懂了axios中的withCredentials:true配置作用。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal active">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" class="active">
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/vue">Vue</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">axios-options请求预检和Vue中axios封装以及withCredentialstrue</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>10496</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>956</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2025-11-11 09:29:29</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>先说问题</h2><p>axios+拦截器+自定义请求头处理+自定义请求头导致的请求预检处理</p><p><a href="/blog/articles/618" target="_blank">axios-统一用拦截器在header请求头和请求体中添加参数并使用PHP获取</a></p><p><a href="/blog/articles/616" target="_blank">axios-关于封装一个底层axios请求和拦截器interceptors，catch错误（throw或reject）？</a></p><p><a href="/blog/articles/615" target="_blank">axios-options请求预检和Vue中axios封装以及withCredentialstrue</a></p><p><a href="/blog/articles/613" target="_blank">axios-abortController、signal配合axios实现一个可以中断请求的操作</a></p><p>先看一下我的本地phpstudy里面的apache的http.conf</p><pre type="Html"><code><span class="hljs-comment">#解开后 支持跨域读取</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">LoadModule</span></span> headers_module modules/mod_headers.so
+<span class="hljs-comment"># 网站根目录配置</span>
+<span class="hljs-section">&lt;Directory /&gt;</span>
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Options</span></span> +Indexes +FollowSymLinks +ExecCGI
+    <span class="hljs-attribute">AllowOverride</span> none
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Order</span></span> <span class="hljs-literal">allow</span>,<span class="hljs-literal">deny</span>
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Allow</span></span> from <span class="hljs-literal">all</span>
+    <span class="hljs-attribute">Require</span> <span class="hljs-literal">all</span> granted
+    <span class="hljs-comment"># CORS 配置</span>
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Header</span></span> set Access-Control-<span class="hljs-literal">Allow</span>-Origin <span class="hljs-string">"*"</span>
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Header</span></span> set Access-Control-<span class="hljs-literal">Allow</span>-Methods <span class="hljs-string">"GET, POST, OPTIONS, PUT, DELETE"</span>
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Header</span></span> set Access-Control-<span class="hljs-literal">Allow</span>-Headers <span class="hljs-string">"Origin, X-Requested-With, Content-Type, Accept, Authorization"</span>
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Header</span></span> set Access-Control-<span class="hljs-literal">Allow</span>-Credentials <span class="hljs-string">"true"</span>
+<span class="hljs-section">&lt;/Directory&gt;</span></code></pre><p>再看后端接口：</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+header(<span class="hljs-string">"content-type:application/json;chartset=uft-8"</span>);
+$log = <span class="hljs-string">"<span class="hljs-subst">{$_SERVER['REQUEST_METHOD']}</span> "</span> . date(<span class="hljs-string">'Y-m-d H:i:s'</span>) . <span class="hljs-string">"\n"</span>;
+$filename = <span class="hljs-keyword">__DIR__</span>. <span class="hljs-string">'/debuglog/'</span> . uniqid() . <span class="hljs-string">'_debug.log'</span>;
+file_put_contents($filename, $log . print_r(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS), <span class="hljs-literal">true</span>) . <span class="hljs-string">"\n\n"</span>, FILE_APPEND);
+<span class="hljs-keyword">exit</span>(<span class="hljs-number">11</span>);</code></pre><p>这就是一个简单的后端接口，前端发送请求-&gt;后端接收，然后在指定目录生成一个日志文件。</p><p>测试，在浏览器直接访问该接口，发现可以正常生成日志文件。</p><p>OK，到这一步目前没问题，然后，我再创建单独的html文件，使用JQuery的ajax和原生的fetch进行请求访问：</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+        <span class="hljs-comment">// $.ajax({</span>
+        <span class="hljs-comment">//     url: 'get-image-result-1.php',</span>
+        <span class="hljs-comment">//     success(res) {</span>
+        <span class="hljs-comment">//         console.log(res);</span>
+        <span class="hljs-comment">//     }</span>
+        <span class="hljs-comment">// })</span>
+
+        fetch(<span class="hljs-string">'get-image-result-1.php'</span>, {
+          <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>, <span class="hljs-comment">// 请求方法和 axios 一致</span>
+          <span class="hljs-attr">headers</span>: {
+            <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
+            <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'Bearer 12345567888'</span> <span class="hljs-comment">// 和你 axios 拦截器的 Token 一致</span>
+          },
+          <span class="hljs-attr">cache</span>: <span class="hljs-string">'no-cache'</span>, <span class="hljs-comment">// 禁用缓存，避免浏览器重复请求</span>
+          <span class="hljs-attr">credentials</span>: <span class="hljs-string">'same-origin'</span> <span class="hljs-comment">// 和 axios 默认的 withCredentials 一致</span>
+        })
+        .then(<span class="hljs-keyword">async</span> response =&gt; {
+          <span class="hljs-comment">// 解析响应（和 axios 自动解析 JSON 一致）</span>
+          <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> response.json();
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'原生 fetch 响应:'</span>, res);
+        })
+        .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+          <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'原生 fetch 错误:'</span>, err);
+        });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>发现也能正常生成一个文件。也正常。</p><p>重点来了，下面在项目中，封装的axios（<strong>v1.13.2</strong>）请求：</p><pre type="JavaScript"><code><span class="hljs-comment">/* eslint-disable */</span>
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>
+<span class="hljs-keyword">import</span> { ERR_OK, BASE_URL } <span class="hljs-keyword">from</span> <span class="hljs-string">"./config"</span>;
+<span class="hljs-keyword">import</span> { showAlert } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/common/js/sweet-alert"</span>;
+
+axios.defaults.baseURL = BASE_URL;
+axios.defaults.headers.post[<span class="hljs-string">'Content-Type'</span>] = <span class="hljs-string">'application/x-www-form-urlencoded;charset=UTF-8'</span>;
+<span class="hljs-comment">// axios向跨域请求携带cookie 必须配合服务端header</span>
+<span class="hljs-comment">// axios.defaults.withCredentials = true;</span>
+
+<span class="hljs-comment">// 请求拦截器：统一添加Token到请求头</span>
+axios.interceptors.request.use(
+    <span class="hljs-keyword">async</span> (config) =&gt; { <span class="hljs-comment">// 加 async</span>
+        <span class="hljs-keyword">const</span> token = <span class="hljs-string">'12345567888'</span>;
+        <span class="hljs-keyword">if</span> (token) {
+            config.headers.Authorization = <span class="hljs-string">`Bearer <span class="hljs-subst">${token}</span>`</span>;
+        }
+        <span class="hljs-keyword">return</span> config; <span class="hljs-comment">// 异步函数返回的是 Promise，axios 处理更稳定</span>
+    },
+    <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error);
+    }
+);
+
+<span class="hljs-comment">/*
+* params 必须是一个对象
+* */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">url, params</span>) </span>{
+    <span class="hljs-comment">// 如果不是一个对象就包一下</span>
+    <span class="hljs-keyword">if</span> (!(<span class="hljs-keyword">typeof</span> params == <span class="hljs-string">'object'</span>)) {
+        params = { params }
+    }
+    <span class="hljs-keyword">return</span> axios.get(url, {
+        <span class="hljs-attr">params</span>: params
+    }).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> serverData = res.data;
+        <span class="hljs-keyword">if</span> (serverData.code === ERR_OK) {
+            <span class="hljs-keyword">return</span> serverData.data
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// 通用的错误处理</span>
+            errorHandle(serverData);
+            <span class="hljs-comment">// console.log(serverData.message);</span>
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(serverData.msg || <span class="hljs-string">'接口请求失败'</span>);
+        }
+    }).catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error(e);
+        <span class="hljs-comment">// 重新抛出错误，让上层调用者处理</span>
+        <span class="hljs-keyword">throw</span> e;
+        <span class="hljs-comment">// return null;</span>
+    })
+}
+
+<span class="hljs-comment">/*
+* params 必须是一个对象
+* */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">url, params</span>) </span>{
+    <span class="hljs-keyword">if</span> (!(params <span class="hljs-keyword">instanceof</span> FormData) &amp;&amp; <span class="hljs-keyword">typeof</span> params !== <span class="hljs-string">'object'</span>) {
+        params = { params };
+    }
+    <span class="hljs-keyword">return</span> axios.post(url, params).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> serverData = res.data;
+        <span class="hljs-keyword">if</span> (serverData.code === ERR_OK) {
+            <span class="hljs-keyword">return</span> serverData.data;
+        } <span class="hljs-keyword">else</span> {
+            errorHandle(serverData);
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(serverData.msg || <span class="hljs-string">'接口请求失败'</span>);
+        }
+    }).catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'post请求错误：'</span>, e);
+        <span class="hljs-keyword">throw</span> e;
+        <span class="hljs-comment">// return null;</span>
+    });
+}
+
+<span class="hljs-comment">// upload方法（专门处理文件上传，独立配置）</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upload</span>(<span class="hljs-params">url, formData</span>) </span>{
+    <span class="hljs-comment">// 校验参数：确保传递的是FormData（避免传错格式）</span>
+    <span class="hljs-keyword">if</span> (!(formData <span class="hljs-keyword">instanceof</span> FormData)) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'upload方法仅支持FormData参数！'</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'参数格式错误，需传递FormData'</span>));
+    }
+
+    <span class="hljs-comment">// 独立请求配置：覆盖默认头，确保文件格式正确</span>
+    <span class="hljs-keyword">const</span> requestConfig = {
+        <span class="hljs-attr">headers</span>: {
+            <span class="hljs-comment">// 关键：设置为multipart/form-data（axios也会自动识别FormData并生成，这里显式设置更保险）</span>
+            <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'multipart/form-data'</span>
+        }
+    };
+
+    <span class="hljs-comment">// 发送文件上传请求</span>
+    <span class="hljs-keyword">return</span> axios.post(url, formData, requestConfig).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> serverData = res.data;
+        <span class="hljs-keyword">if</span> (serverData.code === ERR_OK) {
+            <span class="hljs-keyword">return</span> serverData.data; <span class="hljs-comment">// 返回后端的文件URL等数据</span>
+        } <span class="hljs-keyword">else</span> {
+            errorHandle(serverData);
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'文件上传失败：'</span>, serverData);
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(serverData.msg || <span class="hljs-string">'接口请求失败'</span>);
+        }
+    }).catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-comment">// return Promise.reject(e);</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'文件上传失败：'</span>, e);
+        <span class="hljs-comment">/**
+         * return null 本质：成功态（resolved）会进入 await 的 “成功结果”，response 直接等于 null，用 if(!response) 判断失败即可。
+         * Promise.reject(null) 失败态（rejected） 会直接触发 catch（或 try/catch 的 catch 块），无法通过 response 拿到 null。
+         * */</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    });
+}
+</code></pre><pre type="JavaScript"><code>axios发送get测试:
+axios.get(<span class="hljs-string">'get-image-result-1.php'</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'axios 响应:'</span>, res);
+}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'axios 错误:'</span>, err);
+});</code></pre><p>这里，我将token放在了请求头里面，然后添加到拦截器中，再向后端发送请求，发现后端同时触发了2次！一下同时生成2个日志文件！但是从浏览器的控制台，只能看到发送了一次请求！**</p><p>从打印出来的日志中可以看到，两个文件的$_SERVER['REQUEST_METHOD']记录分别是一个OPTIONS和GET！</p><h2>问题排查和解决</h2><p>经过一下午的排查，发现问题根源在：添加<code>Authorization</code>头后触发了<strong>跨域预检请求（OPTIONS 请求）</strong>，导致后端收到两次请求（OPTIONS + 实际 get），生成两个日志文件。</p><h3>关键原因：跨域预检（CORS Preflight）</h3><p>当前端请求满足以下条件时，浏览器会先发送一次 OPTIONS 预检请求，确认后端允许该跨域请求后，再发送实际的 POST 请求：</p><ol><li><p>请求方法不是简单方法（GET、POST、HEAD 之外的方法，或 POST 但 Content-Type 不是<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>、<code>text/plain</code>）。</p></li><li><p>请求头包含自定义头（如<code>Authorization</code>属于自定义头，不在浏览器默认允许的头列表中）。</p></li></ol><p>添加<code>Authorization</code>头后，浏览器触发 OPTIONS 预检，后端将 OPTIONS 请求和后续的 POST 请求都当作有效请求处理，因此生成两个日志文件；注释掉<code>Authorization</code>头后（去掉拦截器中的header部分），没有自定义头，浏览器直接发送 POST 请求，只生成一个日志文件。</p><p>所以解决方案有两个：</p><h3>（简单粗暴）让后端识别 OPTIONS 预检请求并直接响应（不执行业务逻辑、不生成日志）</h3><blockquote><p>因为我在apache中，对于网站根目录，配置了全局支持跨域，支持各种请求方法，所以用这种方法最直接，直接检测$_SERVER['REQUEST_METHOD'] 是不是options，是的话代表这次是预检请求，直接返回允许的跨域头，不执行后续业务代码。</p></blockquote><p>对后端接口修改如下：</p><pre type="PHP"><code>header(<span class="hljs-string">"content-type:application/json;charset=utf-8"</span>);
+
+<span class="hljs-comment">// 处理 OPTIONS 预检请求：直接响应，不生成日志</span>
+<span class="hljs-keyword">if</span> ($_SERVER[<span class="hljs-string">'REQUEST_METHOD'</span>] === <span class="hljs-string">'OPTIONS'</span>) {
+    <span class="hljs-comment">// 允许的跨域源（根据实际情况修改，如指定具体域名）</span>
+    <span class="hljs-comment">// 这里需要配合服务器设置，如果http.conf中设置了Allow-Origin: * 那么这里就不要重复添加了</span>
+    <span class="hljs-comment">// header("Access-Control-Allow-Origin: *");</span>
+    <span class="hljs-comment">// 允许的请求头（必须包含 Authorization，否则预检不通过）</span>
+    header(<span class="hljs-string">"Access-Control-Allow-Headers: Authorization, Content-Type"</span>);
+    <span class="hljs-comment">// 允许的请求方法</span>
+    header(<span class="hljs-string">"Access-Control-Allow-Methods:GET, POST, OPTIONS"</span>);
+    <span class="hljs-comment">// 允许跨域携带凭证（如果前端开启了 withCredentials 则需要）</span>
+    header(<span class="hljs-string">"Access-Control-Allow-Credentials: true"</span>);
+    <span class="hljs-keyword">exit</span>; <span class="hljs-comment">// 直接退出，不执行后续日志生成逻辑</span>
+}
+
+<span class="hljs-comment">// 以下是原有业务逻辑（仅处理 POST 请求）</span>
+$log = <span class="hljs-string">"xxx被调用 - taskId: <span class="hljs-subst">{$taskId}</span> - 时间: "</span> . date(<span class="hljs-string">'Y-m-d H:i:s'</span>) . <span class="hljs-string">"\n"</span>;
+$filename = <span class="hljs-keyword">__DIR__</span>. <span class="hljs-string">'/debuglog/'</span> . uniqid() . <span class="hljs-string">'_debug.log'</span>;
+file_put_contents($filename, $log . print_r(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS), <span class="hljs-literal">true</span>) . <span class="hljs-string">"\n\n"</span>, FILE_APPEND);
+
+<span class="hljs-keyword">exit</span>(<span class="hljs-number">11</span>);</code></pre><p>修改之后，再使用axios请求（携带自定义的Authorization），发现后端仅为 POST 请求生成日志文件，OPTIONS 请求不会生成日志，只有一个。</p><p>关键说明</p><ul><li><p><code>Access-Control-Allow-Headers</code>必须包含<code>Authorization</code>，否则浏览器会认为后端不允许该自定义头，预检失败，不会发送实际 POST 请求。</p></li><li><p><code>Access-Control-Allow-Origin</code>建议指定具体域名（如<code>http://localhost:8080</code>），而非<code>*</code>，提高安全性。</p></li><li><p>前端无需修改任何代码，只需后端正确响应 OPTIONS 请求即可。</p></li></ul><p><strong>添加<code>Authorization</code>头触发跨域预检是浏览器的默认行为</strong>，并非前端代码问题。解决的核心是让后端识别 OPTIONS 请求并直接响应，不执行业务逻辑，这样既保证了跨域请求的合法性，又不会生成多余的日志文件。</p><h3>axios开启withCredentials: true，并修改服务器配置</h3><p>要知道，正常服务器是不允许Allow-Headers: * 的，所以，我将服务器http.conf修复如下：</p><pre type="Html"><code><span class="hljs-section">&lt;Directory /&gt;</span>
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Options</span></span> +Indexes +FollowSymLinks +ExecCGI
+    <span class="hljs-attribute">AllowOverride</span> none
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Order</span></span> <span class="hljs-literal">allow</span>,<span class="hljs-literal">deny</span>
+    <span class="hljs-attribute"><span class="hljs-nomarkup">Allow</span></span> from <span class="hljs-literal">all</span>
+    <span class="hljs-attribute">Require</span> <span class="hljs-literal">all</span> granted
+    <span class="hljs-comment"># CORS 配置</span>
+    <span class="hljs-comment"># Header set Access-Control-Allow-Origin "*"</span>
+    <span class="hljs-comment"># Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"</span>
+    <span class="hljs-comment"># Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"</span>
+    <span class="hljs-comment"># Header set Access-Control-Allow-Credentials "true"</span>
+<span class="hljs-section">&lt;/Directory&gt;</span></code></pre><p>将CORS跨域的header，都注释掉了，统一让脚本进行处理。</p><p>修改后前端封装代码如下：</p><pre type="JavaScript"><code>axios.defaults.baseURL = BASE_URL;
+axios.defaults.headers.post[<span class="hljs-string">'Content-Type'</span>] = <span class="hljs-string">'application/x-www-form-urlencoded;charset=UTF-8'</span>;
+<span class="hljs-comment">// 其他内容与上面的一致，仅仅将这里解开</span>
+axios.defaults.withCredentials = <span class="hljs-literal">true</span>;</code></pre><p>当<code>withCredentials: true</code>时，浏览器的跨域预检（OPTIONS 请求）会要求后端返回的<code>Access-Control-Allow-Credentials</code>为<code>true</code>，同时<strong><code>Access-Control-Allow-Origin</code>不能是<code>*</code>（必须指定具体域名）</strong>。</p><blockquote><p>开启 withCredentials: true 后，后端必须满足：</p><p>1、Access-Control-Allow-Origin：指定具体的前端域名（如<a href="http://localhost:8080">http://localhost:8080</a>），不能是 *；2、Access-Control-Allow-Credentials: true；3、Access-Control-Allow-Headers: Authorization, Content-Type（包含自定义头 Authorization）。否则会出现跨域错误，请求失败。</p></blockquote><p><strong>这不是 “解决了预检”，而是优化了跨域兼容</strong>：浏览器依然发送 OPTIONS 预检请求，但后端因为规范了处理流程，所以你看不到多余的日志文件，本质是跨域配置兼容了，而非取消了预检。</p><p>所以对后端代码修复如下：</p><pre type="PHP"><code>header(<span class="hljs-string">"content-type:application/json;charset=utf-8"</span>);
+
+<span class="hljs-comment">// 处理 OPTIONS 预检请求</span>
+<span class="hljs-keyword">if</span> ($_SERVER[<span class="hljs-string">'REQUEST_METHOD'</span>] === <span class="hljs-string">'OPTIONS'</span>) {
+    <span class="hljs-comment">// 1. 去掉 origin 末尾的斜杠，确保和前端 origin 完全一致</span>
+    header(<span class="hljs-string">"Access-Control-Allow-Origin: http://192.168.1.101:8081"</span>);
+    <span class="hljs-comment">// 2. 允许的请求头：包含 Authorization（自定义头）和 Content-Type</span>
+    header(<span class="hljs-string">"Access-Control-Allow-Headers: Authorization, Content-Type"</span>);
+    <span class="hljs-comment">// 3. 允许的请求方法：根据实际业务补充（如 GET、POST 等）</span>
+    header(<span class="hljs-string">"Access-Control-Allow-Methods: GET, POST, OPTIONS"</span>);
+    <span class="hljs-comment">// 4. 允许携带凭证（和前端 withCredentials: true 配套）</span>
+    header(<span class="hljs-string">"Access-Control-Allow-Credentials: true"</span>);
+    <span class="hljs-comment">// 5. 可选：指定预检结果缓存时间（减少 OPTIONS 请求次数）</span>
+    header(<span class="hljs-string">"Access-Control-Max-Age: 86400"</span>); <span class="hljs-comment">// 24小时</span>
+    <span class="hljs-keyword">exit</span>;
+}
+
+<span class="hljs-comment">// 业务逻辑：仅处理非 OPTIONS 请求</span>
+$log = <span class="hljs-string">"<span class="hljs-subst">{$_SERVER['REQUEST_METHOD']}</span> "</span> . date(<span class="hljs-string">'Y-m-d H:i:s'</span>) . <span class="hljs-string">"\n"</span>;
+$filename = <span class="hljs-keyword">__DIR__</span>. <span class="hljs-string">'/debuglog/'</span> . uniqid() . <span class="hljs-string">'_debug.log'</span>;
+file_put_contents($filename, $log . print_r(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS), <span class="hljs-literal">true</span>) . <span class="hljs-string">"\n\n"</span>, FILE_APPEND);
+
+<span class="hljs-keyword">exit</span>(<span class="hljs-number">11</span>);</code></pre><p>注意，如果上面的仅仅对options进行了处理，<b>还没有处理普通的post\get请求</b>，所以直接放最终版代码（<strong>服务器配置要去掉Header set Access-Control-Allow-Origin "*"</strong>）：</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+header(<span class="hljs-string">"content-type:application/json;charset=utf-8"</span>);
+
+<span class="hljs-comment">// 定义允许的前端域名白名单（数组形式，末尾无斜杠）</span>
+$allowedOrigins = [
+    <span class="hljs-string">'http://192.168.1.101:8080'</span>,
+    <span class="hljs-string">'http://localhost:8080'</span>,
+    <span class="hljs-string">'https://yourdomain.com'</span> <span class="hljs-comment">// 可添加更多域名</span>
+];
+
+<span class="hljs-comment">// 动态获取前端请求源（可能为空，如非跨域请求）</span>
+$origin = $_SERVER[<span class="hljs-string">'HTTP_ORIGIN'</span>] ?? <span class="hljs-string">''</span>;
+
+<span class="hljs-comment">// 判断当前请求源是否在白名单中</span>
+$isAllowed = in_array($origin, $allowedOrigins);
+
+<span class="hljs-comment">// 1. 处理 OPTIONS 预检请求</span>
+<span class="hljs-keyword">if</span> ($_SERVER[<span class="hljs-string">'REQUEST_METHOD'</span>] === <span class="hljs-string">'OPTIONS'</span>) {
+    <span class="hljs-keyword">if</span> ($isAllowed) {
+        header(<span class="hljs-string">"Access-Control-Allow-Origin: <span class="hljs-subst">{$origin}</span>"</span>); <span class="hljs-comment">// 返回当前请求的域名</span>
+        header(<span class="hljs-string">"Access-Control-Allow-Headers: Authorization, Content-Type"</span>);
+        header(<span class="hljs-string">"Access-Control-Allow-Methods: GET, POST, OPTIONS"</span>);
+        header(<span class="hljs-string">"Access-Control-Allow-Credentials: true"</span>);
+        <span class="hljs-comment">// Access-Control-Max-Age 让浏览器缓存预检结果，减少 OPTIONS 请求次数，提升性能</span>
+        header(<span class="hljs-string">"Access-Control-Max-Age: 86400"</span>); <span class="hljs-comment">// 缓存预检结果24小时</span>
+    }
+    <span class="hljs-keyword">exit</span>;
+}
+
+<span class="hljs-comment">// 2. 处理实际请求（POST/GET）</span>
+<span class="hljs-keyword">if</span> ($isAllowed) {
+    header(<span class="hljs-string">"Access-Control-Allow-Origin: <span class="hljs-subst">{$origin}</span>"</span>); <span class="hljs-comment">// 返回当前请求的域名</span>
+    header(<span class="hljs-string">"Access-Control-Allow-Credentials: true"</span>);
+}
+
+<span class="hljs-comment">// 原有业务逻辑</span>
+$log = <span class="hljs-string">"<span class="hljs-subst">{$_SERVER['REQUEST_METHOD']}</span> "</span> . date(<span class="hljs-string">'Y-m-d H:i:s'</span>) . <span class="hljs-string">"\n"</span>;
+$filename = <span class="hljs-keyword">__DIR__</span>. <span class="hljs-string">'/debuglog/'</span> . uniqid() . <span class="hljs-string">'_debug.log'</span>;
+file_put_contents($filename, $log . print_r(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS), <span class="hljs-literal">true</span>) . <span class="hljs-string">"\n\n"</span>, FILE_APPEND);
+
+<span class="hljs-keyword">exit</span>(<span class="hljs-number">11</span>);
+<span class="hljs-meta">?&gt;</span></code></pre><p>如果这时浏览器还报错：</p><pre type="Html"><code>Access to XMLHttpRequest at <span class="hljs-string">'http://192.168.1.101/jimeng-ai/get-image-result-1.php'</span> <span class="hljs-keyword">from</span> origin <span class="hljs-string">'http://192.168.1.101:8081'</span> has been blocked <span class="hljs-keyword">by</span> CORS policy: 
+Response to preflight request doesn<span class="hljs-string">'t pass access control check: The '</span>Access-Control-Allow-Origin<span class="hljs-string">' header contains multiple values '</span>http:<span class="hljs-comment">//192.168.1.101:8081/, *', but only one is allowed.</span></code></pre><p>那么就是代表请求头Allow-Origin设置冲突了，要去掉http.conf中的Allow-Origin设置（参考我apache上面的设置）。删掉 Apache 配置中的<code>Access-Control-Allow-Origin "*"</code>，避免和 PHP 代码的配置冲突，响应头只保留一个 Origin 值。</p><p>如果是nginx(参考)：</p><pre type="JavaScript"><code><span class="hljs-attribute">location</span> / {
+    <span class="hljs-attribute">add_header</span> Access-Control-Allow-Origin http://192.168.1.101:8081;
+    <span class="hljs-attribute">add_header</span> Access-Control-Allow-Methods <span class="hljs-string">'GET, POST, OPTIONS'</span>;
+    <span class="hljs-attribute">add_header</span> Access-Control-Allow-Headers <span class="hljs-string">'Authorization, Content-Type'</span>;
+    <span class="hljs-attribute">add_header</span> Access-Control-Allow-Credentials <span class="hljs-string">'true'</span>;
+    
+    <span class="hljs-attribute">if</span> (<span class="hljs-variable">$request_method</span> = <span class="hljs-string">'OPTIONS'</span>) {
+        <span class="hljs-attribute">return</span> <span class="hljs-number">204</span>;
+    }
+}</code></pre><p>服务器配置修改完之后，记得要重启。</p><h2>axios中withCredentials: true作用探究</h2><p><code>withCredentials: true</code>是 axios 中用于<strong>跨域请求时携带身份凭证（如 Cookie、HTTP 认证信息等）</strong>的配置项，理解它需要先搞清楚「跨域」和「身份凭证」的关系。</p><h3>一句话总结核心作用：</h3><p><strong>让跨域请求能携带 Cookie 等身份信息，从而让后端识别用户身份。</strong></p><p>在 Web 开发中，浏览器有一个「同源策略」安全限制：</p><ul><li><p>当请求的域名、端口、协议三者中有任何一个不同时，就是「跨域请求」。</p></li><li><p>默认情况下，跨域请求不会携带 Cookie（包括登录态 Cookie、SessionID 等身份凭证），后端无法识别发起请求的用户是谁。</p></li></ul><p>而<code>withCredentials: true</code>的作用就是<strong>打破这个默认限制</strong>，告诉浏览器：「这个跨域请求需要携带 Cookie 等身份凭证，请放行」。</p><p>举个实际例子：</p><p>假设你有两个服务：</p><ul><li><p>前端：<code>http://localhost:8081</code>（开发服务器）</p></li><li><p>后端：<code>http://localhost:3000</code>（API 服务器，两者端口不同，属于跨域）</p></li></ul><p><strong>未开启<code>withCredentials: true</code>时</strong>：</p><p>前端登录后，后端返回的<code>Set-Cookie</code>（如<code>sessionid=xxx</code>）会被浏览器存储，但后续前端发跨域请求时，浏览器不会把这个 Cookie 发给后端。</p><p>后端收到请求后，发现没有<code>sessionid</code>，会认为用户未登录，返回「未授权」错误。</p><p><strong>开启<code>withCredentials: true</code>后</strong>：</p><p>跨域请求会自动携带存储的 Cookie（如<code>sessionid=xxx</code>），后端能通过 Cookie 识别用户身份，正常返回数据。</p><h3>必须满足的配套条件：</h3><p><code>withCredentials: true</code>不能单独使用，否则会触发跨域错误，需要后端配合设置两个关键响应头：</p><ul><li><p><strong>Access-Control-Allow-Credentials: true</strong>告诉浏览器：「允许这个跨域请求携带凭证」。</p></li><li><p><strong>Access-Control-Allow-Origin: 具体域名（如<a href="http://localhost:8081">http://localhost:8081</a>）</strong>必须指定明确的前端域名，不能用 *（浏览器规定：带凭证的跨域请求不允许 Origin 为 *）。</p></li></ul><h3>什么时候需要开启？</h3><p>当你的业务满足以下场景时，必须开启：</p><ul><li><p>跨域请求（前后端不同域）。</p></li><li><p>后端依赖 Cookie 识别用户身份（如传统的 Session 认证）。</p></li></ul><p>如果后端用的是 Token 认证（Token 放在请求头<code>Authorization</code>中，而非 Cookie），且不需要携带其他 Cookie，那么可以不开启<code>withCredentials: true</code>（但你的情况中因为需要处理跨域预检，开启后反而兼容了配置，属于特殊场景）。</p><p><code>withCredentials: true</code>的核心是<strong>解决跨域场景下的身份凭证传递问题</strong>，让后端能识别跨域请求的用户身份。它的使用必须配合后端的跨域头配置，否则会导致跨域错误。</p><p>而目前我发现的情况中，开启后跨域配置兼容，避免了重复日志，<strong>本质是后端规范化了之后正确处理了带凭证的预检请求</strong>。</p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：withCredentials，options，请求预检
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/37" class="imgbox">
+                <img src="/statics/blog/2021/0408/e3cebf8e900068a1a6993ab002826c56.jpg">
+            </a>
+            <a href="/blog/articles/37" class="title" title="使用watch实现组件props双向绑定">
+                使用watch实现组件props双向绑定
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/378" class="imgbox">
+                <img src="/statics/blog/2023/0308/58b1c0457439f0c19833931b81c972a5.png">
+            </a>
+            <a href="/blog/articles/378" class="title" title="SpringBoot解决跨域问题">
+                SpringBoot解决跨域问题
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/245" class="imgbox">
+                <img src="/statics/blog/2022/0106/1a976cb7ecbb6ec3d6ff56adbb09e27d.png">
+            </a>
+            <a href="/blog/articles/245" class="title" title="使用meter元素实现密码强度效果（含密码强度计算算法）">
+                使用meter元素实现密码强度效果（含密码强度计算算法）
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/vue">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/159">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用v-model绑定修改数组内容，视图层没有更新的解决办法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/292">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        盘点Vue2和Vue3的10种组件通信方式
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/16">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue-router4过度动画无效解决方案
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/381">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue3获取vuex中的对象时为proxy对象，如何获取值
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/134">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Composition组合API在setup函数中的使用
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

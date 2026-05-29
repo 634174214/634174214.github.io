@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="thinkphp-模版的条件判断标签、模版的include加载包含输出、模板的布局和继承 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>thinkphp-模版的条件判断标签、模版的include加载包含输出、模板的布局和继承 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="thinkphp"/>
+<meta name="description" content="thinkphp笔记-模版的条件判断标签、模版的include加载包含输出、模版的布局和继承"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 534,
+            article_title: 'thinkphp-模版的条件判断标签、模版的include加载包含输出、模板的布局和继承',
+            article_desc: 'thinkphp笔记-模版的条件判断标签、模版的include加载包含输出、模版的布局和继承',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal active">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" class="active">
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/thinkphp">ThinkPHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">thinkphp-模版的条件判断标签、模版的include加载包含输出、模板的布局和继承</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>11710</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>1014</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2024-06-13 08:02:21</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>模版的条件判断标签</h2><h3>switch标签</h3><p>使用{switch}...{/switch}可以实现多个条件判断；</p><pre type="PHP"><code>{<span class="hljs-keyword">switch</span> $number}
+        {<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>}<span class="hljs-number">1</span>{/<span class="hljs-keyword">case</span>}
+        {<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>}<span class="hljs-number">5</span>{/<span class="hljs-keyword">case</span>}
+        {<span class="hljs-keyword">case</span> <span class="hljs-number">10</span>}<span class="hljs-number">10</span>{/<span class="hljs-keyword">case</span>}
+        {<span class="hljs-keyword">default</span>/}不存在
+{/<span class="hljs-keyword">switch</span>}</code></pre><p>{case}也支持多个条件判断，使用|线隔开即可；</p><pre type="PHP"><code>{<span class="hljs-keyword">case</span> 10|20|30}10,20,30 均可{/<span class="hljs-keyword">case</span>}</code></pre><pre type="PHP"><code><span class="hljs-keyword">return</span> View::fetch(<span class="hljs-string">'condition'</span>, [
+            <span class="hljs-string">'number'</span> =&gt; <span class="hljs-number">7</span>
+]);</code></pre><pre type="PHP"><code>{<span class="hljs-keyword">switch</span> $number}
+        {<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>|<span class="hljs-number">2</span>|<span class="hljs-number">3</span>|<span class="hljs-number">4</span>}<span class="hljs-number">1</span>{/<span class="hljs-keyword">case</span>}
+        {<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>|<span class="hljs-number">6</span>|<span class="hljs-number">7</span>|<span class="hljs-number">8</span>}<span class="hljs-number">5</span>{/<span class="hljs-keyword">case</span>}
+        {<span class="hljs-keyword">case</span> <span class="hljs-number">10</span>}<span class="hljs-number">10</span>{/<span class="hljs-keyword">case</span>}
+        {<span class="hljs-keyword">default</span>/}不存在
+{/<span class="hljs-keyword">switch</span>}</code></pre><p>{case}后面也可以是变量，设置变量后不可以使用|线；</p><pre type="PHP"><code><span class="hljs-keyword">return</span> View::fetch(<span class="hljs-string">'condition'</span>, [
+            <span class="hljs-string">'number'</span> =&gt; <span class="hljs-number">10</span>,
+            <span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">10</span>
+]);</code></pre><pre type="Html"><code>{<span class="hljs-keyword">switch</span> $number}
+        {<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>|<span class="hljs-number">2</span>|<span class="hljs-number">3</span>|<span class="hljs-number">4</span>}<span class="hljs-number">1</span>{/<span class="hljs-keyword">case</span>}
+        {<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>|<span class="hljs-number">6</span>|<span class="hljs-number">7</span>|<span class="hljs-number">8</span>}<span class="hljs-number">5</span>{/<span class="hljs-keyword">case</span>}
+        {<span class="hljs-keyword">case</span> $id}<span class="hljs-number">10</span>{/<span class="hljs-keyword">case</span>}
+        {<span class="hljs-keyword">default</span>/}不存在
+{/<span class="hljs-keyword">switch</span>}</code></pre><blockquote>推荐，只要是变量都加上$符号</blockquote><p>编译后的源码 参考学习下</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">switch</span>($number): <span class="hljs-keyword">case</span> <span class="hljs-string">"1"</span>: <span class="hljs-meta">?&gt;</span>
+      <span class="hljs-number">1</span>
+<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">break</span>; <span class="hljs-keyword">case</span> <span class="hljs-string">"5"</span>: <span class="hljs-meta">?&gt;</span>
+      <span class="hljs-number">5</span>
+<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">break</span>; <span class="hljs-keyword">case</span> $id: <span class="hljs-meta">?&gt;</span>
+      <span class="hljs-number">10</span>
+<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">break</span>; <span class="hljs-keyword">default</span>: <span class="hljs-meta">?&gt;</span>
+    不存在
+<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endswitch</span>; <span class="hljs-meta">?&gt;</span> </code></pre><h3>IF 标签</h3><p>使用简单条件判断的{if}标签；</p><pre type="PHP"><code> {<span class="hljs-keyword">if</span> <span class="hljs-variable">$number</span> &gt;= 0} 
+      OK
+ {/<span class="hljs-keyword">if</span>}</code></pre><p>{if}标签的条件判断可以使用AND、OR 等语法；</p><pre type="PHP"><code>{<span class="hljs-keyword">if</span> (<span class="hljs-variable">$number</span> &gt; 10) OR (<span class="hljs-variable">$number</span> &gt; 5)}
+    大于10
+{/<span class="hljs-keyword">if</span>}</code></pre><p>{if}标签支持{else/}语法；</p><pre type="PHP"><code>{<span class="hljs-keyword">if</span> <span class="hljs-variable">$number</span> &gt;= 0 OR <span class="hljs-variable">$number</span> &gt; 5} 
+      OK
+{<span class="hljs-keyword">else</span>/}
+      not ok
+{/<span class="hljs-keyword">if</span>}</code></pre><p>{if}标签也支持{elseif}多重条件判断；</p><pre type="PHP"><code>{<span class="hljs-keyword">if</span> $number &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">OR</span> $number &gt; <span class="hljs-number">5</span>} 
+      OK
+{<span class="hljs-keyword">elseif</span> $number &lt; <span class="hljs-number">5</span>/}
+      xiaoyu5
+{<span class="hljs-keyword">else</span>/}
+      not ok
+{/<span class="hljs-keyword">if</span>}</code></pre><p>编译后，参考学习</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">if</span>($number &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">OR</span> $number &gt; <span class="hljs-number">5</span>): <span class="hljs-meta">?&gt;</span> 
+      OK
+<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">elseif</span>($number &lt; <span class="hljs-number">5</span>): <span class="hljs-meta">?&gt;</span>
+      xiaoyu5
+<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">else</span>: <span class="hljs-meta">?&gt;</span>
+      not ok
+<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-meta">?&gt;</span></code></pre><p>{if}标签中的条件判断支持PHP 写法，比如函数和对象调用；</p><pre type="PHP"><code><span class="hljs-keyword">return</span> View::fetch(<span class="hljs-string">'condition'</span>, [
+            <span class="hljs-string">'number'</span> =&gt; <span class="hljs-number">10</span>,
+            <span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">10</span>,
+            <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'wu'</span>
+]);</code></pre><pre type="PHP"><code>{<span class="hljs-keyword">if</span> strtoupper(<span class="hljs-variable">$name</span>) == <span class="hljs-string">'WU'</span>}
+        相等
+{/<span class="hljs-keyword">if</span>}</code></pre><h3>范围标签</h3><p>范围标签：{in}和{notin}，判断值是否存在或不存在指定的数据列表中；</p><pre type="Html"><code>{<span class="hljs-keyword">in</span> name=<span class="hljs-string">"<span class="hljs-variable">$number</span>"</span> value=<span class="hljs-string">"10,20,30,40"</span>} 存在 {/<span class="hljs-keyword">in</span>}</code></pre><pre type="PHP"><code><span class="hljs-keyword">return</span> View::fetch(<span class="hljs-string">'condition'</span>, [
+            <span class="hljs-string">'number'</span> =&gt; <span class="hljs-number">11</span>,
+            <span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">10</span>,
+            <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'wu'</span>
+]);</code></pre><pre type="PHP"><code>{<span class="hljs-keyword">in</span> name=<span class="hljs-string">"<span class="hljs-variable">$number</span>"</span> value=<span class="hljs-string">"10,20,30,40"</span>} 
+        存在
+{<span class="hljs-keyword">else</span>/}
+        不存在 
+{/<span class="hljs-keyword">in</span>}</code></pre><p>name 值可以是是系统变量，比如$Think.xxx.yyy，value 可以是变量；</p><p>范围标签：{between}和{notbetween}，判断值是否存在或不存在数据区间中；</p><pre type="PHP"><code>{between name=<span class="hljs-string">"<span class="hljs-variable">$number</span>"</span> value=<span class="hljs-string">"10,50"</span>} 
+        存在OK
+ {/between}</code></pre><blockquote>between与in区别：between是范围，比如10-50，而in则是“10，20，30”中的某一个</blockquote><pre type="Html"><code>{between name=<span class="hljs-string">'number'</span> <span class="hljs-keyword">value</span>=<span class="hljs-string">'10,50'</span>}存在{/between}
+{between name=<span class="hljs-string">'number'</span> <span class="hljs-keyword">value</span>=<span class="hljs-string">'10,50'</span>}
+   存在数据区间中
+{<span class="hljs-keyword">else</span>/}
+   不存在数据区间中
+{/between}</code></pre><blockquote>between 中的value 只能是两个值，表示一个区间，第三个值会无效；区间不但可以表达数字，也可以是字母，比如a-z，A-Z；</blockquote><h3>是否存在标签</h3><p>是否存在：{present}和{notpresent}判断变量是否已经定义赋值(是否存在)；</p><pre type="PHP"><code>{present name=<span class="hljs-string">"<span class="hljs-variable">$abc</span>"</span>}变量已定义{/present} // 因为<span class="hljs-variable">$abc</span>没定义，所以不会显示
+{present name=<span class="hljs-string">"<span class="hljs-variable">$number</span>"</span>}变量已定义{/present} // 因为<span class="hljs-variable">$number</span>已定义 会显示这个</code></pre><p>其也支持else</p><pre type="PHP"><code>{present name=<span class="hljs-string">'user'</span>}
+   user 已存在
+{<span class="hljs-keyword">else</span>/}
+   user 不存在
+{/present}</code></pre><p>是否为空：{empty}和{notempty}判断变量是否为空值；</p><pre type="PHP"><code>{<span class="hljs-keyword">empty</span> name=<span class="hljs-string">'username'</span>}有值{/<span class="hljs-keyword">empty</span>}
+{<span class="hljs-keyword">empty</span> name=<span class="hljs-string">'username'</span>}
+     username 有值
+{<span class="hljs-keyword">else</span>/}
+     username 没值
+{/<span class="hljs-keyword">empty</span>}</code></pre><p>常量是否定义：{defined}和{notdefined}判断常量是否定义(是否存在)；</p><pre type="PHP"><code>{<span class="hljs-keyword">defined</span> name=<span class="hljs-string">'PI'</span>}
+   PI 存在
+{<span class="hljs-keyword">else</span>/}
+   PI 不存在
+{<span class="hljs-regexp">/defined}</span></code></pre><h2>模版的include加载包含输出</h2><p>使用{include}标签来加载公用重复的文件，比如头部、尾部和导航部分；</p><p>在模版view 目录创建一个public 公共目录，分别创建header 和nav；</p><p>模板文件目录如下</p><pre type="PHP"><code>app
+  <span class="hljs-params">|-controller
+         |</span>-Show.php
+  ...
+  <span class="hljs-params">|-view
+      |</span>-public
+          <span class="hljs-params">|-header.html
+                 |</span>-nav.html
+      <span class="hljs-params">|-show 
+               |</span>-block.html</code></pre><p>在block.html中</p><pre type="PHP"><code>{<span class="hljs-keyword">include</span> file=<span class="hljs-string">"public/header"</span> }
+{<span class="hljs-keyword">include</span> file=<span class="hljs-string">"public/nav"</span> }</code></pre><p>或者</p><pre type="PHP"><code>{<span class="hljs-keyword">include</span> file=<span class="hljs-string">'public/header,public/nav'</span>/}  <span class="hljs-comment">// 经过测试模板会直接输出 仅记录</span></code></pre><p>也可以包含一个文件的完整路径，包括后缀，如下：</p><pre type="PHP"><code>{<span class="hljs-keyword">include</span> file=<span class="hljs-string">"../view/public/nav.html"</span>/}</code></pre><p><b>模版的标题和关键字，可以通过固定的语法进行传递；</b></p><pre type="PHP"><code><span class="hljs-keyword">return</span> View::fetch(<span class="hljs-string">'block'</span>, [
+            <span class="hljs-string">'title'</span> =&gt; <span class="hljs-string">'标题'</span>
+]);</code></pre><pre type="PHP"><code>{<span class="hljs-keyword">include</span> file=<span class="hljs-string">"public/header"</span> title=<span class="hljs-string">"<span class="hljs-subst">$title</span>"</span>} <span class="hljs-comment">// 将其传递给header模板</span></code></pre><p>在Header模板中使用</p><pre type="Html"><code><span class="hljs-selector-tag">header</span> <span class="hljs-selector-attr">[title]</span> <span class="hljs-comment">// 这里使用[]，注意title不能加$</span></code></pre><p>如果是多个属性</p><pre type="PHP"><code>{<span class="hljs-keyword">include</span> file=<span class="hljs-string">"public/header"</span> title=<span class="hljs-string">"<span class="hljs-subst">$title</span>"</span> keyword=<span class="hljs-string">"关键字"</span>}</code></pre><pre type="Html"><code><span class="hljs-attribute"><span class="hljs-nomarkup">header</span></span><span class="hljs-meta"> [title] [keyword]</span></code></pre><h3>输出替换</h3><p>有时，我们需要调用一些静态文件，比如css/js 等；</p><p>比如，我们在项目根目录中public/static/js/basic.js和public/static/css/basic.js</p><p>在模板中引用</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>[title]<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"../static/css/basic.css"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../static/js/basic.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>那么，直接写完整路径，比较繁长，可以把这些路径整理打包；</p><p><b>在config/view.php 中，配置新增一个参数；</b>tpl_replace_string</p><pre type="PHP"><code><span class="hljs-comment">// 标签库标签结束标记</span>
+<span class="hljs-string">'taglib_end'</span>    =&gt; <span class="hljs-string">'}'</span>,
+ <span class="hljs-comment">// 模版替换输出</span>
+<span class="hljs-string">'tpl_replace_string'</span> =&gt; [
+        <span class="hljs-string">'__JS__'</span> =&gt; <span class="hljs-string">'../static/js'</span>,
+        <span class="hljs-string">'__CSS__'</span> =&gt; <span class="hljs-string">'../static/css'</span>,
+]</code></pre><p>其中设置属性指向特定的目录，然后在特定的模板中，使用变量替换基础路径即可</p><p>html 文件调用端，直接通过__CSS__(__JS__)配置的魔术方法调用即可；使用的时候会自动将变量编译为路径。</p><pre type="Html"><code> <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"__CSS__/basic.css"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"__JS__/basic.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><blockquote>在测试的时候，由于是更改的配置文件刷新，每次都要删除编译文件才能生效；</blockquote><h3>文件加载</h3><p>传统方式调用CSS 或JS 文件时，采用link 和script 标签实现；系统提供了更加智能的加载方式，方便加载CSS 和JS 等文件；</p><p><b>使用{load}标签和href 属性来链接，不需要设置任何其它参数；</b></p><pre type="Html"><code>{<span class="hljs-built_in">load</span> href=<span class="hljs-string">"__CSS__/basic.css"</span>}
+{<span class="hljs-built_in">load</span> href=<span class="hljs-string">"__JS__/basic.js"</span>}</code></pre><p>也支持href 多属性值的写法，如下：</p><pre type="Html"><code>{<span class="hljs-built_in">load</span> href=<span class="hljs-string">'__CSS__/basic.css, __JS__/basic.js'</span>}</code></pre><p>{load}还提供了两个别名{js}、{css}来更好的实现可读性，当然个人还是更喜欢Load；</p><pre type="Html"><code>{js href=<span class="hljs-string">'__JS__/basic.js'</span>}
+{css href=<span class="hljs-string">'__CSS__/basic.css'</span>}</code></pre><h2>模版的布局和继承</h2><h3>模板布局</h3><p>默认情况下，不支持模版布局功能，需要在配置文件中开启；</p><p>在配置文件config/view.php 中，配置开始模版布局功能；</p><pre type="PHP"><code><span class="hljs-keyword">return</span> [
+    ...
+    <span class="hljs-comment">// 模版替换输出</span>
+    <span class="hljs-string">'tpl_replace_string'</span> =&gt; [
+        <span class="hljs-string">'__JS__'</span> =&gt; <span class="hljs-string">'../static/js'</span>,
+        <span class="hljs-string">'__CSS__'</span> =&gt; <span class="hljs-string">'../static/css'</span>,
+    ],
+    <span class="hljs-comment">// 新增模板布局</span>
+    <span class="hljs-string">'layout_on'</span> =&gt; <span class="hljs-literal">true</span>
+];</code></pre><p>此时，执行上一节的模版控制器，会发现提示缺少模版layout.html；这个默认的布局文件，是可以更改的，位置和名字均可配置；</p><pre type="PHP"><code><span class="hljs-comment">// 模板布局</span>
+    <span class="hljs-string">'layout_on'</span> =&gt; <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'layout_name'</span> =&gt; <span class="hljs-string">'public/layout'</span>, // 这个目录指app/view/public/layout.html</code></pre><p>然后在app/view/public/下新建layout.html</p><blockquote>这个layout的好处就是公共部分就只有一个文件，不需要再分开引用了。相当于逆向，在模板中写出所有公用的部分，然后在每个模板中写不一样的结构，然后插入到公用模板的{__CONTENT__}处</blockquote><p>layout.html 负责所有通用模块的代码部分，而局部内容通过变量引入；</p><p>使用{__CONTENT__}类似魔术方法的标签来引入index.html 非通用内容；</p><pre type="Html"><code><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>{$title}<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- &lt;link rel="stylesheet" href="__CSS__/basic.css"&gt;
+    &lt;script src="__JS__/basic.js"&gt;&lt;/script&gt; --&gt;</span>
+    {css href="__CSS__/basic.css"}
+    {js href="__JS__/basic.js"}
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    header  [keyword]
+
+    {__CONTENT__}
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><p>上面说的是第一种，配置文件下来开启布局，而第二种方式则不需要开启直接使用；</p><p>当然也可以在config/view中关闭掉layout_on等相关配置，然后在个别的模板中，比如app/view/show/block.html中</p><pre type="Html"><code>{layout name=<span class="hljs-string">"public/layout"</span>}
+这里是主题部分</code></pre><p><b><font color="#c24f4a">首先，你必须关闭第一种配置</font></b>，我这里就直接注释掉了，然后使用{layout}标签；也可以达到与上面一样的效果。</p><blockquote>再强调：再测试的时候，如果更改了配置文件，务必删除temp 下编译文件再刷新；</blockquote><p>你可以更改{__CONTENT__}，只要在配置文件中配置；</p><pre type="PHP"><code><span class="hljs-attr">'layout_item'</span> =&gt; <span class="hljs-string">'{__REPLACE__}'</span></code></pre><pre type="PHP"><code>{layout name=<span class="hljs-string">"public/layout"</span> replace=<span class="hljs-string">'[__REPLACE__]'</span>}</code></pre><h3>模版继承</h3><p>模版继承是另一种布局方式，这种布局的思路更加的灵活；</p><p>首先，我们要创建一个app/view/public/base.html 的基模版文件，文件名随意，比如base.html；</p><p>创建一个新的方法extend ，在view/show/block.html载入新的模版extend.html，然后加载基模版；下面两种方式都可以</p><pre type="PHP"><code>{extend name=<span class="hljs-string">'public/base'</span>}
+{extend name=<span class="hljs-string">'../view/public/base.html'</span>}
+</code></pre><p>在基模版base.html 中，设置几个可替换的区块部分，{block}标签实现；</p><pre type="Html"><code><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>{$title}<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    {block name="body"}这里是111{/block}
+    {block name="nav"}这里引入其他文件{/block}
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><p>然后在block.html模板中</p><pre type="Html"><code>{extend name=<span class="hljs-string">"public/base"</span>}
+
+{block name=<span class="hljs-string">"body"</span>}
+    &lt;em&gt;这里是从block.html中写的&lt;/em&gt;
+{/block}
+
+{block name=<span class="hljs-string">"nav"</span>}
+    {<span class="hljs-keyword">include</span> file=<span class="hljs-string">"public/nav"</span>}
+{/block}</code></pre><p>如此，block模板中的name="body"中的内容就会渲染在base模板的name="body"处。</p><p>在base.html 中，{include}可以加载内容，而在extend.html 可以改变加载；</p><pre type="PHP"><code>{block name=<span class="hljs-string">'include'</span>}{<span class="hljs-keyword">include</span> file=<span class="hljs-string">'public/header'</span>}{/block}</code></pre><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：thinkphp
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/9" class="imgbox">
+                <img src="/statics/blog/2021/0219/9749eb4943bba850a58b0567d2b332b0.png">
+            </a>
+            <a href="/blog/articles/9" class="title" title="[公众号]微信分享网页显示图片（个人号）">
+                [公众号]微信分享网页显示图片（个人号）
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/102" class="imgbox">
+                <img src="/statics/blog/2021/0623/bfc7d47f0760797375e85555d8d90956.jpg">
+            </a>
+            <a href="/blog/articles/102" class="title" title="vue.config文件常用配置详解">
+                vue.config文件常用配置详解
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/162" class="imgbox">
+                <img src="/statics/blog/2021/0825/f2e7f9e02b6fb5c6618dd10b93a84799.jpg">
+            </a>
+            <a href="/blog/articles/162" class="title" title="【NS】Switch使用Lanplay实现远程面连的操作流程及信息汇总">
+                【NS】Switch使用Lanplay实现远程面连的操作流程及信息汇总
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/thinkphp">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/489">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp笔记-数据库查询
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/545">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp笔记-异常处理、日志处理
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/530">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp-模版引擎驱动和赋值变量、模板引擎配置和渲染、模版的变量输出
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/514">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp-关联模型初步、一对一关联查询、一对多关联查询
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/115">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Blade流程控制
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

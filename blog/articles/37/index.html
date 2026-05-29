@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="使用watch实现组件props双向绑定 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>使用watch实现组件props双向绑定 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="vue2prop双向绑定"/>
+<meta name="description" content="在Vue2中组件的props的数据流动改为了只能单向流动，即只能由组件外（调用组件方）通过组件的DOM属性attribute传递props给组件内，组件内只能被动接收组件外传递过来的数据，并且在组件内，不能修改由外层传来的props数据。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 37,
+            article_title: '使用watch实现组件props双向绑定',
+            article_desc: '在Vue2中组件的props的数据流动改为了只能单向流动，即只能由组件外（调用组件方）通过组件的DOM属性attribute传递props给组件内，组件内只能被动接收组件外传递过来的数据，并且在组件内，不能修改由外层传来的props数据。',
+            article_img: '/statics/blog/2021/0408/e3cebf8e900068a1a6993ab002826c56.jpg',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal active">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" class="active">
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/vue">Vue</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">使用watch实现组件props双向绑定</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>14151</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>648</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2021-04-08 09:42:25</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <p>本篇文章为最基本的封装组件，以及自动父组件发送数据的方式。还有另外两篇封装组件的参考：<a href="/blog/articles/44" target="_blank">《sync修饰符做双向绑定》</a>和<a href="/blog/articles/36" target="_blank">《v-model实现双向绑定自定义组件》</a></p><p>在Vue2中组件的props的数据流动改为了只能单向流动，即只能由组件外（调用组件方）通过组件的DOM属性<code>attribute</code>传递<code>props</code>给组件内，组件内只能被动接收组件外传递过来的数据，并且在组件内，不能修改由外层传来的props数据。如图:</p><p><img src="/statics/blog/2021/0408/e3cebf8e900068a1a6993ab002826c56.jpg"></p><p>关于这一点的修改官方给的解释：</p><blockquote>prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。这是为了防止子组件无意修改了父组件的状态——这会让应用的数据流难以理解。</blockquote><p>虽然废弃了props的双向绑定对于整个项目整体而言是有利且正确的，但是在某些时候我们确实需要从组件内部修改props的需求。用一个简单的案例来说明。</p><h2>基本样式、结构以及遇到的问题</h2><p>假设需要做一个简单的状态切换功能的组件。如图：</p><p><img src="/statics/blog/2021/0408/74325bc10fe6031fdc0d3cc75d82adaf.jpg"></p><h3>样式以及基本的HTML结构</h3><pre type="Html"><code><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span><span class="css">
+        *{<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;<span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>}
+        <span class="hljs-selector-id">#app</span>{
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;
+            <span class="hljs-attribute">margin</span>: <span class="hljs-number">20px</span> auto;
+        }
+        <span class="hljs-selector-class">.switchbtn</span>{
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;
+            <span class="hljs-attribute">margin</span>: <span class="hljs-number">20px</span> <span class="hljs-number">0</span>;<span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
+            <span class="hljs-attribute">font-size</span>: <span class="hljs-number">36px</span>;<span class="hljs-attribute">font-weight</span>: <span class="hljs-number">700</span>;
+            <span class="hljs-attribute">line-height</span>: <span class="hljs-number">200px</span>;<span class="hljs-attribute">text-align</span>: center;
+            <span class="hljs-attribute">position</span>: relative;<span class="hljs-attribute">cursor</span>: pointer;
+        }
+        <span class="hljs-selector-class">.switchbtn</span><span class="hljs-selector-pseudo">:after</span>{
+            <span class="hljs-attribute">content</span>: <span class="hljs-string">"点击有色区域进行状态切换"</span>;
+            <span class="hljs-attribute">position</span>: absolute;
+            <span class="hljs-attribute">color</span>: <span class="hljs-number">#f2f2f2</span>;
+            <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;
+            <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+            <span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;
+            <span class="hljs-attribute">line-height</span>: <span class="hljs-number">30px</span>;
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+            <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+        }
+        <span class="hljs-selector-class">.switchbtn</span><span class="hljs-selector-class">.isopen</span>{
+            <span class="hljs-attribute">background</span>: green;
+        }
+        <span class="hljs-selector-class">.switchbtn</span><span class="hljs-selector-class">.isclose</span>{
+            <span class="hljs-attribute">background</span>: red;
+        }
+        <span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[type=<span class="hljs-string">"button"</span>]</span> {
+            <span class="hljs-attribute">display</span>: block;
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+            <span class="hljs-attribute">line-height</span>: <span class="hljs-number">36px</span>;
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+       <span class="hljs-comment">&lt;!--子组件：开关组件--&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">switchbtn</span> <span class="hljs-attr">:open</span>=<span class="hljs-string">"open"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">switchbtn</span>&gt;</span>
+       <span class="hljs-comment">&lt;!--外部控制--&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> :<span class="hljs-attr">value</span>=<span class="hljs-string">"open ? '打开' : '关闭'"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"toggleOpen"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- vue版本2.6.12 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+        <span class="hljs-comment">// 即将要输入的主要代码①</span>
+       </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><h3>编写遇到问题的js</h3><p>在上面的①处输入：</p><pre type="JavaScript"><code><span class="hljs-comment">//开关子组件代码</span>
+Vue.component(<span class="hljs-string">"switchbtn"</span>, {
+    template:`
+        &lt;div <span class="hljs-meta">@click</span>=<span class="hljs-string">"toggle"</span> 
+             :<span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">switchCls</span>"</span>
+        &gt;
+            {{<span class="hljs-keyword">open</span> ? <span class="hljs-string">'开'</span> : <span class="hljs-string">'关'</span>}}
+        &lt;/div&gt;
+    `,
+    props:{
+        <span class="hljs-keyword">open</span>: {
+            type: <span class="hljs-built_in">Boolean</span>,
+            default() {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            }
+        }
+    },
+    computed: {
+        switchCls() {
+            <span class="hljs-keyword">return</span> `switchbtn ${<span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span> ? <span class="hljs-string">'isopen'</span> : <span class="hljs-string">'isclose'</span>}`
+        }
+    },
+    methods:{
+        toggle(){
+            <span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span> = !<span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span>;
+        }
+    }
+});
+
+new Vue({
+    el: <span class="hljs-string">"#app"</span>,
+    <span class="hljs-keyword">data</span>() {
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-comment">//开关状态数据</span>
+            <span class="hljs-keyword">open</span>: <span class="hljs-literal">true</span>
+        }
+    },
+    methods:{
+        <span class="hljs-comment">// 在外部父组件点击可以切换子组件的状态</span>
+        toggleOpen(){
+            <span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span> = !<span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span>;
+        }
+    }
+});</code></pre><p>这时候，点击子组件的色块部分，可以正常切换，但是会触发报错提示：</p><p><img src="/statics/blog/2021/0408/4ee189664f0079b5c4be270709325337.jpg"></p><blockquote>[Vue warn]: Avoid mutating a prop directly since the value will be overwritten whenever the parent component re-renders. Instead, use a data or computed property based on the prop's value. Prop being mutated: "open" found in---&gt; &lt;Switchbtn&gt;&lt;Root&gt;</blockquote><p>组件内不能修改props的值，同时修改的值也不会同步到组件外层。</p><h2>实现属性的双向绑定方式</h2><h3>在组件内的data对象中创建一个props属性的副本</h3><p><img src="/statics/blog/2021/0413/88a97c71add53f021608d500b17a2dfa.png"></p><p><a href="https://cn.vuejs.org/v2/guide/components-props.html" target="_blank">单向数据流的官方使用描述</a></p><p>因为<code>open</code>不可写，所以需要在data中创建一个副本<font face="monospace"><span >myOpen</span></font>变量，初始值为props属性<code>open</code>的值，同时在组件内所有需要调用props的地方调用这个data对象<code>myOpen</code>。</p><pre type="JavaScript"><code><span class="hljs-comment">//开关子组件代码</span>
+Vue.component(<span class="hljs-string">"switchbtn"</span>, {
+    template:`
+        &lt;div <span class="hljs-meta">@click</span>=<span class="hljs-string">"toggle"</span> 
+             :<span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">switchCls</span>"</span>
+        &gt;
+            {{myOpen ? <span class="hljs-string">'开'</span> : <span class="hljs-string">'关'</span>}}
+        &lt;/div&gt;
+    `,
+    props:{
+        <span class="hljs-keyword">open</span>: {
+            type: <span class="hljs-built_in">Boolean</span>,
+            default() {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            }
+        }
+    },
+    <span class="hljs-keyword">data</span>() {
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-comment">//data中新增字段 引用props中的open 也可以使用computed</span>
+            myOpen: <span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span>
+        }
+    },
+    computed: {
+        switchCls() {
+            <span class="hljs-keyword">return</span> `switchbtn ${<span class="hljs-keyword">this</span>.myOpen ? <span class="hljs-string">'isopen'</span> : <span class="hljs-string">'isclose'</span>}`
+        }
+    },
+    methods:{
+        toggle(){
+            <span class="hljs-keyword">this</span>.myOpen = !<span class="hljs-keyword">this</span>.myOpen;
+        }
+    }
+});</code><code>// 这是改变父组件open的状态就不会影响到内部myOpen的状态了</code></pre><p><b>具体使用computed的set和get的方法</b>，请参考我的另一篇文章<a href="/blog/articles/36" target="_blank">《v-model实现双向绑定自定义组件》</a></p><h3>创建针对props属性的watch来同步组件外对props的修改</h3><p>此时在组件外（父组件）修改了组件的props，会同步到组件内对应的props上，但是不会同步到你刚刚在data对象中创建的那个副本上，所以需要再创建一个针对props属性<font face="monospace"><span >open</span></font>的watch（监听），当props修改后对应data中的副本<code>myResult</code>也要同步数据。</p><pre type="JavaScript"><code>watch: {
+        <span class="hljs-comment">//新增open的watch，监听变更并同步到myOpen上</span>
+        <span class="hljs-function"><span class="hljs-title">open</span>(<span class="hljs-params">newval</span>)</span> {
+            <span class="hljs-built_in">this</span>.myOpen = newval;
+        }
+}</code></pre><h3>创建针对props副本的watch，通知到组件外</h3><p>此时在组件内修改了props的副本<code>myOpen</code>，组件外不知道组件内的props状态，所以需要再创建一个针对props副本<code>myOpen</code>，即对应data属性的watch。在组件内向外层（父组件）发送通知，通知组件内属性变更，然后由外层（父组件）自己来变更他的数据。</p><p><b>如果监听的watch是一个对象，那么就需要使用deep模式了。然而有时候deep模式也可能监听不到数据的变化（因为使用this.xxx.yyy = zzz）这样赋值的，就要使用this.$set（）；具体请参考：<a href="/blog/articles/41" target="_blank">《watch的用法及解决对象属性变化监听不到的问题》</a></b></p><pre type="JavaScript"><code>watch: {
+    <span class="hljs-comment">//新增open的watch，监听变更并同步到myOpen上</span>
+    <span class="hljs-keyword">open</span>(newval) {
+        <span class="hljs-keyword">this</span>.myOpen = newval;
+    },
+    <span class="hljs-comment">// 组件内对myOpen变更后向外部发送事件通知</span>
+    myOpen(newval) {
+        <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">"open-change"</span>, newval);
+    }
+}
+<span class="hljs-comment">// 父组件监听子组件抛送的事件</span>
+&lt;switchbtn :<span class="hljs-keyword">open</span>=<span class="hljs-string">"open"</span> <span class="hljs-meta">@open</span>-change=<span class="hljs-string">"childOpenChange"</span>&gt;&lt;/switchbtn&gt;
+methods:{
+    <span class="hljs-comment">// 监听子组件抛出的事件</span>
+    childOpenChange(newval) {
+        <span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span> = newval;
+    }
+}</code></pre><h3>主要的完整代码</h3><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+       <span class="hljs-comment">&lt;!--开关组件--&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">switchbtn</span> <span class="hljs-attr">:open</span>=<span class="hljs-string">"open"</span> @<span class="hljs-attr">open-change</span>=<span class="hljs-string">"childOpenChange"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">switchbtn</span>&gt;</span>
+       <span class="hljs-comment">&lt;!--外部控制--&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">"open ? '打开' : '关闭'"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"toggleOpen"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><pre type="JavaScript"><code><span class="hljs-comment">// 开关子组件代码</span>
+Vue.component(<span class="hljs-string">"switchbtn"</span>, {
+    template:`
+        &lt;div <span class="hljs-meta">@click</span>=<span class="hljs-string">"toggle"</span> 
+             :<span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">switchCls</span>"</span>
+        &gt;
+            {{myOpen ? <span class="hljs-string">'开'</span> : <span class="hljs-string">'关'</span>}}
+        &lt;/div&gt;
+    `,
+    props:{
+        <span class="hljs-keyword">open</span>: {
+            type: <span class="hljs-built_in">Boolean</span>,
+            default() {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            }
+        }
+    },
+    <span class="hljs-keyword">data</span>() {
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-comment">//data中新增字段 引用props中的open 也可以使用computed</span>
+            myOpen: <span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span>
+        }
+    },
+    computed: {
+        switchCls() {
+            <span class="hljs-keyword">return</span> `switchbtn ${<span class="hljs-keyword">this</span>.myOpen ? <span class="hljs-string">'isopen'</span> : <span class="hljs-string">'isclose'</span>}`
+        }
+    },
+    methods:{
+        toggle(){
+            <span class="hljs-keyword">this</span>.myOpen = !<span class="hljs-keyword">this</span>.myOpen;
+        }
+    },
+    watch: {
+        <span class="hljs-comment">//新增open的watch，监听变更并同步到myOpen上</span>
+        <span class="hljs-keyword">open</span>(newval) {
+            <span class="hljs-keyword">this</span>.myOpen = newval;
+        },
+        <span class="hljs-comment">// 组件内对myOpen变更后向外部发送事件通知</span>
+        myOpen(newval) {
+            <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">"open-change"</span>, newval);
+        }
+    }
+});
+
+
+new Vue({
+    el: <span class="hljs-string">"#app"</span>,
+    <span class="hljs-keyword">data</span>() {
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-comment">//开关状态数据</span>
+            <span class="hljs-keyword">open</span>: <span class="hljs-literal">true</span>
+        }
+    },
+    methods:{
+        <span class="hljs-comment">// 在外部父组件点击可以切换子组件的状态</span>
+        toggleOpen(){
+            <span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span> = !<span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span>;
+        },
+        <span class="hljs-comment">// 监听子组件抛出的事件</span>
+        childOpenChange(newval) {
+            <span class="hljs-keyword">this</span>.<span class="hljs-keyword">open</span> = newval;
+        }
+    }
+});</code></pre><p>至此，实现了组件内数据与组件外的数据的<strong>双向绑定</strong>，组件内外数据的同步。最后归结为一句话就是：</p><p><b><font color="#c24f4a">组件内部自己变了告诉外部，外部决定要不要变。</font></b></p><h3><b><font color="#c24f4a">watch监听数组或者对象</font></b></h3><div><b>更多的watch使用介绍参考：</b><a href="/blog/articles/388" target="_blank">/blog/articles/388</a><b><font color="#c24f4a"></font></b></div><div><p><a href="https://so.csdn.net/so/search?q=handler&amp;spm=1001.2101.3001.7020" target="_blank">handler</a>：监听数组或对象的属性时用到的方法</p><p>deep：深度监听，为了发现对象内部值的变化，可以在选项参数中指定 deep:true 。注意监听数组的变动不需要这么做。</p><p>当需要监听一个对象的改变时，以上的监听方式已经不能满足，原因是受到 JavaScript 的限制(以及废弃 Object.observe)，Vue 不能检测到对象属性的添加或删除，导致我们对一个对象的监听是无效的。此时，我们需要使用 deep 属性对对象进行<a href="https://so.csdn.net/so/search?q=%E6%B7%B1%E5%BA%A6&amp;spm=1001.2101.3001.7020" target="_blank">深度</a>监听。</p><pre type="JavaScript"><code><span class="hljs-selector-tag">watch</span>: {
+  <span class="hljs-attribute">obj</span>: {
+    <span class="hljs-built_in">handler</span>(newVal, oldVal) {
+      console.<span class="hljs-built_in">log</span>(newVal, oldVal);
+    },
+    <span class="hljs-selector-tag">deep</span>: <span class="hljs-selector-tag">true</span>
+  }
+}
+</code></pre></div><p>监听某一个属性</p><pre type="JavaScript"><code>watch: {
+  <span class="hljs-string">'obj.name'</span>: {
+    <span class="hljs-function"><span class="hljs-title">handler</span>(<span class="hljs-params">newVal, oldVal</span>)</span> {
+      <span class="hljs-built_in">console</span>.log(newVal, oldVal);
+    },
+    <span class="hljs-attr">deep</span>: <span class="hljs-literal">true</span>
+  }
+}</code></pre><p><font color="#1c487f"><b>更多的watch使用介绍参考：</b></font><a href="/blog/articles/388" target="_blank">/blog/articles/388</a></p><p><font color="#1c487f"><b>案例在线效果：</b></font><a href="http://code.wubin.work/code/vue/vue-props/vue-props-双向组件.html" target="_blank">vue-props-双向组件</a></p><p><img src="/statics/blog/2021/0408/dca19b2f86b54e57e47d688ae869e568.jpg"></p><h2>什么样的props适合做双向绑定？</h2><p>首先要声明的是双向绑定的props肯定是不利于组件间的数据状态管理，尤其是在复杂的业务中更是如此，所以要尽可能的少用双向绑定，过于复杂的数据处理建议使用Vuex （<a href="http://vuex.vuejs.org/zh-cn/intro.html%EF%BC%89" target="_blank">http://vuex.vuejs.org/zh-cn/intro.html）</a>或者使用eventBus。</p><p>但是在我们平时使用过程中又确实有props双向绑定的需求，个人认为只有在满足以下条件时再使用双向绑定的props。</p><ol><li>组件内部需要修改props。</li><li>组件需要可以由外部在运行时动态控制，而非单纯初始化。</li><li>组件外部需要读取组件内的状态来进行处理。</li></ol><h2>自动化的props双向绑定</h2><h3>使用v-model实现双向绑定</h3><p>具体实现请移步：<a href="/blog/articles/36" target="_blank">v-model实现双向绑定的自定义组件</a></p><h3>使用mixin组件-propsync</h3><p>通过上例也可以看出在Vue2.0中实现props的双向绑定很麻烦，如果有两个props需要做双向绑定上面的代码就要实现两遍，代码极其冗余。所以我写了一个mixin来自动化处理props的双向绑定的需求——<a href="https://github.com/xxcanghai/cnblogsFiles/blob/master/vue-mixins/propsync.js" target="_blank">propsync</a>。</p><h4><font color="#000000"><b>主要功能：</b></font></h4><ol><li>实现了在组件内自动创建所有prop对应的data属性，方便组件内修改prop使用。解决了vue2.0中不允许组件内直接修改prop的设计。</li><li>实现了组件外修改组件prop，组件内自动同步修改到data属性。</li><li>实现了组件内修改了data属性（由prop创建的），自动向组件外发出事件通知有内部prop修改。由组件外决定是否要将修改同步到组件外。</li></ol><h4><b>使用方法</b></h4><p>1、对于编写组件时，如果需要props双向绑定，则直接引入mixin，并在配置中声明mixin即可：</p><pre type="JavaScript"><code><span class="hljs-attribute">mixins</span>:<span class="hljs-meta"> [propsync]</span></code></pre><p>2、此mixin会根据prop的名称生成对应的data属性名，默认为在prop属性名前面增加"p_"，即若prop中有字段名为active，则自动生成名为p_active的data字段（props到data的名称变更方法可自行修改，详见propsync源码开头配置）</p><p>3、propsync默认会将所有props创建双向绑定，可通过propsync:false来声明此props不需要创建双向绑定。</p><pre type="JavaScript"><code><span class="hljs-comment">// 子组件中</span>
+<span class="hljs-keyword">import</span> propsync <span class="hljs-keyword">from</span> <span class="hljs-string">'./mixins/propsync'</span>;<span class="hljs-comment">//引入mixin文件</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">"tab"</span>,
+  <span class="hljs-comment">//声明使用propsync的mixin</span>
+  <span class="hljs-attr">mixins</span>: [propsync],
+  <span class="hljs-attr">props</span>: {
+    <span class="hljs-attr">active</span>: {
+     <span class="hljs-comment">//会被propsync自动实现双向绑定，在data中创建p_active变量</span>
+      <span class="hljs-attr">type</span>: [<span class="hljs-built_in">String</span>, <span class="hljs-built_in">Number</span>],
+    },
+    <span class="hljs-attr">width</span>: {
+      <span class="hljs-attr">type</span>: [<span class="hljs-built_in">Number</span>, <span class="hljs-built_in">String</span>],
+     <span class="hljs-comment">//不会被propsync实现双向绑定</span>
+      <span class="hljs-attr">propsync</span>:<span class="hljs-literal">false</span>
+    }
+  },
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-function"><span class="hljs-title">setActive</span>(<span class="hljs-params">page, index, e</span>)</span> {
+      <span class="hljs-comment">//可以直接使用this.p_active</span>
+      <span class="hljs-built_in">this</span>.p_active = index;
+    }
+  }
+}</code></pre><h4><b>调用组件</b></h4><div><p>引入propsync后，会在内部双向绑定的data变更后触发一个onPropsChange事件。遂在调用组件处，增加一个事件监听 onPropsChange（可修改），当组件内修改了props时propsync会触发此事件，返回参与依次为：修改prop名称，修改后值，修改前值。可以由当前组件调用方（父组件）来决定是否要将组件内的变更同步到调用方。</p><pre type="JavaScript"><code>&lt;tab :active=<span class="hljs-string">"active"</span> @onPropsChange=<span class="hljs-string">"change"</span>&gt;&lt;/tab&gt;
+......略
+{
+  <span class="hljs-attr">data</span>:{
+   <span class="hljs-attr">active</span>:<span class="hljs-number">0</span>
+  },
+  <span class="hljs-attr">methods</span>:{
+   <span class="hljs-attr">change</span>:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">propName, newVal, oldVal</span>)</span>{
+     <span class="hljs-built_in">this</span>[propName] = newVal;
+     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"组件tab的"</span> +propName+ <span class="hljs-string">"属性变更为"</span> +newVal);
+   } 
+  }
+}</code></pre></div><p><a href="http://code.wubin.work/code/vue/vue-props/propsync.html" target="_blank">propsync在线案例看这里</a></p>
+                                            <h2>附件下载</h2>
+                        <div class="downloads-list">
+                                                            <div class="downloads-list-li">
+                                    <a href="//www.wubin.work/statics/blog/2021/0408/4356637fe3f999f8fd48e50b273d94ca.zip" class="except-a" download="使用watch实现组件props双向绑定-附件-vue-props-双向组件">vue-props-双向组件</a>
+                                </div>
+                                                    </div>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://cn.vuejs.org/v2/guide/components-props.html" target="_blank">单向数据流的官方使用描述</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://www.cnblogs.com/xxcanghai/p/6124699.html" target="_blank">参考文章</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：vue2prop双向绑定
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/9" class="imgbox">
+                <img src="/statics/blog/2021/0219/9749eb4943bba850a58b0567d2b332b0.png">
+            </a>
+            <a href="/blog/articles/9" class="title" title="[公众号]微信分享网页显示图片（个人号）">
+                [公众号]微信分享网页显示图片（个人号）
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/604" class="imgbox">
+                <img src="/statics/blog/2025/0718/853685bfb03d1689bb22c63a6c54c835.jpg">
+            </a>
+            <a href="/blog/articles/604" class="title" title="别再用100vh了！移动端视口高度的终极解决方案">
+                别再用100vh了！移动端视口高度的终极解决方案
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/92" class="imgbox">
+                <img src="/statics/blog/2021/0622/24deca6ea8cb1a47f7b77468c963f978.jpg">
+            </a>
+            <a href="/blog/articles/92" class="title" title="【Apache】服务器开启SSI-include包含模块">
+                【Apache】服务器开启SSI-include包含模块
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/vue">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/110">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Vue3-setup在渲染函数中通过ref访问Dom元素
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/448">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue对数组进行深拷贝和浅拷贝
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/302">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        阻止input回车触发button按钮click事件
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/430">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue3组件实现v-model双向绑定
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/510">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        watch监听vue-router路由变化的方法
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

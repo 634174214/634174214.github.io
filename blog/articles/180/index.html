@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="镂空的波浪动画组件 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>镂空的波浪动画组件 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="fancy-components"/>
+<meta name="description" content="首先这是一款基于webcomponents的组件库，无论你是vue、react、angular还是svelte等一些其他框架，它都能良好的与这些框架共存，因为这就是JS原生的组件化技术。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 180,
+            article_title: '镂空的波浪动画组件',
+            article_desc: '首先这是一款基于webcomponents的组件库，无论你是vue、react、angular还是svelte等一些其他框架，它都能良好的与这些框架共存，因为这就是JS原生的组件化技术。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal active">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" class="active">
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/vue">Vue</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">镂空的波浪动画组件</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>12505</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>1091</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2021-09-15 17:05:59</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>花式组件库</h2><p>组件库：<a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1Ry4y1L7Ui" target="_blank">fancy-components</a>，翻译过来就是<a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1Ry4y1L7Ui" target="_blank">花式组件库</a>。光听名字也能猜得到：这不是像<code>Element UI</code>、<code>Ant Design</code>那类组件库一样，而是能够为我们提供一些较为复杂样式的组件库。</p><p>首先这是一款基于<a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1V341167LW%2F" target="_blank">web components</a>的组件库，无论你是<code>vue</code>、<code>react</code>、<code>angular</code>还是<code>svelte</code>等一些其他框架，它都能良好的与这些框架共存，因为这就是<code>JS</code>原生的组件化技术。</p><p>现如今已经有很多组件库都采用了<a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1V341167LW%2F" target="_blank">web components</a>作为底层技术，已经可以看到这种趋势了。只不过<a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1V341167LW%2F" target="_blank">web components</a>在国内很少被人谈起，所以那些在国外还不错的一些组件库也就没能传到大家的耳朵里。</p><p>就连新发布的<code>Vue3.2</code>也出了一个<a href="https://link.juejin.cn/?target=https%3A%2F%2Fv3.cn.vuejs.org%2Fapi%2Fglobal-api.html%23definecustomelement" target="_blank">defineCustomElement</a>方法，就是为了专门用来生成<a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1EA411A7FW" target="_blank">自定义元素(web components的其中一项技术)</a>的。目前已经有趋势表明这门技术未来将会大展身手，以前它没能火起来的主要原因就是兼容性问题。</p><h2>在普通项目中使用</h2><p>普通项目指的是那种直接在文件夹里建个<code>HTML</code>文件就开始写代码的那种项目，没有什么工程化、webpack、babel这些花里胡哨的东西。我们新建个<code>HTML</code>然后在<code>&lt;script&gt;</code>标签中写上<code>type="module"</code>就能使用模块化的语法来加载<a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1Ry4y1L7Ui" target="_blank">fancy-components</a>啦：</p><pre type="Html"><code><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>公众号：前端学不动<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    * {
+      <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+      <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-selector-tag">html</span>, <span class="hljs-selector-tag">body</span> {
+      <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+      <span class="hljs-attribute">display</span>: grid;
+      <span class="hljs-attribute">place-items</span>: center;
+    }
+    <span class="hljs-selector-tag">fc-wave-filter</span> {
+      <span class="hljs-attribute">--width</span>: <span class="hljs-number">100px</span>;
+    }
+
+    <span class="hljs-comment">/* :defined 选择器会选择到已定义的元素 */</span>
+    <span class="hljs-comment">/* 但却没有 :undefined 这样的选择器 所以只能用 :not() 选择器来配合使用 */</span>
+    <span class="hljs-comment">/* 这个选择器具体是干嘛用的 可以B站搜索：前端学不动 这位up主 */</span>
+    <span class="hljs-comment">/* 找到他的《自定义元素基础篇》在第 17:25 的位置有讲 */</span>
+    <span class="hljs-selector-pseudo">:not(</span><span class="hljs-selector-pseudo">:defined)</span> {
+      <span class="hljs-attribute">display</span>: none;
+    }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- 需要在&lt;fc-wave-filter&gt;里指定color这个属性 默认为黑色 --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">fc-wave-filter</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"#047"</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 在这里(slot里)放入img图片 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgc3R5bGU9IndpZHRoOjFlbTtoZWlnaHQ6MWVtO3ZlcnRpY2FsLWFsaWduOm1pZGRsZSIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSJjdXJyZW50Q29sb3IiIG92ZXJmbG93PSJoaWRkZW4iPjxwYXRoIGQ9Ik0yNjQuMTI5IDI2MS4yNjJjNS4wMjUtNS45NCA0LjI4NS0xNS4yNS0zLjAwOS0yMS40MS02LjQ3NS01LjQzNS0xNi4wODUtMy45MzgtMjAuMzU0IDEuMTk4bC0zOC4wNzcgNDUuMzIzIDIzLjY2MiAxOS44NjYgMzcuNzc4LTQ0Ljk3N3ptLTQzLjkzNy01MC4wMTljLTYuMTQ0LTUuMTA0LTE1LjU2NS01LjI3Ny0xOS43ODctLjMxNWwtMzYuMjAzIDQzLjE2NiAyMi40MDIgMTguNzk0IDM1Ljc5My00Mi42NjFjNC41MzctNS4zNTcgNC41MDYtMTMuMzQ0LTIuMjA1LTE4Ljk4NHptNTY2LjQxMyAxMzUuODE0bC0yMi40NDktMjcuOTE2IDQ0LjcyNS02NS4zNzgtLjI4My0uMzE1LTczLjIwOCAzMC4xMjEtMjIuNjg2LTI3Ljc1OCA3Ny40OTMtOTkuNzIyIDE5LjEyNSAyMy42My00OC41MjIgNjMuNTA1IDc0LjE4NS0zMS44NyAyMC41MTIgMjUuMzYzLTQ2LjU2OSA2NS45MyA3Mi4yLTM0LjI4IDE5LjEyNiAyMy41OTktMTEzLjY0OSA1NS4wOTF6TTUwNy4xNjQgODA3LjAzOGMtMTY1LjYwNSAwLTI5OS44NzUtMTM0LjI1NC0yOTkuODc1LTI5OS44NzQgMC0xNjUuNTczIDEzNC4yNy0yOTkuODQzIDI5OS44NzUtMjk5Ljg0MyAxNjUuNjIgMCAyOTkuODc0IDEzNC4yNTQgMjk5Ljg3NCAyOTkuODQzIDAgMTY1LjYyLTEzNC4yNTQgMjk5Ljg3NC0yOTkuODc0IDI5OS44NzR6TTEyNi45MjkgMjY0Ljk4bDYwLjI5LTcxLjgyMmMxMi41MDgtMTQuODg3IDI5Ljk2NC0yNi43ODIgNDYuNTUyLTEyLjg0IDUuMTA1IDQuMjcgNy4yOTQgNS42ODggMTMuNTAxIDE3LjA0NiAxLjQ2NSA0LjAwMiAyLjU4NCAxMS4yOTYtLjE4OSAxOC40NDggMTQuNDE1LTguOTY0IDI5Ljc5LTYuMDM0IDM5LjcxNiAzLjYyMyAxNS4yODEgMTQuODU2IDEzLjA2IDMxLjk5Ni0xLjQ2NSA0OS4zMjZsLTYzLjU4MyA3NS43NzYtOTQuODIyLTc5LjU1N3ptMzExLjYxLTIwMy4yNTZoMzcuMjI3bDMzLjYxOSA4OCAzMy42MTktODhoMzcuMTYzdjEyMy41NzNoLTI0LjczNHYtODYuM2wtMzIuNTQ3IDg2LjNoLTI3LjA1bC0zMi40ODQtODYuM3Y4Ni4zSDQzOC41NFY2MS43MjR6bTY4LjYyNS0yMy45OTRDMjQ3LjkxOCAzNy43MyAzNy43MyAyNDcuOTE4IDM3LjczIDUwNy4xNjRjMCAyNTkuMjc2IDIxMC4xODggNDY5LjQ4IDQ2OS40MzQgNDY5LjQ4IDI1OS4zMDggMCA0NjkuNDgtMjEwLjIwNCA0NjkuNDgtNDY5LjQ2NVM3NjYuNDcyIDM3LjcxNSA1MDcuMTY0IDM3LjcxNXptMCA3NDkuOTk0YzE1NC45ODYgMCAyODAuNjA3LTEyNS41OSAyODAuNjA3LTI4MC41Nkg1MDcuMTY0Vjc4Ny43NHptLTI4MC41NzYtMjgwLjU2aDI4MC41NzZWMjI2LjYxOWMtMTU0Ljk3MSAwLTI4MC41NzYgMTI1LjYwNS0yODAuNTc2IDI4MC41NDV6bTI4MC41NzYgNDg5LjYzYy0yNjkuOTU4IDAtNDg5LjY0Ni0yMTkuNjU3LTQ4OS42NDYtNDg5LjYzIDAtMjY5Ljk1OCAyMTkuNjg4LTQ4OS42MyA0ODkuNjQ2LTQ4OS42MyAyNzAuMDA1IDAgNDg5LjY0NSAyMTkuNjcyIDQ4OS42NDUgNDg5LjYzIDAgMjY5Ljk3My0yMTkuNjQgNDg5LjYzLTQ4OS42NDUgNDg5LjYzem0wLTk5Ni43OTRDMjI3LjUgMCAwIDIyNy41MDEgMCA1MDcuMTY0YzAgMjc5LjY2MiAyMjcuNTAxIDUwNy4xOTUgNTA3LjE2NCA1MDcuMTk1IDI3OS42OTMgMCA1MDcuMTc5LTIyNy41MzMgNTA3LjE3OS01MDcuMTk1QzEwMTQuMzQzIDIyNy41IDc4Ni44NTcgMCA1MDcuMTYzIDB6IiBmaWxsPSIjQjlCRUMzIi8+PC9zdmc+"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">fc-wave-filter</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="javascript">
+    <span class="hljs-comment">// 从 fancy-components 中引入 FcWaveFilter（波浪滤镜）</span>
+    <span class="hljs-keyword">import</span> { FcWaveFilter } <span class="hljs-keyword">from</span> <span class="hljs-string">'https://unpkg.com/fancy-components'</span>
+
+    <span class="hljs-comment">// new 就相当于全局注册了这个组件，相当于 Vue 的 Vue.component('fc-wave-filter', FcWaveFilter)</span>
+    <span class="hljs-keyword">new</span> FcWaveFilter()
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><p>在线运行效果<a href="http://code.wubin.work/code/vue/bolang-logo/" target="_blank">http://code.wubin.work/code/vue/bolang-logo/</a></p><p>在线的库：<a href="http://code.wubin.work/code/vue/bolang-logo/facy-components/index.js" target="_blank">http://code.wubin.work/code/vue/bolang-logo/facy-components/index.js</a></p><h2>在Vue中使用</h2><h3>vue2</h3><p><code>Vue</code>组件既可以写成大写字母开头的驼峰形式，又可以写成小写字母开头的短横线形式。那么问题来了：当我们写了一个短横线连接的组件时，它怎么知道我们写的到底是组件还是标签呢？</p><p>它的做法是把所有<code>HTML</code>以及<code>SVG</code>标签全列举出来，只要你写的标签不在这个范围内，那么就默认你是组件了，如果你还没有在<code>components</code>里注册过，那么就会在控制台打印一个警告。所以我们要告诉<code>Vue</code>：对我这个既不在<code>HTML</code>标签范围内，又不在<code>SVG</code>标签范围内，同时还不是<code>Vue</code>组件的标签来说就不要给我报警告啦，我确定一定以及肯定这不是个错误！</p><blockquote>npm i fancy-components 安装</blockquote><pre type="JavaScript"><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./App'</span>
+<span class="hljs-keyword">import</span> { FcWaveFilter } <span class="hljs-keyword">from</span> <span class="hljs-string">'fancy-components'</span>
+
+<span class="hljs-comment">/* eslint-disable no-new */</span>
+<span class="hljs-keyword">new</span> FcWaveFilter()
+
+<span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> h(App)
+}).$mount(<span class="hljs-string">'#app'</span>)
+</code></pre><p>然后用<code>Vue.config</code>来配置需要忽略哪些标签：</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./App'</span>
+<span class="hljs-keyword">import</span> { FcWaveFilter } <span class="hljs-keyword">from</span> <span class="hljs-string">'fancy-components'</span>
+
+<span class="hljs-comment">/* eslint-disable no-new */</span>
+<span class="hljs-keyword">new</span> FcWaveFilter()
+
+<span class="hljs-comment">// 配置忽略以 fc- 作为开头的元素</span>
+Vue.config.ignoredElements = [<span class="hljs-regexp">/^fc-/</span>]
+
+<span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> h(App)
+}).$mount(<span class="hljs-string">'#app'</span>)</code></pre><p>在用的时候(<em>xxx.vue</em>)：</p><pre type="JavaScript"><code><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">fc-wave-filter</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"#047"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgc3R5bGU9IndpZHRoOjFlbTtoZWlnaHQ6MWVtO3ZlcnRpY2FsLWFsaWduOm1pZGRsZSIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSJjdXJyZW50Q29sb3IiIG92ZXJmbG93PSJoaWRkZW4iPjxwYXRoIGQ9Ik0yNjQuMTI5IDI2MS4yNjJjNS4wMjUtNS45NCA0LjI4NS0xNS4yNS0zLjAwOS0yMS40MS02LjQ3NS01LjQzNS0xNi4wODUtMy45MzgtMjAuMzU0IDEuMTk4bC0zOC4wNzcgNDUuMzIzIDIzLjY2MiAxOS44NjYgMzcuNzc4LTQ0Ljk3N3ptLTQzLjkzNy01MC4wMTljLTYuMTQ0LTUuMTA0LTE1LjU2NS01LjI3Ny0xOS43ODctLjMxNWwtMzYuMjAzIDQzLjE2NiAyMi40MDIgMTguNzk0IDM1Ljc5My00Mi42NjFjNC41MzctNS4zNTcgNC41MDYtMTMuMzQ0LTIuMjA1LTE4Ljk4NHptNTY2LjQxMyAxMzUuODE0bC0yMi40NDktMjcuOTE2IDQ0LjcyNS02NS4zNzgtLjI4My0uMzE1LTczLjIwOCAzMC4xMjEtMjIuNjg2LTI3Ljc1OCA3Ny40OTMtOTkuNzIyIDE5LjEyNSAyMy42My00OC41MjIgNjMuNTA1IDc0LjE4NS0zMS44NyAyMC41MTIgMjUuMzYzLTQ2LjU2OSA2NS45MyA3Mi4yLTM0LjI4IDE5LjEyNiAyMy41OTktMTEzLjY0OSA1NS4wOTF6TTUwNy4xNjQgODA3LjAzOGMtMTY1LjYwNSAwLTI5OS44NzUtMTM0LjI1NC0yOTkuODc1LTI5OS44NzQgMC0xNjUuNTczIDEzNC4yNy0yOTkuODQzIDI5OS44NzUtMjk5Ljg0MyAxNjUuNjIgMCAyOTkuODc0IDEzNC4yNTQgMjk5Ljg3NCAyOTkuODQzIDAgMTY1LjYyLTEzNC4yNTQgMjk5Ljg3NC0yOTkuODc0IDI5OS44NzR6TTEyNi45MjkgMjY0Ljk4bDYwLjI5LTcxLjgyMmMxMi41MDgtMTQuODg3IDI5Ljk2NC0yNi43ODIgNDYuNTUyLTEyLjg0IDUuMTA1IDQuMjcgNy4yOTQgNS42ODggMTMuNTAxIDE3LjA0NiAxLjQ2NSA0LjAwMiAyLjU4NCAxMS4yOTYtLjE4OSAxOC40NDggMTQuNDE1LTguOTY0IDI5Ljc5LTYuMDM0IDM5LjcxNiAzLjYyMyAxNS4yODEgMTQuODU2IDEzLjA2IDMxLjk5Ni0xLjQ2NSA0OS4zMjZsLTYzLjU4MyA3NS43NzYtOTQuODIyLTc5LjU1N3ptMzExLjYxLTIwMy4yNTZoMzcuMjI3bDMzLjYxOSA4OCAzMy42MTktODhoMzcuMTYzdjEyMy41NzNoLTI0LjczNHYtODYuM2wtMzIuNTQ3IDg2LjNoLTI3LjA1bC0zMi40ODQtODYuM3Y4Ni4zSDQzOC41NFY2MS43MjR6bTY4LjYyNS0yMy45OTRDMjQ3LjkxOCAzNy43MyAzNy43MyAyNDcuOTE4IDM3LjczIDUwNy4xNjRjMCAyNTkuMjc2IDIxMC4xODggNDY5LjQ4IDQ2OS40MzQgNDY5LjQ4IDI1OS4zMDggMCA0NjkuNDgtMjEwLjIwNCA0NjkuNDgtNDY5LjQ2NVM3NjYuNDcyIDM3LjcxNSA1MDcuMTY0IDM3LjcxNXptMCA3NDkuOTk0YzE1NC45ODYgMCAyODAuNjA3LTEyNS41OSAyODAuNjA3LTI4MC41Nkg1MDcuMTY0Vjc4Ny43NHptLTI4MC41NzYtMjgwLjU2aDI4MC41NzZWMjI2LjYxOWMtMTU0Ljk3MSAwLTI4MC41NzYgMTI1LjYwNS0yODAuNTc2IDI4MC41NDV6bTI4MC41NzYgNDg5LjYzYy0yNjkuOTU4IDAtNDg5LjY0Ni0yMTkuNjU3LTQ4OS42NDYtNDg5LjYzIDAtMjY5Ljk1OCAyMTkuNjg4LTQ4OS42MyA0ODkuNjQ2LTQ4OS42MyAyNzAuMDA1IDAgNDg5LjY0NSAyMTkuNjcyIDQ4OS42NDUgNDg5LjYzIDAgMjY5Ljk3My0yMTkuNjQgNDg5LjYzLTQ4OS42NDUgNDg5LjYzem0wLTk5Ni43OTRDMjI3LjUgMCAwIDIyNy41MDEgMCA1MDcuMTY0YzAgMjc5LjY2MiAyMjcuNTAxIDUwNy4xOTUgNTA3LjE2NCA1MDcuMTk1IDI3OS42OTMgMCA1MDcuMTc5LTIyNy41MzMgNTA3LjE3OS01MDcuMTk1QzEwMTQuMzQzIDIyNy41IDc4Ni44NTcgMCA1MDcuMTYzIDB6IiBmaWxsPSIjQjlCRUMzIi8+PC9zdmc+"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">fc-wave-filter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">components</span>: {
+    <span class="hljs-comment">// 不需要在这里进行注册 就把 &lt;fc-wave-filter&gt; 当成一个浏览器原生标签就行</span>
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><h3>vue3中</h3><p>Vue3 在写法上出现了很大的变化，没有<code>Vue</code>了，取而代之的是<code>app</code>：</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./App'</span>
+<span class="hljs-keyword">import</span> { FcWaveFilter } <span class="hljs-keyword">from</span> <span class="hljs-string">'fancy-components'</span>
+
+<span class="hljs-comment">/* eslint-disable no-new */</span>
+<span class="hljs-keyword">new</span> FcWaveFilter()
+
+createApp(App).mount(<span class="hljs-string">'#app'</span>)</code></pre><p>Vue3处理起来相对要稍微麻烦一点，我们需要在根目录下的vue.config.js中(如果没有就自己新建一个)：</p><pre type="JavaScript"><code><span class="hljs-built_in">module</span>.exports = {
+    <span class="hljs-attr">chainWebpack</span>: <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> {
+        config.module
+            .rule(<span class="hljs-string">'vue'</span>)
+            .use(<span class="hljs-string">'vue-loader'</span>)
+            .tap(<span class="hljs-function"><span class="hljs-params">options</span> =&gt;</span> {
+                options.compilerOptions = {
+                    ...(options.compilerOptions || {}),
+                    <span class="hljs-attr">isCustomElement</span>: <span class="hljs-function"><span class="hljs-params">tag</span> =&gt;</span> tag.startsWith(<span class="hljs-string">'fc-'</span>)
+                }
+                <span class="hljs-keyword">return</span> options
+            })
+    }
+}</code></pre><p>这样就可以啦！</p><h2>基础用法</h2><p>假设我们已经<code>npm i fancy-components</code>安装过了，并且已经在主文件(<em>main.js或index.js</em>)注册过了：</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { FcWaveFilter } <span class="hljs-keyword">from</span> <span class="hljs-string">'fancy-components'</span>
+
+<span class="hljs-comment">/* eslint-disable no-new */</span>
+<span class="hljs-keyword">new</span> FcWaveFilter() <span class="hljs-comment">// 相当于全局注册了组件 注：web components 没有局部注册组件这一说</span></code></pre><p>而且如果是<code>Vue</code>项目也已经配置过了忽略<code>fc-</code>开头的<a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1V341167LW%2F" target="_blank">web components</a>了的话，那么我们只需要用<code>&lt;fc-wave-filter&gt;</code>来包裹住一张浅灰色的(<em>最好是纯色</em>)镂空图片：</p><pre type="JavaScript"><code><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">fc-wave-filter</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"xxx.png"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">fc-wave-filter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css">
+<span class="hljs-selector-tag">fc-wave-filter</span> {
+  <span class="hljs-attribute">--color</span>: <span class="hljs-number">#dd1028</span>;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre><p>除了在<code>&lt;fc-wave-filter&gt;</code>标签里写<code>color</code>属性，我们还可以在<code>CSS</code>里写<code>--color</code>属性：</p><p>效果也是一样的。不过有些人可能不太明白为什么要用<code>--color</code>而不是<code>color</code>属性，这是因为<code>color</code>属性是控制字体颜色的，它控制不了我们的填充颜色。而前面带<code>--</code>的属性叫自定义属性，是<a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1Ry4y1L7Ui" target="_blank">fancy-components</a>内部为我们封装好要在哪用这个自定义属性的，自定义属性也叫<a href="https://juejin.cn/post/6856668819344392206#heading-1" target="_blank">CSS变量</a>，如果不太清楚什么是<a href="https://juejin.cn/post/6856668819344392206#heading-1" target="_blank">CSS变量</a>的话可以点击<a href="https://juejin.cn/post/6856668819344392206#heading-1" target="_blank">这个链接</a>学习一下。</p><blockquote><span >标签内的</span><code >color</code><span >属性比</span><code >--color</code><span >这个</span><a href="https://juejin.cn/post/6856668819344392206#heading-1" target="_blank" >CSS变量</a><span >的优先级要高，这两种写法最好不要混用。</span></blockquote><p>更多的用法以及原理请参考下面的链接，这里再列举一些支持的API属性：</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>属性</th><th>中文含义</th><th>可选值</th><th>默认值</th></tr><tr><td>color</td><td>填充颜色</td><td>正常的CSS颜色值</td><td>'black'</td></tr><tr><td>dur</td><td>动画时长</td><td>大于0的数字(单位为秒)</td><td>3</td></tr><tr><td>amplitude</td><td>波浪幅度</td><td>数字(原波浪幅的倍数)</td><td>1</td></tr><tr><td>delay</td><td>填充后持续的时间</td><td>大于0的数字(单位为秒)</td><td>0</td></tr><tr><td>mode</td><td>动画模式</td><td><p>'alpha'(透明度)、'luminance'(亮度)、'img'(图片)、'slideshow'(幻灯片)</p></td><td>'alpha'</td></tr><tr><td>interval</td><td>几秒一切换(适合幻灯片模式)</td><td>大于0的数字(单位为秒)</td><td>0</td></tr></tbody></table><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>CSS属性</th><th>中文含义</th><th>可选值</th><th>默认值</th></tr><tr><td>--color</td><td>填充颜色</td><td>正常的CSS颜色值</td><td>black</td></tr><tr><td>--width</td><td>组件的宽度</td><td>正常的CSS宽度值</td><td>fit-content</td></tr><tr><td>--height</td><td>组件的高度</td><td>正常的CSS高度值</td><td>无</td></tr></tbody></table><h2>webkit-mask背景镂空</h2><p>先来看一下案例效果：<a href="http://code.wubin.work/code/vue/bolang-logo/" target="_blank">http://code.wubin.work/code/vue/bolang-logo/</a></p><p>我们想让这个图片变个形状，就变成桃心❤️状吧！那么我们先需要准备一张❤️心形图片, 注意这张图片需要是镂空的<code >png</code>格式，就是心的那部分不透明，其他部分都透明，如链接：<a href="http://code.wubin.work/code/vue/bolang-logo/mask-bg.png" target="_blank">http://code.wubin.work/code/vue/bolang-logo/mask-bg.png</a></p><p>然后这样写代码：</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"girl.png"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css">
+<span class="hljs-selector-tag">img</span> {
+  <span class="hljs-attribute">-webkit-mask</span>: <span class="hljs-built_in">url</span>(xxx/heart.png);
+  <span class="hljs-attribute">-webkit-mask-repeat</span>: no-repeat;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre><p><b>注意，要想成功看到效果，必须要在服务器环境下查看，如果在本地环境，那么浏览器会报错。</b></p><p>因为<code>mask</code>是一个类似于<code>background</code>的属性，默认会平铺，如果不想平铺的话，要加上-webkit-mask-repeat: no-repeat;</p>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://juejin.cn/post/7005763586999975943?utm_source=gold_browser_extension#heading-2" target="_blank">原文：波浪动画很常见，但这个波浪组件绝对不常见</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：fancy-components
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/270" class="imgbox">
+                <img src="/statics/blog/2022/0615/c6670877be73077798de5136fd943285.jpg">
+            </a>
+            <a href="/blog/articles/270" class="title" title="两步快速下载网页中的SVG矢量图标文件">
+                两步快速下载网页中的SVG矢量图标文件
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/458" class="imgbox">
+                <img src="/statics/blog/2023/1220/ce75b6fa38b076a88e095b8ff8a60a46.jpg">
+            </a>
+            <a href="/blog/articles/458" class="title" title="安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题">
+                安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/449" class="imgbox">
+                <img src="/statics/blog/2023/1129/f3eebb35b31bb516b4b4f9a3f00b360c.jpg">
+            </a>
+            <a href="/blog/articles/449" class="title" title="windows下的vue-cli中如何配置https">
+                windows下的vue-cli中如何配置https
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/vue">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/613">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        axios-abortController、signal配合axios实现一个可以中断请求的操作
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/110">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Vue3-setup在渲染函数中通过ref访问Dom元素
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/454">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        html2canvas生成图片底部出现白边儿的解决方法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/430">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue3组件实现v-model双向绑定
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/405">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        十分钟，带你了解Vue3的新写法
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

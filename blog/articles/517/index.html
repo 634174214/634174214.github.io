@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="thinkphp-路由、路由的变量规则和闭包、地址和参数、域名和跨域请求 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>thinkphp-路由、路由的变量规则和闭包、地址和参数、域名和跨域请求 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="thinkphp"/>
+<meta name="description" content="thinkphp笔记-路由、路由的变量规则和闭包、地址和路由参数、路由域名和跨域请求"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 517,
+            article_title: 'thinkphp-路由、路由的变量规则和闭包、地址和参数、域名和跨域请求',
+            article_desc: 'thinkphp笔记-路由、路由的变量规则和闭包、地址和路由参数、路由域名和跨域请求',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal active">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" class="active">
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/thinkphp">ThinkPHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">thinkphp-路由、路由的变量规则和闭包、地址和参数、域名和跨域请求</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>5675</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>283</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2024-05-15 09:55:55</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>路由的定义</h2><h3>简介</h3><p>路由的作用就是让URL 地址更加的规范和优雅，或者说更加简洁；</p><p>设置路由对URL 的检测、验证等一系列操作提供了极大的便利性；</p><p>路由是默认开启的，如果想要关闭路由，在config/app.php 配置；</p><pre type="PHP"><code><span class="hljs-comment">// 是否启用路由</span>
+<span class="hljs-string">'with_route'</span> =&gt; <span class="hljs-literal">false</span>,</code></pre><blockquote><span >路由的配置文件在config/route.php 中，配置文件作用是配置信息，定义文件在route/app.php，主要作用就是定义路由规则；</span></blockquote><p>route 目录下的定义文件的文件名随机，都有效，或多个均有效果；</p><p>比如在route/app.php中书写规则</p><pre type="PHP"><code><span class="hljs-comment">// Index控制器下的hello方法</span>
+Route::<span class="hljs-keyword">get</span>(<span class="hljs-string">'hello/:name'</span>, <span class="hljs-string">'Index/hello'</span>);</code></pre><p>对应的控制器中的方法是 controller/Index.php</p><pre type="PHP"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>(<span class="hljs-params">$name = <span class="hljs-string">'ThinkPHP6'</span></span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'hello,'</span> . $name;
+    }</code></pre><blockquote><span >通过命令行模式键入到当前项目目录后输入命令：php think run 启动, 此时，public 目录会自动被绑定到顶级域名：127.0.0.1:8000 上；我们只要在地址栏键入：http://localhost:8000 或(127.0.0.1:8000)即可；本地可能会提示让你访问</span><span >started On &lt;http://0.0.0.0:8000/&gt;，这时候不要理会这个，直接访问上面提到127地址即可。</span></blockquote><h3>路由定义</h3><p>先创建一个控制器controller/Address.php</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">controller</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Address</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'index'</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">details</span>(<span class="hljs-params">$id</span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'details 目前调用的id：'</span>.$id;
+    }
+}</code></pre><p>在没有定义路由规则的情况下，我们访问address/details 包含id 的URL 为：</p><p>http://localhost:8000/address/details/id/5&nbsp;</p><p>或者http://localhost:8000/address/details/id/5.html [类似于静态的访问地址]</p><p><b>将这个URL 定义路由规则，在根目录route 下的app.php 里配置；</b></p><pre type="PHP"><code>/<span class="hljs-regexp">/ Route::rule('地址(随意写)/</span><span class="hljs-symbol">:</span>方法参数<span class="hljs-string">', '</span>控制器/控制器的方法<span class="hljs-string">');
+Route::rule('</span>ds/<span class="hljs-symbol">:id<span class="hljs-string">', '</span>Address/details<span class="hljs-string">');</span></span></code></pre><blockquote>其中有Route::get Route::post Route::rule(get和post都支持)，控制器首字母大小写均可，建议用大写语义更明确。</blockquote><p>当路由配置好以后，源地址http://localhost:8000/address/details/id/5再访问就会<font color="#c24f4a">提示非法请求的错误</font>（不设置强制路由情况下，这个也应该可以正常访问），这时候就只能按照新的路由规则访问：</p><p><a href="http://127.0.0.1:8000/ds/4" target="_blank">http://127.0.0.1:8000/ds/4</a>&nbsp;或者&nbsp;<a href="http://127.0.0.1:8000/ds/4.html" target="_blank">http://127.0.0.1:8000/ds/4.html</a>&nbsp;（4.php或者4.xml 都会整体当作参数传递，仅支持.html）</p><p><b>rule()方法是默认请求是any，即任何请求类型均可，第三参数可以限制：</b></p><pre type="PHP"><code>Route::rule(<span class="hljs-symbol">'details</span>/:id', <span class="hljs-symbol">'Address</span>/xxx, <span class="hljs-symbol">'GET</span>'); <span class="hljs-comment">//GET</span>
+Route::rule(<span class="hljs-symbol">'details</span>/:id', <span class="hljs-symbol">'Address</span>/xxx, <span class="hljs-symbol">'POST</span>'); <span class="hljs-comment">//POST</span>
+Route::rule(<span class="hljs-symbol">'details</span>/:id', <span class="hljs-symbol">'Address</span>/xxx, <span class="hljs-symbol">'GET</span>|POST'); <span class="hljs-comment">//GET 或POST</span></code></pre><blockquote><span >所有请求方式(快捷方式)：GET(get)、POST(post)、DELETE(delete)、PUT(put)PATCH(patch)、*(any，任意请求方式) 默认是any</span></blockquote><pre type="PHP"><code>Route::get(...)、Route::post(...)、Route::<span class="hljs-keyword">delete</span>(...)...</code></pre><p>快捷方式，就是直接用Route::get、Route::post 等方式即可，无须第三参数；</p><p><font color="#c24f4a">地址栏一般都是get，不要用post&nbsp;</font></p><p><b>当我们设置了强制路由的时候，访问首页就会报错，必须强制设置首页路由；</b></p><p>开始强制路由，需要在app/route.php 里面进行配置，然后配置首页路由（默认是false）；</p><pre type="PHP"><code><span class="hljs-string">'url_route_must'</span> =&gt; <span class="hljs-literal">true</span>,
+Route::rule(<span class="hljs-string">'/'</span>, <span class="hljs-string">'Index/index'</span>); <span class="hljs-comment">//反斜杠就是首页默认访问的地址</span></code></pre><p>设置强制路由后，每一个控制器路径都需要设置路由才行，否则无法访问</p><p><b>访问</b><a href="http://127.0.0.1:8000/address/details/id/5" target="_blank">http://127.0.0.1:8000/address/details/id/5</a>，就会提示：当前访问路由未定义或不匹配</p><p>同样的可以更改首页指向的控制器</p><pre type="PHP"><code><span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'/'</span>, <span class="hljs-string">'Test/index'</span>);</code></pre><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b></b></p><p><b>在路由的规则表达式中，有多种地址的配置规则（比较常用）</b></p><pre type="PHP"><code><span class="hljs-comment">//静态路由</span>
+<span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'ad'</span>, <span class="hljs-string">'Address/index'</span>);
+<span class="hljs-comment">//静态动态结合的地址</span>
+<span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'details/:id'</span>, <span class="hljs-string">'Address/details'</span>);
+<span class="hljs-comment">//多参数静态动态结合的地址</span>
+<span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'search/:id/:uid'</span>, <span class="hljs-string">'Address/search'</span>);
+<span class="hljs-comment">//全动态地址，不限制是否search 固定</span>
+<span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">':search/:id/:uid'</span>, <span class="hljs-string">'Address/search'</span>);
+<span class="hljs-comment">//包含可选参数的地址</span>
+<span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'find/:id/[:content]'</span>, <span class="hljs-string">'Address/find'</span>);
+<span class="hljs-comment">//规则完全匹配的地址</span>
+<span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'search/:id/:uid$'</span>, <span class="hljs-string">'Address/search'</span>);</code></pre><p><b>路由定义好之后，我们在控制器要创建这个路由地址，可以通过url()方法实现</b></p><p><b>例如在控制器中，返回address/details/id/5 这个链接的路由地址：</b></p><p>不定义标识的做法</p><pre type="PHP"><code> <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">url</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">return</span> url(<span class="hljs-string">'Address/details'</span>, [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">5</span>]);
+    }</code></pre><p>访问这个方法就能获得：/ds/5.html 这个地址，即是路由地址。（通常这种地址用于模板中的链接）</p><p>如果没有设置对应的route规则，那么这个url方法会返回：/Address/details.html?id=5</p><p>定义标识的做法</p><pre type="PHP"><code> <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">url</span>(<span class="hljs-params"></span>)
+    </span>{
+        Route::get(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>, <span class="hljs-string">'GET|POST'</span>)-&gt;name(<span class="hljs-string">'ds'</span>);
+        <span class="hljs-keyword">return</span> url(<span class="hljs-string">'ds'</span>, [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">5</span>]);
+    }</code></pre><p>就是如果在app/route.php中没有定义规则，那么就用上面这种方法，给路由定义一个名字-&gt;name，然后再返回。</p><p>一般都使用第一种方法。</p><h2>路由的变量规则和闭包</h2><h3>变量规则</h3><p>系统默认的路由变量规则为\w+，即字母、数字、中文和下划线；</p><p>如果你想更改默认的匹配规则，可以修改config/route.php 配置（一般不需要更改）</p><pre type="PHP"><code><span class="hljs-comment">// 默认的路由变量规则</span>
+<span class="hljs-string">'default_route_pattern'</span> =&gt; <span class="hljs-string">'[\w\.]+'</span>,</code></pre><p><b>如果我们需要对于具体的变量进行单独的规则设置，则需要通过pattern()方法；</b></p><p>将details 方法里的id 传值，严格限制必须只能是数字\d+；</p><pre type="PHP"><code>Route::get(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>)-&gt;pattern([
+    <span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'\d+'</span>
+]);</code></pre><p>这时候再访问</p><p><a href="http://127.0.0.1:8000/ds/adas" target="_blank">http://127.0.0.1:8000/ds/adas</a>&nbsp;直接报错</p><p><a href="http://127.0.0.1:8000/ds/5adas" target="_blank">http://127.0.0.1:8000/ds/5adas</a>&nbsp;会将参数截断，5adas会只保留5，5.5也会只保留5</p><p><b>如果控制器方法中，需要传递多个参数，并分别设置不同的验证规则</b></p><p>控制器中</p><pre type="PHP"><code> <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">search</span>(<span class="hljs-params">$id, $uid</span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"详情-<span class="hljs-subst">{$id}</span>-<span class="hljs-subst">{$uid}</span>"</span>;
+    }</code></pre><p>route/app.php</p><pre type="PHP"><code>Route::get(<span class="hljs-string">'ss/:id/:uid'</span>, <span class="hljs-string">'Address/search'</span>)-&gt;pattern([
+    <span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'\d+'</span>,
+    <span class="hljs-string">'uid'</span> =&gt; <span class="hljs-string">'\d+'</span>
+]);</code></pre><p>访问<a href="http://127.0.0.1:8000/ss/5/6.3" target="_blank">http://127.0.0.1:8000/ss/5/6</a>&nbsp;输出&nbsp;详情-5-6</p><p><b>以上两种，均为局部变量规则，也可以直接在route/app.php 设置全局变量规则</b></p><pre type="PHP"><code><span class="hljs-comment">//  在开头设置验证，那么其下面所有的路由都会按照这个规则验证</span>
+Route::pattern([
+    <span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'\d+'</span>,
+    <span class="hljs-string">'uid'</span> =&gt; <span class="hljs-string">'\d+'</span>
+]);
+
+Route::get(<span class="hljs-string">'ss/:id/:uid'</span>, <span class="hljs-string">'Address/search'</span>);</code></pre><blockquote>此全局仅为本route/app.php的全局，并非整个系统的全局</blockquote><p><b>也支持使用组合变量规则方式，实现路由规则</b></p><p>除了支持/:，还支持如下</p><pre type="PHP"><code><span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'ds-&lt;id&gt;'</span>, <span class="hljs-string">'Address/details'</span>);</code></pre><p>这时候访问地址就变成了：<a href="http://127.0.0.1:8000/ds-6" target="_blank">http://127.0.0.1:8000/ds-6</a>，其中各种搭配随意组合，-也可以替换成_</p><p><b>动态组合的拼装，地址和参数如果都是模糊动态的，可以使用如下方法</b></p><p><b>比如，我有多个控制器文件，controller/Helloworld.php、</b><b>Hellojs.php、</b><b>Hellowu.php等，这时候就可以用动态控制器名</b></p><pre type="PHP"><code><span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'hi-&lt;name&gt;-&lt;id&gt;'</span>, <span class="hljs-string">'Hello:name/index'</span>);</code></pre><p>其中Hello:name ，Hellow是固定不变的字符串前缀，:name是动态变化的名称，而此名称就通过'hi-&lt;name&gt;-&lt;id&gt;中的&lt;name&gt;进行传递。如此，那么访问地址为：<a href="http://127.0.0.1:8000/hi-world-5" target="_blank">http://127.0.0.1:8000/hi-world-5</a>或5.html，就访问到了Helloworld.php中的Index方法了。</p><pre type="PHP"><code><span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'hi/:name/:id'</span>, <span class="hljs-string">'Hello:name/index'</span>);</code></pre><h3>闭包支持</h3><p>闭包支持我们可以通过URL 直接执行，而不需要通过控制器和方法；只要执行了这个规则就会返回：</p><pre type="PHP"><code>Route::get(<span class="hljs-string">'think'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'hello,ThinkPHP6!'</span>;
+});</code></pre><p>同样的也可以传递参数</p><pre type="PHP"><code>Route::get(<span class="hljs-string">'think/:name'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$name</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"hello, <span class="hljs-subst">{$name}</span>"</span>;
+});</code></pre><p><b></b></p><p><b></b></p><h2>路由的地址和参数</h2><h3>路由地址</h3><p>路由的地址一般为：控制器/操作方法构成</p><pre type="PHP"><code><span class="hljs-comment">//默认Index 控制器</span>
+<span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'/'</span>, <span class="hljs-string">'index'</span>);
+<span class="hljs-comment">//控制器/操作方法</span>
+<span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'details/:id'</span>, <span class="hljs-string">'Address/details'</span>);</code></pre><p>支持多级控制器，并且支持路由到相应的地址；</p><pre type="PHP"><code><span class="hljs-comment">//目录为：app\controller\group</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">controller</span>\<span class="hljs-title">group</span>;
+<span class="hljs-comment">//地址为：app\controller\group</span>
+http:<span class="hljs-comment">//localhost:8000/group.blog/details/id/5</span>
+<span class="hljs-comment">//支持多级路由</span>
+Route::rule(<span class="hljs-string">'details/:id'</span>, <span class="hljs-string">'group.Blog/details'</span>);</code></pre><p>对于地址，还有一种完整路径的方式去执行操作方法：<b>完整类名@操作方法</b>；</p><p>比如我创建一个静态方法</p><pre type="PHP"><code> <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">details2</span>(<span class="hljs-params">$id</span>)
+</span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'details 目前调用的id2：'</span>.$id;
+ }</code></pre><pre type="PHP"><code><span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'app\controller\Address@details2'</span>);
+<span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'\app\controller\Address@details2'</span>);</code></pre><p>另一种静态方式：完整路径支持这种方法的路由地址：<b>完整类名::静态方法</b></p><pre type="PHP"><code><span class="hljs-attribute">Route</span>::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'\app\controller\Address::details2'</span>);</code></pre><blockquote>注意：静态方式只能调用静态方法，如果调用非静态方法就会报错！@方法无论方法是不是静态都可以调用！</blockquote><p><b>路由可以通过::redirect()方法实现重定向跳转，第三参数为状态码；</b></p><pre type="PHP"><code>Route::redirect(<span class="hljs-symbol">'ds</span>/:id', <span class="hljs-symbol">'http</span>:<span class="hljs-comment">//localhost/', 302);</span></code></pre><h3>路由参数</h3><p>设置路由的时候，可以设置相关方法进行，从而实施匹配检测和行为执行</p><p>ext 方法作用是检测URL 后缀，比如：我们强制所有URL 后缀为.html；</p><pre type="PHP"><code>Route::rule(<span class="hljs-string">'details/:id'</span>, <span class="hljs-string">'address/details'</span>)-&gt;ext(<span class="hljs-string">'html'</span>);
+Route::rule(<span class="hljs-string">'details/:id'</span>, <span class="hljs-string">'address/details'</span>)-&gt;ext(<span class="hljs-string">'html|shtml'</span>);</code></pre><p>强制让地址链接末尾检测是否有html，添加了-&gt;ext（html）,那么{id}.html就不会整体作为参数传递了。此时，只有访问{id}.html才不会报错。</p><p><b>https 方法作用是检测是否为https 请求，结合ext 强制html 如下</b></p><pre type="PHP"><code>Route::get(<span class="hljs-string">'details/:id'</span>, <span class="hljs-string">'address/details'</span>)-&gt;ext(<span class="hljs-string">'html'</span>)-&gt;https();</code></pre><p>如果想让全局统一配置URL 后缀的话，可以在config/route.php 中设置</p><p>具体值可以是单个或多个后缀，也可以是空字符串(任意后缀)，false 禁止后缀</p><pre type="PHP"><code><span class="hljs-comment">// URL伪静态后缀</span>
+<span class="hljs-string">'url_html_suffix'</span>       =&gt; <span class="hljs-string">'html'</span>,</code></pre><p>denyExt 方法作用是禁止某些后缀的使用，使用后直接报错，如下是禁止后缀为png和gif；</p><pre type="PHP"><code>Route::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details2'</span>)-&gt;denyExt(<span class="hljs-string">'gif|png'</span>);</code></pre><p><b>domain 方法作用是检测当前的域名是否匹配，完整域名和子域名均可</b></p><pre type="PHP"><code>Route::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>)-&gt;domain(<span class="hljs-string">'localhost'</span>);
+Route::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>)-&gt;domain(<span class="hljs-string">'news.abc.com'</span>);
+Route::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>)-&gt;domain(<span class="hljs-string">'news'</span>); // 简化的二级域名</code></pre><p>如果验证失败那么就会报错。</p><p><b>ajax/pjax/json 方法作用是检测当前的页面是否是以上请求方式</b></p><pre type="PHP"><code>Route::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>)-&gt;ajax();</code></pre><p><b>filter 方法作用是对额外参数进行检测，额外参数可表单提交post（严格看表单传递过来的参数是否匹配）</b></p><pre type="PHP"><code>Route::rule(<span class="hljs-string">'details/:id'</span>, <span class="hljs-string">'address/details'</span>)-&gt;filter([<span class="hljs-string">'id'</span>=&gt;<span class="hljs-number">5</span>, <span class="hljs-string">'type'</span>=&gt;<span class="hljs-number">1</span>]);</code></pre><p>必须传递过来的参数是id=5 type=1的时候才能匹配到这个路由</p><p><b>append 方法作用是追加额外参数，这个额外参数并不需要通过URL 传递；</b></p><p>控制器中先写一个方法</p><pre type="PHP"><code> <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">details2</span>(<span class="hljs-params">$id, $status</span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'details 目前调用的id2：'</span>.$id . $status;
+    }</code></pre><p>其中第二个参数，就用来接收append传递过来的额外的参数</p><pre type="PHP"><code><span class="hljs-comment">// 追加一个参数</span>
+Route::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details2'</span>)-&gt;append([<span class="hljs-string">'status'</span> =&gt; <span class="hljs-string">'a'</span>]);</code></pre><p><b>如果你想统一配置多个参数，方便管理，可以使用option 方法数组配置；</b></p><pre type="PHP"><code>Route::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>)-&gt;option([
+    <span class="hljs-string">'ext'</span> =&gt; <span class="hljs-string">'html'</span>, <span class="hljs-comment">// 必须是html</span>
+    <span class="hljs-string">'https'</span> =&gt; <span class="hljs-literal">true</span>  <span class="hljs-comment">// 必须是https请求</span>
+]);</code></pre><h2>路由的域名和跨域请求</h2><h3>域名路由</h3><p>如果想限定在news.abc.com 这个域名下才有效，通过域名路由闭包的形式</p><pre type="PHP"><code><span class="hljs-selector-tag">Route</span><span class="hljs-selector-pseudo">::domain('news.abc.com'</span>, <span class="hljs-selector-tag">function</span>() {
+    <span class="hljs-attribute">Route</span>::<span class="hljs-built_in">rule</span>(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>);
+});</code></pre><p>限定域名之后，使用localhost/ds/5就无法访问了，打开就会报错。</p><p><b>支持多个二级(子)域名开头部分，使用相同的路有规则</b></p><pre type="PHP"><code><span class="hljs-selector-tag">Route</span><span class="hljs-selector-pseudo">::domain(</span><span class="hljs-selector-attr">[<span class="hljs-string">'news'</span>, <span class="hljs-string">'blog'</span>, <span class="hljs-string">'live'</span>]</span>, <span class="hljs-selector-tag">function</span>() {
+    <span class="hljs-attribute">Route</span>::<span class="hljs-built_in">rule</span>(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>);
+});</code></pre><p><b>可以作为方法，进行二级(子)域名开头部分的检测，或完整域名检测</b></p><pre type="PHP"><code>Route::rule(<span class="hljs-string">'details/:id'</span>, <span class="hljs-string">'Address/details'</span>)-&gt;domain(<span class="hljs-string">'news'</span>);
+Route::rule(<span class="hljs-string">'details/:id'</span>, <span class="hljs-string">'Address/details'</span>)-&gt;domain(<span class="hljs-string">'news.abc.com'</span>);</code></pre><blockquote><span >路由域名也支持：ext、pattern、append 等路由参数方法的操作</span></blockquote><pre type="PHP"><code>Route::domain([<span class="hljs-string">'news'</span>, <span class="hljs-string">'blog'</span>, <span class="hljs-string">'live'</span>], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    Route::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>);
+})-&gt;ext(<span class="hljs-string">'html'</span>);</code></pre><p>即可以整体写，这些域名下的请求，后缀都使用-&gt;ext方法。</p><h3>跨域请求</h3><p>当不同域名进行跨域请求的时候，由于浏览器的安全限制，会被拦截</p><p><b>所以，为了解除这个限制，我们通过路由allowCrossDomain()来实现</b></p><pre type="PHP"><code>Route::rule(<span class="hljs-string">'details/:id'</span>, <span class="hljs-string">'Address/details'</span>)-&gt;allowCrossDomain();</code></pre><blockquote>实现跨域比如没有实现的header 头文件多了几条开头为Access 的信息</blockquote><p>如果你想限制跨域请求的域名，则可以增加一条参数</p><pre type="PHP"><code>Route::rule(<span class="hljs-string">'ds/:id'</span>, <span class="hljs-string">'Address/details'</span>)
+    -&gt;allowCrossDomain([
+        <span class="hljs-comment">// 只能是news.abc.com:8000 这个域名来取我的数据 仅对其开放</span>
+        <span class="hljs-string">'Access-Control-Allow-Origin'</span> =&gt; <span class="hljs-string">'http://news.abc.com:8000'</span>
+    ]
+);</code></pre>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：thinkphp
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/74" class="imgbox">
+                <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+            </a>
+            <a href="/blog/articles/74" class="title" title="关于手机上滚动穿透问题的解决">
+                关于手机上滚动穿透问题的解决
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/82" class="imgbox">
+                <img src="/statics/blog/2021/0608/5170efd076469a875ffcabe5356e6335.jpg">
+            </a>
+            <a href="/blog/articles/82" class="title" title="Laravel的安装及核心目录文件介绍">
+                Laravel的安装及核心目录文件介绍
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/604" class="imgbox">
+                <img src="/statics/blog/2025/0718/853685bfb03d1689bb22c63a6c54c835.jpg">
+            </a>
+            <a href="/blog/articles/604" class="title" title="别再用100vh了！移动端视口高度的终极解决方案">
+                别再用100vh了！移动端视口高度的终极解决方案
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/thinkphp">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/121">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        控制器之Session
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/530">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp-模版引擎驱动和赋值变量、模板引擎配置和渲染、模版的变量输出
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/86">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        路由与控制器的基础应用
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/190">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Artisan基本用法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/499">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp笔记-数据集和代码提示
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

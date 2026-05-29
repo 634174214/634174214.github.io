@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="localForage-让indexedDB离线存储不再头疼 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>localForage-让indexedDB离线存储不再头疼 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="localForage，indexedDB"/>
+<meta name="description" content="localForage是一个javascript库，能够实现针对indexedDB的存储。他是异步存储，可以优化你的web应用程序的离线体验，而且能存储多种类型的数据。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 414,
+            article_title: 'localForage-让indexedDB离线存储不再头疼',
+            article_desc: 'localForage是一个javascript库，能够实现针对indexedDB的存储。他是异步存储，可以优化你的web应用程序的离线体验，而且能存储多种类型的数据。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal active">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" class="active">
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/js">JS</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">localForage-让indexedDB离线存储不再头疼</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>9091</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>727</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2023-06-20 09:15:05</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>介绍和安装</h2><ul><li>localForage是一个JavaScript库，能够类似localStorage的存储。</li><li>他是异步存储，可以优化你的web应用程序的离线体验，而且能存储多种类型的数据。</li><li>localForage有一个优雅的降级策略，如果浏览器不支持indexedDB或者WebSQL则使用localStorage。</li><li>支持es6的 Promises API,而且支持添加回调函数。</li></ul><pre type="Html"><code><span class="hljs-comment">//引入js页面,将路径引入</span>
+&lt;script&nbsp;src=<span class="hljs-string">"localforage.js"</span>&gt;&lt;/script&gt;
+<span class="hljs-comment">//引入vue页面</span>
+<span class="hljs-keyword">import</span>&nbsp;localForage&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">"localforage"</span>;
+</code></pre><pre type="JavaScript"><code><span class="hljs-regexp">//</span>使用<span class="hljs-built_in">npm</span>
+<span class="hljs-built_in">npm</span>&nbsp;install&nbsp;localforage
+<span class="hljs-regexp">//</span>使用bower
+bower&nbsp;install&nbsp;localforage
+</code></pre><h2>使用localForage进行存取</h2><p>存储方面：不同于 localStorage，你可以存储非字符串类型 ，存的方式是localForage.setItem(key, value),可以加入第三个参数回调函数，但是因为支持promise，所以一般用then，catch来处理，当然还有最推荐的async和await。</p><pre type="JavaScript"><code><span class="hljs-comment">//1：存普通数据</span>
+localforage.setItem(<span class="hljs-string">'somekey'</span>,&nbsp;<span class="hljs-string">'some&nbsp;value'</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>&nbsp;(<span class="hljs-params">value</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当值被存储后，可执行其他操作</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(value);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当出错时，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(err);
+});
+<span class="hljs-comment">//2：存一个数组</span>
+localforage.setItem(<span class="hljs-string">'myarray'</span>,&nbsp;[<span class="hljs-number">1</span>,&nbsp;<span class="hljs-number">2</span>,&nbsp;<span class="hljs-string">'three'</span>]).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;如下输出&nbsp;`1`</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(value[<span class="hljs-number">0</span>]);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当出错时，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(err);
+});
+<span class="hljs-comment">//3：async/await</span>
+<span class="hljs-keyword">try</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//await返回结果值，用一个常量接收</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;value&nbsp;=&nbsp;<span class="hljs-keyword">await</span>&nbsp;localforage.getItem(<span class="hljs-string">'somekey'</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(value);
+}&nbsp;<span class="hljs-keyword">catch</span>&nbsp;(err)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(err);
+}
+</code></pre><ul><li>取值：这个没啥好说的，就是根据键取值。</li></ul><pre type="JavaScript"><code>localforage.getItem(<span class="hljs-string">'somekey'</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当离线仓库中的值被载入时，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(value);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当出错时，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(err);
+});
+</code></pre><h2>一些常用属性扩展</h2><ul><li>REMOVEITEM:删除key对应的值。</li><li>CLEAR：删除所有的key，并且重置数据库。</li><li>LENGTH:获取仓库中key的长度。</li><li>keys：获取数据仓库中所有的key。</li><li>iterate:迭代数据库中所有的键值对，如果有一个value是undefined，就会推出，并且将 该键传入成功回调内。</li></ul><pre type="JavaScript"><code><span class="hljs-comment">//1：removeItem示例</span>
+localforage.removeItem(<span class="hljs-string">'somekey'</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当值被移除后，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Key&nbsp;is&nbsp;cleared!'</span>);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当出错时，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(err);
+});
+<span class="hljs-comment">//2:&nbsp;clear示例</span>
+localforage.clear().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当数据库被全部删除后，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Database&nbsp;is&nbsp;now&nbsp;empty.'</span>);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当出错时，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(err);
+});
+<span class="hljs-comment">//3:length示例</span>
+localforage.length().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">numberOfKeys</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;输出数据库的大小</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(numberOfKeys);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当出错时，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(err);
+});
+<span class="hljs-comment">//4:keys示例</span>
+localforage.keys().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">keys</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;包含所有&nbsp;key&nbsp;名的数组</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(keys);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当出错时，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(err);
+});
+<span class="hljs-comment">//5:iterate示例</span>
+localforage.iterate(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value,&nbsp;key,&nbsp;iterationNumber</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;此回调函数将对所有&nbsp;key/value&nbsp;键值对运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log([key,&nbsp;value]);
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Iteration&nbsp;has&nbsp;completed'</span>);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)&nbsp;</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">//&nbsp;当出错时，此处代码运行</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(err);
+});
+</code></pre><h2>一些有趣的特殊API</h2><ul><li><p>setDriver：用来选择驱动或者配置数据库，应该放在第一个调用数据API之前调用。</p><ul><li><p>默认情况下，localForage会按照以下的顺序选择数据仓库的后后端驱动。</p><p>1. IndexedDB</p><p>2. WebSQL</p><p>3. localStorage</p></li></ul></li></ul><pre type="JavaScript"><code><span class="hljs-comment">//&nbsp;强制设置&nbsp;localStorage&nbsp;为后端的驱动</span>
+<span class="hljs-selector-tag">localforage</span><span class="hljs-selector-class">.setDriver</span>(localforage.LOCALSTORAGE);
+<span class="hljs-comment">//&nbsp;列出可选的驱动，以优先级排序，下例，优先WEBSQL</span>
+<span class="hljs-selector-tag">localforage</span><span class="hljs-selector-class">.setDriver</span>([localforage.WEBSQL,&nbsp;localforage.INDEXEDDB]);
+</code></pre><ul><li>config:见词思意，用来配置localForage的API，在调用localForage之前必须先调用，此方法设置的任何值都将保留，属性较多，案例详解。</li></ul><pre type="JavaScript"><code><span class="hljs-selector-tag">localforage</span><span class="hljs-selector-class">.config</span>({
+&nbsp;<span class="hljs-comment">//&nbsp;将数据库从&nbsp;“localforage”&nbsp;重命名为&nbsp;“Hipster&nbsp;PDA&nbsp;App”</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attribute">name</span>:&nbsp;<span class="hljs-string">'Hipster&nbsp;PDA&nbsp;App'</span>
+&nbsp;<span class="hljs-comment">//&nbsp;配置不同的驱动优先级</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attribute">driver</span>:&nbsp;[localforage.WEBSQL,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;localforage.INDEXEDDB,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;localforage.LOCALSTORAGE],
+&nbsp;&nbsp;<span class="hljs-comment">//size：数据库的大小（以字节为单位）。现在只用于WebSQL。&nbsp;默认值：4980736&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attribute">size</span>:<span class="hljs-string">'100000'</span>,
+&nbsp;&nbsp;<span class="hljs-comment">//version：将来用来升级</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version：<span class="hljs-string">'1.0'</span>&nbsp;&nbsp;
+});</code></pre><p>github:</p><p><a target="_blank" href="https://github.com/localforage/localForage">https://github.com/localforage/localForage</a></p><p>gitee:</p><p><a href="https://gitee.com/mirrors/localForage" target="_blank">https://gitee.com/mirrors/localForage</a></p><p></p>
+                                            <h2>附件下载</h2>
+                        <div class="downloads-list">
+                                                            <div class="downloads-list-li">
+                                    <a href="//www.wubin.work/statics/blog/2023/0620/da5e7275de1f68df878f430695991f27.zip" class="except-a" download="localForage-让indexedDB离线存储不再头疼-附件-localForage-1">localForage-1</a>
+                                </div>
+                                                    </div>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://juejin.cn/post/6907615220517208078" target="_blank">原文链接</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：localForage，indexedDB
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/162" class="imgbox">
+                <img src="/statics/blog/2021/0825/f2e7f9e02b6fb5c6618dd10b93a84799.jpg">
+            </a>
+            <a href="/blog/articles/162" class="title" title="【NS】Switch使用Lanplay实现远程面连的操作流程及信息汇总">
+                【NS】Switch使用Lanplay实现远程面连的操作流程及信息汇总
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/436" class="imgbox">
+                <img src="/statics/blog/2023/0821/2be25e89dd125f199f8809862e86fdea.jpg">
+            </a>
+            <a href="/blog/articles/436" class="title" title="vue-cli+router实现异步组件配合路由进行性能优化">
+                vue-cli+router实现异步组件配合路由进行性能优化
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/339" class="imgbox">
+                <img src="/statics/blog/2022/1209/47944d26f348fc6e06c88538af70083f.png">
+            </a>
+            <a href="/blog/articles/339" class="title" title="uniapp打包APP上架相关问题【IOS】篇">
+                uniapp打包APP上架相关问题【IOS】篇
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/js">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/205">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        【JS工具方法】-JS函数、对象操作篇
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/78">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用JS将字符串转为base64
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/273">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        如何用js替换文本里的换行符n?
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/605">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        90%前端没摸过的10个JS神API？复制即用
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/197">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        【JS工具方法】-浏览器等设备判断篇
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

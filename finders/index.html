@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="发现更多 | 一介武夫 | wubin.work &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>发现更多 | 一介武夫 | wubin.work</title>
+<meta name="keywords" content="一介武夫, 博客, PHP， 前端， js, es， 技术平台， mysql, javascript, ecmascript，个人建站"/>
+<meta name="description" content="发现更多 | 旨在共享设计、开发类的知识，交流开发中遇到的各种问题,涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery等前后端常用的技巧及知识点，欢迎交流学习。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script></head>
+<body class="preload" ontouchstart>
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear live-message">
+    <aside class="message-left">
+        <!-- 左侧 -->
+        <div class="inner margin-bot-l">
+            <div class="top-banner">
+                <img src="/assets//img/finders-top.jpg">
+            </div>
+            <div class="message-h2">
+                <h2>网站产品</h2>
+                <span>在这里您可以发现这个网站更多已实现的应用</span>
+            </div>
+            <!-- 网站产品 -->
+            <div class="finders-list">
+                <ul class="finders-ul">
+                                        <li >
+                        <a href="https://www.wubin.work" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-blog.png" alt="博客">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">博客</span>
+                                <span class="finder-link">www.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">汇集了常用的JS、CSS、字体图标、前端框架依赖库。方便日常工作中快速的引用。</p>
+                    </li>
+                                        <li  class="no-marg" >
+                        <a href="http://build.wubin.work" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-build.png" alt="商务">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">商务</span>
+                                <span class="finder-link">build.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">畅想开发工作室业务介绍。主要承接网站、WEBAPP、手机原生APP等开发工作。</p>
+                    </li>
+                                        <li >
+                        <a href="http://tool.wubin.work" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-tool.png" alt="工具">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">工具</span>
+                                <span class="finder-link">tool.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">汇集了从设计、到前后端开发中常用的工具，将您从机械性的操作中解放出来。</p>
+                    </li>
+                                        <li  class="no-marg" >
+                        <a href="http://day.wubin.work/login.php" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-daily.png" alt="小记">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">小记</span>
+                                <span class="finder-link">day.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">记录您每一天的日程、工作，为您提供快捷方便的记录功能，是您工作、学习和生活的小帮手。</p>
+                    </li>
+                                        <li >
+                        <a href="http://qd.wubin.work/" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-qd.png" alt="青岛图片库">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">青岛图片库</span>
+                                <span class="finder-link">qd.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">红瓦绿树，碧海蓝天。住在青岛，热爱青岛，这是一个专注于青岛风情的图片库。</p>
+                    </li>
+                                        <li  class="no-marg" >
+                        <a href="https://www.wubin.work/message" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-message.png" alt="留言板">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">留言板</span>
+                                <span class="finder-link">www.wubin.work/message</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">赠人玫瑰，手有余香。这是一个让我们互相交流的平台。欢迎大家闲暇之余来踊跃发言啊~</p>
+                    </li>
+                                        <li >
+                        <a href="https://www.wubin.work/rss" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-rss.png" alt="订阅频道">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">订阅频道</span>
+                                <span class="finder-link">www.wubin.work/rss</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">汇集了各个大厂设计、开发团队和热门技术站的订阅源。让您不错过每一次技术潮流。</p>
+                    </li>
+                                        <li  class="no-marg" >
+                        <a href="http://lib.wubin.work" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-lib.png" alt="肆库">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">肆库</span>
+                                <span class="finder-link">lib.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">汇集了JS、CSS、框架、字体资源等常用的依赖库引用和技术文档。去繁留简，一目了然。</p>
+                    </li>
+                                        <li >
+                        <a href="http://code.wubin.work" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-code.png" alt="微码">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">微码</span>
+                                <span class="finder-link">code.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">不积小流无以成江海。注意积累，才能走的更远。微小的代码片段，足以汇集成明日的江海。</p>
+                    </li>
+                                        <li  class="no-marg" >
+                        <a href="http://doc.wubin.work" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-doc.png" alt="专栏">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">专栏</span>
+                                <span class="finder-link">doc.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">WEB开发技术资料汇总。涵盖了各库、框架的技术文档。专栏在手，天下我有。</p>
+                    </li>
+                                        <li >
+                        <a href="http://my.wubin.work" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-my.png" alt="MY_WORKS">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">MY_WORKS</span>
+                                <span class="finder-link">my.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">这里都是工作中由我独立开发的全栈项目本地部署版，主要用于展示目的。供大家参考。</p>
+                    </li>
+                                        <li  class="no-marg" >
+                        <a href="http://ns.wubin.work" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-ns.png" alt="游小圈_Switch">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">游小圈_Switch</span>
+                                <span class="finder-link">ns.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">小伙伴们的游戏圈，专注于NS游戏分享，租赁。搭建一个游戏分享生态圈，让身边的小伙伴们都参与进来。</p>
+                    </li>
+                                        <li >
+                        <a href="http://ns.wubin.work/game-wall/" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-gamewall.png" alt="游戏墙">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">游戏墙</span>
+                                <span class="finder-link">ns.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">欢迎来到我的游戏墙，这是一个汇聚了游戏热情与创意的独特网页。</p>
+                    </li>
+                                        <li  class="no-marg" >
+                        <a href="http://my.wubin.work/works/im-play/app/" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-implay.png" alt="imPlay">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">imPlay</span>
+                                <span class="finder-link">my.wubin.work/works/im-play/app/</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">掌机游戏助手，提供一键发布战术信息，支持自定义战术列表等功能，让您在游戏内的沟通变得更加顺畅</p>
+                    </li>
+                                        <li >
+                        <a href="http://hao.wubin.work/" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-haowubin.png" alt="好工人网址导航">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">好工人网址导航</span>
+                                <span class="finder-link">hao.wubin.work/</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">专门为打工人而做的综合导航网站！为广大设计开发从业者提供专业的设计、开发等等的网站导航指引。</p>
+                    </li>
+                                        <li  class="no-marg" >
+                        <a href="http://my.wubin.work/xtail-money/" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-xtail.png" alt="车贷还款记录">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">车贷还款记录</span>
+                                <span class="finder-link">my.wubin.work/xtail-money/</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">我的车贷还款记录。每月都在滴血，汇款后来看一看，一步一个脚印，继续加油吧！</p>
+                    </li>
+                                        <li >
+                        <a href="http://www.wubin.work/html/building.html" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-mark.png" alt="小书签">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">小书签</span>
+                                <span class="finder-link">mark.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">大家可以分类记录自己平日里需要记录的各种网页，免去不同浏览器间切换的烦恼。</p>
+                    </li>
+                                        <li  class="no-marg" >
+                        <a href="http://www.wubin.work/html/building.html" target="_blank" class="finders-a">
+                            <div class="li-left">
+                                <img src="/assets//img/finders-icon-design.png" alt="创意集">
+                            </div>
+                            <div class="li-right">
+                                <span class="finders-name">创意集</span>
+                                <span class="finder-link">design.wubin.work</span>
+                            </div>
+                        </a>
+                        <p class="finders-desc">收集了一些非常实用、没有版权隐患的设计资源。是我在平常工作中高频率使用的资源！分享给大家！</p>
+                    </li>
+                                    </ul>
+            </div>
+            <!-- 网站产品 end -->
+        </div>
+        <!-- 左侧 end -->
+    </aside>
+
+    <aside class="message-right">
+        <div class="inner">
+            <!-- 推荐阅读 -->
+            <div class="recommend-list margin-bot-l" id="recommend-list">
+                <div class="headline">
+                    推荐阅读
+                </div>
+                                    <ul class="list">
+                                                    <li>
+                                <a href="/blog/articles/535"
+                                   class="content-box"
+                                   title="python基础-操作列表和迭代器"
+                                >
+                                    <div class="info">
+                                        <h2 class="title">python基础-操作列表和迭代器</h2>
+                                        <div class="nums">
+                                            <span>
+                                                <i class="icon fa fa-eye"></i>7611
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-thumbs-o-up"></i>236
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-clock-o"></i>2024-06-13
+                                            </span>
+                                        </div>
+                                    </div>
+                                                                            <img src="/assets/img/img-default.jpg">
+                                                                    </a>
+                            </li>
+                                                    <li>
+                                <a href="/blog/articles/344"
+                                   class="content-box"
+                                   title="uniapp实现被浏览器唤起的功能"
+                                >
+                                    <div class="info">
+                                        <h2 class="title">uniapp实现被浏览器唤起的功能</h2>
+                                        <div class="nums">
+                                            <span>
+                                                <i class="icon fa fa-eye"></i>13887
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-thumbs-o-up"></i>945
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-clock-o"></i>2022-12-14
+                                            </span>
+                                        </div>
+                                    </div>
+                                                                            <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                                                                        </a>
+                            </li>
+                                                    <li>
+                                <a href="/blog/articles/188"
+                                   class="content-box"
+                                   title="【正则】一些常用的正则表达式总结"
+                                >
+                                    <div class="info">
+                                        <h2 class="title">【正则】一些常用的正则表达式总结</h2>
+                                        <div class="nums">
+                                            <span>
+                                                <i class="icon fa fa-eye"></i>16866
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-thumbs-o-up"></i>753
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-clock-o"></i>2021-10-09
+                                            </span>
+                                        </div>
+                                    </div>
+                                                                            <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                                                                        </a>
+                            </li>
+                                                    <li>
+                                <a href="/blog/articles/122"
+                                   class="content-box"
+                                   title="【中文】免费可商用字体下载与考证"
+                                >
+                                    <div class="info">
+                                        <h2 class="title">【中文】免费可商用字体下载与考证</h2>
+                                        <div class="nums">
+                                            <span>
+                                                <i class="icon fa fa-eye"></i>18842
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-thumbs-o-up"></i>1498
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-clock-o"></i>2021-07-05
+                                            </span>
+                                        </div>
+                                    </div>
+                                                                            <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                                                                        </a>
+                            </li>
+                                                    <li>
+                                <a href="/blog/articles/119"
+                                   class="content-box"
+                                   title="Vue3开发一个v-loading的自定义指令"
+                                >
+                                    <div class="info">
+                                        <h2 class="title">Vue3开发一个v-loading的自定义指令</h2>
+                                        <div class="nums">
+                                            <span>
+                                                <i class="icon fa fa-eye"></i>20119
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-thumbs-o-up"></i>1617
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-clock-o"></i>2021-07-02
+                                            </span>
+                                        </div>
+                                    </div>
+                                                                            <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                                                                        </a>
+                            </li>
+                                                    <li>
+                                <a href="/blog/articles/74"
+                                   class="content-box"
+                                   title="关于手机上滚动穿透问题的解决"
+                                >
+                                    <div class="info">
+                                        <h2 class="title">关于手机上滚动穿透问题的解决</h2>
+                                        <div class="nums">
+                                            <span>
+                                                <i class="icon fa fa-eye"></i>18043
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-thumbs-o-up"></i>1458
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-clock-o"></i>2021-05-31
+                                            </span>
+                                        </div>
+                                    </div>
+                                                                            <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                                                                        </a>
+                            </li>
+                                                    <li>
+                                <a href="/blog/articles/19"
+                                   class="content-box"
+                                   title="Vue+html2canvas截图空白的问题"
+                                >
+                                    <div class="info">
+                                        <h2 class="title">Vue+html2canvas截图空白的问题</h2>
+                                        <div class="nums">
+                                            <span>
+                                                <i class="icon fa fa-eye"></i>34453
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-thumbs-o-up"></i>2701
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-clock-o"></i>2021-03-02
+                                            </span>
+                                        </div>
+                                    </div>
+                                                                            <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                                                                        </a>
+                            </li>
+                                                    <li>
+                                <a href="/blog/articles/16"
+                                   class="content-box"
+                                   title="vue-router4过度动画无效解决方案"
+                                >
+                                    <div class="info">
+                                        <h2 class="title">vue-router4过度动画无效解决方案</h2>
+                                        <div class="nums">
+                                            <span>
+                                                <i class="icon fa fa-eye"></i>29787
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-thumbs-o-up"></i>2283
+                                            </span>
+                                            <span>
+                                                <i class="icon fa fa-clock-o"></i>2021-02-23
+                                            </span>
+                                        </div>
+                                    </div>
+                                                                            <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                                                                        </a>
+                            </li>
+                                            </ul>
+                
+            </div>
+            <!-- 推荐阅读 end -->
+
+            <!-- qr-box -->
+            <div class="qr-box">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+
+<footer class="footer" id="footer">
+            <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer><script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_finders.js?t=4445"></script></body>
+</html>

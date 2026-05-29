@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="python基础-文件和错误处理 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>python基础-文件和错误处理 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="open"/>
+<meta name="description" content="使用PY处理文件和捕获错误。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 574,
+            article_title: 'python基础-文件和错误处理',
+            article_desc: '使用PY处理文件和捕获错误。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal active">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" class="active">
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/python">Python</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">python基础-文件和错误处理</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>8572</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>407</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2025-02-12 10:59:03</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>文件读取</h2><h3>读取整个文件</h3><pre type="Python"><code><span class="hljs-keyword">with</span> <span class="hljs-keyword">open</span>(<span class="hljs-string">'demo_2.txt'</span>) <span class="hljs-keyword">as</span> file_object:
+    <span class="hljs-keyword">content</span> = file_object.read()
+    print(<span class="hljs-keyword">content</span>)</code></pre><p><font color="#c24f4a">open</font>(‘要打开的文件路径’)：如果向代码中那样传入名称，则会基于py脚本目录进行文件的查找，文件打开成功返回一个文件对象file_object；</p><p><font color="#c24f4a">with</font>是在不需要访问文件后将其关闭。因为正常情况下调用了open就必须调用close。比如</p><pre type="Python"><code>filePath = <span class="hljs-string">'demo_2.txt'</span>
+file = open(filePath, <span class="hljs-string">'r'</span>) <span class="hljs-comment">// 只读</span>
+filew = open(<span class="hljs-string">'demo_w.txt'</span>, <span class="hljs-string">'w'</span>) <span class="hljs-comment">// 写入</span>
+
+words = file.read()
+filew.write(words); <span class="hljs-comment">// 将内容写入</span>
+
+<span class="hljs-built_in">print</span>(words);
+<span class="hljs-comment">// 关闭两个文件</span>
+file.<span class="hljs-built_in">close</span>()
+filew.<span class="hljs-built_in">close</span>()</code></pre><p>但是这样做有个问题，当程序出现Bug，导致close未执行的时候，文件将不会关闭，而过早的调用close则会导致使用文件的时候它已经关闭了（无法访问）。而我们<b>使用with，就可以让PY自动确定，在需要的时候使用它，并让PY在合适的时机自动关闭文件。</b></p><blockquote><code >with</code><span >语句是一种上下文管理器，它提供了一种非常方便的方式来管理资源，如文件操作、网络连接、数据库连接等。</span></blockquote><p>with主要作用和使用场景体现在以下几个方面：</p><p><b>1. 确保资源的正确释放</b></p><p>在使用一些资源时，例如文件、网络连接或数据库连接，我们需要在使用完后正确地释放这些资源，以避免资源泄漏。传统的方式是使用<code>try...finally</code>语句，但使用<code>with</code>语句可以让代码更加简洁和安全。</p><pre type="Python"><code><span class="hljs-comment"># 传统的文件操作方式</span>
+<span class="hljs-keyword">try</span>:
+    file = <span class="hljs-built_in">open</span>(<span class="hljs-string">'test.txt'</span>, <span class="hljs-string">'r'</span>)
+    content = file.read()
+    print(content)
+<span class="hljs-keyword">finally</span>:
+    file.close()
+
+<span class="hljs-comment"># 使用 with 语句的文件操作方式</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'test.txt'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> file:
+    content = file.read()
+    print(content)</code></pre><p>传统方式使用<code>try...finally</code>确保文件在操作完成后关闭，而使用<code>with</code>语句则更简洁，<code>with</code>语句会自动处理文件的关闭操作，即使在操作过程中出现异常，也能保证文件被正确关闭。</p><p><b>2. 自动管理上下文</b></p><p><code>with</code>语句的执行过程涉及到上下文管理器协议，即对象需要实现<code>__enter__()</code>和<code>__exit__()</code>方法。当执行<code>with</code>语句时，会调用对象的<code>__enter__()</code>方法，该方法的返回值会赋值给<code>as</code>后面的变量；当<code>with</code>语句块执行完毕或出现异常时，会调用对象的<code>__exit__()</code>方法，进行资源的清理工作。</p><pre type="Python"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyContextManager</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__enter__</span>(<span class="hljs-params">self</span>):</span>
+        print(<span class="hljs-string">"进入上下文管理器"</span>)
+        <span class="hljs-keyword">return</span> self
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__exit__</span>(<span class="hljs-params">self, exc_type, exc_value, traceback</span>):</span>
+        print(<span class="hljs-string">"退出上下文管理器"</span>)
+        <span class="hljs-keyword">if</span> exc_type <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
+            print(<span class="hljs-string">f"发生异常: <span class="hljs-subst">{exc_type}</span>, <span class="hljs-subst">{exc_value}</span>"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+<span class="hljs-keyword">with</span> MyContextManager() <span class="hljs-keyword">as</span> my_obj:
+    print(<span class="hljs-string">"在上下文管理器内部执行操作"</span>)
+    <span class="hljs-comment"># 可以在这里模拟异常</span>
+    <span class="hljs-comment"># raise ValueError("这是一个测试异常")</span></code></pre><p>在上述示例中，<code>MyContextManager</code>类实现了上下文管理器协议，当执行<code>with</code>语句时，会依次调用<code>__enter__()</code>和<code>__exit__()</code>方法。</p><p><b>3. 简化代码结构</b></p><p>使用<code>with</code>语句可以避免大量的<code>try...finally</code>嵌套，使代码更加清晰和易读，特别是在处理多个资源时，优势更加明显。比如多个资源管理：</p><pre type="Python"><code><span class="hljs-comment"># 同时打开两个文件进行操作</span>
+<span class="hljs-keyword">with</span> <span class="hljs-keyword">open</span>(<span class="hljs-string">'file1.txt'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> file1, <span class="hljs-keyword">open</span>(<span class="hljs-string">'file2.txt'</span>, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> file2:
+    <span class="hljs-keyword">content</span> = file1.read()
+    file2.write(<span class="hljs-keyword">content</span>)</code></pre><p>使用<code>with</code>语句同时管理两个文件的打开和关闭操作，代码简洁明了。</p><h3>read</h3><p>read()是读取文件中的全部内容，并将内容保存为字符串返回。但是read到达文件末尾时会返回一个空字符串，会导致显示出来就是一个空行，如果要删除末尾空行，就要使用rstrip()</p><pre type="Python"><code><span class="hljs-built_in">print</span>( content.rstrip() )</code></pre><h3>逐行读取</h3><p>要以每次一行的方式检查文件，可以对文件对象使用for循环：</p><pre type="Python"><code><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'demo_2.txt'</span>) <span class="hljs-keyword">as</span> file_object:
+    <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> file_object:
+        <span class="hljs-keyword">if</span> <span class="hljs-string">'language'</span> <span class="hljs-keyword">in</span> line:
+            print(line.rstrip())</code></pre><p>加上rstrip()方法目的就是 因为逐行输出的时候，<b>每行的末尾都会有个换行符，要消除这些空白行，就要使用rstrip()方法</b>。</p><h3>创建一个包含文件各行内容的列表</h3><p>使用with+open的时候，返回的文件对象只能在with代码块中可用，如果要在with之外使用文件内容，可以将逐行内容添加到一个列表中。</p><pre type="Python"><code><span class="hljs-keyword">with</span> <span class="hljs-keyword">open</span>(<span class="hljs-string">'demo_2.txt'</span>) <span class="hljs-keyword">as</span> file_object:
+    <span class="hljs-keyword">lines</span> = file_object.readlines()
+
+<span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> <span class="hljs-keyword">lines</span>:
+    print(line)</code></pre><p>readlines从文件中读取每一行，并将其存储在一个列表中，并返回这个列表。这样在with代码块外部，依然可以使用这个列表</p><blockquote>读取文本文件的时候，会将所有文件内容都转化为字符串，如果内容是数字，那么就需要根据情况使用Int()转化为整数或者float()转化为浮点数。</blockquote><h2>文件写入</h2><p>文件写入时，需要传入另一个参数，告诉PY你要写入打开的文件。</p><pre type="Python"><code><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'write_demo.txt'</span>, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> file_object:
+    file_object.write(<span class="hljs-string">'hello world!\n'</span>)</code></pre><p>open('文件路径'， ‘打开模式’)：打开模式有3种：</p><p>'r': 默认，读取；'w'： 写入；‘a’：附加模式；‘r+'：让你能读取和写入文件的模式。</p><p>如果要写入的文件不存在，那么PY会自动创建它，而以'w'写入模式打开的文件，PY会在返回文件对象前清空该文件。</p><blockquote>如果要将数值存储到文本文件种，必须使用str()转换为字符串形式。</blockquote><h3>写入多行</h3><p>write()不会在写入的文本末尾加换行符，所以在使用.write的时候，需要主动加入换行符</p><pre type="Python"><code><span class="hljs-selector-tag">with</span> <span class="hljs-selector-tag">open</span>(<span class="hljs-string">'write_demo.txt'</span>, <span class="hljs-string">'w'</span>) <span class="hljs-selector-tag">as</span> <span class="hljs-selector-tag">file_object</span>:
+    <span class="hljs-selector-tag">file_object</span><span class="hljs-selector-class">.write</span>(<span class="hljs-string">'hello world!\n'</span>)
+    <span class="hljs-selector-tag">file_object</span><span class="hljs-selector-class">.write</span>(<span class="hljs-string">'i miss you!\n'</span>)</code></pre><blockquote>这里要特别注意！！'w' 是将文件以文本模式打开，使用的时候需要指定合适的编码（通常是utf-8），写入的也必须是普通的字符串文本；而'wb' 是以二进制写入模式打开文件！所以以wb二进制模式打开的文件写入的也必须是二进制数据！<a href="/blog/articles/587" target="_blank" >详细的案例参考这里。</a></blockquote><h3>附加内容</h3><p>如果要给文件添加内容，而不是覆盖原有内容，就可以使用附加模式：'a'，以附加模式打开文件时，PY不会再返回文件对象前清空文件，而你写入到文件的行都将添加到文件末尾。另外与w一样，文件不存在则新建一个文件。</p><pre type="Python"><code><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'write_demo.txt'</span>, <span class="hljs-string">'a'</span>) <span class="hljs-keyword">as</span> file_object:
+    file_object.write(<span class="hljs-string">'and i wanna to see you'</span>)</code></pre><h3>指定文件编码</h3><p>通常在以文本模式写入的时候，需要指定编码，一般是utf8</p><pre type="Python"><code><span class="hljs-keyword">with</span> <span class="hljs-keyword">open</span>(<span class="hljs-string">'btc_close_2017_request.json'</span>, <span class="hljs-string">'w'</span>, <span class="hljs-keyword">encoding</span>=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:
+    f.write(req.text)</code></pre><h2>异常</h2><p>PY使用异常这个特殊对象来管理程序执行期间发生的错误，当遇到错误，PY会创建一个异常对象，并显示一个traceback。</p><p>异常使用try-except代码块进行处理。</p><p>比如，实现一个最简单的traceback：</p><pre type="Python"><code><span class="hljs-attribute">print</span>( <span class="hljs-number">5</span> / <span class="hljs-number">0</span>)</code></pre><p>报错：</p><pre type="Python"><code><span class="hljs-string">ZeroDivisionError</span>                         <span class="hljs-string">Traceback</span> <span class="hljs-string">(most</span> <span class="hljs-string">recent</span> <span class="hljs-string">call</span> <span class="hljs-string">last)</span>
+<span class="hljs-string">Cell</span> <span class="hljs-string">In[5],</span> <span class="hljs-string">line</span> <span class="hljs-number">1</span>
+<span class="hljs-string">----&gt;</span> <span class="hljs-number">1</span> <span class="hljs-string">print(</span> <span class="hljs-number">5</span> <span class="hljs-string">/</span> <span class="hljs-number">0</span><span class="hljs-string">)</span>
+
+<span class="hljs-attr">ZeroDivisionError:</span> <span class="hljs-string">division</span> <span class="hljs-string">by</span> <span class="hljs-string">zero</span></code></pre><p>ZeroDivisionError就是一个异常对象，当PY无法按照你的要求做时，就会创建这种对象。</p><pre type="Python"><code><span class="hljs-keyword">try</span>:
+    print(<span class="hljs-number">5</span>/<span class="hljs-number">0</span>)
+<span class="hljs-keyword">except</span> ZeroDivisionError:
+    print(<span class="hljs-string">'你不能除以0'</span>)</code></pre><p>如果try-except后面还有其他代码，则程序会接着运行。</p><pre type="Python"><code><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    first_num = <span class="hljs-built_in">input</span>(<span class="hljs-string">'\n请输入第一个数字：'</span>)
+    <span class="hljs-keyword">if</span> first_num == <span class="hljs-string">'q'</span>:
+        <span class="hljs-keyword">break</span>
+    second_num = <span class="hljs-built_in">input</span>(<span class="hljs-string">'请输入第二个数字：'</span>)
+    <span class="hljs-keyword">try</span>:
+        answer = <span class="hljs-built_in">int</span>(first_num) / <span class="hljs-built_in">int</span>(second_num)
+    <span class="hljs-keyword">except</span> ZeroDivisionError:
+        print(<span class="hljs-string">'除数不能为0'</span>)  // 5/0走这里
+    <span class="hljs-keyword">else</span>:
+        print(answer) // 6/2 走这里 </code></pre><p>将可能引发错误的代码放在try-except中，而else则代表try代码块成功执行之后的部分放在else中。</p><p>except ZeroDivisionError告诉PY如果出现ZeroDivisionError错误该怎么办。</p><h3>处理FileNotFoundError</h3><p>使用文件常遇到的错误是找不到文件。</p><pre type="Python"><code><span class="hljs-function"><span class="hljs-keyword">with</span> <span class="hljs-title">open</span>(<span class="hljs-params"><span class="hljs-string">'nopath.txt'</span>, <span class="hljs-string">'r'</span></span>) <span class="hljs-keyword">as</span> file_object:
+    content</span> = file_object.read()
+
+<span class="hljs-comment">// 错误</span>
+<span class="hljs-function">FileNotFoundError                         <span class="hljs-title">Traceback</span> (<span class="hljs-params">most recent call last</span>)
+Cell In[7], line 1
+----&gt; 1 <span class="hljs-keyword">with</span> <span class="hljs-title">open</span>(<span class="hljs-params"><span class="hljs-string">'nopath.txt'</span>, <span class="hljs-string">'r'</span></span>) <span class="hljs-keyword">as</span> file_object:
+      2     content</span> = file_object.read()</code></pre><p>所以要优化报错：</p><pre type="Python"><code><span class="hljs-keyword">try</span>:
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'nopath.txt'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> file_object:
+        content = file_object.read()
+<span class="hljs-keyword">except</span> FileNotFoundError:
+    print(<span class="hljs-string">'文件不存在'</span>)</code></pre><blockquote>这里要注意：try-except要写在with去读文件的外面。</blockquote><pre type="Python"><code><span class="hljs-keyword">try</span>:
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'demo_2.txt'</span>) <span class="hljs-keyword">as</span> file_object:
+        contents = file_object.read()
+<span class="hljs-keyword">except</span> FileNotFoundError:
+    print(<span class="hljs-string">'文件不存在'</span>)
+<span class="hljs-keyword">else</span>:
+    words = contents.split()
+    print( <span class="hljs-built_in">len</span>(words) )</code></pre><p>上面例子实现了一个查看文件中有多少个单词。</p><p>split() 以空格分隔字符串，并将拆分的（单词）部分存为一个列表。</p><p>len(列表) 则返回一个列表的长度。</p><h3>遇到问题 一声不吭</h3><p>并非每个捕获异常都需要告诉用户，有时需要像什么都没有发生一样继续运行。这时候就要使用PY的pass语句，让它告诉py什么都不要做。</p><pre type="Python"><code><span class="hljs-keyword">try</span>:
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'nopath.txt'</span>) <span class="hljs-keyword">as</span> file_object:
+        contents = file_object.read()
+<span class="hljs-keyword">except</span> FileNotFoundError:
+    <span class="hljs-keyword">pass</span>
+<span class="hljs-keyword">else</span>:
+    words = contents.split()
+    print( <span class="hljs-built_in">len</span>(words) )</code></pre><p>使用pass当遇到异常的时候，什么都不会发生，也不会有任何的输出。pass语句还充当了占位符。</p><h2>存储数据</h2><h3>json.dump</h3><p>json.dump：用于存储数据，接受两个参数，<b>json.dump（‘要存储的数据’， ‘用于存储的文件对象）</b></p><pre type="Python"><code><span class="hljs-keyword">import</span> json
+nums = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>)) // 创建一个1-6的列表
+
+filename = <span class="hljs-string">'numbers.json'</span>
+
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(filename, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> file_object:
+    json.dump(nums, file_object)</code></pre><blockquote>使用json.dump以及json.load需要先引入json模块</blockquote><ul><li><code>range(1, 6)</code>函数会生成一个从 1 开始（包含 1）到 6 结束（不包含 6）的整数序列，即<code>1, 2, 3, 4, 5</code>。</li><li><code>list()</code>函数将这个<code>range</code>对象转换为一个列表，所以<code>arr</code>最终是<code>[1, 2, 3, 4, 5]</code>。</li></ul><p>注意：json.dump写入文件要对文件使用'w'写入模式。</p><h3>json.load</h3><pre type="Python"><code>filename = <span class="hljs-string">'numbers.json'</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(filename) <span class="hljs-keyword">as</span> file_object:
+    nums = json.load(file_object)
+
+print(nums)</code></pre><p>使用json.load可以将文件内容加载到内存中。</p><h3>综合案例</h3><pre type="Python"><code>filename = <span class="hljs-string">'username.json'</span>
+<span class="hljs-keyword">try</span>:
+    <span class="hljs-comment"># 先从文件中读取 如果文件不存在那么就让用户输入并创建</span>
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(filename) <span class="hljs-keyword">as</span> file_read:
+        username = json.load(file_read)
+<span class="hljs-keyword">except</span> FileNotFoundError:
+    <span class="hljs-comment"># 如果用户名文件不存在 那么询问</span>
+    username = <span class="hljs-built_in">input</span>(<span class="hljs-string">'你叫什么名字\n'</span>)
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(filename, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> file_write:
+        json.dump(username, file_write)
+        print(<span class="hljs-string">'我们记住你的名字了：'</span> + username)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">'欢迎回来'</span> + username)</code></pre><p>上面例子是执行脚本，当脚本不存在到时候 进入except，引导用户输入，并保存用户名。如果文件存在则进入else，输出用户名。</p><p>这里在敲代码时候遇到几个问题：</p><p>1、脚本文件名不可以是json.py</p><blockquote>AttributeError: partially initialized module 'json' has no attribute 'dump' (most likely due to a circular import) 可以看出，问题出在循环导入上。当你把 Python 文件命名为 json.py 时，Python 在尝试导入 json 模块时，会优先导入你当前的 json.py 文件，而不是 Python 标准库中的 json 模块，这样就导致无法使用标准库 json 模块里的 dump 和 load 等方法。</blockquote><p><b><font color="#c24f4a">所以不要起与py模块同名的脚本文件！</font></b></p><p>2、当无意中创建了空的username.json文件时，执行json.load会报错：</p><p><code>JSONDecodeError: Expecting value: line 1 column 1 (char 0)</code>通常表示<code>json.load()</code>函数试图解析一个空的 JSON 文件或者文件内容不是有效的 JSON 格式。如果<code >username.json</code>文件为空，<code >json.load()</code>就会抛出<code >JSONDecodeError</code>异常，因为它期望文件中包含有效的 JSON 数据。</p><p>所以，保险起见，可以这么修改：</p><pre type="Python"><code>try:
+    <span class="hljs-keyword">with</span> <span class="hljs-keyword">open</span>(filename, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> file_object:
+        <span class="hljs-comment"># 先读取文件内容</span>
+        <span class="hljs-keyword">content</span> = file_object.read()
+        <span class="hljs-comment"># 检查文件内容是否为空</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">content</span>:
+            username = json.loads(<span class="hljs-keyword">content</span>)
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-comment"># 文件为空，执行与文件不存在时相同的操作</span>
+            username = <span class="hljs-keyword">input</span>(<span class="hljs-string">'你叫什么名字\n'</span>)
+            <span class="hljs-keyword">with</span> <span class="hljs-keyword">open</span>(filename, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> <span class="hljs-keyword">file</span>:
+                json.dump(username, <span class="hljs-keyword">file</span>)
+                print(<span class="hljs-string">'我们记住你的名字了：'</span> + username)</code></pre><p>先执行一次file_object.read()判断json中有没有内容，有内容再执行json.load</p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：open
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/321" class="imgbox">
+                <img src="/statics/blog/2022/1020/b585415b95b0a09b50a897e45b449245.jpg">
+            </a>
+            <a href="/blog/articles/321" class="title" title="uniapp项目中禁止横屏让app不自动旋转且始终保持竖屏">
+                uniapp项目中禁止横屏让app不自动旋转且始终保持竖屏
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/70" class="imgbox">
+                <img src="/statics/blog/2021/0520/3f32ee8c5444251a0d447666905dd314.jpg">
+            </a>
+            <a href="/blog/articles/70" class="title" title="程序员跳槽涨薪攻略大全">
+                程序员跳槽涨薪攻略大全
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/484" class="imgbox">
+                <img src="/statics/blog/2024/0326/90ea11d08a1726570ae38a9a226c9186.png">
+            </a>
+            <a href="/blog/articles/484" class="title" title="在phpstudy中配置composer">
+                在phpstudy中配置composer
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/python">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/608">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python中的全局变量
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/577">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python基础-pip命令行注解
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/550">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python基础-类和import
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/583">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python基础-注释
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/581">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        python中的matplotlib库的基本使用
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

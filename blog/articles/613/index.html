@@ -1,0 +1,1072 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="axios-abortController、signal配合axios实现一个可以中断请求的操作 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>axios-abortController、signal配合axios实现一个可以中断请求的操作 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="axios，abortController，signal"/>
+<meta name="description" content="如何用axios封装一个可以手动控制中断的请求？"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 613,
+            article_title: 'axios-abortController、signal配合axios实现一个可以中断请求的操作',
+            article_desc: '如何用axios封装一个可以手动控制中断的请求？',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal active">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" class="active">
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/vue">Vue</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">axios-abortController、signal配合axios实现一个可以中断请求的操作</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>5937</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>451</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2025-11-05 09:24:15</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>问题说明</h2><p>axios+拦截器+自定义请求头处理+自定义请求头导致的请求预检处理</p><p><a href="/blog/articles/618" target="_blank">axios-统一用拦截器在header请求头和请求体中添加参数并使用PHP获取</a></p><p><a href="/blog/articles/616" target="_blank">axios-关于封装一个底层axios请求和拦截器interceptors，catch错误（throw或reject）？</a></p><p><a href="/blog/articles/615" target="_blank">axios-options请求预检和Vue中axios封装以及withCredentialstrue</a></p><p><a href="/blog/articles/613" target="_blank">axios-abortController、signal配合axios实现一个可以中断请求的操作</a></p><div><p>有如下情况，当用户每次进入***/my-cd这个路由的时候，会发送一个拉取列表的请求，但是由于网络环境不好，可能出现用户长时间等待的情况。这时候，当用户退出的时候，我需要让当前正在发送的请求立即中断（我是将整个请求所有的请求失败进行了统一的处理，失败的时候都会进行弹窗提示）所以这就会导致，用户进入路由-&gt;发送请求-&gt;请求长时间等待响应-&gt;用户退出当前路由前往其他路由-&gt;此时上一个响应完成，弹窗提示失败，非常影响体验。</p><p>为了解决这个问题，我考虑在用户退出路由的时候，可以中断当前路由的请求，避免资源浪费。</p><p>首先是我基于axios统一封装的底层请求，http.js：</p></div><div><pre type="JavaScript"><code><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>;
+<span class="hljs-keyword">import</span> { CODE_OK, BASE_URL, ERR_CODE, TIME_OUT, SERVICE_NOT_NEED_LOADING } <span class="hljs-keyword">from</span> <span class="hljs-string">"./config"</span>;
+<span class="hljs-keyword">import</span> { showAlert, loadingAlert } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/common/js/sweet-alert"</span>;
+
+<span class="hljs-comment">// 创建 axios 实例</span>
+<span class="hljs-keyword">const</span> instance = axios.create({
+    <span class="hljs-attr">baseURL</span>: BASE_URL,
+    <span class="hljs-attr">headers</span>: {
+        <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/x-www-form-urlencoded;charset=UTF-8'</span>
+    },
+    <span class="hljs-comment">// 设置超时时间为30秒</span>
+    <span class="hljs-attr">timeout</span>: TIME_OUT,
+    <span class="hljs-comment">// withCredentials: true, // 如需跨域携带 cookie 可开启</span>
+});
+
+<span class="hljs-comment">// 添加请求拦截器：自动在 Header 中添加 Token</span>
+instance.interceptors.request.use(
+    <span class="hljs-function">(<span class="hljs-params">config</span>) =&gt;</span> {
+        <span class="hljs-comment">// 判断接口是否在“不需要 loading”的列表中</span>
+        <span class="hljs-keyword">const</span> isNeedLoading = !SERVICE_NOT_NEED_LOADING.includes(config.url);
+
+        <span class="hljs-comment">// 需要 loading 时，创建并存储（返回的是自定义对象，含 close 方法）</span>
+        <span class="hljs-keyword">if</span> (isNeedLoading) {
+            <span class="hljs-comment">// // 可传参修改最小时间，如 loadingAlert(500) 弹窗等待几秒</span>
+            config.loadingInstance = loadingAlert(<span class="hljs-number">500</span>);
+        }
+
+
+        <span class="hljs-comment">// 从 localStorage 中获取 Token</span>
+        <span class="hljs-keyword">const</span> token = <span class="hljs-string">'123456789'</span>;
+        <span class="hljs-keyword">if</span> (token) {
+            <span class="hljs-comment">// 将 Token 添加到请求头（格式通常为 Bearer + 空格 + Token，具体看后端要求）</span>
+            config.headers.Authorization = <span class="hljs-string">`Bearer <span class="hljs-subst">${token}</span>`</span>;
+        }
+        <span class="hljs-keyword">return</span> config;
+    },
+    <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+        <span class="hljs-comment">// 处理请求错误</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error);
+    }
+);
+
+<span class="hljs-comment">// 添加响应拦截器：关闭加载弹窗并处理超时错误</span>
+instance.interceptors.response.use(
+    <span class="hljs-keyword">async</span> (response) =&gt; {
+        <span class="hljs-comment">// // 只有存在 loadingInstance 且有 close 方法时，才执行关闭</span>
+        <span class="hljs-keyword">if</span> (response.config.loadingInstance?.close) {
+            <span class="hljs-keyword">await</span> response.config.loadingInstance.close();
+        }
+        <span class="hljs-keyword">return</span> response;
+    },
+    <span class="hljs-keyword">async</span> (error) =&gt; {
+        <span class="hljs-built_in">console</span>.log(error);
+        <span class="hljs-comment">// 关闭加载弹窗</span>
+        <span class="hljs-keyword">if</span> (error.config &amp;&amp;
+            error.config.loadingInstance?.close
+        ) {
+            <span class="hljs-keyword">await</span> error.config.loadingInstance.close();
+        }
+
+        <span class="hljs-comment">// 处理超时错误</span>
+        <span class="hljs-keyword">switch</span> (error.code) {
+            <span class="hljs-keyword">case</span> <span class="hljs-string">'ECONNABORTED'</span>:
+                showAlert({
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">'服务器繁忙'</span>,
+                    <span class="hljs-attr">text</span>: <span class="hljs-string">'请稍候刷新重试'</span>,
+                    <span class="hljs-attr">icon</span>: <span class="hljs-string">'error'</span>,
+                });
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-comment">// 主动中断请求</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-string">'ERR_CANCELED'</span>:
+                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'主动中断请求'</span>, error.code);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-comment">// 处理其他网络错误</span>
+                showAlert({
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">'网络错误'</span>,
+                    <span class="hljs-attr">text</span>: <span class="hljs-string">'无法连接到服务器，请检查网络设置后，刷新重试'</span>,
+                    <span class="hljs-attr">icon</span>: <span class="hljs-string">'error'</span>,
+                });
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error);
+    }
+);
+
+<span class="hljs-comment">/*
+* GET 请求封装
+* params 必须是一个对象
+* config 可选配置（如 signal、headers 等axios配置）
+* */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">url, params, config = {}</span>) </span>{
+    <span class="hljs-keyword">if</span> (!(<span class="hljs-keyword">typeof</span> params === <span class="hljs-string">'object'</span>)) {
+        params = { params };
+    }
+    <span class="hljs-comment">// 将 params 和 config 合并到 axios 请求配置中（config 优先级更高，可覆盖 params）</span>
+    <span class="hljs-keyword">const</span> requestConfig = {
+        params,
+        ...config  <span class="hljs-comment">// 合并 signal 等配置</span>
+    };
+    <span class="hljs-keyword">return</span> instance.get(url, requestConfig).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> { <span class="hljs-comment">// 传递合并后的配置</span>
+        <span class="hljs-keyword">const</span> serverData = res.data;
+        <span class="hljs-keyword">if</span> (serverData.code === CODE_OK) {
+            <span class="hljs-keyword">return</span> serverData.data;
+        } <span class="hljs-keyword">else</span> {
+            errorHandle(serverData);
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(serverData.msg || <span class="hljs-string">'接口请求失败'</span>);
+        }
+    }).catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-comment">// 关键：过滤主动中断的 AbortError，避免误触发错误提示</span>
+        <span class="hljs-keyword">if</span> (e.name !== <span class="hljs-string">'AbortError'</span>) {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'请求错误：'</span>, e);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    });
+}
+
+<span class="hljs-comment">/*
+* POST 请求封装（同 GET 逻辑，增加 config 参数）
+* params 必须是一个对象
+* config 可选配置（如 signal、headers 等axios配置）
+* */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">url, params, config = {}</span>) </span>{ <span class="hljs-comment">// 新增 config 参数</span>
+    <span class="hljs-keyword">if</span> (!(<span class="hljs-keyword">typeof</span> params === <span class="hljs-string">'object'</span>)) {
+        params = { params };
+    }
+    <span class="hljs-comment">// POST 请求中，axios 第二个参数是 data，第三个是 config，需注意参数顺序</span>
+    <span class="hljs-keyword">return</span> instance.post(url, params, config).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> { <span class="hljs-comment">// 传递 config 到第三个参数</span>
+        <span class="hljs-keyword">const</span> serverData = res.data;
+        <span class="hljs-built_in">console</span>.log(serverData)
+        <span class="hljs-keyword">if</span> (serverData.code === CODE_OK) {
+            <span class="hljs-keyword">return</span> serverData.data;
+        } <span class="hljs-keyword">else</span> {
+            errorHandle(serverData);
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(serverData.msg || <span class="hljs-string">'接口请求失败'</span>);
+        }
+    }).catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-comment">// 同样过滤 AbortError</span>
+        <span class="hljs-keyword">if</span> (e.name !== <span class="hljs-string">'AbortError'</span>) {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'请求错误：'</span>, e);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    });
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">errorHandle</span>(<span class="hljs-params">serverData</span>) </span>{
+    <span class="hljs-keyword">switch</span> (<span class="hljs-literal">true</span>) {
+        <span class="hljs-keyword">case</span> ERR_CODE.cdkey.includes(serverData.code):
+            showAlert({
+                <span class="hljs-attr">text</span>: serverData.msg,
+                <span class="hljs-attr">icon</span>: <span class="hljs-string">'warning'</span>
+            });
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            showAlert({
+                <span class="hljs-attr">text</span>: serverData.msg
+            });
+            <span class="hljs-built_in">console</span>.log(serverData);
+    }
+}
+</code></pre></div><p><b>这里关于post和get，还有一点要说明</b>，<b>他们最后如果进入到catch，结果返回的是return null。</b></p><p>还有一种写法：</p><pre type="Html"><code><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">url, params, config = {}</span>) </span>{ <span class="hljs-comment">// 新增 config 参数</span>
+    <span class="hljs-keyword">if</span> (!(<span class="hljs-keyword">typeof</span> params === <span class="hljs-string">'object'</span>)) {
+        params = { params };
+    }
+    <span class="hljs-comment">// POST 请求中，axios 第二个参数是 data，第三个是 config，需注意参数顺序</span>
+    <span class="hljs-keyword">return</span> instance.post(url, params, config).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> { <span class="hljs-comment">// 传递 config 到第三个参数</span>
+       ...
+    }).catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-literal">null</span>)
+    });
+}</code></pre><p>这里绝对不要改为Promise.reject(null)</p><p>先明确两者的核心区别：</p><figure><table><thead><tr><th>写法</th><th>本质</th><th>前端调用时的表现</th></tr></thead><tbody><tr><td><code>return null</code></td><td>成功态（resolved）</td><td>会进入<code>await</code>的 “成功结果”，<code>response</code>直接等于<code>null</code>，用<code>if(!response)</code>判断失败即可。</td></tr><tr><td><code>Promise.reject(null)</code></td><td>失败态（rejected）</td><td>会直接触发<code>catch</code>（或<code>try/catch</code>的<code>catch</code>块），无法通过<code>response</code>拿到<code>null</code>。</td></tr></tbody></table></figure><p>如果失败返回的是null，那么前端调用的时候，只需要：</p><pre>res = await post(xxx)if(!res) {.. 失败逻辑..}</pre><p>而如果在catch中使用Promise.reject(null)，那么在前端的await就需要在包一层try-catch</p><pre>try {res = await post(xxx)} catch (error) {&nbsp;  你必须额外加 try-catch 才能捕获这个 reject}</pre><blockquote><p>但是这么做的前提就是：必须明确 “后端正常响应只会返回数组 / 对象，不会返回<code>null</code>”，</p></blockquote><p>config.js</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> { DEBUG } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/common/js/const"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> CODE_OK = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// 需要沟通错误码</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ERR_CODE = {
+    <span class="hljs-attr">cdkey</span>: [<span class="hljs-number">1001</span>, <span class="hljs-number">1002</span>]
+};
+
+<span class="hljs-comment">// 请求超时时间 30秒</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> TIME_OUT = <span class="hljs-number">10</span> * <span class="hljs-number">1000</span>;
+
+<span class="hljs-comment">// 请求的地址</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> BASE_URL = DEBUG ? <span class="hljs-string">'/api/'</span> : <span class="hljs-string">`server/`</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> SERVICE = {
+    <span class="hljs-attr">user</span>: <span class="hljs-string">'user'</span>,
+    <span class="hljs-attr">bind_cdkey</span>: <span class="hljs-string">'****'</span>,
+    <span class="hljs-attr">my_cdkey</span>: <span class="hljs-string">'***'</span>
+};
+
+<span class="hljs-comment">// 不需要弹窗等待的接口 自定义等待处理逻辑</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> SERVICE_NOT_NEED_LOADING = [
+    SERVICE.user,
+    SERVICE.my_cdkey
+];</code></pre><p>request.js 将底层请求方法进行语义化封装</p><pre type="JavaScript"><code><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getMyCdkeys</span>(<span class="hljs-params">userId, { signal } = {}</span>) </span>{
+    <span class="hljs-keyword">return</span> get(SERVICE.my_cdkey,
+        {
+            <span class="hljs-attr">user_id</span>: userId,
+            <span class="hljs-attr">delay</span>: <span class="hljs-number">2</span> * <span class="hljs-number">1000</span>
+        },
+        { signal }
+    );
+}</code></pre><h2>组件中的abortController</h2><div>我们直接看vue组合API中的组件实现逻辑：</div><div><pre type="JavaScript"><code><span class="hljs-comment">/* eslint-disable */</span>
+<span class="hljs-keyword">import</span> {ref, computed, nextTick, onBeforeUnmount, onMounted} <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> {useStore} <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span>;
+<span class="hljs-keyword">import</span> {getMyCdkeys} <span class="hljs-keyword">from</span> <span class="hljs-string">"@/service/request"</span>;
+<span class="hljs-keyword">import</span> { useRoute, useRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span>; 
+
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> store = useStore();
+    <span class="hljs-comment">// 路由信息对象（命名改为 route 更规范）</span>
+    <span class="hljs-keyword">const</span> route = useRoute();
+    <span class="hljs-comment">// 路由实例（用于导航操作）</span>
+    <span class="hljs-keyword">const</span> router = useRouter();
+
+    <span class="hljs-comment">// 创建请求中断控制器</span>
+    <span class="hljs-keyword">let</span> abortController = <span class="hljs-literal">null</span>;  <span class="hljs-comment">// 用于跟踪当前请求</span>
+
+    <span class="hljs-keyword">const</span> isWaitingRequestCdkey = ref(<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">const</span> cdkeyList = computed(<span class="hljs-function">() =&gt;</span> store.getters.cdkeyList);
+    <span class="hljs-keyword">const</span> userID = <span class="hljs-number">123</span>;
+    
+
+    <span class="hljs-comment">// 用 AbortController 包装请求</span>
+    <span class="hljs-keyword">const</span> fetchCdkeys = <span class="hljs-keyword">async</span> () =&gt; {
+        <span class="hljs-keyword">if</span> (abortController) {
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-comment">// 每次请求前创建新的控制器（避免复用已中断的实例）</span>
+        abortController = <span class="hljs-keyword">new</span> AbortController();
+        <span class="hljs-keyword">const</span> resList = <span class="hljs-keyword">await</span> getMyCdkeys(userID.value, {
+            <span class="hljs-comment">// 绑定中断信号</span>
+            <span class="hljs-attr">signal</span>: abortController.signal
+        });
+        <span class="hljs-comment">// 请求失败</span>
+        <span class="hljs-keyword">if</span> (resList === <span class="hljs-literal">null</span>) {
+            <span class="hljs-comment">// 若还留在当前组件 那么返回上一级</span>
+            <span class="hljs-keyword">if</span> (route.name === <span class="hljs-string">'****-my-cd'</span>) {
+                router.go(-<span class="hljs-number">1</span>);
+            }
+            <span class="hljs-keyword">return</span>;
+        }
+        isWaitingRequest.value = <span class="hljs-literal">false</span>;
+        store.commit(<span class="hljs-string">'setCdkeyList'</span>, resList);
+    };
+
+
+    onMounted(<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-comment">// 确保组件完全挂载后再发起请求</span>
+        fetchCdkeys(); 
+    });
+
+    onBeforeUnmount(<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">if</span> (abortController) {
+            abortController.abort();
+            <span class="hljs-comment">// 重置控制器</span>
+            abortController = <span class="hljs-literal">null</span>;
+            isWaitingRequest.value = <span class="hljs-literal">true</span>;
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'组件卸载，中断CDKey请求'</span>);
+        }
+    });
+
+    <span class="hljs-keyword">return</span> {
+        ****
+    }
+}
+</code></pre></div><p><code>signal: abortController.signal</code>的作用是将请求与一个<strong>AbortSignal</strong>绑定，用于在需要时<strong>主动中断未完成的请求</strong>（例如组件卸载、路由跳转时），避免无效请求继续占用资源或导致不必要的错误。</p><p>虽然在 http.js 中没有显式处理<code>signal</code>的逻辑，但它通过 axios 内置的机制生效了，具体如下：</p><ol><li><p><strong>AbortController 与 AbortSignal 的作用</strong><code>AbortController</code>是浏览器原生 API，通过<code>abortController.signal</code>生成一个信号对象，可传递给 fetch/axios 等请求工具。当调用<code>abortController.abort()</code>时，该信号会被触发，请求会立即中断。</p></li><li><p><strong>在 http.js 中的隐含处理</strong></p><p>虽然 http.js 没有显式写处理<code>signal</code>的代码，但 axios 内部会识别并处理配置中的<code>signal</code>参数，</p><p>axios 会监听<code>signal</code>的状态，当信号被中止（<code>abort()</code>调用）时，会立即终止请求并抛出<code>AbortError</code>。也就是http.js中监听的：ERR_CANCELED</p></li><li><p><strong>在当前业务中</strong></p><p>组件卸载时会调用<code>abortController.abort()</code>：</p></li></ol><pre type="JavaScript"><code>onBeforeUnmount(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (abortController) {
+    abortController.abort(); <span class="hljs-regexp">//</span> 中断请求
+    abortController = <span class="hljs-literal">null</span>;
+  }
+});</code></pre><p>此时，通过<code>signal</code>绑定的请求会被立即终止，避免组件已经卸载后，请求仍在继续（可能导致内存泄漏或无用的错误提示）。</p><p>总结一下就是这么封装好之后，组件内部需要中断的时候，发送abortController.abort(); 只要signal传给了axios，那么axios就会自动处理中断的请求。</p><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：axios，abortController，signal
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/22" class="imgbox">
+                <img src="/statics/blog/2021/0305/00c65a58fab8d9059d0dfbf5c0b9c9ee.jpg">
+            </a>
+            <a href="/blog/articles/22" class="title" title="https网页请求http的接口">
+                https网页请求http的接口
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/585" class="imgbox">
+                <img src="/statics/blog/2025/0312/770a3c7de9b0652534d8341f1cf59ccd.png">
+            </a>
+            <a href="/blog/articles/585" class="title" title="pygal库的使用">
+                pygal库的使用
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/339" class="imgbox">
+                <img src="/statics/blog/2022/1209/47944d26f348fc6e06c88538af70083f.png">
+            </a>
+            <a href="/blog/articles/339" class="title" title="uniapp打包APP上架相关问题【IOS】篇">
+                uniapp打包APP上架相关问题【IOS】篇
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/vue">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/19">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Vue+html2canvas截图空白的问题
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/446">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        input的type=file在移动手机端H5页面实现调用本地相册、拍照、录音
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/23">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue中使用lottie动画
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/301">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue2和vue3的区别
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/227">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue3配置多页面应用
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="【课堂笔记】PHP开发APP接口【单例模式】(二) | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>【课堂笔记】PHP开发APP接口【单例模式】(二) | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="JWT"/>
+<meta name="description" content="JsonWebToken学习笔记之二，在window下安装composer与如何使用firebase-php-jwt的类库，并且封装一个加密解密的实用类。并且描述了如何使用一个基本的单例模式。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 54,
+            article_title: '【课堂笔记】PHP开发APP接口【单例模式】(二)',
+            article_desc: 'JsonWebToken学习笔记之二，在window下安装composer与如何使用firebase-php-jwt的类库，并且封装一个加密解密的实用类。并且描述了如何使用一个基本的单例模式。',
+            article_img: '/statics/blog/2021/0430/da9c422e423825dfa9611987768bc41e.jpg',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal active">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal ">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" class="active">
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" >
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/php">PHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">【课堂笔记】PHP开发APP接口【单例模式】(二)</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>9005</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>430</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2021-04-30 14:48:19</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>本地安装Composer</h2><p>具体安装使用推荐大家一个网站：<a href="https://www.phpcomposer.com/" target="_blank">phpcomposer</a>&nbsp;这里面介绍的比较详细，我就不多说了。</p><p>由于我本地是windows+xampp在安装composer时候遇到一个问题：</p><p><img src="/statics/blog/2021/0430/da9c422e423825dfa9611987768bc41e.jpg"></p><p>Your requirements could not be resolved to an installable set of packages.Problem 1- lcobucci/jwt[4.1.0, ..., 4.1.4] require ext-sodium * -&gt; it is missing from your system. Install or enable PHP's sodium extension.</p><p>看的我是一头雾水。最后经过分析，发现是php.ini中一个配置没打开。在PHP。ini中搜索</p><p><img src="/statics/blog/2021/0430/4f4f7783b1590edb9bacc6a733d906e5.jpg"></p><p>去掉前面的分号，重启apache，再执行以下语句，安装成功。</p><pre type="Html"><code><span class="hljs-comment">// cmd进入对应的项目文件夹 执行composer</span>
+<span class="hljs-attr">D</span>:\xampp\htdocs\json-php&gt;composer <span class="hljs-built_in">require</span> lcobucci/jwt</code></pre><p>课程中用到的JWT库：<a href="https://github.com/lcobucci/jwt" target="_blank">https://github.com/lcobucci/jwt</a></p><p>JWT官网：<a href="https://jwt.io/" target="_blank">https://jwt.io/</a></p><blockquote>安装成功，会在json-php文件夹下多出一个vendor文件夹、一个composer.json文件，一个<span >composer.lock文件，证明安装成功了。</span></blockquote><h2>如何使用单例模式</h2><p>使用JWT进行验证，因为验证的都是一个用户，所以使用单例模式可以节约系统资源。以下是实现一个单例的基本模式。</p><pre type="PHP"><code><span class="hljs-comment">/**
+ * 单例 一次请求中所有出现使用JWT的地方都是一个用户
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JwtAuth</span>
+</span>{
+    
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">static</span> $instance;
+
+    <span class="hljs-comment">// 获取jwtauth的句柄</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getInstance</span>(<span class="hljs-params"></span>)
+    </span>{   
+        <span class="hljs-comment">// 判断当前类是否为空，为空则new本身</span>
+        <span class="hljs-keyword">if</span> (is_null(<span class="hljs-built_in">self</span>::$instance)) {
+            <span class="hljs-built_in">self</span>::$instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">self</span>();
+        }
+        <span class="hljs-comment">//  保证每次通过getInstance方法拿到的句柄是同一个句柄</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">self</span>::$instance;
+    }
+
+    <span class="hljs-comment">// 将类的构造函数私有化，防止其他人new这个类，否则外部可以再声明一个类</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>)
+    </span>{
+
+    }
+
+    <span class="hljs-comment">// 将clone函数也私有化，以保证在当前进程中，这个php就是一个单例，防止外部去克隆这个类</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__clone</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-comment">// 空函数即可</span>
+    }
+}</code></pre><p>注意在单例模式中，不能在__construct()中调用方法，那样会报错，说xx方法为null，比如：</p><pre type="PHP"><code><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dosome</span>(<span class="hljs-params"></span>)
+</span>{
+<span class="hljs-comment">//....</span>
+}
+<span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>)
+</span>{
+   <span class="hljs-comment"><font color="#c24f4a">// 错误不能这么写</font> 会提示dosome function is null云云</span>
+  <span class="hljs-keyword">$this</span>-&gt;dosome(); 
+}</code></pre><p>正确的单例模式使用方法是：</p><pre type="PHP"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dosome</span>(<span class="hljs-params"></span>)
+</span>{
+<span class="hljs-comment">//....</span>
+}
+
+$jwt = JwtAuth::getInstance();
+$jwt-&gt;dosome();</code></pre><h2>使用Firebase\JWT封装模拟登陆的类</h2><p>首先可以通过composer进行安装：（教程上使用的<a href="https://github.com/lcobucci/jwt" target="_blank">lcobucci-jwt</a>，个人经过测试推荐这个插件）</p><pre type="Html"><code>composer <span class="hljs-built_in">require</span> firebase/php-jwt</code></pre><h3>首先编辑jwtauth.php用于生成token的类</h3><pre type="PHP"><code><span class="hljs-comment">// 依赖于composer的autoload</span>
+<span class="hljs-comment">// require('../vendor/autoload.php');</span>
+<span class="hljs-keyword">use</span> \<span class="hljs-title">Firebase</span>\<span class="hljs-title">JWT</span>\<span class="hljs-title">JWT</span>;
+
+<span class="hljs-comment">/**
+ * 单例 一次请求中所有出现使用JWT的地方都是一个用户
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JwtAuth</span>
+</span>{
+    <span class="hljs-comment">// jwt token</span>
+    <span class="hljs-keyword">private</span> $token;
+
+    <span class="hljs-comment">// 相当于哪个网站颁发的token</span>
+    <span class="hljs-keyword">private</span> $iss = <span class="hljs-string">'www.wubin.work'</span>;
+
+    <span class="hljs-comment">// 谁去接收</span>
+    <span class="hljs-keyword">private</span> $aud = <span class="hljs-string">'tool.wubin.work'</span>;
+
+    <span class="hljs-comment">// 将用户uid等身份信息编码到jwt中</span>
+    <span class="hljs-keyword">private</span> $uid;
+
+    <span class="hljs-comment">// 用于加密的私钥</span>
+    <span class="hljs-keyword">private</span> $privateKey = <span class="hljs-string">&lt;&lt;&lt;EOD
+-----BEGIN RSA PRIVATE KEY-----
+MIICXQIBAAKBgQDWd6sYW3eriCT+I3E171E0IsB7X00Y2nKocQaL5qrpSX9gra+U
+soj2HE6RBJ3asdEP9zSGuBsUSvsbwu7aNxQJ5ChfGEMTv20JK5SLnLhcI1BsXNzz
+3OILUrZOPGk5tCuEeV4mGH5thXWryMt37p4kTSgAB/GIzy4SJZO1S/Hu0wIDAQAB
+AoGBAKX+ESrVAJZ+1ULt452/ELatfxT9+goWaU/9yvdVHUtaW4BUbeVFGcSCvDx5
+ukOeBRW6W6k5rZvTPO+LvJqgrpxebOxcW7d//9IFfZbGGd859/u3ej1wQ7O0emVV
+C9f5/3gyyiEBEjJhxDwiGV5uD1B1lbASBX5FEmBhkEL8C5HBAkEA8A+smv4TEkSi
+u5IsrbOS0ji4U/9cegFgAm/rV9KiucjSvE7PgtA+aUk+eBj1e23YDCrmrWGKOTpz
+opvigQrdGQJBAOS0+egptakQKiuyNEdWJ/9v+bmo0O2+MFRNSAajkLXpZUa/k+YS
+YNUesJbIBud7KUjFMOThbhwYdFHT96Iw/MsCQFZGO9EkGLSLCDUDDp2KmOyGR/Cg
+KJsMXXXixSC16Zd9TgcxB7DKqHNsSFAfIDIwwuF0lZygHm38zMwW2+tmfRkCQQDA
+QbJjC8z+FeydVuzDmxV8kXDoNZWMhXizJVQK4KzhfxX350w49/IWtfnUhsnnBY2q
+8rkrbqXVUGlX8EwXN/8JAkAGk3tnTs4CeEKWpwu0wawYiawSKPRdKyriNZzNDwPq
+s4mRqBeMnx7qqOPIvPl3JL8iZMzC8qyhSsCm53fWOHPc
+-----END RSA PRIVATE KEY-----
+EOD</span>;
+    
+    <span class="hljs-comment">// 用于解密的公钥</span>
+    <span class="hljs-keyword">public</span> $publicKey = <span class="hljs-string">&lt;&lt;&lt;EOD
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDWd6sYW3eriCT+I3E171E0IsB7
+X00Y2nKocQaL5qrpSX9gra+Usoj2HE6RBJ3asdEP9zSGuBsUSvsbwu7aNxQJ5Chf
+GEMTv20JK5SLnLhcI1BsXNzz3OILUrZOPGk5tCuEeV4mGH5thXWryMt37p4kTSgA
+B/GIzy4SJZO1S/Hu0wIDAQAB
+-----END PUBLIC KEY-----
+EOD</span>;
+
+    <span class="hljs-comment">// 单例模式 jwtauth句柄</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">static</span> $instance;
+
+    <span class="hljs-comment">// 获取jwtauth的句柄</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getInstance</span>(<span class="hljs-params"></span>)
+    </span>{   
+        <span class="hljs-comment">// 判断当前类是否为空，为空则new本身</span>
+        <span class="hljs-keyword">if</span> (is_null(<span class="hljs-built_in">self</span>::$instance)) {
+            <span class="hljs-built_in">self</span>::$instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">self</span>();
+        }
+        <span class="hljs-comment">//  保证每次通过getInstance方法拿到的句柄是同一个句柄</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">self</span>::$instance;
+    }
+
+    <span class="hljs-comment">// 将类的构造函数私有化，防止其他人new这个类，否则外部可以再声明一个类</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>) </span>{ }
+
+    <span class="hljs-comment">// 将clone函数也私有化，以保证在当前进程中，这个php就是一个单例，防止外部去克隆这个类</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__clone</span>(<span class="hljs-params"></span>) </span>{ }
+
+    <span class="hljs-comment">// 获取token 需要encode后才能调用这个函数,将通过encode获取到的token转成字符串</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getToken</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-comment">// 将对象强转为字符串</span>
+        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">string</span>)<span class="hljs-keyword">$this</span>-&gt;token;
+    }
+
+    <span class="hljs-comment">// 设置token</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setToken</span>(<span class="hljs-params">$token</span>)
+    </span>{
+        <span class="hljs-keyword">$this</span>-&gt;token = $token;
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>;
+    }
+
+    <span class="hljs-comment">// 设置jwt的身份信息</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setUid</span>(<span class="hljs-params">$uid</span>)
+    </span>{
+        <span class="hljs-keyword">$this</span>-&gt;uid = $uid;
+        <span class="hljs-comment">// 支持链式调用</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>;
+    }
+
+    <span class="hljs-comment">// 编码jwt token</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">encode</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-comment">// 当前时间</span>
+        $time = time();
+        $payload = <span class="hljs-keyword">array</span>(
+            <span class="hljs-comment">// 签发者</span>
+            <span class="hljs-string">"iss"</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;iss,
+            <span class="hljs-comment">// 接收该JWT的一方</span>
+            <span class="hljs-string">"aud"</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;aud,
+            <span class="hljs-comment">//签发时间</span>
+            <span class="hljs-string">"iat"</span> =&gt; $time,
+            <span class="hljs-comment">//(Not Before)：某个时间点后才能访问，比如设置time+30，表示当前时间30秒后才能使用</span>
+            <span class="hljs-string">"nbf"</span> =&gt; $time,
+            <span class="hljs-comment">//过期时间,这里设置2个小时</span>
+            <span class="hljs-string">'exp'</span> =&gt; $time + <span class="hljs-number">7200</span>,
+            <span class="hljs-comment">//自定义信息，不要定义敏感信息</span>
+            <span class="hljs-string">'data'</span> =&gt; [ 
+                    <span class="hljs-string">'uid'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;uid,
+                    <span class="hljs-string">'uname'</span> =&gt; <span class="hljs-string">'李小龙'</span>
+            ]
+
+        );
+
+        <span class="hljs-comment">/**
+         * $payload 生成JWT的各种信息
+         * $this-&gt;privateKey 用于加密的私钥
+         * 'RS256' header中的alg，解码时要与之相同
+         * <span class="hljs-doctag">@var</span> [type]
+         */</span>
+        <span class="hljs-keyword">$this</span>-&gt;token = JWT::encode($payload, <span class="hljs-keyword">$this</span>-&gt;privateKey, <span class="hljs-string">'RS256'</span>);
+
+        <span class="hljs-comment">// 如果要产生链式调用，就需要返回一个this对象                              </span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decode</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-comment">/**
+         * $this-&gt;token 传入之前jwt生成的token，
+         * $this-&gt;publicKey 用于解密的公钥
+         * array('RS256') 加密时的私钥alg 注意是一个数组
+         * <span class="hljs-doctag">@var</span> [type]
+         */</span>
+        $decoded =  JWT::decode(<span class="hljs-keyword">$this</span>-&gt;token, <span class="hljs-keyword">$this</span>-&gt;publicKey, <span class="hljs-keyword">array</span>(<span class="hljs-string">'RS256'</span>));
+        <span class="hljs-comment">// 转换生成的是一个对象，需要转化为数组</span>
+        $decoded_array = (<span class="hljs-keyword">array</span>) $decoded;
+        <span class="hljs-keyword">return</span> $decoded_array;
+    }
+}</code></pre><blockquote>使用非对称加密：私钥放在程序里的，公钥是可以放在任何客户端的，你可以理解成 这是两把钥匙，一把钥匙（私钥）你自己留着。另一把钥匙（公钥）你可以复制给任何人，当你有一个文件想要加密发送给别人，就用你的私钥把文件加密，然后把加密后的文件发给别人，别人拿到你这个加密后的文件可以用公钥解密 读到文件内容，因为私钥只有你自己知道 这样别人就没法伪装成你 给别人发信息。（以上解释来自：<a href="http://yangjinjian.com/" target="_blank">爱生活的技术君</a>）</blockquote><p><b>私钥：用于加密 公钥：用于解密</b></p><p><b>关于如何生成秘钥对：</b><a href="http://yangjinjian.com/2021/05/11/OpenSSL生成秘钥对/" target="_blank">爱生活的技术君：OpenSSL生成秘钥对</a></p><h3><b>使用jwtauth的类</b></h3><div><pre type="PHP"><code><span class="hljs-comment">// 使用composer安装 或者直接引用都可以</span>
+<span class="hljs-comment">// require('../vendor/autoload.php');</span>
+<span class="hljs-keyword">require</span>(<span class="hljs-string">'php-jwt/JWT.php'</span>);
+<span class="hljs-keyword">require</span>(<span class="hljs-string">'trait-json-class.php'</span>);
+<span class="hljs-keyword">require</span>(<span class="hljs-string">'jwtauth.php'</span>);
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JwtLogin</span>
+</span>{
+    <span class="hljs-comment">// 使用trait</span>
+    <span class="hljs-keyword">use</span> <span class="hljs-title">ResponseJson</span>;
+
+    <span class="hljs-comment">// 单独存放生成的token 用于解密</span>
+    <span class="hljs-keyword">public</span> $jwtToken = <span class="hljs-string">''</span>;
+
+    <span class="hljs-comment">// 模拟登陆 验证成功获取用户Id并返回一个Jwt</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">login</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-comment">// 获取客户端传递的参数 去数据库验证username和password是否是匹配的，然后获取到用户uid的信息</span>
+        
+        <span class="hljs-comment">// 去数据库或缓存中读取用户信息的Uid</span>
+        $uid = <span class="hljs-number">10</span>;
+
+        <span class="hljs-comment">// 获取uid的句柄</span>
+        $jwtAuth = JwtAuth::getInstance();
+        <span class="hljs-comment">// 类中每个方法都返回$this 因此可以链式调用</span>
+        $token = $jwtAuth-&gt;setUid($uid)
+                         -&gt;encode()
+                         -&gt;getToken();
+
+        <span class="hljs-comment">// 单独存放token 用于解密</span>
+        <span class="hljs-keyword">$this</span>-&gt;jwtToken = $token;
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;jsonSuccessData([
+            <span class="hljs-string">'token'</span> =&gt; $token
+        ]);              
+    }
+
+    <span class="hljs-comment">// 根据jwt获取用户信息</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUser</span>(<span class="hljs-params">$token</span>)
+    </span>{
+        $jwtAuth = JwtAuth::getInstance();
+        $decode = $jwtAuth-&gt;setToken($token)
+                          -&gt;decode();
+        <span class="hljs-keyword">return</span> $decode;
+    }
+}
+
+$login = <span class="hljs-keyword">new</span> JwtLogin();
+
+$jwt = $login-&gt;login();
+
+<span class="hljs-keyword">echo</span> $jwt;
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;"</span>;
+
+<span class="hljs-comment">// 单独获取生成的token</span>
+$jwt_token = $login-&gt;jwtToken;
+
+<span class="hljs-comment">// 用户每次请求都会带上这个token, 这样就可以验证用户鉴权信息，对token的过期时间进行验证</span>
+$user_info = $login-&gt;getUser($jwt_token);
+var_dump($user_info);</code></pre></div><h3>如果用户修改了token</h3><pre type="PHP"><code><span class="hljs-comment">// 单独获取生成的token</span>
+$jwt_token = $login-&gt;jwtToken;
+
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// 模拟用户修改了token</span>
+    $jwt_token = substr($jwt_token, <span class="hljs-number">5</span>);
+    $user_info = $login-&gt;getUser($jwt_token);
+    var_dump($user_info);
+} <span class="hljs-keyword">catch</span>(<span class="hljs-built_in">exception</span> $err) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"用戶修改了token，出错了"</span>;
+}</code></pre><p>使用try..catch捕获错误，对不能解密的token做对应的操作。</p><h2>Firebase/JWT使用参考</h2><h3>基本使用</h3><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">use</span> \<span class="hljs-title">Firebase</span>\<span class="hljs-title">JWT</span>\<span class="hljs-title">JWT</span>;
+
+<span class="hljs-comment">// 用于加密和解密的“钥匙”, 推荐使用非对称加密</span>
+$key = <span class="hljs-string">"example_key"</span>;
+<span class="hljs-comment">// jwt官方：载荷（payload) 包含一些定义信息和自定义信息</span>
+$payload = <span class="hljs-keyword">array</span>(
+    <span class="hljs-comment">// 签发者 可选</span>
+    <span class="hljs-string">"iss"</span> =&gt; <span class="hljs-string">"http://example.org"</span>,
+    <span class="hljs-comment">// 接收该JWT的一方 可选</span>
+    <span class="hljs-string">"aud"</span> =&gt; <span class="hljs-string">"http://example.com"</span>,
+    <span class="hljs-comment">// jwt所面向的用户</span>
+    <span class="hljs-string">"sub"</span> =&gt; ,
+    <span class="hljs-comment">// jwt的签发时间</span>
+    <span class="hljs-string">"iat"</span> =&gt; <span class="hljs-number">1356999524</span>,
+    <span class="hljs-comment">// (Not Before)定义在什么时间之前，某个时间点后才能访问，比如设置time+30，表示当前时间30秒后才能使用</span>
+    <span class="hljs-string">"nbf"</span> =&gt; <span class="hljs-number">1357000000</span>,
+    <span class="hljs-comment">// 过期时间,这里设置2个小时 3600秒=1小时</span>
+    <span class="hljs-string">'exp'</span> =&gt; $time + <span class="hljs-number">7200</span>, 
+    <span class="hljs-comment">// 自定义信息，不要定义敏感信息</span>
+    <span class="hljs-string">'data'</span> =&gt; [ 
+        <span class="hljs-string">'userid'</span> =&gt; <span class="hljs-number">1</span>,
+        <span class="hljs-string">'username'</span> =&gt; <span class="hljs-string">'wubin.work'</span>
+    ]
+);
+
+<span class="hljs-comment">/**
+ * 重要:
+ * 必须为应用程序指定支持的算法. 查看
+ * https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40
+ * 获取符合规范的算法列表。
+ * JWT::encode默认的加密算法是HS256
+ */</span>
+$jwt = JWT::encode($payload, $key);
+<span class="hljs-comment">// 解密 需要传入解密的key 双向加密就是公钥 以及加密时的算法</span>
+$decoded = JWT::decode($jwt, $key, <span class="hljs-keyword">array</span>(<span class="hljs-string">'HS256'</span>));
+
+print_r($decoded);
+
+<span class="hljs-comment">/*
+ 解密后得到的是一个对象而不是一个关联数组，如需关联数组，需要转换一下
+*/</span>
+$decoded_array = (<span class="hljs-keyword">array</span>) $decoded;
+
+<span class="hljs-comment">/**
+ * 你可以添加一个等待时间
+ * 签名客户端和验证服务器之间建议添加一个等待时间
+ * 等待时间不建议过长
+ * 来源: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#nbfDef
+ */</span>
+<span class="hljs-comment">// $leeway单位是秒</span>
+JWT::$leeway = <span class="hljs-number">60</span>;
+$decoded = JWT::decode($jwt, $key, <span class="hljs-keyword">array</span>(<span class="hljs-string">'HS256'</span>));
+<span class="hljs-meta">?&gt;</span></code></pre><h3>使用非对称加密解密</h3><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">use</span> \<span class="hljs-title">Firebase</span>\<span class="hljs-title">JWT</span>\<span class="hljs-title">JWT</span>;
+
+$privateKey = <span class="hljs-string">&lt;&lt;&lt;EOD
+-----BEGIN RSA PRIVATE KEY-----
+MIICXAIBAAKBgQ..见github插件地址-Example with RS256 (openssl)
+-----END RSA PRIVATE KEY-----
+EOD</span>;
+
+$publicKey = <span class="hljs-string">&lt;&lt;&lt;EOD
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GC...见github插件地址-Example with RS256 (openssl)
+-----END PUBLIC KEY-----
+EOD</span>;
+
+$payload = <span class="hljs-keyword">array</span>(
+    <span class="hljs-string">"iss"</span> =&gt; <span class="hljs-string">"example.org"</span>,
+    <span class="hljs-string">"aud"</span> =&gt; <span class="hljs-string">"example.com"</span>,
+    <span class="hljs-string">"iat"</span> =&gt; <span class="hljs-number">1356999524</span>,
+    <span class="hljs-string">"nbf"</span> =&gt; <span class="hljs-number">1357000000</span>
+);
+
+$jwt = JWT::encode($payload, $privateKey, <span class="hljs-string">'RS256'</span>);
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"Encode:\n"</span> . print_r($jwt, <span class="hljs-literal">true</span>) . <span class="hljs-string">"\n"</span>;
+
+$decoded = JWT::decode($jwt, $publicKey, <span class="hljs-keyword">array</span>(<span class="hljs-string">'RS256'</span>));
+
+<span class="hljs-comment">/*
+ 解密得到的是一个对象，而不是一个关联数组。如果需要得到关联数组，需要将其强制转换
+*/</span>
+$decoded_array = (<span class="hljs-keyword">array</span>) $decoded;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"Decode:\n"</span> . print_r($decoded_array, <span class="hljs-literal">true</span>) . <span class="hljs-string">"\n"</span>;
+<span class="hljs-meta">?&gt;</span></code></pre>
+                                            <h2>附件下载</h2>
+                        <div class="downloads-list">
+                                                            <div class="downloads-list-li">
+                                    <a href="//www.wubin.work/statics/blog/2021/0512/b01b71ff7ca2add85f2397fbf9d8f93c.zip" class="except-a" download="【课堂笔记】PHP开发APP接口【单例模式】(二)-附件-php-jwt-master">php-jwt-master</a>
+                                </div>
+                                                            <div class="downloads-list-li">
+                                    <a href="//www.wubin.work/statics/blog/2021/0512/31ebd0ef394888e2ebe023686e4ff43d.zip" class="except-a" download="【课堂笔记】PHP开发APP接口【单例模式】(二)-附件-composet-windows安装">composet-windows安装</a>
+                                </div>
+                                                            <div class="downloads-list-li">
+                                    <a href="//www.wubin.work/statics/blog/2021/0512/786092c26ef302ec346314402c683245.zip" class="except-a" download="【课堂笔记】PHP开发APP接口【单例模式】(二)-附件-auth-jwt">auth-jwt</a>
+                                </div>
+                                                    </div>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="http://yangjinjian.com/2021/05/11/OpenSSL生成秘钥对/" target="_blank">OpenSSL生成秘钥对</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://github.com/firebase/php-jwt" target="_blank">firebase|php-jwt(更好用)</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://github.com/lcobucci/jwt" target="_blank">lcobucci-jwt库</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://jwt.io/" target="_blank">JWT官网</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://www.phpcomposer.com/" target="_blank">phpcomposer安装使用</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：JWT
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/322" class="imgbox">
+                <img src="/statics/blog/2022/1021/62762cd1203a3f2a5c1ebf536e5820ef.jpg">
+            </a>
+            <a href="/blog/articles/322" class="title" title="设置网页在Safari15浏览器顶部状态栏的颜色">
+                设置网页在Safari15浏览器顶部状态栏的颜色
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/100" class="imgbox">
+                <img src="/statics/blog/2021/0623/f460191aa62e5b885217a3b4eae730b4.jpg">
+            </a>
+            <a href="/blog/articles/100" class="title" title="使用查询构造器查询数据">
+                使用查询构造器查询数据
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/31" class="imgbox">
+                <img src="/statics/blog/2021/0322/770048cfd291d762e53efdc0933c7340.jpg">
+            </a>
+            <a href="/blog/articles/31" class="title" title="【课堂笔记】PHP开发APP接口(一)">
+                【课堂笔记】PHP开发APP接口(一)
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/php">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/390">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        php接收base64并转存为图片保存到服务器
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/51">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        PHP正确统计中文字数以及截取字符串给超出的部分打点
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/188">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        【正则】一些常用的正则表达式总结
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/12">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        [正则]常用到的正则表达式
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/251">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        PHP、JS如何获取视频总时长与码率等信息
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

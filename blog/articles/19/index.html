@@ -1,0 +1,1279 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="Vue+html2canvas截图空白的问题 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>Vue+html2canvas截图空白的问题 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="html2canvas，vue，painter"/>
+<meta name="description" content="在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月2日，仅支持vue2.0版本，vue3版本引用的话会报错，如果选择使用请根据开发情况酌情使用，这个类似于小程序上的海报截图生成painter"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    <script>
+        var articleInfo = {
+            article_id: 19,
+            article_title: 'Vue+html2canvas截图空白的问题',
+            article_desc: '在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月2日，仅支持vue2.0版本，vue3版本引用的话会报错，如果选择使用请根据开发情况酌情使用，这个类似于小程序上的海报截图生成painter',
+            article_img: '/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <ul class="left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="http://build.wubin.work/" target="_blank" title="商务合作">
+                        商务
+                    </a>
+                </li>
+                <li>
+                    <a href="http://tool.wubin.work" target="_blank" title="常用工具">
+                        工具
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hao.wubin.work" target="_blank" title="好工人网址导航">
+                        导航
+                    </a>
+                </li>
+
+                                
+                <li>
+                    <a href="http://doc.wubin.work" target="_blank" title="开发技术资源汇总">
+                        专栏
+                    </a>
+                </li>
+                <li>
+                    <a href="http://lib.wubin.work" target="_blank" title="常用的各类前端开发库">
+                        肆库
+                    </a>
+                </li>
+                <li>
+                    <a href="http://code.wubin.work" target="_blank" title="我的微码">
+                        微码
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            管理
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel">
+                                                                        <a href="/blog/list/php/" class="normal ">
+                                PHP
+                            </a>
+                                                                                                <a href="/blog/list/js/" class="normal ">
+                                JS
+                            </a>
+                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
+                                ThinkPHP
+                            </a>
+                                                                                                <a href="/blog/list/vue/" class="normal active">
+                                Vue
+                            </a>
+                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
+                                CSS
+                            </a>
+                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
+                                Python
+                            </a>
+                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+                    <dl class="hot">
+                <dt>热门搜索：</dt>
+                <dd>
+                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
+                                            <a href="/search?s=课堂笔记">课堂笔记</a>
+                                            <a href="/search?s=jsonp">jsonp</a>
+                                    </dd>
+            </dl>
+            </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                                    <a href="/blog/list/php/" >
+                        PHP
+                    </a>
+                                    <a href="/blog/list/js/" >
+                        JS
+                    </a>
+                                    <a href="/blog/list/thinkphp/" >
+                        ThinkPHP
+                    </a>
+                                    <a href="/blog/list/vue/" class="active">
+                        Vue
+                    </a>
+                                    <a href="/blog/list/wechat/" >
+                        微信开发
+                    </a>
+                                    <a href="/blog/list/uniapp/" >
+                        uniapp
+                    </a>
+                                    <a href="/blog/list/css/" >
+                        CSS
+                    </a>
+                                    <a href="/blog/list/apache/" >
+                        Apache
+                    </a>
+                                    <a href="/blog/list/mysql/" >
+                        MySQL
+                    </a>
+                                    <a href="/blog/list/godot/" >
+                        Godot
+                    </a>
+                                    <a href="/blog/list/focus/" >
+                        社会关注
+                    </a>
+                                    <a href="/blog/list/design/" >
+                        设计
+                    </a>
+                                    <a href="/blog/list/python/" >
+                        Python
+                    </a>
+                                    <a href="/blog/list/xlyz/" >
+                        心灵驿站
+                    </a>
+                                    <a href="/blog/list/zhichang/" >
+                        聊聊职场
+                    </a>
+                                    <a href="/blog/list/java/" >
+                        Java
+                    </a>
+                                    <a href="/blog/list/zatan/" >
+                        经验杂谈
+                    </a>
+                                    <a href="/blog/list/default/" >
+                        默认
+                    </a>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/vue">Vue</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">Vue+html2canvas截图空白的问题</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                            <span class="isrecommend">
+                                <i class="icon fa fa-star"></i>
+                                <em>推荐</em>
+                            </span>
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>34453</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>2701</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2021-03-02 09:04:51</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：1、html2canvas，构造好DOM然后转canvas进行截图；2、使用<b>vue-canvas-poster（这个截止到2021年3月2日，仅支持vue2.0版本，不支持3.0，3.0版本引用的话会报错，如果选择使用请根据开发情况酌情使用，这个类似于小程序上的海报截图生成painter,链接请见文章底部）。由于我使用的是vue3所以只能无奈去踩html2canvas的坑了~~（如果条件可以的话 首推使用vue-canvas-poster）;</b></p><h2><b>安装html2canvas</b></h2><div><pre type="JavaScript"><code>npm install --save html2canvas
+// 项目中还使用了生成二维码的功能，所以需要先安装
+npm i qrcodejs2 
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://html2canvas.hertzen.com/dist/html2canvas.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://html2canvas.hertzen.com/dist/html2canvas.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div><div></div><h2>使用以及问题</h2><p>首先看一下效果图 <font color="#46acc8">(直接看结论：目录-&gt;划重点)</font></p><p><img src="/statics/blog/2021/0302/6604b26879d1dba7c30167e8db59795a.jpg"></p><p>1、先引用qrcodejs2以及html2canvas插件</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> html2canvas <span class="hljs-keyword">from</span> <span class="hljs-string">'html2canvas'</span>;
+<span class="hljs-keyword">import</span> QRCode <span class="hljs-keyword">from</span> <span class="hljs-string">'qrcodejs2'</span>;</code></pre><p>2、然后书写结构</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">"'playbill-card-x ' + showPlaybillCard"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">"'playbill-card ' + playbillCls"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"playbillCard"</span>&gt;</span>
+      <span class="hljs-comment">&lt;!--  主页分享 --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"index-card"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card-top"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"img-x"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"billImgIndex"</span>
+                   @<span class="hljs-attr">load</span>=<span class="hljs-string">"imageLoaded"</span>
+                   <span class="hljs-attr">:data-show</span>=<span class="hljs-string">"billImgIndex ? true : false"</span>
+              &gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-comment">&lt;!--  主页分享 end --&gt;</span>
+      <span class="hljs-comment">&lt;!-- 详细页分享 --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-card"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-card-inner"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card-top"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"img-x"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"billImgDetail"</span>
+                   @<span class="hljs-attr">load</span>=<span class="hljs-string">"imageLoaded"</span>
+                   <span class="hljs-attr">:data-show</span>=<span class="hljs-string">"billImgDetail ? true : false"</span>
+              &gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"article-x"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{{billTitle}}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{{billDesc}}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+              <span class="hljs-comment">&lt;!--  白色-透明渐变原先写在样式背景中，iosX上无效，使用img才有效 content:url(..也无效)   --&gt;</span>
+              <span class="hljs-comment">&lt;!-- data =&gt; detailWhite：require(...)  --&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"detailWhite"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bot-white-alpha"</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- 详细页分享 end --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"news-info"</span>&gt;</span>
+        <span class="hljs-comment">&lt;!--  用伪类做的圆（盖在虚线上）也不能正常显示改为元素替代  --&gt;</span>
+        <span class="hljs-comment">&lt;!--  通过样式控制只有在详情页生成的时候显示   --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-circle"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"left"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"info-x"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"zt-logo"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"ztlogo"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"信网专题"</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"news-title"</span>&gt;</span>独家视角审视青岛生活<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"news-tips"</span>&gt;</span>长按识别二维码 阅读文章详情<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"qrbox"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"qrbox"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"clear"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre><p>3、关键JS</p><p>这个案例中，我将详细页以及主页每次切换时的分享数据都挂载到body的data上，需要的时候就去读取：</p><p><img src="/statics/blog/2021/0302/b193d2f9020ba1d5ae333735d10cc867.jpg"></p><pre type="JavaScript"><code><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">"playbill"</span>,
+  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">billTitle</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-attr">billDesc</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-attr">billImg</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-comment">// 默认的图片</span>
+      <span class="hljs-attr">billImgIndex</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-attr">billImgDetail</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-attr">billLink</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-attr">billComponent</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-attr">showCard</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-comment">// 是否是在生成图片的异步操作中</span>
+      <span class="hljs-attr">isCreating</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-comment">// 用于截图的底部白色渐变</span>
+      <span class="hljs-attr">detailWhite</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">'../playbill/alpha@2x.png'</span>)
+    }
+  },
+  <span class="hljs-attr">computed</span>: {
+    <span class="hljs-comment">// 根据组件选择显示的模板</span>
+    <span class="hljs-function"><span class="hljs-title">playbillCls</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-keyword">let</span> cls = <span class="hljs-string">''</span>;
+      <span class="hljs-keyword">switch</span> (<span class="hljs-built_in">this</span>.billComponent) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'index'</span>:
+          cls = <span class="hljs-string">'isIndex'</span>;
+          <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'detail'</span>:
+          cls = <span class="hljs-string">'isDetail'</span>;
+          <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+          cls = <span class="hljs-string">''</span>;
+      }
+      <span class="hljs-keyword">return</span> cls;
+    },
+    <span class="hljs-comment">// 解决背景图片模糊的问题，使用img标签直接插入</span>
+    <span class="hljs-function"><span class="hljs-title">ztlogo</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">require</span>(<span class="hljs-string">'../playbill/zt-logo@2x.png'</span>);
+    },
+  },
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-comment">// 外部调用，开启截图</span>
+    <span class="hljs-function"><span class="hljs-title">createCard</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-comment">// 开始创建截图</span>
+      <span class="hljs-built_in">this</span>.isCreating = <span class="hljs-literal">true</span>;
+      <span class="hljs-comment">// 当开始生成图片时，发送事件通知外部进入等待状态,同时点击关闭会失效</span>
+      <span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">'creating'</span>, <span class="hljs-built_in">this</span>.isCreating);
+      <span class="hljs-comment">// 获取挂载在Body上的信息（省略）</span>
+      <span class="hljs-built_in">this</span>.getPlaybillInfo();
+      <span class="hljs-comment">// 创建二维码并实例化</span>
+      <span class="hljs-built_in">this</span>.createQrCode();
+      <span class="hljs-comment">// 初始化之后就生成二维码</span>
+      <span class="hljs-built_in">this</span>.qrcode.makeCode(<span class="hljs-built_in">this</span>.billLink);
+      <span class="hljs-comment">// 异步将图片转化为base64进行返回，否则图片图片因为跨域无法截图</span>
+      <span class="hljs-built_in">this</span>.getBase64Img();
+    },
+    <span class="hljs-comment">// 大图加载完毕后执行截图</span>
+    <span class="hljs-function"><span class="hljs-title">imageLoaded</span>(<span class="hljs-params">e</span>)</span> {
+      <span class="hljs-comment">// 排除重复执行的问题，图片加载完毕如果当前图片的-show=false那么就不要执行创建</span>
+      <span class="hljs-keyword">if</span> (!e.target.dataset.show) {
+        <span class="hljs-keyword">return</span>;
+      }
+      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-built_in">this</span>.createPlaybillImg();
+      }, <span class="hljs-number">20</span>);
+    },
+    <span class="hljs-comment">// 渲染图片</span>
+    <span class="hljs-function"><span class="hljs-title">createPlaybillImg</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'creating img!'</span>);
+      <span class="hljs-keyword">let</span> card = <span class="hljs-built_in">this</span>.$refs.playbillCard;
+      <span class="hljs-comment">// 获取海报DOM的宽高</span>
+      <span class="hljs-keyword">let</span> cardWidth = card.offsetWidth;
+      <span class="hljs-keyword">let</span> cardHeight = card.offsetHeight;
+
+      html2canvas(card, {
+        <span class="hljs-comment">// 解决图片跨域的配置，这里还需要后台的配合！后台不配合仅这里配置是不够的</span>
+        <span class="hljs-attr">useCORS</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-comment">// 指定截图的宽高</span>
+        <span class="hljs-attr">width</span>: cardWidth,
+        <span class="hljs-attr">height</span>: cardHeight,
+        <span class="hljs-comment">// 重点！当页面出现滚动条时，会出现截图空白，即截图有偏移！！所以需要加上以下4句</span>
+        <span class="hljs-attr">windowWidth</span>: <span class="hljs-built_in">document</span>.body.scrollWidth,
+        <span class="hljs-attr">windowHeight</span>: <span class="hljs-built_in">document</span>.body.scrollHeight,
+        <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">y</span>: <span class="hljs-built_in">window</span>.pageYOffset,
+        <span class="hljs-comment">// 可解决图片不透明问题以及有白边</span>
+        <span class="hljs-attr">backgroundColor</span>: <span class="hljs-literal">null</span>,
+      }).then(<span class="hljs-function">(<span class="hljs-params">canvas</span>) =&gt;</span> {
+        <span class="hljs-comment">// 给截图生成的canvas添加id</span>
+        canvas.setAttribute(<span class="hljs-string">'id'</span>,<span class="hljs-string">'thecanvas'</span>);
+        <span class="hljs-comment">// document.body.appendChild(canvas);</span>
+        <span class="hljs-keyword">var</span> context = canvas.getContext(<span class="hljs-string">'2d'</span>);
+        context.mozImageSmoothingEnabled = <span class="hljs-literal">false</span>;
+        context.webkitImageSmoothingEnabled = <span class="hljs-literal">false</span>;
+        context.msImageSmoothingEnabled = <span class="hljs-literal">false</span>;
+        context.imageSmoothingEnabled = <span class="hljs-literal">false</span>;
+
+        <span class="hljs-comment">// image/jpeg的时候第二个参数可以选择图片的质量 默认0.92 取值0-1</span>
+        <span class="hljs-comment">// 这里第二个参数是1那么生成的图片会很大</span>
+        <span class="hljs-keyword">let</span> data = canvas.toDataURL(<span class="hljs-string">"image/jpeg"</span>);
+
+        <span class="hljs-comment">// 生成图片后，向外部发送事件</span>
+        <span class="hljs-built_in">this</span>.isCreating = <span class="hljs-literal">false</span>;
+        <span class="hljs-comment">// 携带参数图片的base64以及正在生成改为false</span>
+        <span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">'created'</span>, data, <span class="hljs-built_in">this</span>.isCreating);
+      });
+    },
+    <span class="hljs-function"><span class="hljs-title">getPlaybillInfo</span>(<span class="hljs-params"></span>)</span> {... <span class="hljs-comment">// 从body上获取数据},</span>
+    <span class="hljs-comment">// 异步获取图片</span>
+    <span class="hljs-function"><span class="hljs-title">getBase64Img</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-comment">// 如果没有图(billImg='')那么就不请求 </span>
+      <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.billImg) {
+        <span class="hljs-built_in">this</span>.noBillImg();
+        <span class="hljs-keyword">return</span>;
+      }
+      <span class="hljs-comment">// 这里需要单独引用方法，发送图片链接返回base64编码</span>
+      getBase64(<span class="hljs-built_in">this</span>.billImg).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (res.error === ERR_OK) {
+          <span class="hljs-keyword">if</span> (!res.data) {
+            <span class="hljs-built_in">this</span>.noBillImg();
+            <span class="hljs-keyword">return</span>;
+          }
+          <span class="hljs-built_in">this</span>.billImgBase64(res.data);
+        }
+      }).catch(<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-comment">// 分享图获取失败 抛出error</span>
+        <span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">'error'</span>);
+        <span class="hljs-built_in">window</span>.alert(<span class="hljs-string">'分享图获取失败，请稍后重试'</span>);
+      })
+    },
+    <span class="hljs-comment">// 根据组件名 给数据绑定返回的base64数据，让页面中显示图片</span>
+    <span class="hljs-function"><span class="hljs-title">billImgBase64</span>(<span class="hljs-params">base64</span>)</span> {
+      <span class="hljs-keyword">switch</span> (<span class="hljs-built_in">this</span>.billComponent) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'index'</span>:
+          <span class="hljs-built_in">this</span>.billImgIndex = base64;
+          <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'detail'</span>:
+          <span class="hljs-built_in">this</span>.billImgDetail = base64;
+          <span class="hljs-keyword">break</span>;
+      }
+    },
+    <span class="hljs-comment">// 如果没有图片那么根据情况选择显示不同的图片赋予base64作为主图</span>
+    <span class="hljs-function"><span class="hljs-title">noBillImg</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-keyword">switch</span> (<span class="hljs-built_in">this</span>.billComponent) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'index'</span>:
+          <span class="hljs-built_in">this</span>.billImgIndex = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../playbill/no-img-index.jpg'</span>);
+          <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'detail'</span>:
+          <span class="hljs-built_in">this</span>.billImgDetail = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../playbill/no-news-image@2x.jpg'</span>);
+          <span class="hljs-keyword">break</span>;
+      }
+    },
+    <span class="hljs-comment">// 实例化二维码的类，指定宽高</span>
+    <span class="hljs-comment">// 最终结果会: &lt;span class="qrbox"&gt;&lt;canvas display=none&gt;&lt;/canvas&gt; &lt;img src=".."&gt;&lt;/span&gt;</span>
+    <span class="hljs-function"><span class="hljs-title">createQrCode</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-built_in">this</span>.qrcode = <span class="hljs-keyword">new</span> QRCode(<span class="hljs-built_in">this</span>.$refs.qrbox, {
+        <span class="hljs-attr">width</span>: <span class="hljs-number">128</span>,
+        <span class="hljs-attr">height</span>: <span class="hljs-number">128</span>,
+        <span class="hljs-attr">colorDark</span>: <span class="hljs-string">"#000000"</span>,
+        <span class="hljs-attr">colorLight</span>: <span class="hljs-string">"#ffffff"</span>,
+        <span class="hljs-attr">correctLevel</span>: QRCode.CorrectLevel.H
+      });
+    },
+    <span class="hljs-comment">// 当组件切换时候，需要销毁之前的数据,让data中绑定数据为空</span>
+    <span class="hljs-function"><span class="hljs-title">resetData</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-built_in">this</span>.showCard = <span class="hljs-literal">false</span>;
+      <span class="hljs-built_in">this</span>.billTitle = <span class="hljs-string">''</span>;...
+    },
+    <span class="hljs-comment">// 关闭时候销毁二维码，否则会重复生成</span>
+    <span class="hljs-function"><span class="hljs-title">clearQrCode</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-comment">// 清除代码（不生效）</span>
+      <span class="hljs-built_in">this</span>.qrcode.clear(); 
+      <span class="hljs-comment">// 这个才生效！！</span>
+      <span class="hljs-built_in">this</span>.$refs.qrbox.innerHTML = <span class="hljs-string">''</span>;
+    },
+    <span class="hljs-comment">// 外部方法，销毁海报</span>
+    <span class="hljs-function"><span class="hljs-title">destoryCard</span>(<span class="hljs-params"></span>)</span> {
+      <span class="hljs-built_in">this</span>.clearQrCode();
+      <span class="hljs-built_in">this</span>.resetData();
+    }
+  }
+}</code></pre><p>4、<b>重点样式</b></p><pre type="CSS"><code><span class="hljs-selector-class">.playbill-card-x</span> {
+    <span class="hljs-attribute">overflow</span>: hidden;
+    <span class="hljs-attribute">position</span>: fixed;
+    <span class="hljs-comment">// 不能是Bottom 否则截图会是黑屏</span>
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+     <span class="hljs-comment">// opacity=0是可以截图的，避免手机上拉到顶部露出底下的海报！</span>
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// 经过测试，z-index=-1时候 依然可以截图 但是不可以隐藏</span>
+    <span class="hljs-attribute">z-index</span>: -<span class="hljs-number">1</span>;
+  }</code></pre><h2>划重点！</h2><h3>当不是同域下的图片，会有跨域问题无法截图！</h3><p>解决跨域图片问题最最直接的方法是将图片转为base64，这里提供一个php脚本</p><pre type="PHP"><code><span class="hljs-meta">&lt;?php</span>
+header(<span class="hljs-string">"Access-Control-Allow-Origin: *"</span>);
+header(<span class="hljs-string">"content:application/json;chartset=uft-8"</span>);
+<span class="hljs-comment">/**
+ * 将传入图片地址转化为base64
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImgToBase64</span> 
+</span>{
+    <span class="hljs-keyword">public</span> $url;
+    <span class="hljs-keyword">public</span> $base64;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params">$url</span>)
+    </span>{
+        <span class="hljs-keyword">$this</span>-&gt;url = $url;
+
+        <span class="hljs-keyword">$this</span>-&gt;checkUrl() &amp;&amp; <span class="hljs-keyword">$this</span>-&gt;tobase64();
+        
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkUrl</span>(<span class="hljs-params"></span>)
+    </span>{
+        $pattern = <span class="hljs-string">'/http[s]?:\/\/[\w.-\/]+\.(jpg|png|gif)/i'</span>;
+        preg_match($pattern, <span class="hljs-keyword">$this</span>-&gt;url, $match);
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">isset</span>($match[<span class="hljs-number">0</span>])) {
+            <span class="hljs-keyword">$this</span>-&gt;showError();
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+        <span class="hljs-keyword">$this</span>-&gt;url = $match[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tobase64</span>(<span class="hljs-params"></span>)
+    </span>{
+         $imageInfo = @getimagesize(<span class="hljs-keyword">$this</span>-&gt;url);
+         <span class="hljs-keyword">if</span> (!$imageInfo) {
+             <span class="hljs-keyword">$this</span>-&gt;showError();
+             <span class="hljs-keyword">return</span>;
+         }
+         $base64 = base64_encode(file_get_contents(<span class="hljs-keyword">$this</span>-&gt;url));
+         <span class="hljs-comment">// 在每个字符后分割一次字符串</span>
+         $base64 = chunk_split($base64);
+         $blob = <span class="hljs-string">'data:'</span> . $imageInfo[<span class="hljs-string">'mime'</span>] . <span class="hljs-string">';base64,'</span>;
+         <span class="hljs-keyword">$this</span>-&gt;base64 = $blob . $base64;
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showError</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">$this</span>-&gt;base64 = <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getBase64</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;base64;
+    }
+
+}
+
+<span class="hljs-comment">// $img = 'http://statics.qdxin.cn/uploadfile/2020/1212/20201212100223404.jpg';</span>
+
+$img_url = <span class="hljs-keyword">isset</span>($_GET[<span class="hljs-string">'url'</span>]) ? $_GET[<span class="hljs-string">'url'</span>] : <span class="hljs-literal">false</span>;
+$res = <span class="hljs-keyword">array</span>(
+    <span class="hljs-string">'error'</span> =&gt; <span class="hljs-number">1</span>,
+    <span class="hljs-string">'data'</span> =&gt; <span class="hljs-literal">false</span>
+);
+<span class="hljs-keyword">if</span> ($img_url) {
+    $base64 = <span class="hljs-keyword">new</span> ImgToBase64($img_url);
+    $img_base64 = $base64-&gt;getBase64();
+    (<span class="hljs-keyword">boolean</span>)$img_base64 &amp;&amp; $res = <span class="hljs-keyword">array</span>(
+        <span class="hljs-string">'error'</span> =&gt; <span class="hljs-number">0</span>,
+        <span class="hljs-string">'data'</span> =&gt; $img_base64
+    );
+}
+$json = json_encode($res);
+<span class="hljs-keyword">exit</span>($json);
+<span class="hljs-meta">?&gt;</span></code></pre><p>请求这个地址，如<a href="http://m.qdxin.cn/appc/getbase64.php?url=http://vip.qdxin.cn/lin/wb/imgs/cover.jpg" target="_blank">http://m.qdxin.cn/appc/getbase64.php?url=http://wb/imgs/cover.jpg</a>&nbsp;获取base64，然后插入到img中。</p><p>另附vue中使用axios发送请求</p><pre type="JavaScript"><code><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">"axios"</span>;
+<span class="hljs-keyword">const</span> api = debug  ? <span class="hljs-string">`http://localhost/getxinpage/getbase64.php?url=`</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">target</span>) </span>{
+  <span class="hljs-keyword">let</span> url = api + target;
+  <span class="hljs-keyword">return</span> axios.get(url).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(res.data);
+  }).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(err);
+  })
+}
+<span class="hljs-keyword">import</span> getBase64 <span class="hljs-keyword">from</span> <span class="hljs-string">"api/getBase64"</span>; <span class="hljs-comment">// 组件中使用</span></code></pre><h3>qrcodejs2的使用</h3><pre type="JavaScript"><code>npm i qrcodejs2 <span class="hljs-comment">// 安装</span>
+<span class="hljs-keyword">this</span>.qrcode = new QRCode(存放二维码的DOM元素, {
+    width: <span class="hljs-number">128</span>,
+    height: <span class="hljs-number">128</span>,
+    colorDark: <span class="hljs-string">"#000000"</span>,
+    colorLight: <span class="hljs-string">"#ffffff"</span>,
+    correctLevel: QRCode.CorrectLevel.H
+});
+<span class="hljs-keyword">this</span>.qrcode.makeCode(<span class="hljs-string">'要生成二维码的链接'</span>);</code></pre><h3>html2canvas</h3><p><b>1、如果截图中有图片，一定要在图片加载完后再开始截图！</b></p><pre type="JavaScript"><code>&lt;img <span class="hljs-meta">@load</span>=<span class="hljs-string">"loaded"</span>&gt;
+<span class="hljs-function"><span class="hljs-title">loaded</span>(<span class="hljs-params"></span>)</span> {...}</code></pre><p><b>2、当屏幕有滚动条的时候，会截图是空白！这时候必须将要截图的DOM设置样式fixed!且top=left=0!(bottom会导致黑屏!)，并且截图的时候不可以隐藏，但是可以设置z-index=-1和opacity:0（简单来说就是截图的DOM必须撑开高度！且要在屏幕中！）</b></p><pre type="CSS"><code><span class="hljs-selector-class">.playbill-card-x</span> {
+    <span class="hljs-attribute">overflow</span>: hidden;
+    <span class="hljs-attribute">position</span>: fixed;
+    <span class="hljs-comment">// 不能是Bottom 否则截图会是黑屏</span>
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// 避免手机顶部下拉露出海报，可以设透明度</span>
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// 经过测试，档z-index=-1时候 依然可以截图 但是不可以隐藏</span>
+    <span class="hljs-attribute">z-index</span>: -<span class="hljs-number">1</span>;
+  }</code></pre><p><b>3、不要使用vw、vh这样的单位，截图也会失败！最好是固定宽高！老老实实使用PX！</b></p><p><b>4、截图有不支持的CSS属性，比如</b><font color="#c24f4a" >白色-&gt;透明的渐变，最好用图片替代</font><b>！虚线的样式</b><font color="#c24f4a" >border:dashed不支持，截图后会变成实线。</font><font color="#000000" ><b>且不支持box-showd、</b></font><b>object-fit、writing-mode，以及::before/after伪类</b><font color="#000000"><b>等。</b>具体支持的与不支持的样式参见：</font><a href="http://html2canvas.hertzen.com/features" target="_blank">html2canvas支持与不支持的样式</a></p><p><b>5、图片模糊以及背景图片不显示：使用img标签进行替代！</b></p><p>生成的海报中有渐变（白色-&gt;透明）原先使用样式书写白色-&gt;透明渐变发现截图透明的地方变黑了，后来改为使用图片:</p><pre type="CSS"><code><span class="hljs-selector-class">.article-x</span> : after{
+  content: <span class="hljs-string">""</span>;
+  <span class="hljs-comment">// 或者 content: url(alpha@2x.png);</span>
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">background</span>: url(alpha@<span class="hljs-number">2</span>x.png) ...
+}</code></pre><p><b>生成的海报在IPX上不显示白色蒙层！！但是在安卓以及IP8上可以显示！</b></p><p><b>所以这里最终改为使用img标签<font color="#c24f4a">（注意所有的蒙层都要使用IMG标签！）</font></b></p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"article-x"</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+     <span class="hljs-comment">&lt;!--  白色-透明渐变原先写在样式背景中，iosX上无效，使用img才有效 content:url(..也无效)   --&gt;</span>
+     <span class="hljs-comment">&lt;!-- data =&gt; detailWhite：require(...)  --&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"detailWhite"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bot-white-alpha"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
+.article-x {
+   position: relative;
+   .bot-white-alpha{
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       width: 100%;
+    }
+}</code></pre><p><b>6、</b>图片不显示问题是因为有图片跨域了！请使用上面的php将图片转base64或者在后台配置了允许跨域访问后，添加两个配置项，允许跨域进行访问：</p><pre type="JavaScript"><code>header(<span class="hljs-string">"Access-Control-Allow-Origin: *"</span>); <span class="hljs-comment">//php</span>
+<span class="hljs-keyword">new</span> html2canvas(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'qianduanwz'</span>), {
+  <span class="hljs-attr">allowTaint</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">useCORS</span>: <span class="hljs-literal">true</span> 
+}).then(<span class="hljs-function"><span class="hljs-params">canvas</span> =&gt;</span> {
+   <span class="hljs-comment">// ……</span>
+});</code></pre><p><b><font color="#c24f4a">7、截图是空白的问题</font></b></p><p><font color="#000000">截图空白是因为有滚动条！除了要执行</font><font color="#1c487f">3.3-2</font><font color="#000000">中的样式外，还要如下设置：</font></p><pre type="JavaScript"><code>npm install html2canvas --save
+ 
+<span class="hljs-keyword">import</span> html2canvas <span class="hljs-keyword">from</span> <span class="hljs-string">"html2canvas"</span>;
+ 
+<span class="hljs-keyword">let</span> myBox = <span class="hljs-built_in">this</span>.$refs.saveBox;
+  html2canvas(myBox, {
+    <span class="hljs-attr">useCORS</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-comment">// 截图区域的宽 可以用DOM宽高替换，具体详见：（二）处</span>
+    <span class="hljs-attr">width</span>: <span class="hljs-built_in">window</span>.screen.availWidth, 
+    <span class="hljs-comment">// 截图区域的高</span>
+    <span class="hljs-attr">height</span>: <span class="hljs-built_in">window</span>.screen.availHeight,
+    <span class="hljs-comment">// 以下4项必须设置</span>
+    <span class="hljs-attr">windowWidth</span>: <span class="hljs-built_in">document</span>.body.scrollWidth,
+    <span class="hljs-attr">windowHeight</span>: <span class="hljs-built_in">document</span>.body.scrollHeight,
+    <span class="hljs-attr">x</span>:<span class="hljs-number">0</span>,
+    <span class="hljs-attr">y</span>:<span class="hljs-built_in">window</span>.pageYOffset
+  }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">canvas</span>) </span>{
+    <span class="hljs-comment">// 默认0.92设置1后生成的图片会很大</span>
+    <span class="hljs-keyword">let</span> data = canvas.toDataURL(<span class="hljs-string">"image/jpeg"</span>, <span class="hljs-number">1</span>);
+    <span class="hljs-built_in">console</span>.log(data)
+});</code></pre><p><b>8、不要使用伪类</b></p><p>不要使用像:before和:after这样的伪类，html2canvas是无法正确渲染的，像ipx机型会直接忽略掉伪类元素，如果需要 请使用元素代替。</p><p><img src="/statics/blog/2021/0302/5cafcd7494ed1b9048f6cb869ba4e09f.jpg"></p><p ><font color="#1c487f">（篮框部分为3.3-5的示例）</font></p><p ><font color="#1c487f">如红框处原先使用</font>:before和:after制作，但是在ipx上无法显示，后改为使用div元素绘制虚线上的圆</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"news-info"</span>&gt;</span>
+    <span class="hljs-comment">&lt;!--  用伪类做的圆（盖在虚线上）也不能正常显示改为元素替代  --&gt;</span>
+    <span class="hljs-comment">&lt;!--  通过样式控制只有在详情页生成的时候显示   --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-circle"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"left"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"info-x"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"qrbox"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"qrbox"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"clear"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><pre type="CSS"><code><span class="hljs-selector-class">.playbill-card</span><span class="hljs-selector-class">.isDetail</span> {
+  <span class="hljs-selector-class">.news-info</span> {
+      <span class="hljs-attribute">position</span>: relative;
+      <span class="hljs-selector-class">.detail-circle</span>{
+        <span class="hljs-attribute">display</span>: block;
+        <span class="hljs-attribute">position</span>: absolute;
+        <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+        <span class="hljs-attribute">height</span>: <span class="hljs-number">16px</span>;
+        <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">top</span>: -<span class="hljs-number">10px</span>;
+
+        <span class="hljs-selector-tag">span</span>{
+          <span class="hljs-attribute">position</span>: absolute;
+          <span class="hljs-attribute">width</span>: <span class="hljs-number">16px</span>;
+          <span class="hljs-attribute">height</span>: <span class="hljs-number">16px</span>;
+          <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;
+          <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f4f4f4</span>;
+        }
+        <span class="hljs-selector-class">.left</span>{
+          <span class="hljs-attribute">left</span>: -<span class="hljs-number">10px</span>;
+        }
+        <span class="hljs-selector-class">.right</span>{
+          <span class="hljs-attribute">right</span>: -<span class="hljs-number">10px</span>;
+        }
+      }
+  }
+}</code></pre>
+                                            <h2>附件下载</h2>
+                        <div class="downloads-list">
+                                                            <div class="downloads-list-li">
+                                    <a href="//www.wubin.work/statics/blog/2021/0302/0966cfcc1159e3842848d4f96b7c1f95.zip" class="except-a" download="Vue+html2canvas截图空白的问题-附件-html2canvas应用组件参考">html2canvas应用组件参考</a>
+                                </div>
+                                                    </div>
+                                                                <h2>相关资料</h2>
+                        <div class="downloads-list">
+                                                        <div class="downloads-list-li">
+                                <a href="https://blog.csdn.net/weixin_43817724/article/details/105630160?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-3&spm=1001.2101.3001.4242" target="_blank">html2canvas截图空白参考</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://www.npmjs.com/package/qrcodejs2" target="_blank">qrcodejs2</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="http://html2canvas.hertzen.com/documentation" target="_blank">html2canvas(文档)</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://github.com/niklasvh/html2canvas" target="_blank">html2canvas(github)</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="http://html2canvas.hertzen.com/" target="_blank">html2canvas（官网）</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://sunniejs.github.io/vue-canvas-poster/#/README" target="_blank">Vue-Canvas-Poster(文档)</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://github.com/sunniejs/vue-canvas-poster" target="_blank">Vue-Canvas-Poster(github)</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://github.com/Kujiale-Mobile/Painter" target="_blank">painter-github</a>
+                            </div>
+                                                        <div class="downloads-list-li">
+                                <a href="https://developers.weixin.qq.com/community/develop/doc/000048447844f80b9107d64ab51006" target="_blank">小程序海报截图painter</a>
+                            </div>
+                                                    </div>
+                                        <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：html2canvas，vue，painter
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l">
+    <div class="headline">
+        推荐阅读
+    </div>
+            <ul class="list-a">
+                        <li>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/python">Python</a>
+                    </div>
+                    <h3><a href="/blog/articles/535" title="python基础-操作列表和迭代器">python基础-操作列表和迭代器</a></h3>
+                    <p>python基础笔记-操作列表和迭代器的相关方法</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>7611次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>236人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2024-06-13 13:26:27</em>
+                                </span>
+                        <a href="/blog/articles/535" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/344" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/uniapp">uniapp</a>
+                    </div>
+                    <h3><a href="/blog/articles/344" title="uniapp实现被浏览器唤起的功能">uniapp实现被浏览器唤起的功能</a></h3>
+                    <p>当用户打开h5链接时候，点击打开app若用户在已经安装过app的情况下直接打开app，若未安装过跳到应用市场下载安装这个功能在实现上主要分为两种场景，从普通浏览器唤醒以及从微信唤醒。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>13887次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>945人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2022-12-14 16:34:53</em>
+                                </span>
+                        <a href="/blog/articles/344" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/188" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/php">PHP</a>
+                    </div>
+                    <h3><a href="/blog/articles/188" title="【正则】一些常用的正则表达式总结">【正则】一些常用的正则表达式总结</a></h3>
+                    <p>在日常开发中，正则表达式是非常有用的，正则表达式在每个语言中都是可以使用的，他就跟JSON一样，是通用的。了解一些常用的正则表达式，能大大提高你的工作效率。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>16866次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>753人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-10-09 15:58:58</em>
+                                </span>
+                        <a href="/blog/articles/188" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/122" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0706/db0193e4feacd62de83f9410bc9e70f1.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/design">设计</a>
+                    </div>
+                    <h3><a href="/blog/articles/122" title="【中文】免费可商用字体下载与考证">【中文】免费可商用字体下载与考证</a></h3>
+                    <p>65款免费、可商用、无任何限制中文字体打包下载，这些字体都是经过长期验证，经得住市场考验的，让您规避被无良厂商起诉的风险。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18842次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1498人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-05 15:28:45</em>
+                                </span>
+                        <a href="/blog/articles/122" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/119" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/119" title="Vue3开发一个v-loading的自定义指令">Vue3开发一个v-loading的自定义指令</a></h3>
+                    <p>在vue3中实现一个自定义的指令，有助于我们简化开发，简化复用，通过一个指令的调用即可实现一些可高度复用的交互。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>20119次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1617人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-07-02 15:58:35</em>
+                                </span>
+                        <a href="/blog/articles/119" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/74" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/js">JS</a>
+                    </div>
+                    <h3><a href="/blog/articles/74" title="关于手机上滚动穿透问题的解决">关于手机上滚动穿透问题的解决</a></h3>
+                    <p>当页面出现浮层的时候，滑动浮层的内容，正常情况下预期应该是浮层下边的内容不会滚动；然而事实并非如此。在PC上使用css即可解决，但是在手机端，情况就变的比较复杂，就需要禁止触摸事件才可以。</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>18043次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>1458人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-05-31 09:25:50</em>
+                                </span>
+                        <a href="/blog/articles/74" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/19" class="imgbox">
+                    <div class="inner-box">
+                        <img src="/statics/blog/2021/0302/d4ddf21aecb68d5a4e1a6e22f1e96b8a.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/19" title="Vue+html2canvas截图空白的问题">Vue+html2canvas截图空白的问题</a></h3>
+                    <p>在使用vue做信网单页专题时，有海报生成的功能，这里推荐2个插件：一个是html2canvas，构造好DOM然后转canvas进行截图；另外使用vue-canvas-poster（这个截止到2021年3月...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>34453次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2701人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-03-02 09:04:51</em>
+                                </span>
+                        <a href="/blog/articles/19" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                        <li>
+                                <a href="/blog/articles/16" class="imgbox">
+                    <div class="inner-box">
+                        <img src="https://i.loli.net/2021/02/23/lCOYmRiryUFQM4T.jpg">
+                    </div>
+                </a>
+                                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="/blog/list/vue">Vue</a>
+                    </div>
+                    <h3><a href="/blog/articles/16" title="vue-router4过度动画无效解决方案">vue-router4过度动画无效解决方案</a></h3>
+                    <p>在初次使用vue3+vue-router4时候，先后遇到了过度动画transition进入和退出分别无效的情况，搜遍百度没没找到合适解决方法，包括vue-route4有一些API都进行了变化，以前的一些操...</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>29787次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>2283人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: 2021-02-23 13:37:20</em>
+                                </span>
+                        <a href="/blog/articles/16" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+        </div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/393" class="imgbox">
+                <img src="/statics/blog/2023/0328/5f2cb6f855222b494907743d43ca236c.jpg">
+            </a>
+            <a href="/blog/articles/393" class="title" title="PHP操作ZIP之ZipArchive类以及如何避免生成压缩文件带有目录层级的问题">
+                PHP操作ZIP之ZipArchive类以及如何避免生成压缩文件带有目录层级的问题
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/458" class="imgbox">
+                <img src="/statics/blog/2023/1220/ce75b6fa38b076a88e095b8ff8a60a46.jpg">
+            </a>
+            <a href="/blog/articles/458" class="title" title="安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题">
+                安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/239" class="imgbox">
+                <img src="/statics/blog/2021/1220/58b4554e4a0e238501706eb571f55c79.jpg">
+            </a>
+            <a href="/blog/articles/239" class="title" title="给你一个可以中断的Promise">
+                给你一个可以中断的Promise
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="avatar">
+            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一个帮助开发者成长的博客</p>
+        </div>
+        <p class="say">
+            <span>正式迁移到线下了，下一步就是考虑怎么全弄成静态页面了。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://gitee.com/634174214" data-cls="gitee" title="我的gitee仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/vue">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/14">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        将HTML字符串转化为HTML插入
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/510">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        watch监听vue-router路由变化的方法
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/55">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        vue-scrollto：非常好用的页面定位滚动插件
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/449">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        windows下的vue-cli中如何配置https
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/319">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        axios取消请求总结
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="http://build.wubin.work/" target="_blank">商务</a>
+                    <a href="http://tool.wubin.work/" target="_blank">工具</a>
+                    <a href="ttp://tool.wubin.work/" target="_blank">导航</a>
+                    <a href="http://doc.wubin.work" target="_blank">专栏</a>
+                    <a href="http://lib.wubin.work" target="_blank">肆库</a>
+                    <a href="http://code.wubin.work/" target="_blank">微码</a>
+                    <a href="/other/about" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、Laravel、JS、CSS、Less、VUE、jQuery、Bootstrap、Linux、Apache、Webpack、canvas图文游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
+                                    </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="webApp二维码">
+        </em>
+        <p>WebApp</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>打赏码</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 WuBin.All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>
