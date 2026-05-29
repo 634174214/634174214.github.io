@@ -1,0 +1,128 @@
+@keyframes fadeIn{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fade-up-in{
+    animation: fadeUpIn 0.4s both;
+}
+.fade-up-out{
+    animation: fadeUpOut 0.4s both;
+}
+@keyframes fadeUpIn {
+    0%{
+        opacity: 0;
+        transform: translate3d(0, 10px, 0);
+    }
+    100%{
+        opacity: 1;
+        transform: translate3d(0, 0px, 0);
+    }
+}
+@keyframes fadeUpOut {
+    0%{
+        opacity: 1;
+        transform: translate3d(0, 0px, 0);
+    }
+    100%{
+        opacity: 0;
+        transform: translate3d(0, 10px, 0);
+    }
+}
+.fade-down-in{
+    animation: fadeDownIn 0.4s both;
+}
+.fade-down-out{
+    animation: fadeDownOut 0.4s both;
+}
+@keyframes fadeDownIn {
+    0%{
+        opacity: 0;
+        transform: translate3d(0, -10px, 0);
+    }
+    100%{
+        opacity: 1;
+        transform: translate3d(0, 0px, 0);
+    }
+}
+@keyframes fadeDownOut {
+    0%{
+        opacity: 1;
+        transform: translate3d(0, 0px, 0);
+    }
+    100%{
+        opacity: 0;
+        transform: translate3d(0, -10px, 0);
+    }
+}
+
+@keyframes bit{
+    0%{
+        transform: scale(0.8);
+    }
+    50%{
+        transform: scale(1.6);
+    }
+    50%{
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes colorchange {
+    0%{
+        color: #F5881C;
+    }
+    20%{
+        color: #616161;
+    }
+    40%{
+        color: #424EA0;
+    }
+    60%{
+        color: #F0B71A;
+    }
+    80%{
+        color: #ba9450;
+    }
+    100%{
+        color: #F5881C;
+    }
+
+}

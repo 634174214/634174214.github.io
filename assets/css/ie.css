@@ -1,0 +1,33 @@
+@import url('pc.css');
+.slider-wrapper .swiper-container {
+  display: none;
+}
+.slider-wrapper:hover .swiper-button-next,
+.slider-wrapper:hover .swiper-button-prev {
+  display: none;
+}
+.sort-list .list .img-box .cover {
+  background-color: #000;
+  filter: alpha(opacity=60);
+}
+.detail-pet {
+  display: none;
+}
+.sharebar a.wexin .qrbox:before {
+  display: none;
+}
+.article-content .content-header .see-on-phone .qrbox {
+  border: 2px solid #ccc;
+}
+.article-content .content-header .see-on-phone .qrbox:before {
+  display: none;
+}
+.article-content .content-footer .btns span.has-zan:after {
+  display: none;
+}
+.my-favourite {
+  display: none;
+}
+:focus {
+  outline: 0;
+}

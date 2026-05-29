@@ -1,0 +1,73 @@
+// 为了避免IE8引入不了样式 在这里再引入一下
+@import url('pc.css');
+
+
+.slider-wrapper {
+    .swiper-container{
+        display: none;
+    }
+    &:hover{
+        .swiper-button-next, .swiper-button-prev{
+           display: none;
+        }
+    }
+}
+
+.sort-list{
+    .list {
+        .img-box{
+            .cover{
+                background-color: #000;
+                filter: alpha(opacity=60);
+            }
+        }
+    }
+}
+
+.detail-pet{
+    display: none;
+}
+
+.sharebar {
+    a{
+        &.wexin{
+            .qrbox{
+                &:before{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.article-content{
+    .content-header{
+        .see-on-phone{
+            .qrbox{
+                border: 2px solid #ccc;
+                &:before{
+                    display: none;
+                }
+            }
+        }
+    }
+    .content-footer{
+        .btns{
+            span{
+                &.has-zan{
+                    &:after{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.my-favourite{
+    display: none;
+}
+
+:focus{
+    outline: 0;
+}

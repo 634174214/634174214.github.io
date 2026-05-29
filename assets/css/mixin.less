@@ -1,0 +1,105 @@
+.center-block(@top: 0, @bot:0){
+    display: block;
+    margin: @top auto @bot;
+}
+
+// 对伪类引用字体图标
+.iconfont-after(){
+    &:after{
+        font: normal normal normal 14px/1 FontAwesome;
+    }
+}
+
+.a-hover(@color: @color-main-l){
+    a{
+        transition: all 0.3s;
+        &:hover{
+            color: @color;
+        }
+    }
+}
+
+.img-hover(@time: 0.4s, @scale: 1.2){
+    overflow: hidden;
+    img{
+        transition: all @time;
+        min-height: 100%;
+        object-fit: cover;
+        &:hover{
+            transform: scale(@scale);
+        }
+    }
+}
+
+// 超出字隐藏
+.text-overflow(){
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*
+@name:图片名称  
+@suffix： 图片后缀
+ @path： 图片路径默认指向gitee托管的地址
+ @timestamp：图片清除缓存的时间戳
+ https://634174214.gitee.io/myblog-www-assets
+*/
+.bg-image2x(@name, @suffix: 'png', @timestamp: '', @path: '../img') {
+    background-image: ~"url(@{path}/@{name}.@{suffix}?t=@{timestamp})";
+    background-image: ~"-webkit-image-set(url(@{path}/@{name}.@{suffix}?t=@{timestamp}) 1x,url(@{path}/@{name}@2x.@{suffix}?t=@{timestamp}) 2x)";
+    background-repeat: no-repeat;
+}
+
+.shadow-a(){
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+}
+
+.noselect(){
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.clear{
+    &:after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+.max-height(@height: 340px) {
+    max-height: @height;
+    overflow: auto;
+}
+
+.scrollbar-style() {
+    &::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 5px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+    &::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 10px;
+         -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background: #ccc;
+    }
+    &::-webkit-scrollbar-track {/*滚动条里面轨道*/
+            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            background: #EDEDED;
+    }
+}
+
+// 多行显示点-手机版
+.text-overflow-lines(@lines: 3) {
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    /*! autoprefixer: off */     
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    -webkit-line-clamp: @lines;
+}

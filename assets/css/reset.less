@@ -1,0 +1,40 @@
+ul{margin: 0;padding: 0;}
+li{list-style: none;}
+a{text-decoration:none;outline: 0;}
+img{display: block;width: 100%;}
+p{margin: 0;}
+h2{margin: 0;font-size: inherit;font-weight: normal;}
+em,cite{font-style: normal;}
+// 加a：focus会有大黑框
+:focus {
+    outline: 1px dotted Highlight;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+// 鼠标没有虚框，仅仅键盘tab访问有虚框
+:focus:not(:focus-visible) {
+    outline: 0;
+}
+// 开始的时候禁止页面上元素有动画
+body.preload{
+    *{
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        -ms-transition: none !important;
+        -o-transition: none !important;
+        transition: none !important;
+    }
+}
+
+html,body{-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+
+html{
+    font: menu;
+}
+dl{
+    margin: 0;
+}
+
+body{
+    font-size: 16px;
+    background-color: #f4f5f5;   
+}
