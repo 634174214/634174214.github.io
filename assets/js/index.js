@@ -100,6 +100,9 @@
 
             _tpl: function (row) {
                 var targetUrl = '/blog/articles/' + row.id;
+                if (window.IS_GITHUB_PAGES) {
+                    targetUrl += '/';
+                }
                 console.log(row)
                 var tpl = '<li class="ani">';
                 if (row.preview) {
@@ -165,6 +168,13 @@
             _getNews: function () {
                 var self = this;
                 var url = this.server + this.page;
+                console.log(window.IS_GITHUB_PAGES)
+                if (window.IS_GITHUB_PAGES) {
+                    url += '.json';
+                    console.log(url)
+                    // debugger
+                }
+
                 $.ajax({
                     url: url,
                     dataType: 'json',

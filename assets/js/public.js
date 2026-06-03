@@ -1,5 +1,6 @@
 (function($, window) {
-    window.SITEURL = 'https://www.wubin.work/';
+    window.SITEURL =  (window.location.href.indexOf('blog.local')> -1) ? 'blog.local' : 'https://634174214.github.io/';
+    window.IS_GITHUB_PAGES = window.location.href.indexOf('github.io')> -1;
     window.support = {
       ispc: function() {
         var userAgentInfo = navigator.userAgent;
@@ -42,7 +43,7 @@
           ms: 'msTransform',
           // 标准的
           standard: 'transform'
-        }
+        };
         // for in支持IE8
         for (var key in transformNames) {
           // 遍历所有的transform 如果创建元素中elementStyle['webkitTransform']不为空就代表存在供应商前缀
@@ -61,7 +62,7 @@
       localStorage: typeof window.localStorage == 'undefined' ? false : true,
       // 证明是不是详细页
       isDetail: $('#article-control').length > 0
-    }
+    };
   
     // 自定义事件的名称
     window.events = {
@@ -71,7 +72,7 @@
       hideBlogNav: 'hideBlogNav',
       // 返回顶部进行窗口尺寸变动时候
       goTopResize: 'goTopResize'
-    }
+    };
   
     window.methods = {
       aniEndDo: function($el, callback) {
@@ -556,6 +557,11 @@
               this.say = '码云：';
               this.layertitle = '我的码云';
               break;
+            case 'github':
+              type = 'text';
+              this.say = 'Github：';
+              this.layertitle = '我的Github';
+              break;
             case 'qq':
               type = 'img';
               this.say = '识别二维码 或 QQ搜索：634174214';
@@ -922,6 +928,12 @@
        scrollTop: $(elId).position().top
      }, 'slow')
    });
+
+    // 如果是在类github pages上
+    if (window.IS_GITHUB_PAGES) {
+      // $('#live-message-link').next().hide();
+      // $('.refresh').hide();
+    }
   
   
     var searchStart = new Search();

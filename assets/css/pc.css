@@ -3991,6 +3991,7 @@ body.gray-darken {
   width: 60%;
   color: #bbb;
   font-size: 14px;
+  text-align: right;
 }
 .friend-links .friend-item:hover {
   color: #F5881C;
