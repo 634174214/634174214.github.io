@@ -1,3 +1,11 @@
 #guess-you-like .refresh{
     display: none;
 }
+
+.headnav-aboutme{
+    display: inline-block;
+}
+
+.headnav-admin{
+    display: none;
+}

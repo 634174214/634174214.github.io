@@ -4005,4 +4005,7 @@ body.gray-darken {
     outline: 0;
   }
 }
+.headnav-aboutme {
+  display: none;
+}
 /*# sourceMappingURL=pc.css.map */

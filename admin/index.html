@@ -1,75 +1,478 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta http-equiv="cleartype" content="on">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
-<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
-<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
-<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
-<!--[if IE]>
-<link rel="stylesheet" href="/assets/css/ie.css"/>
-<script src="/assets/libs/html5shiv.min.js"></script>
-<script src="/assets/libs/respond.min.js"></script>
-<![endif]-->
-    <title> | 一介武夫</title>
-    <meta name="description" content="功能正在开发中..| 一介武夫"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于本站 | 一介武夫</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --text: #333;
+            --heading: #222;
+            --accent: #336699;
+            --accent-light: #369;
+            --quote-color: #336699;
+            --bubble-color-1: rgba(180, 210, 240, 0.35);
+            --bubble-color-2: rgba(170, 200, 235, 0.30);
+            --bubble-color-3: rgba(200, 225, 245, 0.35);
+            --bubble-color-4: rgba(160, 195, 230, 0.28);
+            --bubble-color-5: rgba(190, 215, 240, 0.32);
+            --bubble-border: rgba(180, 200, 220, 0.40);
+            --bubble-highlight: rgba(255, 255, 255, 0.55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft Yahei", "PingFang SC", "Hiragino Sans GB", system-ui, -apple-system, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background-color: var(--bg);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ========== 气泡背景容器 ========== */
+        .bubbles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            transform: translateZ(0);
+            /* 提升到独立合成层 */
+            -webkit-transform: translateZ(0);
+        }
+
+        /* 单个气泡 */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid var(--bubble-border);
+            will-change: transform, opacity;
+            animation-timing-function: cubic-bezier(0.33, 0.08, 0.58, 1);
+            animation-fill-mode: forwards;
+            /* 高光模拟 */
+            box-shadow: inset 2px 3px 6px var(--bubble-highlight),
+                inset -1px -2px 4px rgba(0, 0, 0, 0.04),
+                0 0 4px rgba(180, 200, 225, 0.25);
+            pointer-events: none;
+        }
+
+        /* 气泡上升动画 */
+        @keyframes bubbleRise1 {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.35);
+                opacity: 0;
+            }
+            6% {
+                opacity: 0.65;
+            }
+            40% {
+                transform: translateY(-40vh) translateX(18px) scale(0.9);
+                opacity: 0.7;
+            }
+            65% {
+                transform: translateY(-65vh) translateX(-10px) scale(1);
+                opacity: 0.55;
+            }
+            88% {
+                transform: translateY(-88vh) translateX(6px) scale(0.75);
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-105vh) translateX(-4px) scale(0.25);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubbleRise2 {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.3);
+                opacity: 0;
+            }
+            8% {
+                opacity: 0.6;
+            }
+            35% {
+                transform: translateY(-35vh) translateX(-14px) scale(0.85);
+                opacity: 0.72;
+            }
+            60% {
+                transform: translateY(-60vh) translateX(20px) scale(1);
+                opacity: 0.5;
+            }
+            85% {
+                transform: translateY(-85vh) translateX(-8px) scale(0.7);
+                opacity: 0.22;
+            }
+            100% {
+                transform: translateY(-105vh) translateX(3px) scale(0.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubbleRise3 {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.4);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.7;
+            }
+            45% {
+                transform: translateY(-45vh) translateX(10px) scale(0.92);
+                opacity: 0.65;
+            }
+            70% {
+                transform: translateY(-70vh) translateX(-16px) scale(1);
+                opacity: 0.48;
+            }
+            90% {
+                transform: translateY(-90vh) translateX(5px) scale(0.68);
+                opacity: 0.18;
+            }
+            100% {
+                transform: translateY(-105vh) translateX(-2px) scale(0.22);
+                opacity: 0;
+            }
+        }
+
+        /* ========== 内容包裹层 ========== */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* ========== 标题 ========== */
+        h1 {
+            text-align: center;
+            margin-bottom: 28px;
+            color: var(--heading);
+            letter-spacing: 3px;
+            font-size: 1.85rem;
+            font-weight: 700;
+        }
+
+        .slogan {
+            text-align: center;
+            font-size: 1.05rem;
+            color: #555;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        /* ========== 二级标题 ========== */
+        h2 {
+            margin: 32px 0 16px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-left: 4px solid var(--accent-light);
+            padding-left: 14px;
+            color: var(--heading);
+            letter-spacing: 1px;
+        }
+
+        /* ========== 段落 ========== */
+        p {
+            margin-bottom: 14px;
+            font-size: 1rem;
+            text-indent: 2em;
+            color: #3a3a3a;
+            text-align: justify;
+        }
+
+        /* ========== 引用块 ========== */
+        .quote {
+            margin-top: 38px;
+            padding: 22px 24px;
+            background: #fff;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.02rem;
+            color: var(--quote-color);
+            letter-spacing: 0.5px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            line-height: 2;
+        }
+
+        /* ========== 响应式：平板及以下 ========== */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                padding: 30px 16px;
+            }
+
+            h1 {
+                font-size: 1.55rem;
+                letter-spacing: 2px;
+                margin-bottom: 22px;
+            }
+
+            .slogan {
+                font-size: 0.95rem;
+                margin-bottom: 30px;
+            }
+
+            h2 {
+                font-size: 1.08rem;
+                margin: 26px 0 13px;
+                padding-left: 11px;
+                border-left-width: 3px;
+            }
+
+            p {
+                font-size: 0.95rem;
+                text-indent: 1.6em;
+                margin-bottom: 11px;
+            }
+
+            .quote {
+                font-size: 0.93rem;
+                padding: 18px 16px;
+                margin-top: 30px;
+                line-height: 1.85;
+            }
+        }
+
+        /* ========== 响应式：手机 ========== */
+        @media (max-width: 480px) {
+            .content-wrapper {
+                padding: 22px 12px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 16px;
+            }
+
+            .slogan {
+                font-size: 1rem;
+                margin-bottom: 24px;
+                letter-spacing: 0.5px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+                margin: 22px 0 10px;
+                padding-left: 9px;
+                border-left-width: 3px;
+            }
+
+            p {
+                font-size: 1.2rem;
+                text-indent: 1.3em;
+                margin-bottom: 9px;
+                line-height: 1.7;
+            }
+
+            .quote {
+                font-size: 1.1rem;
+                padding: 14px 12px;
+                margin-top: 24px;
+                line-height: 1.85;
+                letter-spacing: 0;
+            }
+        }
+    </style>
 </head>
-<body class="preload gray-darken">
-<!-- main -->
-<section class="main-detail clear">
-    <canvas class="snow" id="snow"></canvas>
-   <div class="one-screen">
-       <div class="text">
-            <h1>站点为静态部署，后台本地访问</h1>
-            <small>请您移步其他频道查看更多精彩内容</small>
-            <div class="btns">
-                <a href="../index.php">返回主页</a>
-                <a href="#" id="go-back">返回上一页</a>
-            </div>
-       </div>
-       <img src="/assets/img/building.png" alt="抱歉 该功能正在开发中" class="bg">
-   </div>
-</section>
-<!-- main end -->
-<footer class="footer" id="footer">
-    <div class="inner">
-        <section class="footer-body">
-            <div class="center">
-                <ul class="qr-box-inner">
-                    <!-- <li>
-                        <em class="qr-x-em">
-                            <img src="/assets/images/building-qr.png" alt="webApp二维码">
-                        </em>
-                        <p>WebApp</p>
-                    </li>
-                    <li>
-                        <em class="qr-x-em">
-                            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
-                        </em>
-                        <p>手机版</p>
-                    </li> -->
-                    <li>
-                        <em class="qr-x-em">
-                            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
-                        </em>
-                        <p>打赏码</p>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <p class="copyright">
-            Copyright © 2020 - <script>document.write(new Date().getFullYear())</script> WuBin.All Rights Reserved
-            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
-                <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
-            <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
-        </p>
+<body>
+
+    <!-- 气泡背景层 -->
+    <div class="bubbles-container" id="bubblesContainer" aria-hidden="true"></div>
+
+    <!-- 内容层 -->
+    <div class="content-wrapper">
+        <h1>一介武夫 · 个人博客</h1>
+        <div class="slogan">拾漏补缺，共逐星辰</div>
+
+        <h2>关于本站</h2>
+        <p>「一介武夫」个人博客于 2021 年 1 月上线，专注分享设计与全栈开发干货，记录日常踩坑与学习心得。</p>
+        <p>曾购入独立域名 wubin.work 并备案运营五年，用心耕耘，终因成本与精力所限，无奈注销备案，并停用独立域名。</p>
+        <p>如今将原本的网站做了全面的静态化处理，本地编译后部署至 GitHub Pages，轻量化运维，抛开盈利杂念，专注记录与分享。</p>
+
+        <h2>站长自述</h2>
+        <p>本人计算机专业，一直想自己纯手搓一个网站，却苦于设计短板。为此辗转设计行业八年，从印刷设计到 H5、UI 皆有涉猎。弯路走得不少，代码功底也几近荒废，数次想要放弃。</p>
+        <p>曾懊恼年少荒废时光，怀疑所选道路。直到自问：若生命仅剩一小时，最想做什么？答案清晰——自学全链路，从界面设计、前后端编码到项目部署全部自主实现，成为一名专注 Web 方向的工程师。</p>
+        <p>这个博客站点，是过往经历的总结，也是往后持续学习的全新起点。</p>
+        <p>互联网技术迭代飞快，从 IE 时代、jQuery 一统前端，到 Vue、React 等框架百花齐放，直到现在AI智能席卷开发，身处洪流难免迷茫。但行业本无定势，既选择深耕，便坦然接纳变化。</p>
+        <p>坚持学习，视自身为产品持续迭代，夯实设计、JS、CSS、PHP、Python五项核心技能，逐步补充数据结构与算法等底层知识。进步快慢无妨，贵在持之以恒。</p>
+
+        <div class="quote">
+            不积跬步，无以至千里；不积小流，无以成江海。骐骥一跃，不能十步；驽马十驾，功在不舍。<br>
+            与所有追梦路上的开发者共勉
+        </div>
     </div>
-</footer>
-<script src="/assets/js/error.js"></script>
+
+    <script>
+        (function() {
+            const bubblesContainer = document.getElementById('bubblesContainer');
+            if (!bubblesContainer) return;
+
+            // 气泡配色池
+            const colorPool = [
+                'rgba(180, 210, 240, 0.35)',
+                'rgba(170, 200, 235, 0.30)',
+                'rgba(200, 225, 245, 0.35)',
+                'rgba(160, 195, 230, 0.28)',
+                'rgba(190, 215, 240, 0.32)',
+                'rgba(175, 205, 238, 0.33)',
+                'rgba(185, 218, 242, 0.30)',
+            ];
+
+            // 三种上升动画
+            const animationNames = ['bubbleRise1', 'bubbleRise2', 'bubbleRise3'];
+
+            // 检测是否为移动端（用于调整气泡参数）
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const isSmallMobile = window.matchMedia('(max-width: 480px)').matches;
+
+            // 根据屏幕宽度确定气泡参数
+            function getBubbleParams() {
+                if (isSmallMobile) {
+                    return {
+                        sizeRange: [7, 24], // 气泡直径范围 (px)
+                        durationRange: [5, 11], // 动画时长范围 (s)
+                        intervalRange: [550, 900], // 生成间隔范围 (ms)
+                    };
+                }
+                if (isMobile) {
+                    return {
+                        sizeRange: [9, 30],
+                        durationRange: [4.5, 10],
+                        intervalRange: [420, 700],
+                    };
+                }
+                return {
+                    sizeRange: [10, 42],
+                    durationRange: [4, 9],
+                    intervalRange: [300, 550],
+                };
+            }
+
+            const params = getBubbleParams();
+
+            // 随机整数
+            function randInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            // 随机浮点数
+            function randFloat(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            // 随机选择数组元素
+            function randPick(arr) {
+                return arr[Math.floor(Math.random() * arr.length)];
+            }
+
+            // 创建单个气泡
+            function createBubble() {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                const size = randInt(params.sizeRange[0], params.sizeRange[1]);
+                const leftPercent = randFloat(1, 97); // 水平位置 (%)
+                const bottomStart = randInt(-55, -8); // 初始底部偏移 (px)，在屏幕下方
+                const duration = randFloat(params.durationRange[0], params.durationRange[1]);
+                const animName = randPick(animationNames);
+                const bgColor = randPick(colorPool);
+
+                // 设置样式
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = leftPercent + '%';
+                bubble.style.bottom = bottomStart + 'px';
+                bubble.style.animationName = animName;
+                bubble.style.animationDuration = duration + 's';
+                bubble.style.animationDelay = '0s';
+                bubble.style.backgroundColor = bgColor;
+
+                // 动画结束后移除气泡
+                bubble.addEventListener('animationend', function() {
+                    if (bubble.parentNode === bubblesContainer) {
+                        bubblesContainer.removeChild(bubble);
+                    }
+                });
+
+                // 动画被取消时也清理（如页面切换）
+                bubble.addEventListener('animationcancel', function() {
+                    if (bubble.parentNode === bubblesContainer) {
+                        bubblesContainer.removeChild(bubble);
+                    }
+                });
+
+                bubblesContainer.appendChild(bubble);
+            }
+
+            // 递归调度气泡生成（间隔随机，更自然）
+            let timeoutId = null;
+
+            function scheduleNext() {
+                const interval = randInt(params.intervalRange[0], params.intervalRange[1]);
+                timeoutId = setTimeout(function() {
+                    // 控制同时存在的气泡数量，避免过多
+                    const currentBubbles = bubblesContainer.children.length;
+                    const maxBubbles = isSmallMobile ? 14 : isMobile ? 18 : 25;
+                    if (currentBubbles < maxBubbles) {
+                        createBubble();
+                    }
+                    scheduleNext();
+                }, interval);
+            }
+
+            // 初始批量生成几个气泡，让页面一开始就有气泡在上升
+            function initialPopulate() {
+                const count = isSmallMobile ? 5 : isMobile ? 8 : 12;
+                const staggerInterval = 120; // 错开生成，避免同一帧大量创建
+                for (let i = 0; i < count; i++) {
+                    setTimeout(function() {
+                        createBubble();
+                    }, i * staggerInterval);
+                }
+            }
+
+            // 启动
+            initialPopulate();
+            scheduleNext();
+
+            // 监听屏幕尺寸变化，动态调整参数（使用matchMedia监听）
+            const mediaQueryMobile = window.matchMedia('(max-width: 768px)');
+            const mediaQuerySmall = window.matchMedia('(max-width: 480px)');
+
+            function handleMediaChange() {
+                // 更新参数引用（用于后续生成的气泡）
+                const newIsMobile = mediaQueryMobile.matches;
+                const newIsSmall = mediaQuerySmall.matches;
+                // 由于 params 已在闭包中，这里通过重新读取来更新
+                // 简化处理：页面尺寸变化时不做复杂的状态迁移，
+                // 新生成的气泡会自然适应新的屏幕宽度（left百分比自适应）
+                // 气泡大小等已在创建时确定，旧气泡保持不变即可
+            }
+
+            mediaQueryMobile.addEventListener('change', handleMediaChange);
+            mediaQuerySmall.addEventListener('change', handleMediaChange);
+
+            // 页面卸载时清理定时器
+            window.addEventListener('beforeunload', function() {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                    timeoutId = null;
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
-    

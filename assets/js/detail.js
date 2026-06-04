@@ -305,33 +305,38 @@
                .prev()
                .removeClass('fa-thumbs-o-up')
                .addClass('fa-thumbs-up');
-        var goodUrl = '/api/blog/good?article=' + articleInfo.article_id;
-        console.log(goodUrl);
-        $.ajax({
-            url: goodUrl ,
-            type: 'GET',
-            dataType: 'json'
-        })
-        .done(function(res) {
-            if (res.error === 0 && res.good) {
-                var goodnum = parseInt($em.text()) + 1;
-                $em.text(goodnum);
-            } else {
-                layer.msg('抱歉，请求失败请稍后重试');
-            }
-        })
-        .fail(function(err) {
-            layer.msg('抱歉，请求失败请稍后重试');
-        })
+        if (!window.IS_GITHUB_PAGES) {
+            var goodUrl = '/api/blog/good?article=' + articleInfo.article_id;
+            console.log(goodUrl);
+            $.ajax({
+                url: goodUrl ,
+                type: 'GET',
+                dataType: 'json'
+            })
+                .done(function(res) {
+                    if (res.error === 0 && res.good) {
+                        var goodnum = parseInt($em.text()) + 1;
+                        $em.text(goodnum);
+                    } else {
+                        layer.msg('抱歉，请求失败请稍后重试');
+                    }
+                })
+                .fail(function(err) {
+                    layer.msg('抱歉，请求失败请稍后重试');
+                })
+        }
     });
 
     // 进入页面的时候增加阅读数
     var getNewReadNum = function() {
-        $.ajax({
-            url: '/api/blog/read?article=' + articleInfo.article_id,
-            type: 'GET',
-            dataType: 'json'
-        });
+        if (!window.IS_GITHUB_PAGES) {
+            $.ajax({
+                url: '/api/blog/read?article=' + articleInfo.article_id,
+                type: 'GET',
+                dataType: 'json'
+            });
+        }
+
     }();
 
     // 文章目录
@@ -550,9 +555,24 @@
     }();
 
     // 文章动态二维码进行赋值
-    $('.qr-img').attr({
-        src : '/other/qrcode?size=9&data=' + articleInfo.article_link
-    })
+    if (window.IS_GITHUB_PAGES) {
+        var $qrbox = $('.qr-img').parent();
+        // 删掉.qr-img，直接换成新二维码容器
+        $('.qr-img').replaceWith('<span id="qr-img-replace" style="width: 100%;height: 100%;padding: 5px;display: block"></span>');
+        // //使用canvas生成
+        $('#qr-img-replace').qrcode({
+            render: "canvas", //也可以替换为table
+            width: 90,
+            height: 90,
+            text: articleInfo.article_link
+        });
+        // console.log(articleInfo.article_link)
+    } else {
+        $('.qr-img').attr({
+            src : '/other/qrcode?size=9&data=' + articleInfo.article_link
+        });
+    }
+
 
     new ArticleContents();
     new ContentsPlace();
