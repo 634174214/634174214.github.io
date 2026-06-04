@@ -213,7 +213,12 @@
         this.$hotSearch = $('#hot-search');
         // 搜索框的放大镜图标
         this.$icon = $('#search').parent().children('.icon');
-        this.searchUrl = '/search?s=';
+        if (window.IS_GITHUB_PAGES) {
+          var prefix = window.location.hostname === 'blog.local' ? '/public' : '';
+          this.searchUrl = prefix + '/search-static/index.html?s=';
+        } else {
+          this.searchUrl = '/search?s=';
+        }
         // 首先获取全部的历史搜索
         this.historyArr = Storage.get(this.searchKey, []);
         // 历史记录最多

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索 - 一介武夫</title>
+    <style>
+        /* ========== Reset & Base ========== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                         "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background: #f5f6f8;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ========== Container ========== */
+        .search-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        /* ========== Header ========== */
+        .search-header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .back-home {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 12px;
+            transition: color .2s;
+        }
+        .back-home:hover { color: #F5881C; }
+
+        .search-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #222;
+        }
+
+        /* ========== Search Box ========== */
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .search-box input {
+            flex: 1;
+            height: 48px;
+            padding: 0 18px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+            background: #fff;
+            color: #333;
+        }
+        .search-box input:focus {
+            border-color: #F5881C;
+            box-shadow: 0 0 0 3px rgba(26,115,232,.12);
+        }
+        .search-box input::placeholder { color: #aaa; }
+
+        .search-box button {
+            height: 48px;
+            padding: 0 28px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            background: #F5881C;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background .2s, transform .1s;
+        }
+        .search-box button:hover { background: #e4801c; }
+        .search-box button:active { transform: scale(.97); }
+
+        /* ========== Status ========== */
+        .search-info {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 20px;
+            min-height: 22px;
+        }
+        .search-info .count { color: #F5881C; font-weight: 600; }
+
+        /* ========== Loading ========== */
+        .loading-spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 40px 0;
+            color: #888;
+        }
+        .loading-spinner .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #e0e0e0;
+            border-top-color: #F5881C;
+            border-radius: 50%;
+            animation: spin .6s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ========== Results ========== */
+        .results-list {
+            list-style: none;
+        }
+
+        .result-item {
+            background: #fff;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.06);
+            transition: box-shadow .2s, transform .2s;
+            cursor: pointer;
+        }
+        .result-item:hover {
+            box-shadow: 0 3px 12px rgba(0,0,0,.1);
+            transform: translateY(-1px);
+        }
+
+        .result-item a {
+            display: block;
+            text-decoration: none;
+            color: #222;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .result-item .article-id {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 4px;
+        }
+
+        /* 关键词高亮 */
+        .highlight {
+            color: #e53935;
+            font-weight: 600;
+        }
+
+        /* ========== Empty State ========== */
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: #999;
+        }
+        .empty-state .icon { font-size: 48px; margin-bottom: 14px; }
+        .empty-state p { font-size: 15px; line-height: 1.8; }
+        .empty-state .keyword { color: #e53935; font-weight: 500; }
+
+        /* ========== Error State ========== */
+        .error-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #e53935;
+            font-size: 15px;
+        }
+
+        /* ========== No-query prompt ========== */
+        .prompt-hint {
+            text-align: center;
+            color: #bbb;
+            padding: 30px 0;
+            font-size: 15px;
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 600px) {
+            .search-container { padding: 18px 14px 40px; }
+            .search-header h1 { font-size: 22px; }
+            .search-box { flex-direction: column; gap: 8px; }
+            .search-box input { height: 44px; font-size: 15px; }
+            .search-box button { height: 44px; font-size: 15px; width: 100%; }
+            .result-item { padding: 14px 16px; }
+            .result-item a { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <!-- Header -->
+        <div class="search-header">
+            <a href="/" class="back-home">← 返回首页</a>
+            <h1>🔍 搜索文章</h1>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <input
+                type="text"
+                id="search-input"
+                placeholder="输入关键词，搜索文章标题…"
+                autocomplete="off"
+                autofocus
+            >
+            <button id="search-btn">搜 索</button>
+        </div>
+
+        <!-- Status / Info -->
+        <div class="search-info" id="search-info"></div>
+
+        <!-- Results Container -->
+        <div id="results"></div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="/assets/libs/jquery-1.11.1.min.js"></script>
+
+    <script>
+    (function($) {
+        'use strict';
+
+        var $input   = $('#search-input');
+        var $btn     = $('#search-btn');
+        var $info    = $('#search-info');
+        var $results = $('#results');
+
+        // 当前已加载的文章索引缓存
+        var articleCache = null;
+        var isLoading    = false;
+
+        // ==================== 工具函数 ====================
+
+        /** 从 URL 获取查询参数 */
+        function getQueryParam(name) {
+            var reg = new RegExp('(?:^|&)' + name + '=([^&]*)');
+            var match = window.location.search.substr(1).match(reg);
+            return match ? decodeURIComponent(match[1]) : '';
+        }
+
+        /** HTML 转义 */
+        function escapeHtml(str) {
+            var div = document.createElement('div');
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        }
+
+        /** 高亮关键词（不区分大小写）*/
+        function highlightKeyword(text, keyword) {
+            if (!keyword || !keyword.trim()) return escapeHtml(text);
+            var escaped = escapeHtml(text);
+            // 对 keyword 中的正则特殊字符做转义
+            var kw = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            return escaped.replace(
+                new RegExp('(' + kw + ')', 'gi'),
+                '<span class="highlight">$1</span>'
+            );
+        }
+
+        // ==================== 渲染 ====================
+
+        function showLoading() {
+            $results.html(
+                '<div class="loading-spinner">' +
+                '<div class="spinner"></div>加载搜索数据中…' +
+                '</div>'
+            );
+            $info.empty();
+        }
+
+        function showEmpty(keyword) {
+            $info.empty();
+            $results.html(
+                '<div class="empty-state">' +
+                '<div class="icon">📭</div>' +
+                '<p>未找到与 <span class="keyword">' + escapeHtml(keyword) + '</span> 相关的文章</p>' +
+                '<p>请尝试更换关键词搜索</p>' +
+                '</div>'
+            );
+        }
+
+        function showPrompt() {
+            $results.html('<div class="prompt-hint">👆 在上方输入关键词开始搜索</div>');
+            $info.empty();
+        }
+
+        function showError(msg) {
+            $results.html('<div class="error-state">⚠ ' + escapeHtml(msg) + '</div>');
+            $info.empty();
+        }
+
+        function renderResults(matches, keyword) {
+            if (!matches || matches.length === 0) {
+                showEmpty(keyword);
+                return;
+            }
+
+            $info.html('共找到 <span class="count">' + matches.length + '</span> 篇相关文章');
+
+            var html = '<ul class="results-list">';
+            $.each(matches, function(i, article) {
+                html += '<li class="result-item">' +
+                    '<a href="/blog/articles/' + article.id + '/">' +
+                        highlightKeyword(article.title, keyword) +
+                    '</a>' +
+                    '<div class="article-id">#' + article.id + '</div>' +
+                '</li>';
+            });
+            html += '</ul>';
+
+            $results.html(html);
+
+            // 点击整行跳转
+            $('.result-item').on('click', function() {
+                var href = $(this).find('a').attr('href');
+                if (href) window.location.href = href;
+            });
+        }
+
+        // ==================== 核心搜索 ====================
+
+        function doSearch(keyword) {
+            if (!keyword || !keyword.trim()) {
+                showPrompt();
+                return;
+            }
+
+            var kw = keyword.trim();
+
+            // 如果已有缓存，直接搜索
+            if (articleCache) {
+                var matched = searchInCache(kw);
+                renderResults(matched, kw);
+                return;
+            }
+
+            // 首次搜索：先加载 manifest + 所有分片
+            if (isLoading) return;
+            isLoading = true;
+            showLoading();
+
+            loadIndex()
+                .then(function(articles) {
+                    articleCache = articles;
+                    isLoading = false;
+                    var matched = searchInCache(kw);
+                    renderResults(matched, kw);
+                })
+                .fail(function(err) {
+                    isLoading = false;
+                    showError('搜索数据加载失败：' + (err || '未知错误'));
+                });
+        }
+
+        /** 在缓存中匹配关键词 */
+        function searchInCache(keyword) {
+            var kw = keyword.toLowerCase();
+            var result = [];
+            $.each(articleCache, function(i, article) {
+                if (article.title.toLowerCase().indexOf(kw) !== -1) {
+                    result.push(article);
+                }
+            });
+            return result;
+        }
+
+        /** 加载 manifest + 所有分片，返回全部文章数组 */
+        function loadIndex() {
+            return $.Deferred(function(dfd) {
+                $.getJSON('./manifest.json')
+                    .done(function(manifest) {
+                        if (!manifest.shards || !manifest.shards.length) {
+                            dfd.reject('索引清单为空');
+                            return;
+                        }
+
+                        // 并行加载所有分片
+                        var requests = [];
+                        $.each(manifest.shards, function(i, file) {
+                            requests.push($.getJSON('./' + file));
+                        });
+
+                        $.when.apply($, requests)
+                            .done(function() {
+                                // arguments 是每个请求的返回值数组
+                                var allArticles = [];
+                                if (requests.length === 1) {
+                                    // 单个分片时 arguments 就是那个数组
+                                    allArticles = arguments[0];
+                                } else {
+                                    for (var i = 0; i < arguments.length; i++) {
+                                        allArticles = allArticles.concat(arguments[i][0]);
+                                    }
+                                }
+                                dfd.resolve(allArticles);
+                            })
+                            .fail(function(jqxhr, status, err) {
+                                dfd.reject('分片数据加载失败: ' + (err || status));
+                            });
+                    })
+                    .fail(function(jqxhr, status, err) {
+                        dfd.reject('索引清单加载失败: ' + (err || status));
+                    });
+            }).promise();
+        }
+
+        // ==================== 事件绑定 ====================
+
+        function triggerSearch() {
+            var kw = $input.val();
+            // 同步更新 URL 参数（不刷新页面）
+            if (kw.trim()) {
+                var newUrl = window.location.pathname + '?s=' + encodeURIComponent(kw.trim());
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, '', newUrl);
+                }
+            }
+            doSearch(kw);
+        }
+
+        $btn.on('click', triggerSearch);
+
+        $input.on('keydown', function(e) {
+            if (e.which === 13 || e.keyCode === 13) {
+                e.preventDefault();
+                triggerSearch();
+            }
+        });
+
+        // ==================== 初始化 ====================
+
+        $(function() {
+            var initialKeyword = getQueryParam('s');
+            if (initialKeyword) {
+                $input.val(initialKeyword);
+                doSearch(initialKeyword);
+            } else {
+                showPrompt();
+            }
+        });
+
+    })(jQuery);
+    </script>
+</body>
+</html>
