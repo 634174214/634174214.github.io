@@ -1,4 +1,4 @@
-var querys = function(){
+var querys = function () {
     var qs = (location.search.length > 0 ? location.search.substr(1) : ''),
         //保存每一项
         args = {},
@@ -10,15 +10,15 @@ var querys = function(){
         i = 0,
         len = items.length;
 
-        for(i = 0;i<len ;i++){
-            item = items[i].split('='),
+    for (i = 0; i < len; i++) {
+        item = items[i].split('='),
             name = decodeURIComponent(item[0])
-            value = decodeURIComponent(item[1])
-            if(name.length){
-                args[name] = value;
-            }
+        value = decodeURIComponent(item[1])
+        if (name.length) {
+            args[name] = value;
         }
-        return args;
+    }
+    return args;
 }();
 
 // 全局配置layer
@@ -26,9 +26,9 @@ layer.config({
     title: '系统提示'
 });
 
-var menuActive = function() {
+var menuActive = function () {
     var url = window.location.href;
-    if(url.indexOf('message') > -1) {
+    if (url.indexOf('message') > -1) {
         $('.left-nav').find('.active').eq(0).removeClass('active');
         $('#live-message-link').addClass('active');
     }
@@ -43,23 +43,23 @@ function UAvatarChoose() {
     var IMG_WIDTH = 40;
     var IMG_MARG_LEFT = 10;
 
-    var listWidth = function() {
+    var listWidth = function () {
         var len = $avataImgs.length;
         return IMG_WIDTH * len + IMG_MARG_LEFT * (len - 1)
     }();
 
-    if(support.ispc) {
+    if (support.ispc) {
         $uAvatarList.width(listWidth);
     }
 
-    $uAvatar.on('click', function() {
-        if(!$uAvatarList.is('hidden')) {
+    $uAvatar.on('click', function () {
+        if (!$uAvatarList.is('hidden')) {
             $uAvatarList.fadeIn();
             return false;
         }
     });
 
-    $uAvatarList.on('click', 'img', function() {
+    $uAvatarList.on('click', 'img', function () {
         var src = this.src;
         var avatarIndex = $(this).data('uavatar');
         $uAvatarImg.attr('src', src);
@@ -68,8 +68,8 @@ function UAvatarChoose() {
         return false;
     });
 
-    $(document).on('click', function() {
-        if(!$uAvatarList.is('hidden')) {
+    $(document).on('click', function () {
+        if (!$uAvatarList.is('hidden')) {
             $uAvatarList.fadeOut();
         }
         return;
@@ -78,13 +78,13 @@ function UAvatarChoose() {
 
 
 // 获取随机昵称
-var randomName = function() {
+var randomName = function () {
     var dir = '风中找感觉,天堂不寂寞,等待未来的我,随便,潇洒,擅长隐身,灵气,海誓不盟,浪,风花雪月,跳跃指间的幸福,突然不想平凡,向前看,哭也要有君子的风度,小米粥,伊水,白衣宝宝,然后、那,心、归何方,每天快乐一点,你定,红颜为谁美,三国的黎明,水中的鱼,醉了累了,浪狼,淡如烟,那奇妙的梦,随风飘,无聊,那些年,平行线,指尖芭蕾,雨中霞,五谷轮回之所,出鞘的利剑,花落雨停心为伴,看你,没好网名,爷，红遍全球,捷报频传,期待,浪郎,好运常在,三轮车夫,风记忆,姑娘，请留步,夜里，你在想着谁,光秃秃的树枝,云和山的彼端,中国移动我不动,就当我任性,空格,比情兽更禽兽,往事不堪回首,简简单单,风行者,狼,换我一世繁华,飘零天涯,日月同辉,此生为了谁,别忘了我,痴人不说梦了,对不起，我滚远了,黛依,为你而等待,就当我任性,对对对,肤浅,五更天的星星,Just only,灵风,郎,出鞘的利剑,我就假装相信你了,等一旧人,废墟上的繁华,雨,你走呀,潭深深,洁娜,kina,kobe,菲菲,苏堇小姐,醉卧红尘笑,冰公主,冰若依,叹清寒,横颜,冷颜,泪颜,朝花夕拾,叶落归根,安于现状,沦陷的痛,物是人非,望眼欲穿,隔境之羌,安然等待,两情相悦,一爱到底,维持现状,只言片语,不堪回首,我们都傻,梦醉红颜,残花飞舞,不想长大,扑朔迷离,孤岛惊魂,变形金刚,淡忘那伤,逃离回忆,无言以对,无休无止,暖人迷恋,红色幻想,半个灵魂,怪咖小姐,半俗不雅,旧情绵绵,旧忆如梦,变成沙砾,阴霾深处,浮世之绘,歇斯底里,物是人非,柔情范儿,旧梦难温,红颜祸水,如此不堪,往如时忆,遗日惜时,此生不换,开不了口,言犹在耳,宠辱不惊,只淡不断,是我的海,我不舍得,情非得已,你好色彩,明媚笑颜,何必多情,我很舍得,三时日光,话未道尽,释迦侔尼,五行三界,公开警告,第九朵云,关键是我,遇之表白,类似爱情,处女空气,弱水三千,黑牢日记,维多利亚,广岛之恋,三生三世,若离梦靥,一秒一幕,空虚人生,无解方程,北去候鸟,春秋大梦,夕夕成玦,恩及若离,十二岁月,情绪失控,向死而生,恩恩爱爱,窒息到点,做回自己,喝醉醉醉,我的天堂,明天晴天,一样倔强,龌龊想法,巴黎左岸,东京铁塔,妖颜惑众,时光小偷,稍纵即逝,年少轻狂,若如初见,如梦初醒,仲夏成霜,关于今昔,一缕牵挂,兵慌马乱,冷冷清清,你知我在,你知我爱,少年如他,他的风景,空如此生,此生不悔,两小无猜,时间糖果,时至今日,令人窒息,我不想逃,安静就好,自顾自乐,不闻不问,夏日未央,隐隐作痛,黑白梦境,造化弄人,安分守己,没有希望,失心腐骨,裙下之君,望梦之城,北城旧事,梦回俊尘,少年无知,暗夜微凉,滔滔人生,若思若想,繁华似锦,赢了爱情,痛定思痛,似水柔情,月光倾城,流绪微梦,残花败柳,夏花依旧,演绎轮回,一抹红尘,悲欢自饮,稚气未脱,离经叛道,两重心事,心安勿忘,悲欢离合,无处安放,残缺韵律,眼神调情,安然放心,内心深处,负面情绪,心有所属,时间在流,流年开花,守住时间,静待死亡,梦绕魂牵,半世晨晓,惜你若命';
     var arrName = dir.split(',');
     var arrLen = arrName.length;
 
     // 获取指定范围内的随机数
-    function randomAccess(min,max){
+    function randomAccess(min, max) {
         return Math.floor(Math.random() * (min - max) + max)
     }
 
@@ -125,26 +125,28 @@ function ZanPayScroll() {
         time = setInterval(scroll, speed);
         area.scrollTop++;
     }
+
     setTimeout(start, delay);
 
     // 设置每个span的属性
     function setAttr() {
         var $name = $(area).find('.name');
-        var $money =  $(area).find('.money');
-        $name.each(function() {
+        var $money = $(area).find('.money');
+        $name.each(function () {
             $(this).attr('title', $(this).text());
         });
-        $money.each(function() {
+        $money.each(function () {
             $(this).attr('title', $(this).text() + '元');
         });
     }
+
     setAttr();
 }
 
 // 创建昵称
 function createNikeName() {
     var $nikeInput = $('#nikename');
-    $('#create-nike-name').on('click', function() {
+    $('#create-nike-name').on('click', function () {
         var nikename = randomName.getName();
         $nikeInput.val(nikename);
     });
@@ -177,6 +179,8 @@ function sendLiveMessage() {
     var ERR_OK = 0;
     // 用户被禁言
     var ERR_HAS_STOP_SAY = 300;
+    // emailjs 按钮点击每次间隔多少秒
+    var EMAILJS_SEND_WAIT = 60 * 1000;
 
     var $submitBtn = $('#submit-btn');
     var $textarea = $('#message-text');
@@ -206,36 +210,47 @@ function sendLiveMessage() {
         // 存储用户头像索引
         this.avatarIndex = 0;
 
+        // 标记目前邮件最后一次发送的时间
+        this.emailLastSendedTime = 0;
+
         this.init();
     }
 
     sendMes.prototype = {
-        init: function() {
+        init: function () {
+            // 如果是使用emailjs 那么先初始化
+            // messageType 是在模板也liveMessage.tpl中注册
+            if (messageType === 'emailjs') {
+                emailjs.init({
+                    publicKey: "jSLPILklfJiapHjBA"
+                });
+            }
+
             this.inputTextarea();
             this.submit();
         },
-        submit: function() {
+        submit: function () {
             var self = this;
-            $submitBtn.on('click', function() {
+            $submitBtn.on('click', function () {
                 var text = $.trim($textarea.val());
                 var email = $.trim($emailInput.val());
                 var nikename = $.trim($nikename.val());
 
-                if(!text) {
+                if (!text) {
                     layer.msg('请填写留言内容后再进行提交');
                     return;
                 }
-                if(text.length < 10) {
+                if (text.length < 10) {
                     layer.msg('留言内容不能低于10个字符！');
                     return;
                 }
                 // 如果昵称存在那么必须2-20之间
-                if(nikename && 
-                   (nikename.length > 20 || nikename.length < 2)) {
+                if (nikename &&
+                    (nikename.length > 20 || nikename.length < 2)) {
                     layer.msg('昵称必须在2-20字之间');
                     return;
                 }
-                if(!email || !self._checkEmail(email)) {
+                if (!email || !self._checkEmail(email)) {
                     layer.msg('请填写有效邮箱地址后再提交');
                     return;
                 }
@@ -245,128 +260,242 @@ function sendLiveMessage() {
                 self.nikename = nikename ? nikename : '';
                 self.avatarIndex = self._getAvatarIndex();
 
-                self._ajaxSendCheck();
+                switch (messageType) {
+                    case 'database':
+                        self._ajaxSendCheck();
+                        break;
+                    case 'emailjs':
+                        self._sendEmailByEmailjs();
+                        break;
+                }
+
             });
         },
+
+        _sendEmailByEmailjs: function () {
+            var self = this;
+
+            if (self.emailLastSendedTime === 0) {
+                self.emailLastSendedTime = Date.now();
+            } else {
+                var diffTime = Date.now() - self.emailLastSendedTime;
+                if (diffTime < EMAILJS_SEND_WAIT) {
+                    var remaining = Math.ceil((EMAILJS_SEND_WAIT - (diffTime)) / 1000);
+                    layer.msg('请勿频繁操作，' + remaining + '秒后再试', {icon: 2});
+                    return;
+                }
+                // 如果 diffTime >= EMAILJS_SEND_WAIT，说明可以发送，更新时间戳
+                self.emailLastSendedTime = Date.now();
+            }
+
+            // https://dashboard.emailjs.com/admin/templates
+            var TemplateID = 'template_9ajogm8';
+            // https://dashboard.emailjs.com/admin
+            var ServiceID = 'qq_mail_service';
+            // var ServiceID = 'wrong_service';
+            // 接收留言内容的邮箱
+            var myEmail = '634174214@qq.com';
+            var templateParams = {
+                visitor_name: self.nikename || '匿名用户',
+                visitor_email: self.email,
+                // 接受用户留言邮件的（我的邮箱）
+                email: myEmail,
+                avatar_id: self.avatarIndex,
+                content: self.text,
+                time: new Date().toLocaleString('zh-CN'),
+                from_url: window.location.href
+            };
+            // https://www.emailjs.com/docs/sdk/options/
+            var options = {
+                blockList: {
+                    watchVariable: 'visitor_email', // 你的模板参数里对应的变量名
+                    /*
+                    * 'malicious-domain.com',  // 屏蔽的恶意邮箱域名
+                        'temp-mail.org',          // 屏蔽的临时邮箱域名
+                        'spammer@example.com'     // 也可以屏蔽具体的完整邮箱
+                    * */
+                    list: []
+                },
+                // ms，60秒内只能发送一次请求，目前
+                limitRate: {
+                    id: "global-message-board",
+                    throttle: EMAILJS_SEND_WAIT
+                }
+            };
+            var loadingIndex = layer.load(1, {
+                shade: [0.7, '#fff']  // 可选：半透明遮罩，防止用户操作
+            });
+            // 使用示例：https://www.emailjs.com/docs/sdk/send/
+            emailjs.send(
+                ServiceID,
+                TemplateID,
+                templateParams,
+                options
+            )
+                .then(function (response) {
+                    console.log('SUCCESS!', response);
+                    layer.alert(
+                        '留言发送成功！我会在3个工作日内回复您。',
+                        {
+                            title: '发送成功',
+                        }
+                    );
+                    // 清空表单
+                    $textarea.val('');
+                    $emailInput.val('');
+                    $nikename.val('');
+                })
+                .catch(function (error) {
+                    console.log('FAILED...', error);
+                    // 当发送失败时候 恢复0 可以重新发送
+                    self.emailLastSendedTime = 0;
+
+                    if (error.status === 429 || error.text?.includes('Too Many Requests')) {
+                        layer.alert('操作过于频繁，请稍候再试', {
+                            btn: ['我知道了'],
+                            title: '提示'
+                        });
+                        return;
+                    }
+
+                    layer.alert(
+                        '邮件发送失败，可能是网络问题或服务配额已达上限。<br>请您发送邮件至以下邮箱与我联系：<br><strong style="color:#1677FF;">' + myEmail + '</strong>',
+                        {
+                            btn: ['我知道了'],
+                            title: '发送失败',
+                            // icon: 2  // 可选：显示错误图标 (0-3, 2为错误)
+                        }
+                    );
+                })
+                .finally(function () {
+                    // submitBtn.textContent = originalText;
+                    // submitBtn.disabled = false;
+                    layer.close(loadingIndex);
+                });
+        },
+
         // 获取头像的索引
-        _getAvatarIndex: function() {
+        _getAvatarIndex: function () {
             var len = $uAvatarListImgs.length;
             var avatarIndex = $uAvatarImg.attr('data-uavatar');
-            avatarIndex = (avatarIndex <= len && avatarIndex >= 0 ) ? avatarIndex : 0;
-            return parseInt(avatarIndex);
+            avatarIndex = parseInt(avatarIndex);
+            if (isNaN(avatarIndex) || avatarIndex < 0 || avatarIndex >= len) {
+                avatarIndex = 0;
+            }
+            return avatarIndex;
         },
         // 打开验证码输入框
-        _openPrompt: function() {
+        _openPrompt: function () {
             var self = this;
             layer.prompt({
                 formType: 3,
                 title: '请输入您邮箱中的验证码',
-            }, function(value, index, elem){
+            }, function (value, index, elem) {
                 // value是input中的值
                 layer.close(index);
                 self._ajaxSendMessage(value);
             });
         },
         // 发送前对当前邮箱进行验证
-        _ajaxSendCheck: function() {
+        _ajaxSendCheck: function () {
             var self = this;
             $checking.fadeIn();
             $.ajax({
                 url: URL_CHECK_USER_EMAIL,
                 type: 'POST',
-                data: { email: self.email },
+                data: {email: self.email},
                 dataType: 'json',
                 // 请求等待的时间10秒
                 timeout: 10000
             })
-            .done(function(res) {
-                setTimeout(function () {
-                    // 回调执行时候隐藏
-                    $checking.hide();
-                    // 未评论未发送验证码 则发送验证邮件
-                    if(res.error == ERR_OK) {
-                        self._ajaxSendEmail();
-                        return;
-                    }
-                    // 当天已经留言了
-                    if(res.error == ERR_HAS_LIVE_MES) {
-                        layer.msg('您今天已提交过留言啦，每日只能发布一条留言');
-                        return;
-                    }
-                    // 用户被禁言
-                    if(res.error == ERR_HAS_STOP_SAY) {
-                        layer.msg('抱歉，您已经被禁言了。');
-                        return;
-                    }
-                    // 当天未评论 但已经发送验证码
-                    if(res.error == ERR_HAS_SEND_EMAIL) {
-                        var msg = '系统检测到已发送验证码至您的' + res.data.email + '邮箱中，是否需要重新发送？';
-                        layer.confirm(msg, {
-                            btn: ['确定', '输入验证码']
-                        }, function(index, layero){
-                            // 确定回调
-                            layer.close(index);
+                .done(function (res) {
+                    setTimeout(function () {
+                        // 回调执行时候隐藏
+                        $checking.hide();
+                        // 未评论未发送验证码 则发送验证邮件
+                        if (res.error == ERR_OK) {
                             self._ajaxSendEmail();
-                        }, function(index){
-                            // 输入验证码回调
-                            layer.close(index);
-                            self._openPrompt();
-                        });
-                        return;
-                    }
-                    // 如果是其他则军代表意外失败
-                    layer.alert(res.msg);
-                    // console.log(res.code + res.msg);
-                }, 500);
-            })
-            .fail(function () {
-                $checking.hide();
-                layer.alert('校验发送失败，请检查网络环境后刷新页面重试');
-            })
+                            return;
+                        }
+                        // 当天已经留言了
+                        if (res.error == ERR_HAS_LIVE_MES) {
+                            layer.msg('您今天已提交过留言啦，每日只能发布一条留言');
+                            return;
+                        }
+                        // 用户被禁言
+                        if (res.error == ERR_HAS_STOP_SAY) {
+                            layer.msg('抱歉，您已经被禁言了。');
+                            return;
+                        }
+                        // 当天未评论 但已经发送验证码
+                        if (res.error == ERR_HAS_SEND_EMAIL) {
+                            var msg = '系统检测到已发送验证码至您的' + res.data.email + '邮箱中，是否需要重新发送？';
+                            layer.confirm(msg, {
+                                btn: ['确定', '输入验证码']
+                            }, function (index, layero) {
+                                // 确定回调
+                                layer.close(index);
+                                self._ajaxSendEmail();
+                            }, function (index) {
+                                // 输入验证码回调
+                                layer.close(index);
+                                self._openPrompt();
+                            });
+                            return;
+                        }
+                        // 如果是其他则军代表意外失败
+                        layer.alert(res.msg);
+                        // console.log(res.code + res.msg);
+                    }, 500);
+                })
+                .fail(function () {
+                    $checking.hide();
+                    layer.alert('校验发送失败，请检查网络环境后刷新页面重试');
+                })
             ;
         },
-        _ajaxSendEmail: function() {
+        _ajaxSendEmail: function () {
             var self = this;
             $emailing.fadeIn();
             $.ajax({
                 url: URL_SEND_EMAIL,
                 type: 'POST',
-                data: { email: self.email },
+                data: {email: self.email},
                 dataType: 'json',
                 // 请求等待的时间5秒
                 timeout: 5000
             })
-            .done(function(res) {
-                if(res.error === 0) {
-                    setTimeout(function() {
-                        $emailing.hide();
-                        var msg = '验证码已成功发送到您' + self.email + '邮箱中,请查收邮件后点击确定，输入收到的验证码。';
-                        layer.alert(msg, {
-                            title: '<em class="fa-in-layer-ok fa fa-check-square-o"></em>已发送验证邮件',
-                            yes: function(index) {
-                                layer.close(index);
-                                self._openPrompt();
-                            }
-                        });
-                        // self._openPrompt();
-                    }, 1000);
-                } else {
-                    layer.msg(res.msg);
-                    console.log('邮件发送失败，错误码' + res.error);
-                    $emailing.fadeOut();
-                }
-            })
-            .fail(function(err) {
-                $emailing.hide();
-                layer.alert('抱歉，请求发送失败，请刷新重试');
-            })
-            // 请求完毕后一定执行
-            .always(function() {
-                //  $emailing.hide();
-            });
+                .done(function (res) {
+                    if (res.error === 0) {
+                        setTimeout(function () {
+                            $emailing.hide();
+                            var msg = '验证码已成功发送到您' + self.email + '邮箱中,请查收邮件后点击确定，输入收到的验证码。';
+                            layer.alert(msg, {
+                                title: '<em class="fa-in-layer-ok fa fa-check-square-o"></em>已发送验证邮件',
+                                yes: function (index) {
+                                    layer.close(index);
+                                    self._openPrompt();
+                                }
+                            });
+                            // self._openPrompt();
+                        }, 1000);
+                    } else {
+                        layer.msg(res.msg);
+                        console.log('邮件发送失败，错误码' + res.error);
+                        $emailing.fadeOut();
+                    }
+                })
+                .fail(function (err) {
+                    $emailing.hide();
+                    layer.alert('抱歉，请求发送失败，请刷新重试');
+                })
+                // 请求完毕后一定执行
+                .always(function () {
+                    //  $emailing.hide();
+                });
         },
         // 发送留言内容并进行验证
-        _ajaxSendMessage: function(verify) {
+        _ajaxSendMessage: function (verify) {
             var self = this;
             var obj = {
                 verify_code: verify,
@@ -383,44 +512,44 @@ function sendLiveMessage() {
                 dataType: 'json',
                 timeout: 10000
             })
-            .done(function(res) {
-                setTimeout(function() {
+                .done(function (res) {
+                    setTimeout(function () {
+                        layer.close(layerLoad);
+
+                        // 验证码验证失败
+                        if (res.error == ERR_VERIFY) {
+                            layer.alert(res.msg, function (index) {
+                                layer.close(index);
+                                self._openPrompt();
+                            });
+                            return;
+                        }
+
+                        // 其他存储问题
+                        if (res.error !== ERR_OK) {
+                            layer.alert(res.msg);
+                            return;
+                        }
+
+                        layer.msg(res.msg);
+
+                    }, 500);
+                })
+                .fail(function () {
                     layer.close(layerLoad);
-
-                    // 验证码验证失败
-                    if(res.error == ERR_VERIFY) {
-                        layer.alert(res.msg, function(index) {
-                            layer.close(index);
-                            self._openPrompt();
-                        });
-                        return;
-                    }
-
-                    // 其他存储问题
-                    if(res.error !== ERR_OK) {
-                        layer.alert(res.msg);
-                        return;
-                    }
-
-                    layer.msg(res.msg);
-
-                }, 500);
-            })
-            .fail(function() {
-                layer.close(layerLoad);
-                layer.alert('抱歉，请求发送失败，请刷新重试');
-            })
-            .always(function() {
-                // layer.close(layerLoad);
-            });
+                    layer.alert('抱歉，请求发送失败，请刷新重试');
+                })
+                .always(function () {
+                    // layer.close(layerLoad);
+                });
         },
-        inputTextarea: function() {
-            $textarea.on('input', function() {
+        inputTextarea: function () {
+            $textarea.on('input', function () {
                 var len = $textarea.val().length;
                 $textCount.text(len);
             });
         },
-        _checkEmail: function(email) {
+        _checkEmail: function (email) {
             return /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email);
         }
     }
@@ -440,7 +569,16 @@ function loadMoreMessage() {
     var $emptyList = $('#empty-message-list');
 
     // 初始化获取所有留言
-    var URL_ALL_MESSAGE = '/apimessage/allmes';
+    var URL_ALL_MESSAGE = '';
+    window.IS_GITHUB_PAGES ? '/api/live-messages/' : '/apimessage/allmes';
+    if (window.IS_GITHUB_PAGES) {
+        URL_ALL_MESSAGE = '/api/live-messages/';
+        if (window.location.href.indexOf('blog.local') > -1) {
+            URL_ALL_MESSAGE = '/public' + URL_ALL_MESSAGE;
+        }
+    } else {
+        URL_ALL_MESSAGE = '/apimessage/allmes';
+    }
 
     function loadmore() {
         // 默认是第一页
@@ -448,8 +586,9 @@ function loadMoreMessage() {
 
         this.init();
     }
+
     loadmore.prototype = {
-        init: function() {
+        init: function () {
             // 用于存储每次获得的留言列表
             this.meslist = [];
             // 用于记录获取到数据的页码
@@ -459,54 +598,65 @@ function loadMoreMessage() {
 
             this.beginLoad();
         },
-        // 初始化获取留言列表 改为php动态插入
-        inintList: function() {
+        _getRequestUrl: function() {
+            var requestUrl = '';
             var self = this;
+            if (window.IS_GITHUB_PAGES) {
+                requestUrl = URL_ALL_MESSAGE + self.nowPage + '.json';
+            } else {
+                requestUrl = URL_ALL_MESSAGE;
+            }
+            return requestUrl;
+        },
+        // 初始化获取留言列表 改为php动态插入
+        inintList: function () {
+            var self = this;
+            var requestUrl = self._getRequestUrl();
             $.ajax({
-                url: URL_ALL_MESSAGE,
+                url: requestUrl,
                 type: 'GET',
                 dataType: 'json',
                 timeout: 10000,
-                data: { page: self.nowPage }
+                data: window.IS_GITHUB_PAGES ? {} : {page: self.nowPage}
             })
-            .done(function(res) {
-                if(res.error === ERR_OK) {
-                    if(res.data.length <= 0 ||
-                        res.data.live_messages.length <= 0
-                    ) {
-                        self._initListFail('目前还没有人留言，还不快来抢占沙发~');
-                        return;
-                    }
-                    self.meslist = res.data.live_messages;
-                    self.getPage = res.data.page;
-                    self._appendList();
+                .done(function (res) {
+                    if (res.error === ERR_OK) {
+                        if (res.data.length <= 0 ||
+                            res.data.live_messages.length <= 0
+                        ) {
+                            self._initListFail('目前还没有人留言，还不快来抢占沙发~');
+                            return;
+                        }
+                        self.meslist = res.data.live_messages;
+                        self.getPage = res.data.page;
+                        self._appendList();
 
-                    self.getPage++;
-                } else {
+                        self.getPage++;
+                    } else {
+                        self._initListFail();
+                    }
+                })
+                .fail(function () {
                     self._initListFail();
-                }
-            })
-            .fail(function() {
-                self._initListFail();
-            })
+                })
         },
-        _initListFail: function(text) {
+        _initListFail: function (text) {
             text = text || '抱歉，留言展示暂时关闭~'
             $emptyList.text(text).fadeIn();
             $mesList.hide();
             $loadmore.hide();
         },
         // 开始加载
-        beginLoad: function() {
+        beginLoad: function () {
             var self = this;
-            $loadmore.on('click', '.no-load', function() {
+            $loadmore.on('click', '.no-load', function () {
                 self._setLoadStatus('loading');
                 self._ajaxLoadMore();
             });
         },
         // 加载状态
-        _setLoadStatus: function(status) {
-            switch(status) {
+        _setLoadStatus: function (status) {
+            switch (status) {
                 // 加载中
                 case 'loading':
                     $loadmore.addClass('loading');
@@ -521,93 +671,94 @@ function loadMoreMessage() {
                     break;
             }
         },
-        _ajaxLoadMore: function() {
+        _ajaxLoadMore: function () {
             var self = this;
             self.nowPage++;
+            var requestUrl = self._getRequestUrl();
             $.ajax({
-                url: URL_ALL_MESSAGE,
+                url: requestUrl,
                 type: 'GET',
                 dataType: 'json',
                 timeout: 10000,
-                data: { page: self.nowPage }
+                data: window.IS_GITHUB_PAGES ? {} : {page: self.nowPage}
             })
-            .done(function(res) {
-                if(res.error === ERR_OK) {
-                    self.meslist = res.data.live_messages;
-                    self.getPage = res.data.page;
+                .done(function (res) {
+                    if (res.error === ERR_OK) {
+                        self.meslist = res.data.live_messages;
+                        self.getPage = res.data.page;
 
-                    setTimeout(function() {
-                        if(res.data.live_messages.length <= 0) {
-                            self._setLoadStatus('loaded');
-                            return;
-                        }
-                        self._appendList();
-                    }, 1000);
-                } else {
-                    layer.msg('数据获取失败，请稍后刷新重试');
-                    setTimeout(function() {
+                        setTimeout(function () {
+                            if (res.data.live_messages.length <= 0) {
+                                self._setLoadStatus('loaded');
+                                return;
+                            }
+                            self._appendList();
+                        }, 1000);
+                    } else {
+                        layer.msg('数据获取失败，请稍后刷新重试');
+                        setTimeout(function () {
+                            self._setLoadStatus('pause');
+                        }, 1000);
+                    }
+                })
+                .fail(function () {
+                    layer.alert('抱歉，留言获取失败，请稍后重试');
+                })
+                // 成功或者失败最终都执行
+                .always(function () {
+                    setTimeout(function () {
                         self._setLoadStatus('pause');
                     }, 1000);
-                }
-            })
-            .fail(function() {
-                layer.alert('抱歉，留言获取失败，请稍后重试');
-            })
-            // 成功或者失败最终都执行
-            .always(function() {
-                setTimeout(function() {
-                    self._setLoadStatus('pause');
-                }, 1000);
-            })
+                })
             ;
         },
-        _appendList: function() {
+        _appendList: function () {
             var self = this;
             var html = '';
             // console.log(self.meslist)
-            $.each(self.meslist, function(index, item) {
+            $.each(self.meslist, function (index, item) {
                 html += self._tplMoreItme(item);
             });
             $mesList.append($(html));
         },
         // 获取用户假定头像
-        _getUavatar: function(u_avatar_num) {
+        _getUavatar: function (u_avatar_num) {
             var src = 'live-message-u-avatar-' + u_avatar_num + '.png';
             src = assetsPath + 'img/' + src;
             return src;
         },
         // 获取我的假定头像
-        _getMyAvatar: function(my_avatar_num) {
+        _getMyAvatar: function (my_avatar_num) {
             my_avatar_num = my_avatar_num || 1;
             var src = 'live-message-my-avatar-' + my_avatar_num + '.png';
             src = assetsPath + 'img/' + src;
             return src;
         },
         // 加载更多的模版
-        _tplMoreItme: function(obj) {
+        _tplMoreItme: function (obj) {
             // 用户头像
             var u_avatar = this._getUavatar(obj.u_avatar);
             var my_avatar = '';
             var u_name = obj.nikename ? obj.nikename : obj.u_email;
             var hasReply = (obj.reply_message && obj.reply_time) ? true : false;
-            if(hasReply) {
+            if (hasReply) {
                 my_avatar = this._getMyAvatar(obj.reply_myavatar);
             }
-            
+
             var tpl = '<li>';
-                tpl += '<div class="clear">';
-                tpl += '<div class="mes-avatar"><img src="' + u_avatar + '"></div>';
-                tpl += '<dl class="mes-content">';
-                tpl += '<dt>';
-            if(obj.ischoosen === 1) {
+            tpl += '<div class="clear">';
+            tpl += '<div class="mes-avatar"><img src="' + u_avatar + '"></div>';
+            tpl += '<dl class="mes-content">';
+            tpl += '<dt>';
+            if (obj.ischoosen === 1) {
                 tpl += '<span class="choosed"><i class="icon fa fa-star"></i>精选</span>';
             }
-                tpl += '<span class="name">' + u_name + '</span>';
-                tpl += '<span class="time">发布于 ' + obj.u_send_time + '</span>';
-                tpl += '</dt>';
-                tpl += '<dd>' + obj.u_message + '</dd>';
-                tpl += '</div>';
-            if(hasReply) {
+            tpl += '<span class="name">' + u_name + '</span>';
+            tpl += '<span class="time">发布于 ' + obj.u_send_time + '</span>';
+            tpl += '</dt>';
+            tpl += '<dd>' + obj.u_message + '</dd>';
+            tpl += '</div>';
+            if (hasReply) {
                 tpl += '<div class="reply">';
                 tpl += '<div class="reply-inner">';
                 tpl += '<img src="' + my_avatar + '" class="reply-avatar">';
@@ -643,8 +794,9 @@ function refreshChoosen() {
     function choosen() {
         this.init();
     }
+
     choosen.prototype = {
-        init: function() {
+        init: function () {
             // 存储精选列表
             this.list = [];
             // 用于记录是否支持请求的状态
@@ -655,13 +807,13 @@ function refreshChoosen() {
 
             this.refresh();
         },
-        refresh: function() {
+        refresh: function () {
             var self = this;
-            $refreshBtn.on('click', function() {
+            $refreshBtn.on('click', function () {
                 layer.closeAll();
-                if(!self.allowRefresh) {
+                if (!self.allowRefresh) {
                     var second = (self.second <= 0) ? 1 : self.second;
-                    var msg = '您的点击太频繁了，请 ' +second + ' 秒后重试';
+                    var msg = '您的点击太频繁了，请 ' + second + ' 秒后重试';
                     layer.msg(msg);
                     return;
                 }
@@ -669,11 +821,11 @@ function refreshChoosen() {
             });
         },
         // 设置允许的状态 开启定时器
-        _setAllowed: function() {
+        _setAllowed: function () {
             var self = this;
-            this.timer = setInterval(function() {
+            this.timer = setInterval(function () {
                 self.second--;
-                if(self.second < 0) {
+                if (self.second < 0) {
                     clearInterval(self.timer);
                     // 重置状态以及倒计时秒
                     self.allowRefresh = true;
@@ -682,49 +834,49 @@ function refreshChoosen() {
                 }
             }, 1000);
         },
-        _ajaxGetChoosen: function() {
+        _ajaxGetChoosen: function () {
             var self = this;
             $.ajax({
                 url: URL_CHOOSEN_GET,
                 type: 'GET',
                 dataType: 'json'
             })
-            .done(function(res) {
-                if(res.error === ERR_OK) {
-                    if (res.data.choosen_list.length <= 0) {
-                        layer.msg('希望您就是下一位被选中的少年！');
-                        return;
+                .done(function (res) {
+                    if (res.error === ERR_OK) {
+                        if (res.data.choosen_list.length <= 0) {
+                            layer.msg('希望您就是下一位被选中的少年！');
+                            return;
+                        }
+                        self.list = res.data.choosen_list;
+                        self.allowRefresh = false;
+                        $list.empty();
+
+                        setTimeout(function () {
+                            self._appendEl();
+                            self._setAllowed();
+                        }, 1000);
+
                     }
-                    self.list = res.data.choosen_list;
-                    self.allowRefresh = false;
-                    $list.empty();
-
-                    setTimeout(function() {
-                        self._appendEl();
-                        self._setAllowed();
-                    }, 1000);
-
-                }
-            })
+                })
             ;
         },
-        _appendEl: function() {
+        _appendEl: function () {
             var self = this;
             var html = '';
-            $.each(self.list, function(index, item) {
+            $.each(self.list, function (index, item) {
                 html += self._tplItme(item);
             });
             $list.append($(html));
         },
-        _tplItme: function(obj) {
+        _tplItme: function (obj) {
             var u_name = obj.nikename ? obj.nikename : obj.u_email;
             var tpl = '<li class="bestmes-item">';
-                tpl += '<p>' + obj.u_message + '</p>';
-                tpl += '<div class="mes-info">';
-                tpl += '<span class="name">' + u_name + '</span>';
-                tpl += '<span class="time">' + obj.u_send_time + '</span>';
-                tpl += '</div>';
-                tpl += '</li>';
+            tpl += '<p>' + obj.u_message + '</p>';
+            tpl += '<div class="mes-info">';
+            tpl += '<span class="name">' + u_name + '</span>';
+            tpl += '<span class="time">' + obj.u_send_time + '</span>';
+            tpl += '</div>';
+            tpl += '</li>';
             return tpl;
         }
     }

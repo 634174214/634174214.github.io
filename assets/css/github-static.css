@@ -9,3 +9,7 @@
 .headnav-admin{
     display: none;
 }
+/* 留言-换一组 */
+#refresh-choosen{
+    display: none;
+}

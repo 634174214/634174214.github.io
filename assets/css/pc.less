@@ -3077,6 +3077,8 @@ body.gray-darken{
                 border-radius: 5px;
                 line-height: 22px;
                 font-size: 14px;
+                resize: none;       /* 彻底禁用右下角拖拽手柄 */
+                overflow: auto;     /* 内容超出出现滚动条，必备 */
                 &:focus{
                     outline: 0;
                 }
@@ -3086,6 +3088,7 @@ body.gray-darken{
                 bottom: 2%;
                 right: 2%;
                 color: @color-gray-llll;
+                background: rgba(255, 255, 255, 0.7);
             }
         }
         .nike-name-x{

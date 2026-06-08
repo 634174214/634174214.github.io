@@ -2631,6 +2631,10 @@ a {
   border-radius: 5px;
   line-height: 22px;
   font-size: 14px;
+  resize: none;
+  /* 彻底禁用右下角拖拽手柄 */
+  overflow: auto;
+  /* 内容超出出现滚动条，必备 */
 }
 .live-message .message-area .textarea-x .mes-textarea:focus {
   outline: 0;
@@ -2640,6 +2644,7 @@ a {
   bottom: 2%;
   right: 2%;
   color: #909090;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .live-message .message-area .nike-name-x {
   border-radius: 5px;
@@ -3119,3 +3124,4 @@ a {
   width: 14px;
   margin-right: 5px;
 }
+/*# sourceMappingURL=m.css.map */
