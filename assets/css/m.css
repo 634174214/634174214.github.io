@@ -1415,6 +1415,13 @@ a {
   width: 90%;
   margin: 0 auto;
 }
+.detail-news-list .list-loading {
+  min-height: 150px;
+  background: url("/assets/img/loading-pc.gif") no-repeat center center;
+}
+.detail-news-list .no-list {
+  display: none;
+}
 .pages {
   text-align: center;
   padding: 20px 0 10px;

@@ -18,6 +18,92 @@ $LAB
       // fix时候添加的类名
       baseClassName: 'left-bar-fixed'
   });
+
+    var setRecommendsList = function () {
+        var $detailNewsList = $('#detail-news-recommends').eq(0);
+        var $listUl = $detailNewsList.find('.list-a').eq(0);
+        var $loading = $detailNewsList.find('.list-loading').eq(0);
+        var $nolist = $detailNewsList.find('.no-list').eq(0);
+
+        console.log($detailNewsList)
+
+        var apiurl = window.IS_GITHUB_PAGES
+            ? '/public/api/recommends/recommends.json'
+            : '/api/blog/recommends';
+
+        var baseurl = {
+            article: '/blog/articles',
+            list: '/blog/list'
+        };
+
+        function listAItemTpl(item) {
+            var preview = '';
+            if (item.preview) {
+                preview = `
+                    <a href="${baseurl.article}/${item.id}" class="imgbox">
+                        <div class="inner-box">
+                            <img src="${item.preview}">
+                        </div>
+                    </a>
+                `;
+            }
+            textbox = `
+                <div class="textbox">
+                    <div class="channel-label smaller">
+                        <a href="${baseurl.list}/${item.short}">${item.channel_name}</a>
+                    </div>
+                    <h3><a href="${baseurl.article}/${item.id}" title="${item.title}">${item.title}</a></h3>
+                    <p>${item.desc}</p>
+                    <div class="info">
+                                <span class="readnum">
+                                    <i class="icon fa fa-eye"></i>
+                                    <em>${item.readnum}次阅读</em>
+                                </span>
+                        <span class="goodnum">
+                                    <i class="icon fa fa-thumbs-o-up"></i>
+                                    <em>${item.goodnum}人点赞</em>
+                                </span>
+                        <span class="date">
+                                    <i class="icon fa fa-clock-o"></i>
+                                    <em>发布时间: ${item.date}</em>
+                                </span>
+                        <a href="${baseurl.article}/${item.id}" class="go">
+                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+            return '<li>' + preview + textbox + '</li>';
+        }
+
+        $.ajax({
+            url: apiurl,
+            dataType: 'json',
+            type: 'GET',
+            success: function (res) {
+                // console.log(res.data)
+                if (res.data.length <= 0) {
+                    $loading.hide();
+                    $nolist.show();
+                    $listUl.hide();
+                } else {
+                    var liststr = '';
+                    $.each(res.data, function (index, item) {
+                        var itemstr = listAItemTpl(item);
+                        liststr += itemstr;
+                    });
+                    $loading.hide();
+                    $listUl.append($(liststr));
+                }
+            },
+            error: function () {
+                $loading.hide();
+                $nolist.show();
+                $listUl.hide();
+            }
+        })
+    };
+    setRecommendsList();
     // 搜索主页的时候的搜索
     var SearchIndex = function () {
         function search() {

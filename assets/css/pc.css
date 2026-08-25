@@ -1574,6 +1574,7 @@ body.gray-darken {
 }
 .detail-news-list .list-a .imgbox .inner-box {
   height: 150px;
+  background: #f2f2f2;
   overflow: hidden;
 }
 .detail-news-list .list-a .imgbox .inner-box img {
@@ -1707,6 +1708,7 @@ body.gray-darken {
 .detail-news-list .list-b li .imgbox {
   height: 160px;
   overflow: hidden;
+  background: #f2f2f2;
 }
 .detail-news-list .list-b li .imgbox img {
   transition: all 0.4s;
@@ -1795,6 +1797,13 @@ body.gray-darken {
   width: 50%;
   margin: 0 auto;
 }
+.detail-news-list .list-loading {
+  min-height: 250px;
+  background: url("/assets/img/loading-pc.gif") no-repeat center center;
+}
+.detail-news-list .no-list {
+  display: none;
+}
 .pages {
   text-align: center;
   padding: 20px 0 10px;
@@ -1827,10 +1836,100 @@ body.gray-darken {
 .pages .disable:hover {
   color: #ccc;
 }
+.userinfo.show .avatar,
+.userinfo.show .myname,
+.userinfo.show .say {
+  opacity: 1;
+}
+.userinfo.show .userinfo-skeleton-screen {
+  display: none;
+}
+.userinfo .avatar,
+.userinfo .myname,
+.userinfo .say {
+  opacity: 0;
+}
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.userinfo .userinfo-skeleton-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+}
+.userinfo .userinfo-skeleton-screen .u-s-avatar,
+.userinfo .userinfo-skeleton-screen .u-s-myname .u-s-row,
+.userinfo .userinfo-skeleton-screen .u-s-say .u-s-row {
+  background: #f2f2f2;
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+.userinfo .userinfo-skeleton-screen .u-s-avatar {
+  background-color: #f2f2f2;
+  width: 100px;
+  height: 100px;
+  margin: 50px auto 20px;
+}
+.userinfo .userinfo-skeleton-screen .u-s-row {
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 30px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.userinfo .userinfo-skeleton-screen .u-s-row.row-50 {
+  width: 50%;
+}
+.userinfo .userinfo-skeleton-screen .u-s-row.row-80 {
+  width: 80%;
+}
+.userinfo .userinfo-skeleton-screen .u-s-row.row-30 {
+  width: 30%;
+}
+.userinfo .userinfo-skeleton-screen .u-s-say {
+  width: 90%;
+  margin: 20px auto 0;
+}
+.userinfo .userinfo-skeleton-screen .u-s-say .u-s-row {
+  height: 10px;
+  margin: 0 0 10px 0;
+}
+.userinfo.smaller .userinfo-skeleton-screen .u-s-avatar {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  margin: 0;
+}
+.userinfo.smaller .u-s-myname {
+  padding-left: 80px;
+  padding-top: 15px;
+  height: 60px;
+  overflow: hidden;
+}
+.userinfo.smaller .u-s-myname .u-s-row {
+  margin: 0 0 10px 0;
+  height: 25px;
+}
+.userinfo.smaller .u-s-say {
+  margin-top: 15px;
+}
 .userinfo {
   background-color: #fff;
   padding: 20px 20px 15px;
   margin-bottom: 20px;
+  position: relative;
 }
 .userinfo.smaller {
   padding: 16px 20px 10px;

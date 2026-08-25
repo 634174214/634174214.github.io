@@ -553,91 +553,17 @@ var _hmt = _hmt || [];
                                 </div>
             <!-- 文章列表 end -->
             <!-- 推荐阅读 -->
-            <div class="detail-news-list margin-bot-l">
+            <div class="detail-news-list margin-bot-l" id="detail-news-recommends">
     <div class="headline">
         浏览最多
     </div>
-            <ul class="list-a">
-                        <li>
-                                <div class="textbox">
-                    <div class="channel-label smaller">
-                        <a href="/blog/list/uniapp">uniapp</a>
-                    </div>
-                    <h3><a href="/blog/articles/288" title="uniapp开发的APP中，如何使用手机默认浏览器打开链接或打开外部应用">uniapp开发的APP中，如何使用手机默认浏览器打开链接或打开外部应用</a></h3>
-                    <p>在APP中打开其他APP或者打开应用市场的操作。</p>
-                    <div class="info">
-                                <span class="readnum">
-                                    <i class="icon fa fa-eye"></i>
-                                    <em>89984次阅读</em>
-                                </span>
-                        <span class="goodnum">
-                                    <i class="icon fa fa-thumbs-o-up"></i>
-                                    <em>6651人点赞</em>
-                                </span>
-                        <span class="date">
-                                    <i class="icon fa fa-clock-o"></i>
-                                    <em>发布时间: 2022-08-12 15:51:21</em>
-                                </span>
-                        <a href="/blog/articles/288" class="go">
-                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </li>
-                        <li>
-                                <div class="textbox">
-                    <div class="channel-label smaller">
-                        <a href="/blog/list/default">默认</a>
-                    </div>
-                    <h3><a href="/blog/articles/170" title="记录一些访问过觉得不错的博客和各类网站【收藏】（持续更新）">记录一些访问过觉得不错的博客和各类网站【收藏】（持续更新）</a></h3>
-                    <p>收集一些有用并且个人觉得非常不错的的网站，为自己用，也分享一下，仅此而已。</p>
-                    <div class="info">
-                                <span class="readnum">
-                                    <i class="icon fa fa-eye"></i>
-                                    <em>88120次阅读</em>
-                                </span>
-                        <span class="goodnum">
-                                    <i class="icon fa fa-thumbs-o-up"></i>
-                                    <em>6748人点赞</em>
-                                </span>
-                        <span class="date">
-                                    <i class="icon fa fa-clock-o"></i>
-                                    <em>发布时间: 2021-09-01 15:54:55</em>
-                                </span>
-                        <a href="/blog/articles/170" class="go">
-                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </li>
-                        <li>
-                                <div class="textbox">
-                    <div class="channel-label smaller">
-                        <a href="/blog/list/vue">Vue</a>
-                    </div>
-                    <h3><a href="/blog/articles/279" title="element-ui[plus]使用动态表单，并为每个动态表单项添加验证">element-ui[plus]使用动态表单，并为每个动态表单项添加验证</a></h3>
-                    <p>在使用ele-ui开发中，经常会用到对动态创建的表单进行字段验证，此时就需要使用到动态表单的验证，官方有示例，但是不够清晰。下面我将用一个简单的案例进行说明。</p>
-                    <div class="info">
-                                <span class="readnum">
-                                    <i class="icon fa fa-eye"></i>
-                                    <em>64623次阅读</em>
-                                </span>
-                        <span class="goodnum">
-                                    <i class="icon fa fa-thumbs-o-up"></i>
-                                    <em>4304人点赞</em>
-                                </span>
-                        <span class="date">
-                                    <i class="icon fa fa-clock-o"></i>
-                                    <em>发布时间: 2022-07-19 17:06:39</em>
-                                </span>
-                        <a href="/blog/articles/279" class="go">
-                            立即查看<i class="icon fa fa-chevron-circle-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </li>
-                    </ul>
-        </div>            <!-- 推荐阅读 end -->
+    <div class="list-loading"></div>
+    <ul class="list-a"></ul>
+    <div class="no-list small">
+        <img src="/assets/img/no-list.gif" alt="抱歉，目前还没有推荐文章哦">
+        <p class="text">抱歉, 目前还没有任何文章</p>
+    </div>
+</div>            <!-- 推荐阅读 end -->
             <!-- 猜你喜欢 -->
             <div class="detail-news-list " id="guess-you-like">
         <div class="headline">
@@ -650,27 +576,27 @@ var _hmt = _hmt || [];
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/321" class="imgbox">
-                <img src="/statics/blog/2022/1020/b585415b95b0a09b50a897e45b449245.jpg">
+            <a href="/blog/articles/219" class="imgbox">
+                <img src="https://634174214.gitee.io/my-pic/saierda-amiibo-1.jpg">
             </a>
-            <a href="/blog/articles/321" class="title" title="uniapp项目中禁止横屏让app不自动旋转且始终保持竖屏">
-                uniapp项目中禁止横屏让app不自动旋转且始终保持竖屏
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/119" class="imgbox">
-                <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
-            </a>
-            <a href="/blog/articles/119" class="title" title="Vue3开发一个v-loading的自定义指令">
-                Vue3开发一个v-loading的自定义指令
+            <a href="/blog/articles/219" class="title" title="使用gitee和picgo做图床的一个大坑">
+                使用gitee和picgo做图床的一个大坑
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/339" class="imgbox">
-                <img src="/statics/blog/2022/1209/47944d26f348fc6e06c88538af70083f.png">
+            <a href="/blog/articles/188" class="imgbox">
+                <img src="/statics/blog/2021/1009/544a1e3e253f950dfe0d994d4759491d.jpg">
             </a>
-            <a href="/blog/articles/339" class="title" title="uniapp打包APP上架相关问题【IOS】篇">
-                uniapp打包APP上架相关问题【IOS】篇
+            <a href="/blog/articles/188" class="title" title="【正则】一些常用的正则表达式总结">
+                【正则】一些常用的正则表达式总结
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/328" class="imgbox">
+                <img src="/statics/blog/2022/1124/00f04e792579ed049a5bb01c4fa6eb09.png">
+            </a>
+            <a href="/blog/articles/328" class="title" title="js获取浏览器、屏幕的宽高(多浏览器)">
+                js获取浏览器、屏幕的宽高(多浏览器)
             </a>
         </li>
             </ul>
@@ -682,15 +608,29 @@ var _hmt = _hmt || [];
         <div class="inner">
             <!-- userinfo -->
                 <div class="userinfo smaller">
+        <div class="userinfo-skeleton-screen">
+            <div class="u-s-avatar"></div>
+            <div class="u-s-myname">
+                <div class="u-s-row row-50"></div>
+                <div class="u-s-row row-80"></div>
+            </div>
+            <div class="u-s-say">
+                <div class="u-s-row"></div>
+                <div class="u-s-row"></div>
+                <div class="u-s-row"></div>
+                <div class="u-s-row"></div>
+                <div class="u-s-row row-30"></div>
+            </div>
+        </div>
         <div class="avatar">
-            <img src="/statics/userinfo/2026/0402/63a0f7b81b0f2ad7924b1d3dacfaaabd.png">
+            <img src="/assets/img/blog-logo-avatar.png">
         </div>
         <div class="myname">
             <p class="name">WuBin</p>
-            <p class="small">拾漏补缺，共逐星辰</p>
+            <p class="small">一介武夫 | 博客空间</p>
         </div>
         <p class="say">
-            <span>静态站全新上线！欢迎收藏关注！</span>
+            <span>这里是武彬的个人博客空间，分享技术，交流经验，分享生活。</span>
         </p>
                 <ul class="my-contact" id="my-contact">
             <li class="gitee" data-content="https://github.com/634174214" data-cls="github" title="我的github仓库">
@@ -794,8 +734,8 @@ var _hmt = _hmt || [];
                 </div>
                 <div class="about">
                     <strong>关于网站：</strong>
-                                            “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、ThinkPHP、JS、CSS、Less、VUE、jQuery、Python、Linux、Apache、Nginx、AI、canvas、Godot游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！
-                                    </div>
+                    <span id="footer-about-content"> “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、ThinkPHP、JS、CSS、Less、VUE、jQuery、Python、Linux、Apache、Nginx、AI、canvas、Godot游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！</span>
+                </div>
             </div>
             <div class="right">
                 <ul class="qr-box-inner">

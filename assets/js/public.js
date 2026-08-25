@@ -919,6 +919,48 @@
       return Guess;
   })();
 
+    // 详情页都先让说说 个人信息 透明度设置为0 更新内容之后再显示
+    var updateUserInfo = function() {
+        var apiUrl = window.IS_GITHUB_PAGES ? '/public/api/myinfo/myinfo.json' : '/api/blog/myinfo';
+        $.ajax({
+          url: apiUrl,
+          type: 'get',
+          dataType: 'json',
+          success: function (res) {
+            // console.log(res)
+            var myinfo = res.data.my_info;
+            var mysay = res.data.my_say;
+            var siteinfo = res.data.site_info;
+
+            var avatarImg = myinfo.avatar;
+            var nikename = myinfo.nikename;
+            var usersmall = myinfo.usersmall;
+            var saycontent = mysay.say_content;
+
+            var $userInfo = $('.userinfo').eq(0);
+            var $avatarImg = $userInfo.find('.avatar img').eq(0);
+            var $name = $userInfo.find('.myname .name').eq(0);
+            var $small = $userInfo.find('.myname .small').eq(0);
+            var $say = $userInfo.find('.say span').eq(0);
+
+            // console.log(siteinfo)
+            $avatarImg.attr('src', avatarImg);
+            $name.text(nikename);
+            $small.text(usersmall);
+            $say .text(saycontent);
+            $('#footer-about-content').text(siteinfo.site_about);
+
+            setTimeout(function () {
+              $('.userinfo').eq(0).addClass('show');
+            }, 1000);
+          },
+          error: function () {
+            // 请求失败 那么直接显示默认DOM内容
+            $('.userinfo').eq(0).addClass('show');
+          }
+        })
+    };
+
     // 返回上一页
    $('.go-back').on('click', function() {
     window.history.back();
@@ -949,6 +991,7 @@
     searchStart.init();
     contactStart.init();
     blogAllNavStart.init();
+    updateUserInfo();
 
     // 操作挂载在methods上
     methods.articleLocal = new ArticleDataBase();
