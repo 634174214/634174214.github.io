@@ -921,7 +921,16 @@
 
     // 详情页都先让说说 个人信息 透明度设置为0 更新内容之后再显示
     var updateUserInfo = function() {
-        var apiUrl = window.IS_GITHUB_PAGES ? '/public/api/myinfo/myinfo.json' : '/api/blog/myinfo';
+        var apiUrl = '';
+        if (window.IS_GITHUB_PAGES) {
+           apiUrl = '/api/myinfo/myinfo.json';
+          if (window.location.href.indexOf('blog.local') > -1) {
+            apiUrl = '/public' + apiUrl;
+          }
+        } else {
+           apiUrl = '/api/blog/myinfo';
+        }
+
         $.ajax({
           url: apiUrl,
           type: 'get',

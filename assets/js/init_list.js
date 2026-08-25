@@ -25,11 +25,15 @@ $LAB
         var $loading = $detailNewsList.find('.list-loading').eq(0);
         var $nolist = $detailNewsList.find('.no-list').eq(0);
 
-        console.log($detailNewsList)
-
-        var apiurl = window.IS_GITHUB_PAGES
-            ? '/public/api/recommends/recommends.json'
-            : '/api/blog/recommends';
+        var apiurl = '';
+        if (window.IS_GITHUB_PAGES) {
+            apiurl = '/api/recommends/recommends.json';
+            if (window.location.href.indexOf('blog.local') > -1) {
+                apiurl = '/public' + apiurl;
+            }
+        } else {
+            apiurl = '/api/blog/recommends';
+        }
 
         var baseurl = {
             article: '/blog/articles',
