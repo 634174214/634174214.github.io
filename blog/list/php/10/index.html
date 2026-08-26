@@ -34,42 +34,22 @@
             <a href="/" class="logo">
                 <img src="/assets/img/blog-logo.png" alt="一介武夫">
             </a>
-            <ul class="left-nav">
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
                                 <li class="active">
                     <a href="/">
                         博客
                     </a>
                 </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/build/" target="_blank" title="商务合作">
-                        商务
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank" title="好工人网址导航">
-                        导航
-                    </a>
-                </li>
-
-
-                                <li>
-                    <a href="https://634174214.github.io/blog-others/my-ns-wall/" target="_blank" title="常用的各类前端开发库">
-                        游戏墙
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank" title="开发技术资源汇总">
-                        专栏
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/resume/" target="_blank" title="常用的各类前端开发库">
-                        简历
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/portfolio/" target="_blank" title="常用工具">
-                        作品
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
+                        订阅
                     </a>
                 </li>
                 <li id="finders-link">
@@ -106,26 +86,12 @@
                 博客频道
             </a>
             <ul class="blog-nav">
-                <li class="blog-channel">
-                                                                        <a href="/blog/list/php/" class="normal active">
-                                PHP
-                            </a>
-                                                                                                <a href="/blog/list/js/" class="normal ">
-                                JS
-                            </a>
-                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
-                                ThinkPHP
-                            </a>
-                                                                                                <a href="/blog/list/vue/" class="normal ">
-                                Vue
-                            </a>
-                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
-                                CSS
-                            </a>
-                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
-                                Python
-                            </a>
-                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                <li class="blog-channel"
+                    data-channelactive="php"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
                         我的收藏
                     </em>
                 </li>
@@ -139,73 +105,11 @@
         </nav>
     </div>
     <div class="hot-search" id="hot-search">
-                    <dl class="hot">
-                <dt>热门搜索：</dt>
-                <dd>
-                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
-                                            <a href="/search?s=课堂笔记">课堂笔记</a>
-                                            <a href="/search?s=jsonp">jsonp</a>
-                                    </dd>
-            </dl>
-            </div>
+    </div>
     <div class="blog-all-nav" id="blog-all-nav">
         <dl>
             <dt><a href="/blog/list/all">全部频道</a></dt>
             <dd>
-                                    <a href="/blog/list/php/" class="active">
-                        PHP
-                    </a>
-                                    <a href="/blog/list/js/" >
-                        JS
-                    </a>
-                                    <a href="/blog/list/thinkphp/" >
-                        ThinkPHP
-                    </a>
-                                    <a href="/blog/list/vue/" >
-                        Vue
-                    </a>
-                                    <a href="/blog/list/wechat/" >
-                        微信开发
-                    </a>
-                                    <a href="/blog/list/uniapp/" >
-                        uniapp
-                    </a>
-                                    <a href="/blog/list/css/" >
-                        CSS
-                    </a>
-                                    <a href="/blog/list/apache/" >
-                        Apache
-                    </a>
-                                    <a href="/blog/list/mysql/" >
-                        MySQL
-                    </a>
-                                    <a href="/blog/list/godot/" >
-                        Godot
-                    </a>
-                                    <a href="/blog/list/focus/" >
-                        社会关注
-                    </a>
-                                    <a href="/blog/list/design/" >
-                        设计
-                    </a>
-                                    <a href="/blog/list/python/" >
-                        Python
-                    </a>
-                                    <a href="/blog/list/xlyz/" >
-                        心灵驿站
-                    </a>
-                                    <a href="/blog/list/zhichang/" >
-                        聊聊职场
-                    </a>
-                                    <a href="/blog/list/java/" >
-                        Java
-                    </a>
-                                    <a href="/blog/list/zatan/" >
-                        经验杂谈
-                    </a>
-                                    <a href="/blog/list/default/" >
-                        默认
-                    </a>
                             </dd>
         </dl>
     </div>
@@ -376,27 +280,27 @@
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/116" class="imgbox">
-                <img src="/statics/blog/2021/0702/sheshui.gif">
+            <a href="/blog/articles/54" class="imgbox">
+                <img src="/statics/blog/2021/0430/da9c422e423825dfa9611987768bc41e.jpg">
             </a>
-            <a href="/blog/articles/116" class="title" title="暴雨天，我的车被淹了，保险公司会赔钱吗？">
-                暴雨天，我的车被淹了，保险公司会赔钱吗？
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/22" class="imgbox">
-                <img src="/statics/blog/2021/0305/00c65a58fab8d9059d0dfbf5c0b9c9ee.jpg">
-            </a>
-            <a href="/blog/articles/22" class="title" title="https网页请求http的接口">
-                https网页请求http的接口
+            <a href="/blog/articles/54" class="title" title="【课堂笔记】PHP开发APP接口【单例模式】(二)">
+                【课堂笔记】PHP开发APP接口【单例模式】(二)
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/352" class="imgbox">
-                <img src="/statics/blog/2023/0128/e87ffbe14fb85a03c0efc731f2191605.png">
+            <a href="/blog/articles/449" class="imgbox">
+                <img src="/statics/blog/2023/1129/f3eebb35b31bb516b4b4f9a3f00b360c.jpg">
             </a>
-            <a href="/blog/articles/352" class="title" title="僵尸部队4">
-                僵尸部队4
+            <a href="/blog/articles/449" class="title" title="windows下的vue-cli中如何配置https">
+                windows下的vue-cli中如何配置https
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/135" class="imgbox">
+                <img src="/statics/blog/2021/0714/55ecfb0e5af67e9e543924cb051e546a.jpg">
+            </a>
+            <a href="/blog/articles/135" class="title" title="百度分享share.baidu各配置详解及解决https支持问题">
+                百度分享share.baidu各配置详解及解决https支持问题
             </a>
         </li>
             </ul>
