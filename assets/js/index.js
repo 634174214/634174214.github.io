@@ -50,8 +50,18 @@
     // 滚动到底部加载
     var Loadmore = function () {
         var More = function (obj) {
-            this.server = obj.server;
+
+            // 如果在本地 并且链接里面有?github.io
+            if (window.IS_GITHUB_PAGES &&
+                window.IS_BLOG_LOCAL
+            ) {
+                this.server = '/public' + obj.server;
+            } else {
+                this.server = obj.server;
+            }
+
             this.page = obj.pageStart;
+            this.desc = !!obj.desc;
             this.id = obj.id;
             this.newsList = obj.newsList;
             this.init();
@@ -103,7 +113,7 @@
                 if (window.IS_GITHUB_PAGES) {
                     targetUrl += '/';
                 }
-                console.log(row)
+                // console.log(row)
                 var tpl = '<li class="ani">';
                 if (row.preview) {
                     tpl += '<a href="' + targetUrl + '" target="_blank" class="imgbox">';
@@ -167,12 +177,14 @@
 
             _getNews: function () {
                 var self = this;
+                // 静态站正序存储：从最后一页(最新)倒序向前加载，减到 0 即结束
+                if (this.desc && this.page < 1) {
+                    this._loadEnd();
+                    return;
+                }
                 var url = this.server + this.page;
-                console.log(window.IS_GITHUB_PAGES)
                 if (window.IS_GITHUB_PAGES) {
-                    url += '.json';
-                    console.log(url)
-                    // debugger
+                    url += '.json'
                 }
 
                 $.ajax({
@@ -185,7 +197,7 @@
                             res.data.length > 0
                         ) {
                             self._appendNews(res.data);
-                            self.page++;
+                            self.page = self.desc ? self.page - 1 : self.page + 1;
                         } else {
                             // 代表没有数据了
                             self._loadEnd();
@@ -193,6 +205,9 @@
                     },
                     error: function () {
                         console.log('数据获取失败');
+                        if (self.desc) {
+                            self._loadEnd();
+                        }
                     }
                 });
             },
@@ -244,4 +259,16 @@
         // 服务器的地址
         server: '/api/blog/'
     });
+
+    // 静态站(GitHub Pages)正序存储：读取 manifest 得到总页数，从最后一页倒序向前加载
+    if (window.IS_GITHUB_PAGES) {
+        var sorollOnBottomUrl = '/api/blog/manifest.json';
+        if (window.IS_BLOG_LOCAL) {
+            sorollOnBottomUrl = '/public' + sorollOnBottomUrl
+        }
+        $.getJSON(sorollOnBottomUrl, function (m) {
+            loadnews.page = m.pages || 1;
+            loadnews.desc = true;
+        });
+    }
 })(jQuery);

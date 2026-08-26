@@ -13,6 +13,12 @@ a{color: @color-black-l;}
 body.gray-darken{
     background-color: #ececec;
 }
+
+@keyframes skeleton-loading {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
 .not-show{
     position: absolute;
     z-index: -1;
@@ -62,9 +68,34 @@ body.gray-darken{
             width: 100%;
         }
     }
+
+    .nav-loading{
+        display: inline-block;
+        font-size: 0;
+        padding-top: 5px;
+        .s-l-item{
+            &:first-child{
+                margin-left: 0;
+            }
+            height: 30px;
+            display: inline-block;
+            width: 85px;
+            margin-left: 10px;
+            background: #f2f2f2;
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s ease-in-out infinite;
+            border-radius: 4px;
+        }
+    }
+
     .left-nav{
         display: inline-block;
         font-size: 0;
+        &.hide{
+            display: none;
+        }
+
         li{
             display: inline-block;
             vertical-align: top;
@@ -87,7 +118,7 @@ body.gray-darken{
             a{
                 font-size: @font-size-ll;
                 display: block;
-                padding: 0 12px;
+                padding: 0 10px;
                 color: @color-black-l;
                 line-height: 40px;
                 position: relative;
@@ -1461,10 +1492,10 @@ body.gray-darken{
 
 // 骨架屏
 .userinfo{
-    @keyframes skeleton-loading {
-        0% { background-position: -200% 0; }
-        100% { background-position: 200% 0; }
-    }
+    //@keyframes skeleton-loading {
+    //    0% { background-position: -200% 0; }
+    //    100% { background-position: 200% 0; }
+    //}
     .userinfo-skeleton-screen{
         position: absolute;
         top: 0;

@@ -366,6 +366,14 @@ a {
 body.gray-darken {
   background-color: #ececec;
 }
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
 .not-show {
   position: absolute;
   z-index: -1;
@@ -411,9 +419,31 @@ body.gray-darken {
   display: block;
   width: 100%;
 }
+.nav .nav-loading {
+  display: inline-block;
+  font-size: 0;
+  padding-top: 5px;
+}
+.nav .nav-loading .s-l-item {
+  height: 30px;
+  display: inline-block;
+  width: 85px;
+  margin-left: 10px;
+  background: #f2f2f2;
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+.nav .nav-loading .s-l-item:first-child {
+  margin-left: 0;
+}
 .nav .left-nav {
   display: inline-block;
   font-size: 0;
+}
+.nav .left-nav.hide {
+  display: none;
 }
 .nav .left-nav li {
   display: inline-block;
@@ -436,7 +466,7 @@ body.gray-darken {
 .nav .left-nav li a {
   font-size: 14px;
   display: block;
-  padding: 0 12px;
+  padding: 0 10px;
   color: #4d4d4d;
   line-height: 40px;
   position: relative;
@@ -1848,14 +1878,6 @@ body.gray-darken {
 .userinfo .myname,
 .userinfo .say {
   opacity: 0;
-}
-@keyframes skeleton-loading {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
 }
 .userinfo .userinfo-skeleton-screen {
   position: absolute;

@@ -1,6 +1,11 @@
 (function($, window) {
-    window.SITEURL =  (window.location.href.indexOf('blog.local')> -1) ? 'blog.local' : 'https://634174214.github.io/';
+    // 版本号 用于更新JSON缓存等
+    window.version = '20260826';
+    // 是否是在本地
+    window.IS_BLOG_LOCAL = window.location.href.indexOf('blog.local') > -1;
+    window.SITEURL =  window.IS_BLOG_LOCAL ? 'blog.local' : 'https://634174214.github.io/';
     window.IS_GITHUB_PAGES = window.location.href.indexOf('github.io')> -1;
+
     window.support = {
       ispc: function() {
         var userAgentInfo = navigator.userAgent;
@@ -162,7 +167,138 @@
       }
     }
   
-  
+    // 设置顶部导航
+    var setNavbar = function (callback) {
+      var apiurl = '';
+      if (window.IS_GITHUB_PAGES) {
+        apiurl = '/api/sitenav/sitenav.json?t=' + window.version;
+        if (window.IS_BLOG_LOCAL) {
+          apiurl = '/public' + apiurl;
+        }
+      } else {
+        apiurl = '/api/blog/sitenav';
+      }
+
+      var $leftnav = $('#head-left-nav');
+      var $leftLoading = $('#head-left-nav-loading');
+      var $rssli = $('#left-nav-rss');
+      var $blogChannelHeadshow = $('#blog-channel-headshow');
+      var $hotsearch = $('#hot-search');
+      var $allNavdd = $('#blog-all-nav dd').eq(0);
+      var channelActived = $blogChannelHeadshow.data('channelactive');
+      // var baseurlList = $blogChannelHeadshow.data('baseurlList'); // 没有用渲染在元素上的
+      var baseurlList = '/blog/list';
+      console.log(channelActived)
+      function getLeftNav(links) {
+        var res = '';
+        $.each(links, function (index, link) {
+            var itemstr = '';
+            itemstr += '<li>';
+            itemstr += '<a href="' + link.href + '" target="_blank" title="' + link.alt  + '">';
+            itemstr += link.name;
+            itemstr += '</a>';
+            itemstr += '</li>';
+            res += itemstr;
+        });
+        return res;
+      }
+
+      // 设置在顶部显示的频道(还余下tags 聚合标签 外链 用在首页 列表页 没有json化)
+      function getBlogChannel(channels) {
+        var res = '';
+        // console.log(channels)
+        $.each(channels, function (index, channel) {
+          var itemstr = '';
+          if (channel.headshow) {
+             var activeClass = (channelActived === channel.short) ? 'active' : '';
+             var url = baseurlList + '/' + channel.short + '/';
+             itemstr += '<a href="' + url + '" class="normal ' + activeClass + '">';
+             itemstr += channel.name;
+             itemstr += '</a>';
+          }
+          res += itemstr;
+        });
+        return res;
+      }
+
+      function getHotSearch(hotsearch) {
+        if (hotsearch.length <= 0) {
+          return '';
+        }
+        var hotstr = '';
+        $.each(hotsearch, function (index, item) {
+          hotstr += '<a href="/search?s=' + item + '">' + item + '</a>';
+        });
+        var res = '<dl class="hot">';
+        res += '<dt>热门搜索：</dt>';
+        res += '<dd>';
+        res += hotstr;
+        res += '</dd>';
+        res += '</dl>';
+        return res;
+      }
+
+      function getAllChannels(channels) {
+          var res = '';
+          $.each(channels, function (index, channel) {
+              var href = baseurlList + '/' + channel.short + '/';
+              console.log(channelActived, channel.short)
+              var activeClass = (channelActived === channel.short) ? 'active' : '';
+              res += '<a href="' + href + '" class="' + activeClass + '">';
+              res += channel.name;
+              res += '</a>';
+          });
+          return res;
+      }
+
+      function init() {
+        $.ajax({
+          url: apiurl,
+          type: 'GET',
+          dataType: 'json',
+          success: function (res) {
+            // console.log(res.data)
+            var links = res.data.headnav_links;
+            var channels = res.data.headnav_channels;
+            var hotsearch = res.data.hotsearch;
+
+            var linksStr = getLeftNav(links);
+            var blogChannelStr = getBlogChannel(channels);
+            var hotsearchStr = getHotSearch(hotsearch);
+            var allChannelStr = getAllChannels(channels);
+
+            $rssli.after($(linksStr));
+            $blogChannelHeadshow.prepend($(blogChannelStr));
+            $allNavdd.append($(allChannelStr));
+            if (hotsearchStr) {
+              $hotsearch.append($(hotsearchStr));
+            }
+
+            setTimeout(function () {
+              $leftLoading.hide();
+              $leftnav.removeClass('hide');
+              // callback();
+            }, 100);
+            setTimeout(function () {
+              callback();
+            }, 150);
+
+
+          },
+          error: function (err) {
+            window.alert('网络环境不佳，请您刷新重试');
+            console.log('导航信息获取失败', err);
+          }
+        });
+      }
+
+      return {
+        init: init
+      }
+
+    };
+
+
     // 顶部导航与滚动交互的效果, 下滚全部菜单 上滚博客菜单
     var NavbarScroll = function() {
       // 不是pc不执行
@@ -204,7 +340,7 @@
             }, dotime);
           }
       });
-    }
+    };
   
     // 搜索框
     var Search = function() {
@@ -923,8 +1059,8 @@
     var updateUserInfo = function() {
         var apiUrl = '';
         if (window.IS_GITHUB_PAGES) {
-           apiUrl = '/api/myinfo/myinfo.json';
-          if (window.location.href.indexOf('blog.local') > -1) {
+           apiUrl = '/api/myinfo/myinfo.json?t=' + window.version;
+          if (window.IS_BLOG_LOCAL) {
             apiUrl = '/public' + apiUrl;
           }
         } else {
@@ -990,16 +1126,20 @@
       // $('#live-message-link').next().hide();
       // $('.refresh').hide();
     }
-  
-  
-    var searchStart = new Search();
+
+    setNavbar(function () {
+      var searchStart = new Search();
+      searchStart.init();
+      var blogAllNavStart = new BlogAllNav();
+      blogAllNavStart.init();
+      var navbarStart = new NavbarScroll();
+    }).init();
+
+
     var contactStart = new Mycontact();
-    var blogAllNavStart = new BlogAllNav();
-    var navbarStart = new NavbarScroll();
-    new RefreshGuess('#guess-you-like');
-    searchStart.init();
     contactStart.init();
-    blogAllNavStart.init();
+    new RefreshGuess('#guess-you-like');
+
     updateUserInfo();
 
     // 操作挂载在methods上

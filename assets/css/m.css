@@ -405,7 +405,8 @@ a {
   width: auto;
   height: 100%;
 }
-.nav .left-nav {
+.nav .left-nav,
+.nav .nav-loading {
   display: none;
 }
 .nav .right-nav {

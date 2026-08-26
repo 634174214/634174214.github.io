@@ -9,4 +9,4 @@ $LAB
   .script(giteeUrl + "libs/storage.js")
   .script(giteeUrl + "libs/swiper4/js/swiper.min.js")
   .script(giteeUrl + "js/public.js?t=15")
-  .script(giteeUrl + "js/index.js?t=1");
+  .script(giteeUrl + "js/index.js?t=2");

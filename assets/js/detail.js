@@ -563,8 +563,8 @@
 
         var apiurl = '';
         if (window.IS_GITHUB_PAGES) {
-            apiurl = '/api/recommends/recommends.json';
-            if (window.location.href.indexOf('blog.local') > -1) {
+            apiurl = '/api/recommends/recommends.json?t=' + window.version;
+            if (window.IS_BLOG_LOCAL) {
                 apiurl = '/public' + apiurl;
             }
         } else {
