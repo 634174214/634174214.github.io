@@ -27,15 +27,7 @@
 <script src="/assets/libs/respond.min.js"></script>
 <![endif]-->
 <!-- 百度网站监测 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>    <script>
+    <script>
         var articleInfo = {
             article_id: 266,
             article_title: 'ios手机Date.getTime()结果为NaN解决办法',
@@ -53,42 +45,22 @@ var _hmt = _hmt || [];
             <a href="/" class="logo">
                 <img src="/assets/img/blog-logo.png" alt="一介武夫">
             </a>
-            <ul class="left-nav">
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
                                 <li class="active">
                     <a href="/">
                         博客
                     </a>
                 </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/build/" target="_blank" title="商务合作">
-                        商务
-                    </a>
-                </li>
-                <li>
-                    <a href="https://tool.lu/" target="_blank" title="常用工具">
-                        工具
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank" title="好工人网址导航">
-                        导航
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/rss/" target="_blank" title="订阅">
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
                         订阅
-                    </a>
-                </li>
-
-                                <li>
-                    <a href="https://634174214.github.io/blog-others/my-ns-wall/" target="_blank" title="常用的各类前端开发库">
-                        游戏墙
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank" title="开发技术资源汇总">
-                        专栏
                     </a>
                 </li>
                 <li id="finders-link">
@@ -125,26 +97,12 @@ var _hmt = _hmt || [];
                 博客频道
             </a>
             <ul class="blog-nav">
-                <li class="blog-channel">
-                                                                        <a href="/blog/list/php/" class="normal ">
-                                PHP
-                            </a>
-                                                                                                <a href="/blog/list/js/" class="normal active">
-                                JS
-                            </a>
-                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
-                                ThinkPHP
-                            </a>
-                                                                                                <a href="/blog/list/vue/" class="normal ">
-                                Vue
-                            </a>
-                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
-                                CSS
-                            </a>
-                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
-                                Python
-                            </a>
-                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                <li class="blog-channel"
+                    data-channelactive="js"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
                         我的收藏
                     </em>
                 </li>
@@ -158,73 +116,11 @@ var _hmt = _hmt || [];
         </nav>
     </div>
     <div class="hot-search" id="hot-search">
-                    <dl class="hot">
-                <dt>热门搜索：</dt>
-                <dd>
-                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
-                                            <a href="/search?s=课堂笔记">课堂笔记</a>
-                                            <a href="/search?s=jsonp">jsonp</a>
-                                    </dd>
-            </dl>
-            </div>
+    </div>
     <div class="blog-all-nav" id="blog-all-nav">
         <dl>
             <dt><a href="/blog/list/all">全部频道</a></dt>
             <dd>
-                                    <a href="/blog/list/php/" >
-                        PHP
-                    </a>
-                                    <a href="/blog/list/js/" class="active">
-                        JS
-                    </a>
-                                    <a href="/blog/list/thinkphp/" >
-                        ThinkPHP
-                    </a>
-                                    <a href="/blog/list/vue/" >
-                        Vue
-                    </a>
-                                    <a href="/blog/list/wechat/" >
-                        微信开发
-                    </a>
-                                    <a href="/blog/list/uniapp/" >
-                        uniapp
-                    </a>
-                                    <a href="/blog/list/css/" >
-                        CSS
-                    </a>
-                                    <a href="/blog/list/apache/" >
-                        Apache
-                    </a>
-                                    <a href="/blog/list/mysql/" >
-                        MySQL
-                    </a>
-                                    <a href="/blog/list/godot/" >
-                        Godot
-                    </a>
-                                    <a href="/blog/list/focus/" >
-                        社会关注
-                    </a>
-                                    <a href="/blog/list/design/" >
-                        设计
-                    </a>
-                                    <a href="/blog/list/python/" >
-                        Python
-                    </a>
-                                    <a href="/blog/list/xlyz/" >
-                        心灵驿站
-                    </a>
-                                    <a href="/blog/list/zhichang/" >
-                        聊聊职场
-                    </a>
-                                    <a href="/blog/list/java/" >
-                        Java
-                    </a>
-                                    <a href="/blog/list/zatan/" >
-                        经验杂谈
-                    </a>
-                                    <a href="/blog/list/default/" >
-                        默认
-                    </a>
                             </dd>
         </dl>
     </div>
@@ -324,27 +220,27 @@ dateStr = dateStr.replace(<span class="hljs-regexp">/\-/g</span>, <span class="h
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/146" class="imgbox">
-                <img src="/statics/blog/2021/0728/528951a7001c6fa90f2b91fa706fbb0d.png">
+            <a href="/blog/articles/458" class="imgbox">
+                <img src="/statics/blog/2023/1220/ce75b6fa38b076a88e095b8ff8a60a46.jpg">
             </a>
-            <a href="/blog/articles/146" class="title" title="MySQL和Redis如何保证数据一致性？">
-                MySQL和Redis如何保证数据一致性？
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/586" class="imgbox">
-                <img src="/statics/blog/2025/0317/eac39c534ac6cdf574da6dbd133df5b9.png">
-            </a>
-            <a href="/blog/articles/586" class="title" title="python中的csv+matp的使用案例">
-                python中的csv+matp的使用案例
+            <a href="/blog/articles/458" class="title" title="安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题">
+                安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/121" class="imgbox">
-                <img src="/statics/blog/2021/0705/017dd7c4cc8f5767bce7f86ad2656a28.jpg">
+            <a href="/blog/articles/227" class="imgbox">
+                <img src="//i.loli.net/2021/12/02/QbnKiVdpEsgACrf.png">
             </a>
-            <a href="/blog/articles/121" class="title" title="控制器之Session">
-                控制器之Session
+            <a href="/blog/articles/227" class="title" title="vue3配置多页面应用">
+                vue3配置多页面应用
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/128" class="imgbox">
+                <img src="/statics/blog/2021/0709/2efd9b5caea4b3e61051470b39e9c315.jpg">
+            </a>
+            <a href="/blog/articles/128" class="title" title="原生video在手机浏览器中各个属性以及获取视频尺寸和自动播放">
+                原生video在手机浏览器中各个属性以及获取视频尺寸和自动播放
             </a>
         </li>
             </ul>
@@ -431,33 +327,33 @@ dateStr = dateStr.replace(<span class="hljs-regexp">/\-/g</span>, <span class="h
                         </div>
                         <ul class="list-c">
                                                             <li>
-                                    <a href="/blog/articles/594">
+                                    <a href="/blog/articles/210">
                                         <i class="icon fa fa-caret-right"></i>
-                                        前端原生以及axio如何接受流式数据（SSE）
+                                        点击a标签实现QQ对话、邮件发送、拨打电话功能
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/200">
+                                    <a href="/blog/articles/362">
                                         <i class="icon fa fa-caret-right"></i>
-                                        【JS工具方法】-操作存储篇
+                                        JS实现一个base64的加密解密方法
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/239">
+                                    <a href="/blog/articles/503">
                                         <i class="icon fa fa-caret-right"></i>
-                                        给你一个可以中断的Promise
+                                        解决js运算精度丢失的插件bigjs
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/327">
+                                    <a href="/blog/articles/471">
                                         <i class="icon fa fa-caret-right"></i>
-                                        js中闭包引起的事件重复触发的问题
+                                        JS实现Html转义和反转义以及解决转义后&amp;被post截断的问题
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/144">
+                                    <a href="/blog/articles/386">
                                         <i class="icon fa fa-caret-right"></i>
-                                        苹果Iphone-IOS系统14版本以下不支持webp格式的图片
+                                        getQueryStringArgs-获取地址栏中的查询字符串
                                     </a>
                                 </li>
                                                     </ul>

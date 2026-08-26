@@ -27,15 +27,7 @@
 <script src="/assets/libs/respond.min.js"></script>
 <![endif]-->
 <!-- 百度网站监测 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>    <script>
+    <script>
         var articleInfo = {
             article_id: 595,
             article_title: '《狂野西部：枪手》游戏中关于技能的翻译和升级顺序',
@@ -53,42 +45,22 @@ var _hmt = _hmt || [];
             <a href="/" class="logo">
                 <img src="/assets/img/blog-logo.png" alt="一介武夫">
             </a>
-            <ul class="left-nav">
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
                                 <li class="active">
                     <a href="/">
                         博客
                     </a>
                 </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/build/" target="_blank" title="商务合作">
-                        商务
-                    </a>
-                </li>
-                <li>
-                    <a href="https://tool.lu/" target="_blank" title="常用工具">
-                        工具
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank" title="好工人网址导航">
-                        导航
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/rss/" target="_blank" title="订阅">
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
                         订阅
-                    </a>
-                </li>
-
-                                <li>
-                    <a href="https://634174214.github.io/blog-others/my-ns-wall/" target="_blank" title="常用的各类前端开发库">
-                        游戏墙
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank" title="开发技术资源汇总">
-                        专栏
                     </a>
                 </li>
                 <li id="finders-link">
@@ -125,26 +97,12 @@ var _hmt = _hmt || [];
                 博客频道
             </a>
             <ul class="blog-nav">
-                <li class="blog-channel">
-                                                                        <a href="/blog/list/php/" class="normal ">
-                                PHP
-                            </a>
-                                                                                                <a href="/blog/list/js/" class="normal ">
-                                JS
-                            </a>
-                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
-                                ThinkPHP
-                            </a>
-                                                                                                <a href="/blog/list/vue/" class="normal ">
-                                Vue
-                            </a>
-                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
-                                CSS
-                            </a>
-                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
-                                Python
-                            </a>
-                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                <li class="blog-channel"
+                    data-channelactive="zatan"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
                         我的收藏
                     </em>
                 </li>
@@ -158,73 +116,11 @@ var _hmt = _hmt || [];
         </nav>
     </div>
     <div class="hot-search" id="hot-search">
-                    <dl class="hot">
-                <dt>热门搜索：</dt>
-                <dd>
-                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
-                                            <a href="/search?s=课堂笔记">课堂笔记</a>
-                                            <a href="/search?s=jsonp">jsonp</a>
-                                    </dd>
-            </dl>
-            </div>
+    </div>
     <div class="blog-all-nav" id="blog-all-nav">
         <dl>
             <dt><a href="/blog/list/all">全部频道</a></dt>
             <dd>
-                                    <a href="/blog/list/php/" >
-                        PHP
-                    </a>
-                                    <a href="/blog/list/js/" >
-                        JS
-                    </a>
-                                    <a href="/blog/list/thinkphp/" >
-                        ThinkPHP
-                    </a>
-                                    <a href="/blog/list/vue/" >
-                        Vue
-                    </a>
-                                    <a href="/blog/list/wechat/" >
-                        微信开发
-                    </a>
-                                    <a href="/blog/list/uniapp/" >
-                        uniapp
-                    </a>
-                                    <a href="/blog/list/css/" >
-                        CSS
-                    </a>
-                                    <a href="/blog/list/apache/" >
-                        Apache
-                    </a>
-                                    <a href="/blog/list/mysql/" >
-                        MySQL
-                    </a>
-                                    <a href="/blog/list/godot/" >
-                        Godot
-                    </a>
-                                    <a href="/blog/list/focus/" >
-                        社会关注
-                    </a>
-                                    <a href="/blog/list/design/" >
-                        设计
-                    </a>
-                                    <a href="/blog/list/python/" >
-                        Python
-                    </a>
-                                    <a href="/blog/list/xlyz/" >
-                        心灵驿站
-                    </a>
-                                    <a href="/blog/list/zhichang/" >
-                        聊聊职场
-                    </a>
-                                    <a href="/blog/list/java/" >
-                        Java
-                    </a>
-                                    <a href="/blog/list/zatan/" class="active">
-                        经验杂谈
-                    </a>
-                                    <a href="/blog/list/default/" >
-                        默认
-                    </a>
                             </dd>
         </dl>
     </div>
@@ -321,19 +217,19 @@ var _hmt = _hmt || [];
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/52" class="imgbox">
-                <img src="/statics/blog/2021/0430/741a276b15f404db809572b3fdba889b.jpg">
+            <a href="/blog/articles/146" class="imgbox">
+                <img src="/statics/blog/2021/0728/528951a7001c6fa90f2b91fa706fbb0d.png">
             </a>
-            <a href="/blog/articles/52" class="title" title="vue.extend()+aysnc封装一个弹层组件【vue2】">
-                vue.extend()+aysnc封装一个弹层组件【vue2】
+            <a href="/blog/articles/146" class="title" title="MySQL和Redis如何保证数据一致性？">
+                MySQL和Redis如何保证数据一致性？
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/116" class="imgbox">
-                <img src="/statics/blog/2021/0702/sheshui.gif">
+            <a href="/blog/articles/1" class="imgbox">
+                <img src="/statics/blog/2021/0208/c16248bdc1b7f5a5358f16f377684b3f.jpg">
             </a>
-            <a href="/blog/articles/116" class="title" title="暴雨天，我的车被淹了，保险公司会赔钱吗？">
-                暴雨天，我的车被淹了，保险公司会赔钱吗？
+            <a href="/blog/articles/1" class="title" title="第一篇文章-网站更新记录">
+                第一篇文章-网站更新记录
             </a>
         </li>
                 <li>
@@ -428,33 +324,33 @@ var _hmt = _hmt || [];
                         </div>
                         <ul class="list-c">
                                                             <li>
-                                    <a href="/blog/articles/349">
+                                    <a href="/blog/articles/337">
                                         <i class="icon fa fa-caret-right"></i>
-                                        win11底部任务栏上的图标变白纸，恢复的方法
+                                        国内打不开GitHub网站100%解决办法
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/477">
+                                    <a href="/blog/articles/106">
                                         <i class="icon fa fa-caret-right"></i>
-                                        【生化危机启示录2】2024年如何在switch上关联到卡普空官网
+                                        日产奇骏维护保养
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/352">
+                                    <a href="/blog/articles/91">
                                         <i class="icon fa fa-caret-right"></i>
-                                        僵尸部队4
+                                        给宋老师收藏的期末班主任评语100则
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/71">
+                                    <a href="/blog/articles/408">
                                         <i class="icon fa fa-caret-right"></i>
-                                        看了肯德基里的这对父子，才明白为什么有些孩子，一生都富不起来
+                                        免费的音乐素材网站推荐
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/307">
+                                    <a href="/blog/articles/440">
                                         <i class="icon fa fa-caret-right"></i>
-                                        成人教育专升本档案在自己手里怎么处理
+                                        苹果手机iphone向windows电脑传大量图片视频
                                     </a>
                                 </li>
                                                     </ul>

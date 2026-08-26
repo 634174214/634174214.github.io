@@ -45,42 +45,22 @@
             <a href="/" class="logo">
                 <img src="/assets/img/blog-logo.png" alt="一介武夫">
             </a>
-            <ul class="left-nav">
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
                                 <li class="active">
                     <a href="/">
                         博客
                     </a>
                 </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/build/" target="_blank" title="商务合作">
-                        商务
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank" title="好工人网址导航">
-                        导航
-                    </a>
-                </li>
-
-
-                                <li>
-                    <a href="https://634174214.github.io/blog-others/my-ns-wall/" target="_blank" title="常用的各类前端开发库">
-                        游戏墙
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank" title="开发技术资源汇总">
-                        专栏
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/resume/" target="_blank" title="常用的各类前端开发库">
-                        简历
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/portfolio/" target="_blank" title="常用工具">
-                        作品
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
+                        订阅
                     </a>
                 </li>
                 <li id="finders-link">
@@ -117,26 +97,12 @@
                 博客频道
             </a>
             <ul class="blog-nav">
-                <li class="blog-channel">
-                                                                        <a href="/blog/list/php/" class="normal ">
-                                PHP
-                            </a>
-                                                                                                <a href="/blog/list/js/" class="normal ">
-                                JS
-                            </a>
-                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
-                                ThinkPHP
-                            </a>
-                                                                                                <a href="/blog/list/vue/" class="normal ">
-                                Vue
-                            </a>
-                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
-                                CSS
-                            </a>
-                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
-                                Python
-                            </a>
-                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                <li class="blog-channel"
+                    data-channelactive="zatan"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
                         我的收藏
                     </em>
                 </li>
@@ -150,73 +116,11 @@
         </nav>
     </div>
     <div class="hot-search" id="hot-search">
-                    <dl class="hot">
-                <dt>热门搜索：</dt>
-                <dd>
-                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
-                                            <a href="/search?s=课堂笔记">课堂笔记</a>
-                                            <a href="/search?s=jsonp">jsonp</a>
-                                    </dd>
-            </dl>
-            </div>
+    </div>
     <div class="blog-all-nav" id="blog-all-nav">
         <dl>
             <dt><a href="/blog/list/all">全部频道</a></dt>
             <dd>
-                                    <a href="/blog/list/php/" >
-                        PHP
-                    </a>
-                                    <a href="/blog/list/js/" >
-                        JS
-                    </a>
-                                    <a href="/blog/list/thinkphp/" >
-                        ThinkPHP
-                    </a>
-                                    <a href="/blog/list/vue/" >
-                        Vue
-                    </a>
-                                    <a href="/blog/list/wechat/" >
-                        微信开发
-                    </a>
-                                    <a href="/blog/list/uniapp/" >
-                        uniapp
-                    </a>
-                                    <a href="/blog/list/css/" >
-                        CSS
-                    </a>
-                                    <a href="/blog/list/apache/" >
-                        Apache
-                    </a>
-                                    <a href="/blog/list/mysql/" >
-                        MySQL
-                    </a>
-                                    <a href="/blog/list/godot/" >
-                        Godot
-                    </a>
-                                    <a href="/blog/list/focus/" >
-                        社会关注
-                    </a>
-                                    <a href="/blog/list/design/" >
-                        设计
-                    </a>
-                                    <a href="/blog/list/python/" >
-                        Python
-                    </a>
-                                    <a href="/blog/list/xlyz/" >
-                        心灵驿站
-                    </a>
-                                    <a href="/blog/list/zhichang/" >
-                        聊聊职场
-                    </a>
-                                    <a href="/blog/list/java/" >
-                        Java
-                    </a>
-                                    <a href="/blog/list/zatan/" class="active">
-                        经验杂谈
-                    </a>
-                                    <a href="/blog/list/default/" >
-                        默认
-                    </a>
                             </dd>
         </dl>
     </div>
@@ -240,11 +144,11 @@
                         <div class="left">
                                                         <span class="readnum">
                                 <i class="icon fa fa-eye"></i>
-                                <em>1493</em>次阅读
+                                <em>1604</em>次阅读
                             </span>
                             <span class="goodnum">
                                 <i class="icon fa fa-thumbs-o-up"></i>
-                                <em>83</em>人点赞
+                                <em>88</em>人点赞
                             </span>
                             <span class="author">
                                 <i class="icon fa fa-pencil-square-o"></i>
@@ -319,27 +223,27 @@
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/212" class="imgbox">
-                <img src="/statics/blog/2021/1109/34b3afcc2e19c518ebd8920b5e37b1dd.jpg">
+            <a href="/blog/articles/171" class="imgbox">
+                <img src="/statics/blog/2021/0901/81191d5078efdc10e533077163e05bcf.jpg">
             </a>
-            <a href="/blog/articles/212" class="title" title="19个console实用调试技巧">
-                19个console实用调试技巧
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/339" class="imgbox">
-                <img src="/statics/blog/2022/1209/47944d26f348fc6e06c88538af70083f.png">
-            </a>
-            <a href="/blog/articles/339" class="title" title="uniapp打包APP上架相关问题【IOS】篇">
-                uniapp打包APP上架相关问题【IOS】篇
+            <a href="/blog/articles/171" class="title" title="Composer快速入门之基本使用">
+                Composer快速入门之基本使用
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/74" class="imgbox">
-                <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
+            <a href="/blog/articles/239" class="imgbox">
+                <img src="/statics/blog/2021/1220/58b4554e4a0e238501706eb571f55c79.jpg">
             </a>
-            <a href="/blog/articles/74" class="title" title="关于手机上滚动穿透问题的解决">
-                关于手机上滚动穿透问题的解决
+            <a href="/blog/articles/239" class="title" title="给你一个可以中断的Promise">
+                给你一个可以中断的Promise
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/291" class="imgbox">
+                <img src="//native-res.dcloud.net.cn/images/uniapp/share/modules.png">
+            </a>
+            <a href="/blog/articles/291" class="title" title="使用uni-share插件实现APP页面分享">
+                使用uni-share插件实现APP页面分享
             </a>
         </li>
             </ul>
@@ -426,33 +330,33 @@
                         </div>
                         <ul class="list-c">
                                                             <li>
-                                    <a href="/blog/articles/477">
+                                    <a href="/blog/articles/143">
                                         <i class="icon fa fa-caret-right"></i>
-                                        【生化危机启示录2】2024年如何在switch上关联到卡普空官网
+                                        车子被撞了，自己如何评估车损，喵哥手把手现场教你，学会不吃亏
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/94">
+                                    <a href="/blog/articles/597">
                                         <i class="icon fa fa-caret-right"></i>
-                                        Win10修改编辑hosts文件后无法保存的解决方法
+                                        使用jsdelivr+github白嫖静态资源CDN
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/558">
+                                    <a href="/blog/articles/132">
                                         <i class="icon fa fa-caret-right"></i>
-                                        switch版三国志14系统优化以及其他总结
+                                        家用车轮毂，17寸就够了！因为大轮毂的缺点实在是太多了！
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/326">
+                                    <a href="/blog/articles/566">
                                         <i class="icon fa fa-caret-right"></i>
-                                        网页外观侵权如何判定
+                                        好的github项目记录
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/435">
+                                    <a href="/blog/articles/439">
                                         <i class="icon fa fa-caret-right"></i>
-                                        记录个人购买的各种消费卡
+                                        华为Mate9开启USB调试模式
                                     </a>
                                 </li>
                                                     </ul>

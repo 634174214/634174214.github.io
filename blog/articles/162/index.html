@@ -27,15 +27,7 @@
 <script src="/assets/libs/respond.min.js"></script>
 <![endif]-->
 <!-- 百度网站监测 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>    <script>
+    <script>
         var articleInfo = {
             article_id: 162,
             article_title: '【NS】Switch使用Lanplay实现远程面连的操作流程及信息汇总',
@@ -53,42 +45,22 @@ var _hmt = _hmt || [];
             <a href="/" class="logo">
                 <img src="/assets/img/blog-logo.png" alt="一介武夫">
             </a>
-            <ul class="left-nav">
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
                                 <li class="active">
                     <a href="/">
                         博客
                     </a>
                 </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/build/" target="_blank" title="商务合作">
-                        商务
-                    </a>
-                </li>
-                <li>
-                    <a href="https://tool.lu/" target="_blank" title="常用工具">
-                        工具
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank" title="好工人网址导航">
-                        导航
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/rss/" target="_blank" title="订阅">
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
                         订阅
-                    </a>
-                </li>
-
-                                <li>
-                    <a href="https://634174214.github.io/blog-others/my-ns-wall/" target="_blank" title="常用的各类前端开发库">
-                        游戏墙
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank" title="开发技术资源汇总">
-                        专栏
                     </a>
                 </li>
                 <li id="finders-link">
@@ -125,26 +97,12 @@ var _hmt = _hmt || [];
                 博客频道
             </a>
             <ul class="blog-nav">
-                <li class="blog-channel">
-                                                                        <a href="/blog/list/php/" class="normal ">
-                                PHP
-                            </a>
-                                                                                                <a href="/blog/list/js/" class="normal ">
-                                JS
-                            </a>
-                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
-                                ThinkPHP
-                            </a>
-                                                                                                <a href="/blog/list/vue/" class="normal ">
-                                Vue
-                            </a>
-                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
-                                CSS
-                            </a>
-                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
-                                Python
-                            </a>
-                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                <li class="blog-channel"
+                    data-channelactive="zatan"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
                         我的收藏
                     </em>
                 </li>
@@ -158,73 +116,11 @@ var _hmt = _hmt || [];
         </nav>
     </div>
     <div class="hot-search" id="hot-search">
-                    <dl class="hot">
-                <dt>热门搜索：</dt>
-                <dd>
-                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
-                                            <a href="/search?s=课堂笔记">课堂笔记</a>
-                                            <a href="/search?s=jsonp">jsonp</a>
-                                    </dd>
-            </dl>
-            </div>
+    </div>
     <div class="blog-all-nav" id="blog-all-nav">
         <dl>
             <dt><a href="/blog/list/all">全部频道</a></dt>
             <dd>
-                                    <a href="/blog/list/php/" >
-                        PHP
-                    </a>
-                                    <a href="/blog/list/js/" >
-                        JS
-                    </a>
-                                    <a href="/blog/list/thinkphp/" >
-                        ThinkPHP
-                    </a>
-                                    <a href="/blog/list/vue/" >
-                        Vue
-                    </a>
-                                    <a href="/blog/list/wechat/" >
-                        微信开发
-                    </a>
-                                    <a href="/blog/list/uniapp/" >
-                        uniapp
-                    </a>
-                                    <a href="/blog/list/css/" >
-                        CSS
-                    </a>
-                                    <a href="/blog/list/apache/" >
-                        Apache
-                    </a>
-                                    <a href="/blog/list/mysql/" >
-                        MySQL
-                    </a>
-                                    <a href="/blog/list/godot/" >
-                        Godot
-                    </a>
-                                    <a href="/blog/list/focus/" >
-                        社会关注
-                    </a>
-                                    <a href="/blog/list/design/" >
-                        设计
-                    </a>
-                                    <a href="/blog/list/python/" >
-                        Python
-                    </a>
-                                    <a href="/blog/list/xlyz/" >
-                        心灵驿站
-                    </a>
-                                    <a href="/blog/list/zhichang/" >
-                        聊聊职场
-                    </a>
-                                    <a href="/blog/list/java/" >
-                        Java
-                    </a>
-                                    <a href="/blog/list/zatan/" class="active">
-                        经验杂谈
-                    </a>
-                                    <a href="/blog/list/default/" >
-                        默认
-                    </a>
                             </dd>
         </dl>
     </div>
@@ -321,27 +217,27 @@ var _hmt = _hmt || [];
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/175" class="imgbox">
-                <img src="/statics/blog/2021/0906/fba3015d5d6fbbb539f3fb628fe45b95.jpg">
+            <a href="/blog/articles/135" class="imgbox">
+                <img src="/statics/blog/2021/0714/55ecfb0e5af67e9e543924cb051e546a.jpg">
             </a>
-            <a href="/blog/articles/175" class="title" title="z-index和transform你真的了解吗？">
-                z-index和transform你真的了解吗？
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/96" class="imgbox">
-                <img src="/statics/blog/2021/0610/6b46288522648ee346574a15f4dab16c.jpg">
-            </a>
-            <a href="/blog/articles/96" class="title" title="数据库操作之DB-facade">
-                数据库操作之DB-facade
+            <a href="/blog/articles/135" class="title" title="百度分享share.baidu各配置详解及解决https支持问题">
+                百度分享share.baidu各配置详解及解决https支持问题
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/81" class="imgbox">
-                <img src="/statics/blog/2021/0608/c73e3b8f3846b3d02d63e48f859fe548.jpg">
+            <a href="/blog/articles/343" class="imgbox">
+                <img src="/statics/blog/2022/1214/d0620878a3295a25d82ac797d3b17d11.jpg">
             </a>
-            <a href="/blog/articles/81" class="title" title="记录一些Linux常用操作">
-                记录一些Linux常用操作
+            <a href="/blog/articles/343" class="title" title="在苹果safari上实现全屏效果（让web页面以独立app的形式运行）">
+                在苹果safari上实现全屏效果（让web页面以独立app的形式运行）
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/458" class="imgbox">
+                <img src="/statics/blog/2023/1220/ce75b6fa38b076a88e095b8ff8a60a46.jpg">
+            </a>
+            <a href="/blog/articles/458" class="title" title="安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题">
+                安卓和ios的输入框弹出键盘时，导致fixed或absolute定位的按钮顶上去的问题
             </a>
         </li>
             </ul>
@@ -428,33 +324,33 @@ var _hmt = _hmt || [];
                         </div>
                         <ul class="list-c">
                                                             <li>
-                                    <a href="/blog/articles/435">
+                                    <a href="/blog/articles/60">
                                         <i class="icon fa fa-caret-right"></i>
-                                        记录个人购买的各种消费卡
+                                        被人扇了一巴掌怎么解决?
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/326">
+                                    <a href="/blog/articles/284">
                                         <i class="icon fa fa-caret-right"></i>
-                                        网页外观侵权如何判定
+                                        gitee仓库的注意事项
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/377">
+                                    <a href="/blog/articles/595">
                                         <i class="icon fa fa-caret-right"></i>
-                                        免费图床
+                                        《狂野西部：枪手》游戏中关于技能的翻译和升级顺序
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/590">
+                                    <a href="/blog/articles/477">
                                         <i class="icon fa fa-caret-right"></i>
-                                        PC上可以下载体验的游戏
+                                        【生化危机启示录2】2024年如何在switch上关联到卡普空官网
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/219">
+                                    <a href="/blog/articles/597">
                                         <i class="icon fa fa-caret-right"></i>
-                                        使用gitee和picgo做图床的一个大坑
+                                        使用jsdelivr+github白嫖静态资源CDN
                                     </a>
                                 </li>
                                                     </ul>

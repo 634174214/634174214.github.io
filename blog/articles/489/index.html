@@ -27,15 +27,7 @@
 <script src="/assets/libs/respond.min.js"></script>
 <![endif]-->
 <!-- 百度网站监测 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>    <script>
+    <script>
         var articleInfo = {
             article_id: 489,
             article_title: 'thinkphp笔记-数据库查询',
@@ -53,42 +45,22 @@ var _hmt = _hmt || [];
             <a href="/" class="logo">
                 <img src="/assets/img/blog-logo.png" alt="一介武夫">
             </a>
-            <ul class="left-nav">
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
                                 <li class="active">
                     <a href="/">
                         博客
                     </a>
                 </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/build/" target="_blank" title="商务合作">
-                        商务
-                    </a>
-                </li>
-                <li>
-                    <a href="https://tool.lu/" target="_blank" title="常用工具">
-                        工具
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank" title="好工人网址导航">
-                        导航
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/rss/" target="_blank" title="订阅">
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
                         订阅
-                    </a>
-                </li>
-
-                                <li>
-                    <a href="https://634174214.github.io/blog-others/my-ns-wall/" target="_blank" title="常用的各类前端开发库">
-                        游戏墙
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank" title="开发技术资源汇总">
-                        专栏
                     </a>
                 </li>
                 <li id="finders-link">
@@ -125,26 +97,12 @@ var _hmt = _hmt || [];
                 博客频道
             </a>
             <ul class="blog-nav">
-                <li class="blog-channel">
-                                                                        <a href="/blog/list/php/" class="normal ">
-                                PHP
-                            </a>
-                                                                                                <a href="/blog/list/js/" class="normal ">
-                                JS
-                            </a>
-                                                                                                <a href="/blog/list/thinkphp/" class="normal active">
-                                ThinkPHP
-                            </a>
-                                                                                                <a href="/blog/list/vue/" class="normal ">
-                                Vue
-                            </a>
-                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
-                                CSS
-                            </a>
-                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
-                                Python
-                            </a>
-                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                <li class="blog-channel"
+                    data-channelactive="thinkphp"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
                         我的收藏
                     </em>
                 </li>
@@ -158,73 +116,11 @@ var _hmt = _hmt || [];
         </nav>
     </div>
     <div class="hot-search" id="hot-search">
-                    <dl class="hot">
-                <dt>热门搜索：</dt>
-                <dd>
-                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
-                                            <a href="/search?s=课堂笔记">课堂笔记</a>
-                                            <a href="/search?s=jsonp">jsonp</a>
-                                    </dd>
-            </dl>
-            </div>
+    </div>
     <div class="blog-all-nav" id="blog-all-nav">
         <dl>
             <dt><a href="/blog/list/all">全部频道</a></dt>
             <dd>
-                                    <a href="/blog/list/php/" >
-                        PHP
-                    </a>
-                                    <a href="/blog/list/js/" >
-                        JS
-                    </a>
-                                    <a href="/blog/list/thinkphp/" class="active">
-                        ThinkPHP
-                    </a>
-                                    <a href="/blog/list/vue/" >
-                        Vue
-                    </a>
-                                    <a href="/blog/list/wechat/" >
-                        微信开发
-                    </a>
-                                    <a href="/blog/list/uniapp/" >
-                        uniapp
-                    </a>
-                                    <a href="/blog/list/css/" >
-                        CSS
-                    </a>
-                                    <a href="/blog/list/apache/" >
-                        Apache
-                    </a>
-                                    <a href="/blog/list/mysql/" >
-                        MySQL
-                    </a>
-                                    <a href="/blog/list/godot/" >
-                        Godot
-                    </a>
-                                    <a href="/blog/list/focus/" >
-                        社会关注
-                    </a>
-                                    <a href="/blog/list/design/" >
-                        设计
-                    </a>
-                                    <a href="/blog/list/python/" >
-                        Python
-                    </a>
-                                    <a href="/blog/list/xlyz/" >
-                        心灵驿站
-                    </a>
-                                    <a href="/blog/list/zhichang/" >
-                        聊聊职场
-                    </a>
-                                    <a href="/blog/list/java/" >
-                        Java
-                    </a>
-                                    <a href="/blog/list/zatan/" >
-                        经验杂谈
-                    </a>
-                                    <a href="/blog/list/default/" >
-                        默认
-                    </a>
                             </dd>
         </dl>
     </div>
@@ -392,27 +288,27 @@ Db::table(<span class="hljs-symbol">'user</span>')-&gt;<span class="hljs-keyword
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/268" class="imgbox">
-                <img src="/statics/blog/2022/0530/ea057f87a73e254fd18fdb7d6d181bd4.png">
+            <a href="/blog/articles/88" class="imgbox">
+                <img src="/statics/blog/2021/0617/88c818b2e93c9f4830be6b1441805f73.jpg">
             </a>
-            <a href="/blog/articles/268" class="title" title="uni-app本地打包安卓安装包">
-                uni-app本地打包安卓安装包
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/70" class="imgbox">
-                <img src="/statics/blog/2021/0520/3f32ee8c5444251a0d447666905dd314.jpg">
-            </a>
-            <a href="/blog/articles/70" class="title" title="程序员跳槽涨薪攻略大全">
-                程序员跳槽涨薪攻略大全
+            <a href="/blog/articles/88" class="title" title="女儿跟男朋友同居被发现后，爸爸写的一封信">
+                女儿跟男朋友同居被发现后，爸爸写的一封信
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/349" class="imgbox">
-                <img src="/statics/blog/2023/0113/f4903279c3679179e9701953254ea3ca.png">
+            <a href="/blog/articles/309" class="imgbox">
+                <img src="/statics/blog/2022/0909/14f5881414fd9727e552e2988d3355c4.jpg">
             </a>
-            <a href="/blog/articles/349" class="title" title="win11底部任务栏上的图标变白纸，恢复的方法">
-                win11底部任务栏上的图标变白纸，恢复的方法
+            <a href="/blog/articles/309" class="title" title="uniapp环境搭建、目录以及基础配置简单介绍">
+                uniapp环境搭建、目录以及基础配置简单介绍
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/320" class="imgbox">
+                <img src="/statics/blog/2022/1020/d8fc32f69a7a3cbbea65b36a9f2ca2b6.jpg">
+            </a>
+            <a href="/blog/articles/320" class="title" title="uniapp解决全面屏幕iphonex底部安全区的问题">
+                uniapp解决全面屏幕iphonex底部安全区的问题
             </a>
         </li>
             </ul>
@@ -499,33 +395,33 @@ Db::table(<span class="hljs-symbol">'user</span>')-&gt;<span class="hljs-keyword
                         </div>
                         <ul class="list-c">
                                                             <li>
+                                    <a href="/blog/articles/548">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp笔记-事件
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/549">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp笔记-多应用模式
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/547">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp笔记-服务系统
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/543">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp笔记-上传功能、多语言
+                                    </a>
+                                </li>
+                                                            <li>
                                     <a href="/blog/articles/518">
                                         <i class="icon fa fa-caret-right"></i>
                                         thinkphp-路由的分组和miss、资源路由
-                                    </a>
-                                </li>
-                                                            <li>
-                                    <a href="/blog/articles/113">
-                                        <i class="icon fa fa-caret-right"></i>
-                                        Blade中的@section与@yield等标签介绍
-                                    </a>
-                                </li>
-                                                            <li>
-                                    <a href="/blog/articles/100">
-                                        <i class="icon fa fa-caret-right"></i>
-                                        使用查询构造器查询数据
-                                    </a>
-                                </li>
-                                                            <li>
-                                    <a href="/blog/articles/124">
-                                        <i class="icon fa fa-caret-right"></i>
-                                        控制器之Response
-                                    </a>
-                                </li>
-                                                            <li>
-                                    <a href="/blog/articles/520">
-                                        <i class="icon fa fa-caret-right"></i>
-                                        thinkphp-注解路由和URL生成
                                     </a>
                                 </li>
                                                     </ul>

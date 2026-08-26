@@ -27,15 +27,7 @@
 <script src="/assets/libs/respond.min.js"></script>
 <![endif]-->
 <!-- 百度网站监测 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>    <script>
+    <script>
         var articleInfo = {
             article_id: 420,
             article_title: 'vue3技巧@拼接目录、teleport等与新增功能',
@@ -53,42 +45,22 @@ var _hmt = _hmt || [];
             <a href="/" class="logo">
                 <img src="/assets/img/blog-logo.png" alt="一介武夫">
             </a>
-            <ul class="left-nav">
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
                                 <li class="active">
                     <a href="/">
                         博客
                     </a>
                 </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/build/" target="_blank" title="商务合作">
-                        商务
-                    </a>
-                </li>
-                <li>
-                    <a href="https://tool.lu/" target="_blank" title="常用工具">
-                        工具
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank" title="好工人网址导航">
-                        导航
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/rss/" target="_blank" title="订阅">
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
                         订阅
-                    </a>
-                </li>
-
-                                <li>
-                    <a href="https://634174214.github.io/blog-others/my-ns-wall/" target="_blank" title="常用的各类前端开发库">
-                        游戏墙
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank" title="开发技术资源汇总">
-                        专栏
                     </a>
                 </li>
                 <li id="finders-link">
@@ -125,26 +97,12 @@ var _hmt = _hmt || [];
                 博客频道
             </a>
             <ul class="blog-nav">
-                <li class="blog-channel">
-                                                                        <a href="/blog/list/php/" class="normal ">
-                                PHP
-                            </a>
-                                                                                                <a href="/blog/list/js/" class="normal ">
-                                JS
-                            </a>
-                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
-                                ThinkPHP
-                            </a>
-                                                                                                <a href="/blog/list/vue/" class="normal active">
-                                Vue
-                            </a>
-                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
-                                CSS
-                            </a>
-                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
-                                Python
-                            </a>
-                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                <li class="blog-channel"
+                    data-channelactive="vue"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
                         我的收藏
                     </em>
                 </li>
@@ -158,73 +116,11 @@ var _hmt = _hmt || [];
         </nav>
     </div>
     <div class="hot-search" id="hot-search">
-                    <dl class="hot">
-                <dt>热门搜索：</dt>
-                <dd>
-                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
-                                            <a href="/search?s=课堂笔记">课堂笔记</a>
-                                            <a href="/search?s=jsonp">jsonp</a>
-                                    </dd>
-            </dl>
-            </div>
+    </div>
     <div class="blog-all-nav" id="blog-all-nav">
         <dl>
             <dt><a href="/blog/list/all">全部频道</a></dt>
             <dd>
-                                    <a href="/blog/list/php/" >
-                        PHP
-                    </a>
-                                    <a href="/blog/list/js/" >
-                        JS
-                    </a>
-                                    <a href="/blog/list/thinkphp/" >
-                        ThinkPHP
-                    </a>
-                                    <a href="/blog/list/vue/" class="active">
-                        Vue
-                    </a>
-                                    <a href="/blog/list/wechat/" >
-                        微信开发
-                    </a>
-                                    <a href="/blog/list/uniapp/" >
-                        uniapp
-                    </a>
-                                    <a href="/blog/list/css/" >
-                        CSS
-                    </a>
-                                    <a href="/blog/list/apache/" >
-                        Apache
-                    </a>
-                                    <a href="/blog/list/mysql/" >
-                        MySQL
-                    </a>
-                                    <a href="/blog/list/godot/" >
-                        Godot
-                    </a>
-                                    <a href="/blog/list/focus/" >
-                        社会关注
-                    </a>
-                                    <a href="/blog/list/design/" >
-                        设计
-                    </a>
-                                    <a href="/blog/list/python/" >
-                        Python
-                    </a>
-                                    <a href="/blog/list/xlyz/" >
-                        心灵驿站
-                    </a>
-                                    <a href="/blog/list/zhichang/" >
-                        聊聊职场
-                    </a>
-                                    <a href="/blog/list/java/" >
-                        Java
-                    </a>
-                                    <a href="/blog/list/zatan/" >
-                        经验杂谈
-                    </a>
-                                    <a href="/blog/list/default/" >
-                        默认
-                    </a>
                             </dd>
         </dl>
     </div>
@@ -369,27 +265,27 @@ computed: {
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/344" class="imgbox">
-                <img src="/statics/blog/2023/0105/26101e288382c6726416cea5b92c8d79.png">
-            </a>
-            <a href="/blog/articles/344" class="title" title="uniapp实现被浏览器唤起的功能">
-                uniapp实现被浏览器唤起的功能
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/168" class="imgbox">
-                <img src="/statics/blog/2021/0901/30a5e71dfddefeb66cbcfbc753176d73.jpg">
-            </a>
-            <a href="/blog/articles/168" class="title" title="Composer快速入门之简介、安装与国内全量镜像配置">
-                Composer快速入门之简介、安装与国内全量镜像配置
-            </a>
-        </li>
-                <li>
             <a href="/blog/articles/96" class="imgbox">
                 <img src="/statics/blog/2021/0610/6b46288522648ee346574a15f4dab16c.jpg">
             </a>
             <a href="/blog/articles/96" class="title" title="数据库操作之DB-facade">
                 数据库操作之DB-facade
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/336" class="imgbox">
+                <img src="/statics/blog/2022/1206/0ef1feaeb86f5dee4f5a5fb13f81632a.png">
+            </a>
+            <a href="/blog/articles/336" class="title" title="可以随意切换node版本的工具nvm">
+                可以随意切换node版本的工具nvm
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/34" class="imgbox">
+                <img src="/statics/blog/2021/0325/02aac5cd2bffefa2853f3a1a1e8032ae.jpg">
+            </a>
+            <a href="/blog/articles/34" class="title" title="JSON.parse解析json对象需要注意的地方">
+                JSON.parse解析json对象需要注意的地方
             </a>
         </li>
             </ul>
@@ -476,33 +372,33 @@ computed: {
                         </div>
                         <ul class="list-c">
                                                             <li>
-                                    <a href="/blog/articles/497">
+                                    <a href="/blog/articles/403">
                                         <i class="icon fa fa-caret-right"></i>
-                                        vue3中设置一个全局变量
+                                        VUE中常用的4种高级方法：provide、inject、eventbus和render
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/470">
+                                    <a href="/blog/articles/406">
                                         <i class="icon fa fa-caret-right"></i>
-                                        vue2修改数据（对象、数组）后，页面不更新的解决
+                                        前端UI组件库有哪些选择
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/15">
+                                    <a href="/blog/articles/48">
                                         <i class="icon fa fa-caret-right"></i>
-                                        vue-router4使用
+                                        使用$root从子组件中访问其他组件
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/448">
+                                    <a href="/blog/articles/580">
                                         <i class="icon fa fa-caret-right"></i>
-                                        vue对数组进行深拷贝和浅拷贝
+                                        在vue组件中获取vue-config中的环境变量
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/263">
+                                    <a href="/blog/articles/511">
                                         <i class="icon fa fa-caret-right"></i>
-                                        Vue监听路由的变化
+                                        vue-router实现无感刷新页面
                                     </a>
                                 </li>
                                                     </ul>

@@ -27,15 +27,7 @@
 <script src="/assets/libs/respond.min.js"></script>
 <![endif]-->
 <!-- 百度网站监测 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>    <script>
+    <script>
         var articleInfo = {
             article_id: 572,
             article_title: '网页无感刷新，在浏览器中添加查询字符串但不刷新页面',
@@ -53,42 +45,22 @@ var _hmt = _hmt || [];
             <a href="/" class="logo">
                 <img src="/assets/img/blog-logo.png" alt="一介武夫">
             </a>
-            <ul class="left-nav">
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
                                 <li class="active">
                     <a href="/">
                         博客
                     </a>
                 </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/build/" target="_blank" title="商务合作">
-                        商务
-                    </a>
-                </li>
-                <li>
-                    <a href="https://tool.lu/" target="_blank" title="常用工具">
-                        工具
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank" title="好工人网址导航">
-                        导航
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/rss/" target="_blank" title="订阅">
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
                         订阅
-                    </a>
-                </li>
-
-                                <li>
-                    <a href="https://634174214.github.io/blog-others/my-ns-wall/" target="_blank" title="常用的各类前端开发库">
-                        游戏墙
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank" title="开发技术资源汇总">
-                        专栏
                     </a>
                 </li>
                 <li id="finders-link">
@@ -125,26 +97,12 @@ var _hmt = _hmt || [];
                 博客频道
             </a>
             <ul class="blog-nav">
-                <li class="blog-channel">
-                                                                        <a href="/blog/list/php/" class="normal ">
-                                PHP
-                            </a>
-                                                                                                <a href="/blog/list/js/" class="normal active">
-                                JS
-                            </a>
-                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
-                                ThinkPHP
-                            </a>
-                                                                                                <a href="/blog/list/vue/" class="normal ">
-                                Vue
-                            </a>
-                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
-                                CSS
-                            </a>
-                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
-                                Python
-                            </a>
-                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                <li class="blog-channel"
+                    data-channelactive="js"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
                         我的收藏
                     </em>
                 </li>
@@ -158,73 +116,11 @@ var _hmt = _hmt || [];
         </nav>
     </div>
     <div class="hot-search" id="hot-search">
-                    <dl class="hot">
-                <dt>热门搜索：</dt>
-                <dd>
-                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
-                                            <a href="/search?s=课堂笔记">课堂笔记</a>
-                                            <a href="/search?s=jsonp">jsonp</a>
-                                    </dd>
-            </dl>
-            </div>
+    </div>
     <div class="blog-all-nav" id="blog-all-nav">
         <dl>
             <dt><a href="/blog/list/all">全部频道</a></dt>
             <dd>
-                                    <a href="/blog/list/php/" >
-                        PHP
-                    </a>
-                                    <a href="/blog/list/js/" class="active">
-                        JS
-                    </a>
-                                    <a href="/blog/list/thinkphp/" >
-                        ThinkPHP
-                    </a>
-                                    <a href="/blog/list/vue/" >
-                        Vue
-                    </a>
-                                    <a href="/blog/list/wechat/" >
-                        微信开发
-                    </a>
-                                    <a href="/blog/list/uniapp/" >
-                        uniapp
-                    </a>
-                                    <a href="/blog/list/css/" >
-                        CSS
-                    </a>
-                                    <a href="/blog/list/apache/" >
-                        Apache
-                    </a>
-                                    <a href="/blog/list/mysql/" >
-                        MySQL
-                    </a>
-                                    <a href="/blog/list/godot/" >
-                        Godot
-                    </a>
-                                    <a href="/blog/list/focus/" >
-                        社会关注
-                    </a>
-                                    <a href="/blog/list/design/" >
-                        设计
-                    </a>
-                                    <a href="/blog/list/python/" >
-                        Python
-                    </a>
-                                    <a href="/blog/list/xlyz/" >
-                        心灵驿站
-                    </a>
-                                    <a href="/blog/list/zhichang/" >
-                        聊聊职场
-                    </a>
-                                    <a href="/blog/list/java/" >
-                        Java
-                    </a>
-                                    <a href="/blog/list/zatan/" >
-                        经验杂谈
-                    </a>
-                                    <a href="/blog/list/default/" >
-                        默认
-                    </a>
                             </dd>
         </dl>
     </div>
@@ -344,14 +240,6 @@ var _hmt = _hmt || [];
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/81" class="imgbox">
-                <img src="/statics/blog/2021/0608/c73e3b8f3846b3d02d63e48f859fe548.jpg">
-            </a>
-            <a href="/blog/articles/81" class="title" title="记录一些Linux常用操作">
-                记录一些Linux常用操作
-            </a>
-        </li>
-                <li>
             <a href="/blog/articles/336" class="imgbox">
                 <img src="/statics/blog/2022/1206/0ef1feaeb86f5dee4f5a5fb13f81632a.png">
             </a>
@@ -360,11 +248,19 @@ var _hmt = _hmt || [];
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/413" class="imgbox">
-                <img src="/statics/blog/2023/0620/e33543851ba74c1051000cd52cf0ef85.jpg">
+            <a href="/blog/articles/268" class="imgbox">
+                <img src="/statics/blog/2022/0530/ea057f87a73e254fd18fdb7d6d181bd4.png">
             </a>
-            <a href="/blog/articles/413" class="title" title="localStorage和indexedDB">
-                localStorage和indexedDB
+            <a href="/blog/articles/268" class="title" title="uni-app本地打包安卓安装包">
+                uni-app本地打包安卓安装包
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/223" class="imgbox">
+                <img src="/statics/blog/2021/1118/cf0905e3451e094572aa603282caff76.jpg">
+            </a>
+            <a href="/blog/articles/223" class="title" title="在Vue中为什么不推荐用index做key">
+                在Vue中为什么不推荐用index做key
             </a>
         </li>
             </ul>
@@ -451,27 +347,27 @@ var _hmt = _hmt || [];
                         </div>
                         <ul class="list-c">
                                                             <li>
-                                    <a href="/blog/articles/471">
+                                    <a href="/blog/articles/386">
                                         <i class="icon fa fa-caret-right"></i>
-                                        JS实现Html转义和反转义以及解决转义后&amp;被post截断的问题
+                                        getQueryStringArgs-获取地址栏中的查询字符串
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/259">
+                                    <a href="/blog/articles/242">
                                         <i class="icon fa fa-caret-right"></i>
-                                        5个javascript新特性，你一定要知道
+                                        将ArrayBuffer和base64转为blob临时地址
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/57">
+                                    <a href="/blog/articles/606">
                                         <i class="icon fa fa-caret-right"></i>
-                                        原生JS获取节点元素
+                                        常见HTTP状态码及其应对策略：从200到500，全面解析与实战解决
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/605">
+                                    <a href="/blog/articles/342">
                                         <i class="icon fa fa-caret-right"></i>
-                                        90%前端没摸过的10个JS神API？复制即用
+                                        记录华为鸿蒙系统中的userAgent输出和判断华为和小米手机的方法
                                     </a>
                                 </li>
                                                             <li>

@@ -27,15 +27,7 @@
 <script src="/assets/libs/respond.min.js"></script>
 <![endif]-->
 <!-- 百度网站监测 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>    <script>
+    <script>
         var articleInfo = {
             article_id: 372,
             article_title: 'PHP中的foreach循环的各类中断',
@@ -53,42 +45,22 @@ var _hmt = _hmt || [];
             <a href="/" class="logo">
                 <img src="/assets/img/blog-logo.png" alt="一介武夫">
             </a>
-            <ul class="left-nav">
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
                                 <li class="active">
                     <a href="/">
                         博客
                     </a>
                 </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/build/" target="_blank" title="商务合作">
-                        商务
-                    </a>
-                </li>
-                <li>
-                    <a href="https://tool.lu/" target="_blank" title="常用工具">
-                        工具
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank" title="好工人网址导航">
-                        导航
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/rss/" target="_blank" title="订阅">
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
                         订阅
-                    </a>
-                </li>
-
-                                <li>
-                    <a href="https://634174214.github.io/blog-others/my-ns-wall/" target="_blank" title="常用的各类前端开发库">
-                        游戏墙
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank" title="开发技术资源汇总">
-                        专栏
                     </a>
                 </li>
                 <li id="finders-link">
@@ -125,26 +97,12 @@ var _hmt = _hmt || [];
                 博客频道
             </a>
             <ul class="blog-nav">
-                <li class="blog-channel">
-                                                                        <a href="/blog/list/php/" class="normal active">
-                                PHP
-                            </a>
-                                                                                                <a href="/blog/list/js/" class="normal ">
-                                JS
-                            </a>
-                                                                                                <a href="/blog/list/thinkphp/" class="normal ">
-                                ThinkPHP
-                            </a>
-                                                                                                <a href="/blog/list/vue/" class="normal ">
-                                Vue
-                            </a>
-                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
-                                CSS
-                            </a>
-                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
-                                Python
-                            </a>
-                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                <li class="blog-channel"
+                    data-channelactive="php"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
                         我的收藏
                     </em>
                 </li>
@@ -158,73 +116,11 @@ var _hmt = _hmt || [];
         </nav>
     </div>
     <div class="hot-search" id="hot-search">
-                    <dl class="hot">
-                <dt>热门搜索：</dt>
-                <dd>
-                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
-                                            <a href="/search?s=课堂笔记">课堂笔记</a>
-                                            <a href="/search?s=jsonp">jsonp</a>
-                                    </dd>
-            </dl>
-            </div>
+    </div>
     <div class="blog-all-nav" id="blog-all-nav">
         <dl>
             <dt><a href="/blog/list/all">全部频道</a></dt>
             <dd>
-                                    <a href="/blog/list/php/" class="active">
-                        PHP
-                    </a>
-                                    <a href="/blog/list/js/" >
-                        JS
-                    </a>
-                                    <a href="/blog/list/thinkphp/" >
-                        ThinkPHP
-                    </a>
-                                    <a href="/blog/list/vue/" >
-                        Vue
-                    </a>
-                                    <a href="/blog/list/wechat/" >
-                        微信开发
-                    </a>
-                                    <a href="/blog/list/uniapp/" >
-                        uniapp
-                    </a>
-                                    <a href="/blog/list/css/" >
-                        CSS
-                    </a>
-                                    <a href="/blog/list/apache/" >
-                        Apache
-                    </a>
-                                    <a href="/blog/list/mysql/" >
-                        MySQL
-                    </a>
-                                    <a href="/blog/list/godot/" >
-                        Godot
-                    </a>
-                                    <a href="/blog/list/focus/" >
-                        社会关注
-                    </a>
-                                    <a href="/blog/list/design/" >
-                        设计
-                    </a>
-                                    <a href="/blog/list/python/" >
-                        Python
-                    </a>
-                                    <a href="/blog/list/xlyz/" >
-                        心灵驿站
-                    </a>
-                                    <a href="/blog/list/zhichang/" >
-                        聊聊职场
-                    </a>
-                                    <a href="/blog/list/java/" >
-                        Java
-                    </a>
-                                    <a href="/blog/list/zatan/" >
-                        经验杂谈
-                    </a>
-                                    <a href="/blog/list/default/" >
-                        默认
-                    </a>
                             </dd>
         </dl>
     </div>
@@ -340,6 +236,14 @@ $html= <span class="hljs-string">''</span>;
     </div>
     <ul class="list-b">
                 <li>
+            <a href="/blog/articles/336" class="imgbox">
+                <img src="/statics/blog/2022/1206/0ef1feaeb86f5dee4f5a5fb13f81632a.png">
+            </a>
+            <a href="/blog/articles/336" class="title" title="可以随意切换node版本的工具nvm">
+                可以随意切换node版本的工具nvm
+            </a>
+        </li>
+                <li>
             <a href="/blog/articles/23" class="imgbox">
                 <img src="/statics/blog/2021/0305/5e641075fdc0fda984b946e15be41358.jpg">
             </a>
@@ -348,19 +252,11 @@ $html= <span class="hljs-string">''</span>;
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/119" class="imgbox">
-                <img src="/statics/blog/2021/0702/d1cb56a96383d728eb3a1fe0bd081adc.jpg">
+            <a href="/blog/articles/321" class="imgbox">
+                <img src="/statics/blog/2022/1020/b585415b95b0a09b50a897e45b449245.jpg">
             </a>
-            <a href="/blog/articles/119" class="title" title="Vue3开发一个v-loading的自定义指令">
-                Vue3开发一个v-loading的自定义指令
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/245" class="imgbox">
-                <img src="/statics/blog/2022/0106/1a976cb7ecbb6ec3d6ff56adbb09e27d.png">
-            </a>
-            <a href="/blog/articles/245" class="title" title="使用meter元素实现密码强度效果（含密码强度计算算法）">
-                使用meter元素实现密码强度效果（含密码强度计算算法）
+            <a href="/blog/articles/321" class="title" title="uniapp项目中禁止横屏让app不自动旋转且始终保持竖屏">
+                uniapp项目中禁止横屏让app不自动旋转且始终保持竖屏
             </a>
         </li>
             </ul>
@@ -447,33 +343,33 @@ $html= <span class="hljs-string">''</span>;
                         </div>
                         <ul class="list-c">
                                                             <li>
-                                    <a href="/blog/articles/551">
+                                    <a href="/blog/articles/12">
                                         <i class="icon fa fa-caret-right"></i>
-                                        使用PHP获取文件夹中所有文件
+                                        [正则]常用到的正则表达式
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/251">
+                                    <a href="/blog/articles/274">
                                         <i class="icon fa fa-caret-right"></i>
-                                        PHP、JS如何获取视频总时长与码率等信息
+                                        php加密解密方法是什么？实现一个AES的加密解密例子
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/390">
+                                    <a href="/blog/articles/479">
                                         <i class="icon fa fa-caret-right"></i>
-                                        php接收base64并转存为图片保存到服务器
+                                        如何使用phpquery?
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/149">
+                                    <a href="/blog/articles/206">
                                         <i class="icon fa fa-caret-right"></i>
-                                        http-build-query将数组转化为查询字符串以及可能遇到的转义问题
+                                        按照行数、分割的文件数分别分割txt文件的方法
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/459">
+                                    <a href="/blog/articles/73">
                                         <i class="icon fa fa-caret-right"></i>
-                                        phpy：PHP与Python互调用库，为PHP引入Python生态，PHP也可以写AI了
+                                        使用IP地址设置用户白名单
                                     </a>
                                 </li>
                                                     </ul>

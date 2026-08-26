@@ -27,15 +27,7 @@
 <script src="/assets/libs/respond.min.js"></script>
 <![endif]-->
 <!-- 百度网站监测 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?44105390c4fdb96c8ffaede1d3d571ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>    <script>
+    <script>
         var articleInfo = {
             article_id: 543,
             article_title: 'thinkphp笔记-上传功能、多语言',
@@ -53,42 +45,22 @@ var _hmt = _hmt || [];
             <a href="/" class="logo">
                 <img src="/assets/img/blog-logo.png" alt="一介武夫">
             </a>
-            <ul class="left-nav">
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
                                 <li class="active">
                     <a href="/">
                         博客
                     </a>
                 </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/build/" target="_blank" title="商务合作">
-                        商务
-                    </a>
-                </li>
-                <li>
-                    <a href="https://tool.lu/" target="_blank" title="常用工具">
-                        工具
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank" title="好工人网址导航">
-                        导航
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/rss/" target="_blank" title="订阅">
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
                         订阅
-                    </a>
-                </li>
-
-                                <li>
-                    <a href="https://634174214.github.io/blog-others/my-ns-wall/" target="_blank" title="常用的各类前端开发库">
-                        游戏墙
-                    </a>
-                </li>
-                <li>
-                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank" title="开发技术资源汇总">
-                        专栏
                     </a>
                 </li>
                 <li id="finders-link">
@@ -125,26 +97,12 @@ var _hmt = _hmt || [];
                 博客频道
             </a>
             <ul class="blog-nav">
-                <li class="blog-channel">
-                                                                        <a href="/blog/list/php/" class="normal ">
-                                PHP
-                            </a>
-                                                                                                <a href="/blog/list/js/" class="normal ">
-                                JS
-                            </a>
-                                                                                                <a href="/blog/list/thinkphp/" class="normal active">
-                                ThinkPHP
-                            </a>
-                                                                                                <a href="/blog/list/vue/" class="normal ">
-                                Vue
-                            </a>
-                                                                                                                                                                                        <a href="/blog/list/css/" class="normal ">
-                                CSS
-                            </a>
-                                                                                                                                                                                                                                                                                                                            <a href="/blog/list/python/" class="normal ">
-                                Python
-                            </a>
-                                                                                                                                                                                                                                                                                            <em class="normal my-favourite">
+                <li class="blog-channel"
+                    data-channelactive="thinkphp"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
                         我的收藏
                     </em>
                 </li>
@@ -158,73 +116,11 @@ var _hmt = _hmt || [];
         </nav>
     </div>
     <div class="hot-search" id="hot-search">
-                    <dl class="hot">
-                <dt>热门搜索：</dt>
-                <dd>
-                                            <a href="/search?s=html2canvas截图空白的问题">html2canvas截图空白的问题</a>
-                                            <a href="/search?s=课堂笔记">课堂笔记</a>
-                                            <a href="/search?s=jsonp">jsonp</a>
-                                    </dd>
-            </dl>
-            </div>
+    </div>
     <div class="blog-all-nav" id="blog-all-nav">
         <dl>
             <dt><a href="/blog/list/all">全部频道</a></dt>
             <dd>
-                                    <a href="/blog/list/php/" >
-                        PHP
-                    </a>
-                                    <a href="/blog/list/js/" >
-                        JS
-                    </a>
-                                    <a href="/blog/list/thinkphp/" class="active">
-                        ThinkPHP
-                    </a>
-                                    <a href="/blog/list/vue/" >
-                        Vue
-                    </a>
-                                    <a href="/blog/list/wechat/" >
-                        微信开发
-                    </a>
-                                    <a href="/blog/list/uniapp/" >
-                        uniapp
-                    </a>
-                                    <a href="/blog/list/css/" >
-                        CSS
-                    </a>
-                                    <a href="/blog/list/apache/" >
-                        Apache
-                    </a>
-                                    <a href="/blog/list/mysql/" >
-                        MySQL
-                    </a>
-                                    <a href="/blog/list/godot/" >
-                        Godot
-                    </a>
-                                    <a href="/blog/list/focus/" >
-                        社会关注
-                    </a>
-                                    <a href="/blog/list/design/" >
-                        设计
-                    </a>
-                                    <a href="/blog/list/python/" >
-                        Python
-                    </a>
-                                    <a href="/blog/list/xlyz/" >
-                        心灵驿站
-                    </a>
-                                    <a href="/blog/list/zhichang/" >
-                        聊聊职场
-                    </a>
-                                    <a href="/blog/list/java/" >
-                        Java
-                    </a>
-                                    <a href="/blog/list/zatan/" >
-                        经验杂谈
-                    </a>
-                                    <a href="/blog/list/default/" >
-                        默认
-                    </a>
                             </dd>
         </dl>
     </div>
@@ -448,27 +344,27 @@ $info = Filesystem::putFile(<span class="hljs-string">'topic'</span>, $file);</c
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/48" class="imgbox">
-                <img src="/statics/blog/2021/0425/f393e0d0999de1d59de010b50682f2ff.jpg">
+            <a href="/blog/articles/436" class="imgbox">
+                <img src="/statics/blog/2023/0821/2be25e89dd125f199f8809862e86fdea.jpg">
             </a>
-            <a href="/blog/articles/48" class="title" title="使用$root从子组件中访问其他组件">
-                使用$root从子组件中访问其他组件
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/168" class="imgbox">
-                <img src="/statics/blog/2021/0901/30a5e71dfddefeb66cbcfbc753176d73.jpg">
-            </a>
-            <a href="/blog/articles/168" class="title" title="Composer快速入门之简介、安装与国内全量镜像配置">
-                Composer快速入门之简介、安装与国内全量镜像配置
+            <a href="/blog/articles/436" class="title" title="vue-cli+router实现异步组件配合路由进行性能优化">
+                vue-cli+router实现异步组件配合路由进行性能优化
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/578" class="imgbox">
-                <img src="/statics/blog/2025/0219/997f99e0d7f7edc722ee64f5e11fe116.jpg">
+            <a href="/blog/articles/336" class="imgbox">
+                <img src="/statics/blog/2022/1206/0ef1feaeb86f5dee4f5a5fb13f81632a.png">
             </a>
-            <a href="/blog/articles/578" class="title" title="PHP的session文件锁引发的问题">
-                PHP的session文件锁引发的问题
+            <a href="/blog/articles/336" class="title" title="可以随意切换node版本的工具nvm">
+                可以随意切换node版本的工具nvm
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/146" class="imgbox">
+                <img src="/statics/blog/2021/0728/528951a7001c6fa90f2b91fa706fbb0d.png">
+            </a>
+            <a href="/blog/articles/146" class="title" title="MySQL和Redis如何保证数据一致性？">
+                MySQL和Redis如何保证数据一致性？
             </a>
         </li>
             </ul>
@@ -555,33 +451,33 @@ $info = Filesystem::putFile(<span class="hljs-string">'topic'</span>, $file);</c
                         </div>
                         <ul class="list-c">
                                                             <li>
-                                    <a href="/blog/articles/107">
+                                    <a href="/blog/articles/530">
                                         <i class="icon fa fa-caret-right"></i>
-                                        Eloquent-ORM中新增数据、自定义时间戳及批量赋值
+                                        thinkphp-模版引擎驱动和赋值变量、模板引擎配置和渲染、模版的变量输出
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/89">
+                                    <a href="/blog/articles/133">
                                         <i class="icon fa fa-caret-right"></i>
-                                        控制器与视图的基础应用
+                                        静态资源的引用以及分页的自动生成
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/492">
+                                    <a href="/blog/articles/512">
                                         <i class="icon fa fa-caret-right"></i>
-                                        thinkphp笔记-链式查询
+                                        thinkphp-JSON字段、模型的软删除、模型和数据库的事件
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/490">
+                                    <a href="/blog/articles/99">
                                         <i class="icon fa fa-caret-right"></i>
-                                        thinkphp笔记-数据库新增、修改、删除
+                                        使用查询构造器删除数据
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/117">
+                                    <a href="/blog/articles/547">
                                         <i class="icon fa fa-caret-right"></i>
-                                        Blade模板中的URL获取
+                                        thinkphp笔记-服务系统
                                     </a>
                                 </li>
                                                     </ul>
