@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="thinkphp常用函数 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>thinkphp常用函数 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="thinkphp"/>
+<meta name="description" content="thinkphp常用的函数"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+
+  <link rel="stylesheet" href="/assets/css/github-static.css">
+
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+    <script>
+        var articleInfo = {
+            article_id: 630,
+            article_title: 'thinkphp常用函数',
+            article_desc: 'thinkphp常用的函数',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
+                        订阅
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            <span class="headnav-admin">管理</span>
+                            <span class="headnav-aboutme">关于我</span>
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel"
+                    data-channelactive="thinkphp"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+    </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/thinkphp">ThinkPHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">thinkphp常用函数</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>5981</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>174</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2026-09-29 08:43:46</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>常用函数</h2><h3>判断网页有没有内容提交过来</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037519" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037519</a></p><pre type="Html"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Login</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseController</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-comment">// 判断有没有数据传递过来 如果没有提交过来 那么就渲染模板</span>
+        <span class="hljs-keyword">if</span>(request()-&gt;isPost()) {
+            $data = input(<span class="hljs-string">'post.'</span>);
+            halt($data);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> view();
+        }
+    }
+}</code></pre><p>接收网页post传递过来的全部值</p><pre type="Html"><code><span class="hljs-variable">$data</span> = input(<span class="hljs-string">'post.'</span>);</code></pre><p>接收网页get传递过来的全部值</p><pre type="Html"><code><span class="hljs-variable">$data</span> = input(<span class="hljs-string">'get.'</span>);</code></pre><pre type="Html"><code><span class="hljs-selector-tag">input</span>(<span class="hljs-string">''</span>)        <span class="hljs-comment">// 取合并后的所有参数（GET+POST等），POST 优先 </span>
+<span class="hljs-selector-tag">input</span>(<span class="hljs-string">'get.'</span>)    <span class="hljs-comment">// 只取 GET</span>
+<span class="hljs-selector-tag">input</span>(<span class="hljs-string">'post.'</span>)   <span class="hljs-comment">// 只取 POST</span>
+<span class="hljs-selector-tag">input</span>(<span class="hljs-string">'get.id'</span>)  <span class="hljs-comment">// 只取 GET 里的 id</span>
+<span class="hljs-selector-tag">input</span>(<span class="hljs-string">'id'</span>)      <span class="hljs-comment">// 等价于 input('param.id')，走合并逻辑，从传递过来的post和get的合并值中找id字段</span></code></pre><pre type="Html"><code><span class="hljs-built_in">input</span>(<span class="hljs-string">'param.name'</span>); // 获取单个参数 等价于 <span class="hljs-built_in">input</span>(<span class="hljs-string">'name'</span>); 
+<span class="hljs-built_in">input</span>(<span class="hljs-string">'param.'</span>); // 获取全部get/POST等所有传递方法的参数 <span class="hljs-built_in">input</span>(<span class="hljs-string">''</span>);</code></pre><h3>session（助手函数）</h3><p>设置session</p><pre type="Html"><code> session(<span class="hljs-string">'adminSessionData'</span>, <span class="hljs-variable">$adminData</span>);</code></pre><p>退出登录 清空即可</p><pre type="Html"><code><span class="hljs-selector-tag">session</span>(<span class="hljs-string">'adminSessionData'</span>, null);
+<span class="hljs-selector-tag">session</span>(<span class="hljs-string">'adminSessionData'</span>, <span class="hljs-string">''</span>); 无法清空登录状态！
+\<span class="hljs-selector-tag">think</span>\<span class="hljs-selector-tag">facade</span>\<span class="hljs-selector-tag">Session</span><span class="hljs-selector-pseudo">::delete('adminSessionData')</span>;
+<span class="hljs-selector-tag">Session</span><span class="hljs-selector-pseudo">::clear()</span></code></pre><blockquote>退出登录清空session之后，验证需要配合中间件，本页搜索中间件，查看对应的验证方法。</blockquote><p>获取session</p><pre type="Html"><code><span class="hljs-variable">$res</span> = session(<span class="hljs-string">'adminSessionData'</span>);</code></pre><h3>重定向redirect</h3><pre type="Html"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logout</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-comment">// 退出登录只需要清空session就行</span>
+        session(<span class="hljs-string">'adminSessionData'</span>, <span class="hljs-string">''</span>);
+        <span class="hljs-comment">// 跳转重定向</span>
+        <span class="hljs-keyword">return</span> redirect(<span class="hljs-string">'tp6-eshop/code/qingadmin/login/index'</span>);
+    }</code></pre><h3>url()助手函数</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037508" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037508</a></p><pre type="Html"><code>系统提供了一个url助手函数用于完成相同的功能，例如：
+
+url(<span class="hljs-string">'index/blog/read'</span>, [<span class="hljs-string">'id'</span>=&gt;<span class="hljs-number">5</span>])
+    -&gt;suffix(<span class="hljs-string">'html'</span>)
+    -&gt;domain(<span class="hljs-literal">true</span>)
+    -&gt;root(<span class="hljs-string">'/index.php'</span>);</code></pre><p>这个方法可以用于模板中，比如</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"{:url('flink/del',array('id'=&gt;$vo.id))}"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre><p>最终渲染出来的地址就是：href="/tp6-eshop/code/qingadmin/flink/del.html?id=2"</p><p>末尾带的del.html与url_html_suffix设置有关，设置在<span >config/</span><span >route.php中</span></p><h3>模板语法 {:函数()}含义</h3><pre type="Html"><code>{<span class="hljs-symbol">:xxx</span>}：**执行 PHP 表达式并输出结果，
+不管里面是 PHP 原生函数<span class="hljs-string">`date()`</span>，还是 TP 自定义助手函数<span class="hljs-string">`url()`</span>，都要用 <span class="hljs-string">`{:}`</span> 开头，不然原样输出。</code></pre><pre type="Html"><code><span class="hljs-bullet">-</span> <span class="hljs-code">{date('Y-m-d', $vo.time)} </span>→ 没有，原样打印文本
+<span class="hljs-bullet">-</span> <span class="hljs-code">{:date('Y-m-d', $vo.time)}</span> → 执行表达式
+<span class="hljs-bullet">-</span> <span class="hljs-code">{:url('fapiao/add')}</span> → <span class="hljs-code">:</span> 执行 TP 的 url 助手函数</code></pre><p><code>{:函数名(参数)}</code>：直接调用函数（适合 url、date 等），<strong>必须加冒号<code>{:}</code></strong></p><p><strong></strong></p><h3><strong>request()助手函数</strong></h3><p><strong><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037517" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037517</a></strong></p><pre type="Html"><strong><code>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">index</span>\<span class="hljs-title">controller</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">facade</span>\<span class="hljs-title">Request</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Index</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)
+    </span>{
+<span class="hljs-keyword">　　　　return</span> Request::param(<span class="hljs-string">'name'</span>);
+    }    
+}</code></strong></pre><p>param方法&nbsp;&nbsp;<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037519" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037519</a>&nbsp;&nbsp;</p><pre type="Html"><code>在 ThinkPHP <span class="hljs-number">6</span> 中，param 方法：
+param($name, $default = <span class="hljs-literal">null</span>, $filter = <span class="hljs-string">''</span>)</code></pre><p>111</p><h2>增删改查</h2><h3>查</h3><p>查询<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037533" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037533</a></p><p>查询多个数据（数据集）使用<font face="monospace"><span >select</span></font>方法：</p><pre type="Html"><code>Db::table(<span class="hljs-string">'think_user'</span>)-&gt;where(<span class="hljs-string">'status'</span>, <span class="hljs-number">1</span>)-&gt;select();
+最终生成的SQL语句可能是：
+SELECT * <span class="hljs-keyword">FROM</span> `think_user` WHERE `status` = <span class="hljs-number">1</span></code></pre><blockquote>select 方法查询结果是一个数据集对象，如果需要转换为数组可以使用</blockquote><pre><code>Db::table('think_user')-&gt;where('status',1)-&gt;select()-&gt;toArray();</code></pre><p>如果设置了数据表前缀参数的话，可以使用（table是表全名，name是除去表的前缀，表前缀在config/database.php中<span >prefix</span><span >设置）</span></p><pre type="Html"><code>Db::name(<span class="hljs-symbol">'user</span>')-&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'id</span>', <span class="hljs-number">1</span>)-&gt;find();
+Db::name(<span class="hljs-symbol">'user</span>')-&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'status</span>', <span class="hljs-number">1</span>)-&gt;select();</code></pre><p><b>查询某个字段的值可以用</b></p><pre type="Html"><code>/ 返回某个字段的值
+Db::table(<span class="hljs-symbol">'think_user</span>')-&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'id</span>', <span class="hljs-number">1</span>)-&gt;value(<span class="hljs-symbol">'name</span>');</code></pre><p>value方法查询结果不存在，返回 null。比如判断输入的关键词内容有没有重复的</p><pre type="Html"><code>$keyword = input(<span class="hljs-string">'name'</span>);
+$id = Db::name(<span class="hljs-string">'search'</span>)-&gt;where(<span class="hljs-string">'name'</span>, $keyword)-&gt;value(<span class="hljs-string">'id'</span>);
+ <span class="hljs-keyword">if</span>($id) {
+      <span class="hljs-keyword">return</span> appCommonAlert(<span class="hljs-string">'不要重复添加'</span>, <span class="hljs-string">'index'</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>);
+}
+数据表中如果查询到了id，代表关键词重复了，就不能重复输入</code></pre><h3>关于field</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037542" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037542</a></p><p>在查询操作中<code>field</code>方法是使用最频繁的。</p><pre><code>Db::table('user')-&gt;field('id,title,content')-&gt;select();</code></pre><p>里使用field方法指定了查询的结果集中包含id,title,content三个字段的值。执行的SQL相当于：</p><pre><code>SELECTid,title,contentFROMuser</code></pre><p>可以给某个字段设置别名，例如：</p><pre><code>Db::table('user')-&gt;field('id,nickname as name')-&gt;select();
+执行的SQL语句相当于：
+
+SELECT id,nicknameasnameFROMuser</code></pre><p><b>获取所有字段</b></p><pre><code>Db::table('user')-&gt;select();
+Db::table('user')-&gt;field('*')-&gt;select();
+上面的用法是等效的，都相当于执行SQL：
+SELECT *FROMuser</code></pre><p><b>用于写入</b></p><p>除了查询操作之外，<code>field</code>方法还有一个非常重要的安全功能--<strong>字段合法性检测</strong>。<code>field</code>方法结合数据库的写入方法使用就可以完成表单提交的字段合法性检测，如果我们在表单提交的处理方法中使用了：<b></b></p><pre><code>Db::table('user')-&gt;field('title,email,content')-&gt;insert($data);</code></pre><p>即表示表单中的合法字段只有title,email和content字段，无论用户通过什么手段更改或者添加了浏览器的提交字段，都会直接屏蔽。因为，其他所有字段我们都不希望由用户提交来决定，你可以通过自动完成功能定义额外需要自动写入的字段。</p><h3>where用法</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037539" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037539</a></p><p>比如使用where执行搜索</p><pre type="Html"><code> $where = [];
+        $searchkey = input(<span class="hljs-string">'searchkey'</span>) ? input(<span class="hljs-string">'searchkey'</span>) : <span class="hljs-string">''</span>;
+        <span class="hljs-keyword">if</span>($searchkey) {
+            $where[] = [
+                <span class="hljs-string">'title'</span>,
+                <span class="hljs-string">'like'</span>, 
+                <span class="hljs-string">'%'</span> . $searchkey . <span class="hljs-string">'%'</span>
+            ];
+        }
+
+        <span class="hljs-comment">// 所有数据</span>
+$ruleData = Db::name(<span class="hljs-string">'auth_rule'</span>)
+                            -&gt;where(<span class="hljs-string">'status'</span>, <span class="hljs-number">1</span>)
+                            -&gt;where($where)
+                            -&gt;select()
+                            -&gt;toArray();</code></pre><p>where有多种查询方式，表达式查询、数组（关联数组）、数组（索引数组）、字符串、字符串预处理。</p><p>其中表达式查询最常用</p><pre type="Html"><code><span class="hljs-built_in">where</span>(<span class="hljs-string">'id'</span>, 1)   等价于 <span class="hljs-built_in">where</span>(<span class="hljs-string">'id'</span>, <span class="hljs-string">'='</span>, 1) </code></pre><pre type="Html"><code>Db::table(<span class="hljs-symbol">'think_user</span>')
+    -&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'id</span><span class="hljs-string">','</span>&gt;',<span class="hljs-number">1</span>)
+    -&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'name</span><span class="hljs-string">','</span>thinkphp')
+    -&gt;select();
+等价于
+SELECT * FROM think_user WHERE id &gt; <span class="hljs-number">1</span> AND name = <span class="hljs-symbol">'thinkphp</span>'</code></pre><p>数组（关联数组）<span >主要用于等值AND条件。</span></p><pre type="Html"><code>Db::table(<span class="hljs-string">'think_user'</span>)-&gt;where([
+   <span class="hljs-string">'name'</span>   =&gt;  <span class="hljs-string">'thinkphp'</span>,
+    <span class="hljs-string">'status'</span> =&gt;	<span class="hljs-number">1</span>
+])-&gt;select(); 
+等价 SELECT * <span class="hljs-keyword">FROM</span> think_user WHERE `name`=<span class="hljs-string">'thinkphp'</span> <span class="hljs-keyword">AND</span> status = <span class="hljs-number">1</span></code></pre><p><b>数组（索引数组）量设置查询条件</b></p><pre type="Html"><code>Db::table(<span class="hljs-string">'think_user'</span>)-&gt;where([
+	[<span class="hljs-string">'name'</span>,<span class="hljs-string">'='</span>,<span class="hljs-string">'thinkphp'</span>],
+    [<span class="hljs-string">'status'</span>,<span class="hljs-string">'='</span>,<span class="hljs-number">1</span>]
+])-&gt;select(); 
+等价于
+SELECT * <span class="hljs-keyword">FROM</span> think_user WHERE `name`=<span class="hljs-string">'thinkphp'</span> <span class="hljs-keyword">AND</span> status = <span class="hljs-number">1</span></code></pre><p></p><p><span >以及本例中，用的就是索引数组</span></p><pre type="Html"><code>$where[] = [
+    <span class="hljs-string">'title'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'%'</span> . $searchkey . <span class="hljs-string">'%'</span>
+];
+<span class="hljs-comment">// 此时 $where = [ ['title', 'like', '%xxxx%'] ]</span>
+Db::table(<span class="hljs-string">'xx'</span>)-&gt;where($where)-&gt;select();
+SELECT * <span class="hljs-keyword">FROM</span> xx WHERE title LIKE <span class="hljs-string">'%xxxx%'</span></code></pre><p><b>字符串预处理</b></p><pre type="Html"><code>Db::table(<span class="hljs-string">'think_user'</span>)
+    -&gt;whereRaw(
+        <span class="hljs-string">"id=:id and username=:name"</span>, 
+        [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">1</span> , <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'thinkphp'</span>]
+    )
+    -&gt;select();</code></pre><p>一般情况下数组方法足够。</p><h3>多个where查询</h3><pre type="Html"><code>$authRuleData = Db::name(<span class="hljs-symbol">'auth_rule</span>')
+                            -&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'parent_id</span>', <span class="hljs-number">0</span>)
+                            -&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'status</span>', <span class="hljs-number">1</span>)
+                            -&gt;select()
+                            -&gt;toArray();</code></pre><p>相当于whereparent_id =0AND status =1</p><h3>连表查询</h3><p>例子：比如下面两个表</p><p>xxx_auth_group</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>id</th><th>title</th><th>status</th></tr><tr><td>1</td><td>超级管理员</td><td>1</td></tr></tbody></table><p>xxx_admin</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>id</th><th>group_id</th><th>user_name</th><th>password</th></tr><tr><td>1</td><td>1</td><td>wb</td><td>asdsadasda</td></tr></tbody></table><p>选出所有admin表中admin.group_id = auth_group.id的行</p><pre type="Html"><code>$adminData = Db::name(<span class="hljs-string">'admin'</span>)
+                -&gt;alias(<span class="hljs-string">'a'</span>) // alias起别名
+                -&gt;field(<span class="hljs-string">'a.*, b.title'</span>) <span class="hljs-comment">// a数据表获取所有 b数据表获取title即可</span>
+                -&gt;join(<span class="hljs-string">'auth_group b'</span>, <span class="hljs-string">'a.group_id = b.id'</span>) <span class="hljs-comment">// join第二个参数是连表的条件 </span>
+                -&gt;select();</code></pre><pre type="Html"><code>$adminData = Db::name(<span class="hljs-string">'admin'</span>)
+                            -&gt;alias(<span class="hljs-string">'a'</span>)
+                            -&gt;field(<span class="hljs-string">'a.*, b.title'</span>) <span class="hljs-comment">// a数据表获取所有 b数据表获取title即可</span>
+                            -&gt;join(<span class="hljs-string">'auth_group b'</span>, <span class="hljs-string">'a.group_id = b.id'</span>) <span class="hljs-comment">// join第二个参数是连表的条件</span>
+                            -&gt;where(<span class="hljs-string">'a.id'</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">// 其他管理员只能看到自己</span>
+                            -&gt;select();</code></pre><p>join链接表，并且join也能直接给表起别名</p><pre type="Html"><code><span class="hljs-keyword">join</span>(<span class="hljs-string">'auth_group b'</span>)这个表起别名叫b</code></pre><p>join：<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037549" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037549</a></p><h3>增</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037534" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037534</a></p><pre type="Html"><code>$data = [<span class="hljs-string">'foo'</span> =&gt; <span class="hljs-string">'bar'</span>, <span class="hljs-string">'bar'</span> =&gt; <span class="hljs-string">'foo'</span>];
+Db::name(<span class="hljs-string">'user'</span>)-&gt;insert($data);</code></pre><blockquote><p><code>insert</code>方法添加数据成功返回添加成功的条数，通常情况返回 1，如果你的数据表里面没有<code >foo</code>或者<code >bar</code>字段，那么就会抛出异常。</p></blockquote><p>添加数据后如果需要返回新增数据的自增主键，可以使用<code>insertGetId</code>方法新增数据并返回主键值：</p><pre type="Html"><code>$userId = Db::name(<span class="hljs-string">'user'</span>)-&gt;insertGetId($data);</code></pre><p><code>insertGetId</code>方法添加数据成功返回添加数据的自增主键</p><h3>删</h3><p>当id设置为表的主键的时候，可以用下面的方法删除：</p><pre type="Html"><code>$res = Db::name($dbname)-&gt;delete($id);</code></pre><p>上面这个删除有可能会报错。<span >&nbsp;Db::name($dbname)-&gt;delete($id) 这种写法依赖 ThinkPHP 自动将传入的值解析为主键条件。如果目标表 $dbname 对应的数据表没有设置主键，或者主键名不是默认的 id，框架就无法执行。会抛出错误：</span>报错了
+没有条件不会执行删除操作。</p><p>建议改为：</p><pre type="Html"><code>$res = Db::table($dbname)-&gt;where(<span class="hljs-string">'id'</span>, $id)-&gt;delete();</code></pre><p>111</p><h2>模板</h2><p>新版框架默认只能支持PHP原生模板，如果需要使用<code>thinkTemplate</code>模板引擎，需要安装<code>think-view</code>扩展（该扩展会自动安装<code>think-template</code>依赖库）。</p><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037613" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037613</a></p><pre type="Html"><code>composer <span class="hljs-built_in">require</span> topthink/think-view</code></pre><p>模板使用方法：<a href="https://www.kancloud.cn/manual/think-template/1286403" target="_blank">https://www.kancloud.cn/manual/think-template/1286403</a></p><p>模板所有标签：<a href="https://www.kancloud.cn/manual/think-template/1286416" target="_blank">https://www.kancloud.cn/manual/think-template/1286416</a></p><h3>基本循环和判断<b></b></h3><p>首先在控制器中，传入数据</p><pre type="Html"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)
+    </span>{
+        $configData1 = DB::name(<span class="hljs-string">'xxx'</span>)-&gt;where(<span class="hljs-string">'xxx'</span>, <span class="hljs-number">1</span>)-&gt;select();
+        <span class="hljs-keyword">return</span> view(<span class="hljs-string">''</span>, [
+            <span class="hljs-string">'configData1'</span> =&gt; $configData1
+        ]);
+    }</code></pre><p><span >然后模板中渲染</span></p><pre type="Html"><code>{volist name=<span class="hljs-string">"$configData1"</span> id=<span class="hljs-string">"vo"</span>}
+&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"row cl"</span>&gt;
+
+	&lt;label <span class="hljs-keyword">class</span>=<span class="hljs-string">"form-label col-xs-4 col-sm-2"</span>&gt;
+
+		&lt;span <span class="hljs-keyword">class</span>=<span class="hljs-string">"c-red"</span>&gt;&lt;/span&gt;
+
+		{$vo.cname}：&lt;/label&gt;
+
+	&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"formControls col-xs-8 col-sm-9"</span>&gt;
+
+		{<span class="hljs-keyword">if</span> condition=<span class="hljs-string">"$vo.field_type eq 1"</span>}
+		&lt;input type=<span class="hljs-string">"text"</span>  name=<span class="hljs-string">"{$vo.ename}"</span> <span class="hljs-keyword">value</span>=<span class="hljs-string">"{$vo.value}"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"input-text"</span>&gt;
+		{<span class="hljs-keyword">else</span>}
+		&lt;textarea <span class="hljs-keyword">class</span>=<span class="hljs-string">"textarea"</span> name=<span class="hljs-string">"{$vo.id}"</span>&gt;{$vo.<span class="hljs-keyword">value</span>}&lt;/textarea&gt;
+		{/<span class="hljs-keyword">if</span>}
+	&lt;/div&gt;
+
+&lt;/div&gt;
+{/volist}</code></pre><p>注意id="vo" 起什么都行，相当于每一项的遍历项。</p><p>如上面例子，eq是==，同样可以改成</p><pre type="Html"><code>{<span class="hljs-keyword">if</span> condition=<span class="hljs-string">"<span class="hljs-variable">$vo</span>.field_type == 1"</span>}
+	&lt;input <span class="hljs-built_in">type</span>=<span class="hljs-string">"text"</span>  name=<span class="hljs-string">"{<span class="hljs-variable">$vo</span>.id}"</span> value=<span class="hljs-string">"{<span class="hljs-variable">$vo</span>.value}"</span> class=<span class="hljs-string">"input-text"</span>&gt;
+{/<span class="hljs-keyword">if</span>}
+{<span class="hljs-keyword">if</span> condition=<span class="hljs-string">"<span class="hljs-variable">$vo</span>.field_type == 2"</span>}
+	&lt;textarea class=<span class="hljs-string">"textarea"</span> name=<span class="hljs-string">"{<span class="hljs-variable">$vo</span>.id}"</span>&gt;{<span class="hljs-variable">$vo</span>.value}&lt;/textarea&gt;
+{/<span class="hljs-keyword">if</span>}</code></pre><h3>模板一个大数组中判断是否有子数组</h3><pre type="Html"><code> {<span class="hljs-keyword">if</span> condition=<span class="hljs-string">'$vo.children'</span>}
+   {volist name=<span class="hljs-string">"<span class="hljs-variable">$vo</span>.children"</span> id=<span class="hljs-string">"vo1"</span>}... {/volist}
+ {/<span class="hljs-keyword">if</span>}
+</code></pre><p><code>{if condition="..."}</code>的作用是<strong>在模板（HTML）中进行条件判断，从而控制页面上不同内容的显示与隐藏。比如上面的就是判断外层大循环中某个字段是否有值。</strong></p><p><span >条件判断：condition 属性里面写的是判断条件（类似于原生 PHP 里的表达式）。当条件成立（返回 true）时，就会输出 {if} 和 {/if} 之间的 HTML 内容。</span></p><pre type="Html"><code><span class="hljs-comment">&lt;!-- 假设后端传过来一个 $user.sex 变量，1代表男，0代表女 --&gt;</span>
+{if condition="$user.sex eq 1"}
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>先生<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+{else /}
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>女士<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+{/if}</code></pre><p>同样的还可以使用原生php</p><pre type="Html"><code>{php}
+     <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">in_array($vo[<span class="hljs-string">'id'</span>], [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])</span>)</span>{ echo <span class="hljs-string">'checked'</span>; }
+{/php}</code></pre><p>111</p><h3>在父类中进行模板赋值</h3><p>模板赋值：<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037609" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037609</a></p><p>比如现在有个父类控制器</p><pre type="Html"><code><span class="hljs-comment">// controller/Base.php</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Base</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseController</span> </span>{...}
+
+<span class="hljs-comment">// controller/Other.php</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Other</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Base</span> </span>{
+    <span class="hljs-keyword">return</span> view(<span class="hljs-string">''</span>, [
+       <span class="hljs-string">'data'</span> =&gt; ....
+    ]);
+}</code></pre><p>现在比如有个变量，用户登录的用户名，需要在多个控制器中的模板中渲染一样的数据</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>用户名：{$loginUser}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></code></pre><p>这时候给每个控制器模板渲染中单独添加一个 $loginUser 变量肯定很啰嗦，这时候就可以在父类中添加一个统一的模板赋值</p><pre type="Html"><code><span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">facade</span>\<span class="hljs-title">View</span>;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Base</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseController</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initialize</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-comment">// echo '我是base';</span>
+        $loginAdmin = session(<span class="hljs-string">'adminSessionData'</span>);
+        <span class="hljs-comment">// 模板赋值 https://www.kancloud.cn/manual/thinkphp6_0/1037609</span>
+        <span class="hljs-comment">// 在公共父类上面 通过模板赋值的方式 将用户名传递过去</span>
+        View::assign(<span class="hljs-string">'loginUser'</span>,  $loginAdmin[<span class="hljs-string">'user_name'</span>]);
+    }
+...
+}</code></pre><p>这样只要是继承了Base父类的子类，所渲染的模板中都会自动添加这个loginUser的变量，可以直接用。</p><blockquote>在 ThinkPHP 的控制器里，<code>initialize()</code>方法会在<strong>控制器实例化之后、调用具体操作方法之前</strong>自动执行，你不需要手动调用它。</blockquote><h3>模板路径</h3><p>默认情况下 controller/AuthGroup.php控制器</p><pre type="Html"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">return</span> view(<span class="hljs-string">''</span>); <span class="hljs-comment">// 默认渲染的是：view\auth_group\index.html 模板</span>
+
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">group_add</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> view(<span class="hljs-string">''</span>); <span class="hljs-comment">// 默认渲染的是：view\auth_group\group_add.html 模板</span>
+    }</code></pre><p>但是假设我的模板放在view/admin/group.html 和&nbsp;view/admin/group_add.html 路径下，这时候就需要修改view函数第一个参数，手动指定模板路径：</p><pre type="Html"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)
+</span>{
+        <span class="hljs-keyword">return</span> view(<span class="hljs-string">'admin/group'</span>); 
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">group_add</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> view(<span class="hljs-string">'admin/group_add'</span>);
+}</code></pre><p>111</p><h2>中间件</h2><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037493" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037493</a></p><p>安装中间件，并生成一个Check.php的中间件文件</p><pre type="Html"><code><span class="hljs-selector-tag">php</span> <span class="hljs-selector-tag">think</span> <span class="hljs-selector-tag">make</span><span class="hljs-selector-pseudo">:middleware</span> <span class="hljs-selector-tag">Check</span></code></pre><p>执行之后，会在app目录下生成一个middleware/Check.php的目录，注意，app目录下的是叫做全局中间件，如果要做应用中间件，就是对某个目录下的应用生效，就要放到对应的目录中，比如demo里面。注意要同时移动app/middleware目录和<strong>复制</strong>app/middleware.php文件 都一起移动到子应用demo目录中。</p><blockquote>app/middleware.php 里面负责开启session，不开启session会导致验证码怎么验证都是false，这个文件不能删除</blockquote><h3>开启应用中间件</h3><p>app/demo/middleware.php 中必须要开启，中间件才能生效</p><pre type="Html"><code><span class="hljs-keyword">return</span> [
+    <span class="hljs-comment">// 全局请求缓存</span>
+    <span class="hljs-comment">// \think\middleware\CheckRequestCache::class,</span>
+    <span class="hljs-comment">// 多语言加载</span>
+    <span class="hljs-comment">// \think\middleware\LoadLangPack::class,</span>
+    <span class="hljs-comment">// Session初始化</span>
+    \think\middleware\SessionInit::<span class="hljs-class"><span class="hljs-keyword">class</span>,
+    <span class="hljs-type">// 启用这个目录下的中间件 用来实现用户登录验证 必须加这么句话才能生效</span></span>
+    加这句话 \app\demo\middleware\Check::<span class="hljs-class"><span class="hljs-keyword">class</span></span>
+];</code></pre><p>在中间件中添加前置验证（会在所有请求之前，进行验证，可以用于登录验证middleware/Check.php）</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">declare</span> (strict_types = <span class="hljs-number">1</span>);
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">qingadmin</span>\<span class="hljs-title">middleware</span>;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Check</span>
+</span>{
+    <span class="hljs-comment">/**
+     * 处理请求
+     *
+     * <span class="hljs-doctag">@param</span> \think\Request $request
+     * <span class="hljs-doctag">@param</span> \Closure       $next
+     * <span class="hljs-doctag">@return</span> Response
+     */</span>
+
+    <span class="hljs-comment">// 前置中间件 </span>
+    <span class="hljs-comment">/**
+     * 在执行后台首页之前 http://localhost/tp6-eshop/code/qingadmin/ 先执行业务逻辑 适合用来判断登录
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handle</span>(<span class="hljs-params">$request, \<span class="hljs-built_in">Closure</span> $next</span>)
+    </span>{
+
+        <span class="hljs-comment">// halt($request-&gt;pathinfo());</span>
+        <span class="hljs-comment">// 如果判断session为空 那么就代表没登录</span>
+        <span class="hljs-comment">// 这个中间件会对qingadmin\controller中所有控制器运行，像下面的跳转，如果判断没登录就会跳转到qingadmin/login/index，</span>
+        <span class="hljs-comment">// qingadmin/login/index又会重新判断是不是空 会导致来回重定向</span>
+        <span class="hljs-comment">// 所以需要判断当前访问的页面是不是login 来判断是不是登录页 通过$request里面的patshtinfo()方法 pref_match('/login/', $request-&gt;pathinfo() 存在login返回true 所以只有不存在时候才跳转</span>
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">empty</span>(session(<span class="hljs-string">'adminSessionData'</span>)) &amp;&amp; 
+           !preg_match(<span class="hljs-string">'/login/'</span>, $request-&gt;pathinfo())
+        ) {
+            <span class="hljs-comment">// 没登录就重定向</span>
+            <span class="hljs-keyword">return</span> redirect((<span class="hljs-keyword">string</span>)url(<span class="hljs-string">'login/index'</span>));
+        }
+        <span class="hljs-keyword">return</span> $next($request);
+    }
+
+    <span class="hljs-comment">// 后置中间件</span>
+    <span class="hljs-comment">// public function handle($request, \Closure $next)</span>
+    <span class="hljs-comment">// {</span>
+    <span class="hljs-comment">//     $response = $next($request);</span>
+    <span class="hljs-comment">//      echo 'i am middle bbb';</span>
+    <span class="hljs-comment">//     return $response;</span>
+    <span class="hljs-comment">// }</span>
+}
+</code></pre><h2>验证码</h2><p>要使用必须先下载安装<a href="https://www.kancloud.cn/manual/thinkphp6_0/1246402" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1246402</a></p><pre type="Html"><code>composer <span class="hljs-built_in">require</span> topthink/think-captcha</code></pre><p>然后在模板中</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{:captcha_img()}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"{:captcha_src()}"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"captcha"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>在控制器中进行验证</p><pre type="Html"><code><span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">!captcha_check($captcha)</span>)</span>{
+ <span class="hljs-comment">// 验证失败</span>
+};</code></pre><p>验证码官方是放在session中进行比对，而框架下载好之后session是没有默认启用的，所以会导致验证失败，需要手动前往<span >&nbsp;<b>项目目录\app\middleware.php中启用</b></span></p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// 全局中间件定义文件</span>
+<span class="hljs-keyword">return</span> [
+    <span class="hljs-comment">// 全局请求缓存</span>
+    <span class="hljs-comment">// \think\middleware\CheckRequestCache::class,</span>
+    <span class="hljs-comment">// 多语言加载</span>
+    <span class="hljs-comment">// \think\middleware\LoadLangPack::class,</span>
+    <span class="hljs-comment">// Session初始化</span>
+    \think\middleware\SessionInit::class
+];</code></pre><p>不启用会导致验证码不生效，无法使用函数验证输入是否正确。</p><h2>分页</h2><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037638" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037638</a></p><p><code>ThinkPHP</code>内置了分页实现，要给数据添加分页输出功能变得非常简单，可以直接在<code>Db</code>类查询的时候调用<code>paginate</code>方法：</p><pre type="Html"><code><span class="hljs-comment">// 查询状态为1的用户数据 并且每页显示10条数据</span>
+$list = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'status'</span>,<span class="hljs-number">1</span>)-&gt;order(<span class="hljs-string">'id'</span>, <span class="hljs-string">'desc'</span>)-&gt;paginate(<span class="hljs-number">10</span>);
+
+<span class="hljs-comment">// 渲染模板输出</span>
+<span class="hljs-keyword">return</span> view(<span class="hljs-string">'index'</span>, [<span class="hljs-string">'list'</span> =&gt; $list]);</code></pre><p>模板文件中分页输出代码如下：</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+{volist name='list' id='user'}
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span> {$user.nickname}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+{/volist}
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+{$list|raw}</code></pre><p>默认情况下，生成的分页输出是完整分页功能，带总分页数据和上下页码，分页样式只需要通过样式修改即可。如果你需要单独获取总的数据，可以使用</p><pre type="Html"><code><span class="hljs-comment">// 查询状态为1的用户数据 并且每页显示10条数据</span>
+$list = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'status'</span>,<span class="hljs-number">1</span>)-&gt;order(<span class="hljs-string">'id'</span> ,<span class="hljs-string">'desc'</span>)-&gt;paginate(<span class="hljs-number">10</span>);
+<span class="hljs-comment">// 获取总记录数</span>
+$count = $list-&gt;total();
+<span class="hljs-keyword">return</span> view(<span class="hljs-string">'index'</span>, [<span class="hljs-string">'list'</span> =&gt; $list, <span class="hljs-string">'count'</span> =&gt; $count]);</code></pre><p>支持传入总记录数而不会自动进行总数计算，例如：</p><pre type="Html"><code><span class="hljs-comment">// 查询状态为1的用户数据 并且每页显示10条数据 总记录数为1000</span>
+$list = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'status'</span>,<span class="hljs-number">1</span>)-&gt;paginate(<span class="hljs-number">10</span>,<span class="hljs-number">1000</span>);
+<span class="hljs-comment">// 获取分页显示</span>
+$page = $list-&gt;render();
+
+<span class="hljs-keyword">return</span> view(<span class="hljs-string">'index'</span>, [<span class="hljs-string">'list'</span> =&gt; $list, <span class="hljs-string">'page'</span> =&gt; $page]);</code></pre><p>模板中渲染一样：</p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+{volist name='list' id='user'}
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span> {$user.nickname}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+{/volist}
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+{$page|raw}</code></pre><p>对于<code>UNION</code>查询以及一些特殊的复杂查询，推荐使用这种方式首先单独查询总记录数，然后再传入分页方法</p><p>如果你仅仅需要输出一个 仅仅只有上下页的分页输出，可以使用下面的简洁分页代码：</p><pre type="Html"><code><span class="hljs-comment">// 查询状态为1的用户数据 并且每页显示10条数据</span>
+$list = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'status'</span>,<span class="hljs-number">1</span>)-&gt;order(<span class="hljs-string">'id'</span>, <span class="hljs-string">'desc'</span>)-&gt;paginate(<span class="hljs-number">10</span>, <span class="hljs-literal">true</span>);
+
+<span class="hljs-comment">// 渲染模板输出</span>
+<span class="hljs-keyword">return</span> view(<span class="hljs-string">'index'</span>, [<span class="hljs-string">'list'</span> =&gt; $list]);</code></pre><p>由于简洁分页模式不需要查询总数据数，因此可以提高查询性能。</p>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：thinkphp
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l" id="detail-news-recommends">
+    <div class="headline">
+        推荐阅读
+    </div>
+    <div class="list-loading"></div>
+    <ul class="list-a"></ul>
+    <div class="no-list small">
+        <img src="/assets/img/no-list.gif" alt="抱歉，目前还没有推荐文章哦">
+        <p class="text">抱歉, 目前还没有任何文章</p>
+    </div>
+</div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/516" class="imgbox">
+                <img src="/statics/blog/2024/0513/2772518d6af8a19221032644c2ed3019.png">
+            </a>
+            <a href="/blog/articles/516" class="title" title="thinkphp-多对多关联查询">
+                thinkphp-多对多关联查询
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/328" class="imgbox">
+                <img src="/statics/blog/2022/1124/00f04e792579ed049a5bb01c4fa6eb09.png">
+            </a>
+            <a href="/blog/articles/328" class="title" title="js获取浏览器、屏幕的宽高(多浏览器)">
+                js获取浏览器、屏幕的宽高(多浏览器)
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/316" class="imgbox">
+                <img src="/statics/blog/2022/1011/9e86f388b0f00f92f8aecc27cecf4eeb.jpg">
+            </a>
+            <a href="/blog/articles/316" class="title" title="跨域请求产生错误的原因及基本的处理方法">
+                跨域请求产生错误的原因及基本的处理方法
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="userinfo-skeleton-screen">
+            <div class="u-s-avatar"></div>
+            <div class="u-s-myname">
+                <div class="u-s-row row-50"></div>
+                <div class="u-s-row row-80"></div>
+            </div>
+            <div class="u-s-say">
+                <div class="u-s-row"></div>
+                <div class="u-s-row"></div>
+                <div class="u-s-row"></div>
+                <div class="u-s-row"></div>
+                <div class="u-s-row row-30"></div>
+            </div>
+        </div>
+        <div class="avatar">
+            <img src="/assets/img/blog-logo-avatar.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一介武夫 | 博客空间</p>
+        </div>
+        <p class="say">
+            <span>这里是武彬的个人博客空间，分享技术，交流经验，分享生活。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://github.com/634174214" data-cls="github" title="我的github仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="微信赞助">
+        </em>
+        <p>微信赞助</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>支付宝打赏</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/thinkphp">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/543">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        thinkphp笔记-上传功能、多语言
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/103">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Eloquent-ORM简介、模型的建立及查询数据
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/108">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用Eloquent-ORM修改数据
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/85">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Laravel中的路由基础
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/190">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Artisan基本用法
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="https://634174214.github.io/blog-others/build/" target="_blank">商务</a>
+                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank">导航</a>
+                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank">专栏</a>
+                    <a href="/other/about/" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                    <span id="footer-about-content"> “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、ThinkPHP、JS、CSS、Less、VUE、jQuery、Python、Linux、Apache、Nginx、AI、canvas、Godot游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！</span>
+                </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="微信赞助">
+        </em>
+        <p>微信赞助</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>支付宝打赏</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>
