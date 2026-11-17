@@ -144,11 +144,11 @@
                         <div class="left">
                                                         <span class="readnum">
                                 <i class="icon fa fa-eye"></i>
-                                <em>1854</em>次阅读
+                                <em>1874</em>次阅读
                             </span>
                             <span class="goodnum">
                                 <i class="icon fa fa-thumbs-o-up"></i>
-                                <em>93</em>人点赞
+                                <em>95</em>人点赞
                             </span>
                             <span class="author">
                                 <i class="icon fa fa-pencil-square-o"></i>
@@ -276,7 +276,57 @@
 商品列表
 <span class="hljs-comment">------商品添加</span>
 <span class="hljs-comment">------商品修改</span>
-<span class="hljs-comment">------商品删除</span></code></pre><h3>一句话概况思路</h3><p>从<code>parent_id=0</code>开始，找到一个父节点就<strong>先把它放进结果数组</strong>，然后<strong>立刻递归去找它的所有子节点</strong>（深度优先），子节点找完再回来继续找下一个同级父节点。<code>level</code>只在每次递归时 +1，用来标记层级。</p><p>当然这段代码还是有问题，还可以优化空间，这里只是提供思路。</p><p></p>
+<span class="hljs-comment">------商品删除</span></code></pre><h3>一句话概况思路</h3><p>从<code>parent_id=0</code>开始，找到一个父节点就<strong>先把它放进结果数组</strong>，然后<strong>立刻递归去找它的所有子节点</strong>（深度优先），子节点找完再回来继续找下一个同级父节点。<code>level</code>只在每次递归时 +1，用来标记层级。</p><pre type="Html"><code><span class="hljs-comment">//无限极分类树状结构，修改level值</span>
+
+	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_reSort</span>(<span class="hljs-params">$data, $parent_id=<span class="hljs-number">0</span>, $cate_level=<span class="hljs-number">0</span></span>)
+
+	</span>{
+
+		<span class="hljs-built_in">static</span> $ret = <span class="hljs-keyword">array</span>();
+			
+		<span class="hljs-keyword">foreach</span> ($data <span class="hljs-keyword">as</span> $k =&gt; $v)
+
+		{
+
+			<span class="hljs-keyword">if</span>($v[<span class="hljs-string">'parent_id'</span>] == $parent_id)
+
+			{
+
+				$v[<span class="hljs-string">'cate_level'</span>] = $cate_level;
+
+				$ret[] = $v;<span class="hljs-comment">//越来越大 塞数据 </span>
+				<span class="hljs-keyword">unset</span>($data[$k]);<span class="hljs-comment">//越来越小  删数据 处理一个删一个</span>
+
+				<span class="hljs-keyword">$this</span>-&gt;_reSort($data, $v[<span class="hljs-string">'id'</span>], $cate_level+<span class="hljs-number">1</span>);
+				
+			}
+
+		}
+
+		<span class="hljs-keyword">return</span> $ret;
+
+	}
+</code></pre><p>当然这段代码还是有问题，还可以优化空间，这里只是提供思路。</p><h2>无限极删除父类</h2><pre type="Html"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getChildrenIdStr</span>(<span class="hljs-params">$cate_list,$parent_id=<span class="hljs-number">0</span></span>)</span>{
+
+ 		<span class="hljs-built_in">static</span> $str=<span class="hljs-string">''</span>;
+ 		<span class="hljs-keyword">foreach</span> ($cate_list <span class="hljs-keyword">as</span> $k =&gt; $v) {
+
+ 			<span class="hljs-keyword">if</span> ($v[<span class="hljs-string">'parent_id'</span>]==$parent_id) {
+
+ 				$str =$str.<span class="hljs-string">','</span>.$v[<span class="hljs-string">'id'</span>];
+
+ 				<span class="hljs-keyword">$this</span>-&gt;getChildrenIdStr($cate_list,$v[<span class="hljs-string">'id'</span>]);
+
+ 			}
+
+ 		}
+ 		
+ 		$str=ltrim($str,<span class="hljs-string">','</span>);<span class="hljs-comment">//去除字符串左边的，</span>
+ 		$str=rtrim($str,<span class="hljs-string">','</span>);<span class="hljs-comment">//去除字符串右边的，</span>
+ 		<span class="hljs-comment">//print_r($str);</span>
+ 		<span class="hljs-keyword">return</span> $str;
+
+ 	}</code></pre><p>根据父类的id，递归找到所有属于这个父类的id项，拼接成一个用逗号隔开的id字符串。</p><p></p>
                                                             <!-- 测试的文章内容 end -->
                 </section>
                 <footer class="content-footer clear">
@@ -320,27 +370,27 @@
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/1" class="imgbox">
-                <img src="/statics/blog/2021/0208/c16248bdc1b7f5a5358f16f377684b3f.jpg">
+            <a href="/blog/articles/451" class="imgbox">
+                <img src="/statics/blog/2023/1206/27937e8e94a9ef8acf3b36c225d3b1fe.jpg">
             </a>
-            <a href="/blog/articles/1" class="title" title="第一篇文章-网站更新记录">
-                第一篇文章-网站更新记录
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/465" class="imgbox">
-                <img src="/statics/blog/2024/0110/4d9af0d637b3aee5401a0c3546ffac74.jpg">
-            </a>
-            <a href="/blog/articles/465" class="title" title="面试官：[]==![]为什么返回true？">
-                面试官：[]==![]为什么返回true？
+            <a href="/blog/articles/451" class="title" title="前端调取摄像头并实现拍照功能">
+                前端调取摄像头并实现拍照功能
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/352" class="imgbox">
-                <img src="/statics/blog/2023/0128/e87ffbe14fb85a03c0efc731f2191605.png">
+            <a href="/blog/articles/74" class="imgbox">
+                <img src="/statics/blog/2021/0531/5bbfe91b35a932d3cb73addb9cc664e7.jpg">
             </a>
-            <a href="/blog/articles/352" class="title" title="僵尸部队4">
-                僵尸部队4
+            <a href="/blog/articles/74" class="title" title="关于手机上滚动穿透问题的解决">
+                关于手机上滚动穿透问题的解决
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/175" class="imgbox">
+                <img src="/statics/blog/2021/0906/fba3015d5d6fbbb539f3fb628fe45b95.jpg">
+            </a>
+            <a href="/blog/articles/175" class="title" title="z-index和transform你真的了解吗？">
+                z-index和transform你真的了解吗？
             </a>
         </li>
             </ul>
@@ -427,33 +477,33 @@
                         </div>
                         <ul class="list-c">
                                                             <li>
-                                    <a href="/blog/articles/194">
+                                    <a href="/blog/articles/113">
                                         <i class="icon fa fa-caret-right"></i>
-                                        【用户认证】生成Auth所需文件
+                                        Blade中的@section与@yield等标签介绍
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/107">
+                                    <a href="/blog/articles/98">
                                         <i class="icon fa fa-caret-right"></i>
-                                        Eloquent-ORM中新增数据、自定义时间戳及批量赋值
+                                        使用查询构造器更新数据
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/514">
+                                    <a href="/blog/articles/190">
                                         <i class="icon fa fa-caret-right"></i>
-                                        thinkphp-关联模型初步、一对一关联查询、一对多关联查询
+                                        Artisan基本用法
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/530">
+                                    <a href="/blog/articles/541">
                                         <i class="icon fa fa-caret-right"></i>
-                                        thinkphp-模版引擎驱动和赋值变量、模板引擎配置和渲染、模版的变量输出
+                                        thinkphp笔记-模板杂项与表单令牌、session、cookie
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/512">
+                                    <a href="/blog/articles/103">
                                         <i class="icon fa fa-caret-right"></i>
-                                        thinkphp-JSON字段、模型的软删除、模型和数据库的事件
+                                        Eloquent-ORM简介、模型的建立及查询数据
                                     </a>
                                 </li>
                                                     </ul>

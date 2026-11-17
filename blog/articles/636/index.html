@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="cleartype" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta content="black" name=" apple-mobile-web-app-status-bar-style"/>
+<link type="image/x-icon" href="/assets/img/siteico.ico" rel="shortcut icon"/>
+<link rel="alternate" type="application/rss+xml" title="thinkPHP中的模型写法 | 一介武夫-平凡的草根站长 &raquo; Feed" href="https://www.wubin.work/feed/atom.xml" />
+<title>thinkPHP中的模型写法 | 一介武夫-平凡的草根站长</title>
+<meta name="keywords" content="thinkphp模型"/>
+<meta name="description" content="如何构建模型。"/>
+<link rel="stylesheet" href="/assets/font/css/brands.css">
+<link rel="stylesheet" href="/assets/font/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/entry.css">
+<link rel="stylesheet" href="/assets/libs/highlight/styles/github.css">
+<link rel="stylesheet" media="(min-width: 641px)" href="/assets/css/pc.css"/>
+<link rel="stylesheet" media="(max-width:640px)" href="/assets/css/m.css"/>
+
+  <link rel="stylesheet" href="/assets/css/github-static.css">
+
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/ie.css"/>
+<script src="/assets/libs/html5shiv.min.js"></script>
+<script src="/assets/libs/respond.min.js"></script>
+<![endif]-->
+<!-- 百度网站监测 -->
+    <script>
+        var articleInfo = {
+            article_id: 636,
+            article_title: 'thinkPHP中的模型写法',
+            article_desc: '如何构建模型。',
+            article_img: '',
+            article_link: window.location.href
+        }
+    </script>
+</head>
+<body class="preload">
+<header class="nav">
+    <div class="inner" id="navbar-pc">
+        <!-- all nav -->
+        <nav class="all nav-item">
+            <a href="/" class="logo">
+                <img src="/assets/img/blog-logo.png" alt="一介武夫">
+            </a>
+            <div class="nav-loading" id="head-left-nav-loading">
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+                <div class="s-l-item"></div>
+            </div>
+            <ul class="left-nav hide" id="head-left-nav">
+                                <li class="active">
+                    <a href="/">
+                        博客
+                    </a>
+                </li>
+                                <li class="left-nav-rss" id="left-nav-rss">
+                    <a href="/rss" target="_blank" title="订阅">
+                        订阅
+                    </a>
+                </li>
+                <li id="finders-link">
+                    <a href="/finders" title="发现更多">
+                       发现更多
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-nav">
+                <li class="search">
+                    <input type="text"  id="search" autocomplete="off">
+                    <label for="search">请输入要搜索的内容关键词</label>
+                    <i class="icon fa fa-search"></i>
+                </li>
+                                <li id="live-message-link">
+                    <a href="/message">
+                        <i class="icon fa fa-commenting-o"></i>
+                        留言
+                    </a>
+                </li>
+                <li>
+                                            <a href="/admin" target="_blank">
+                            <i class="icon fa fa-user-o"></i>
+                            <span class="headnav-admin">管理</span>
+                            <span class="headnav-aboutme">关于我</span>
+                        </a>
+                                    </li>
+            </ul>
+        </nav>
+        <!-- all nav end -->
+        <nav class="blog nav-item">
+            <a href="/blog/list/all" class="blog-logo">
+                <i class="img-icon blog-logo-icon-a"></i>
+                博客频道
+            </a>
+            <ul class="blog-nav">
+                <li class="blog-channel"
+                    data-channelactive="thinkphp"
+                    data-baseurllist="/blog/list"
+                    id="blog-channel-headshow"
+                >
+                                    <em class="normal my-favourite">
+                        我的收藏
+                    </em>
+                </li>
+                <li class="blog-all">
+                    <div class="blognav-show-btn" id="blognav-show-btn">
+                        <em>展开全部</em>
+                        <i class="icon fa fa-chevron-circle-right"></i>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hot-search" id="hot-search">
+    </div>
+    <div class="blog-all-nav" id="blog-all-nav">
+        <dl>
+            <dt><a href="/blog/list/all">全部频道</a></dt>
+            <dd>
+                            </dd>
+        </dl>
+    </div>
+</header><!-- main -->
+<section class="main-detail clear">
+    <!-- article -->
+    <div class="right">
+        <div class="inner">
+            <article class="article-content margin-bot-l">
+                <header class="content-header">
+                    <div class="top">
+                        <div class="channel-label">
+                            <a href="/">博客</a>/
+                            <a href="/blog/list/thinkphp">ThinkPHP</a>
+                        </div>
+                        <!-- php渲 -->
+                        
+                                            </div>
+                    <h1 class="title"><span id="article-title">thinkPHP中的模型写法</span></h1>
+                    <div class="info" id="content-header-info">
+                        <div class="left">
+                                                        <span class="readnum">
+                                <i class="icon fa fa-eye"></i>
+                                <em>1171</em>次阅读
+                            </span>
+                            <span class="goodnum">
+                                <i class="icon fa fa-thumbs-o-up"></i>
+                                <em>102</em>人点赞
+                            </span>
+                            <span class="author">
+                                <i class="icon fa fa-pencil-square-o"></i>
+                                <em>作者: WuBin</em>
+                            </span>
+                            <span class="date">
+                                <i class="icon fa fa-clock-o"></i>
+                                <em>发布时间: 2026-11-17 09:10:26</em>
+                            </span>
+                        </div>
+                        <div class="right">
+                            <span class="see-on-phone" id="see-on-phone">
+                                <i class="icon fa fa-qrcode"></i>
+                                <em>扫码到手机查看</em>
+                                <cite class="qrbox">
+                                    <img class="qr-img">
+                                </cite>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <section class="content-body entry" id="content-body">
+                    <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
+                    <!-- 测试的文章内容 -->
+                    <h2>withSearch<span >搜索器</span></h2><div><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037590" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037590</a><span ></span></div><div>搜索器的作用是用于封装字段（或者搜索标识）的查询条件表达式，一个搜索器对应一个特殊的方法（该方法必须是<code>public</code>类型），方法命名规范为：<span ></span></div><div><blockquote>search<code>FieldName</code>Attr</blockquote></div><div><code>FieldName</code>为数据表字段的驼峰转换，搜索器仅在调用<code>withSearch</code>方法的时候触发。<span ></span></div><div><p>搜索器的场景包括：</p><ul><li>限制和规范表单的搜索条件；</li><li>预定义查询条件简化查询；</li></ul></div><div>例如，我们需要给User模型定义<code>name</code>字段和时间字段的搜索器，可以使用：<span ></span></div><div><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">model</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span> 
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">searchNameAttr</span>(<span class="hljs-params">$query, $value, $data</span>)
+    </span>{
+        $query-&gt;where(<span class="hljs-string">'name'</span>,<span class="hljs-string">'like'</span>, $value . <span class="hljs-string">'%'</span>);
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">searchCreateTimeAttr</span>(<span class="hljs-params">$query, $value, $data</span>)
+    </span>{
+        $query-&gt;whereBetweenTime(<span class="hljs-string">'create_time'</span>, $value[<span class="hljs-number">0</span>], $value[<span class="hljs-number">1</span>]);
+    }    
+}</code></pre></div><p>然后，我们可以使用下面的查询</p><pre type="Html"><code>User::withSearch(
+     [<span class="hljs-string">'name'</span>,<span class="hljs-string">'create_time'</span>], 
+     [
+	<span class="hljs-string">'name'</span>			=&gt;	<span class="hljs-string">'think'</span>,
+    	<span class="hljs-string">'create_time'</span>	=&gt;	[<span class="hljs-string">'2018-8-1'</span>,<span class="hljs-string">'2018-8-5'</span>],
+        <span class="hljs-string">'status'</span>		=&gt;	<span class="hljs-number">1</span>
+    ])
+	-&gt;select();</code></pre><p>最终生成的SQL语句类似于</p><div><pre type="Html"><code><span class="hljs-attribute">SELECT</span> * FROM `think_user` WHERE  `name` LIKE 'think%' AND `create_time` BETWEEN '<span class="hljs-number">2018</span>-<span class="hljs-number">08</span>-<span class="hljs-number">01</span> <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>' AND '<span class="hljs-number">2018</span>-<span class="hljs-number">08</span>-<span class="hljs-number">05</span> <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>' </code></pre></div><p>同样的也能在模型中使用</p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>  
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">common</span>\<span class="hljs-title">model</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">facade</span>\<span class="hljs-title">Db</span>;			
+<span class="hljs-comment">// 构建出1,2,3,4这种字符串</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">common</span>\<span class="hljs-title">model</span>\<span class="hljs-title">Category</span> <span class="hljs-title">as</span> <span class="hljs-title">CategoryModel</span>;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Goods</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">think</span>\<span class="hljs-title">Model</span>
+</span>{	
+
+	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">searchGoodsCateIdAttr</span>(<span class="hljs-params">$query, $value</span>)
+	</span>{
+		$query-&gt;where(<span class="hljs-string">'goods_cate_id'</span>,<span class="hljs-string">'in'</span>, $value);
+	}
+
+	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">searchGoodsStatusAttr</span>(<span class="hljs-params">$query, $value</span>)
+	</span>{
+		$query-&gt;where(<span class="hljs-string">'goods_status'</span>,<span class="hljs-string">'='</span>, $value);
+	}
+
+	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">searchGoodsNameAttr</span>(<span class="hljs-params">$query, $value</span>)
+	</span>{
+		$query-&gt;where(<span class="hljs-string">'goods_name'</span>,<span class="hljs-string">'like'</span>, <span class="hljs-string">'%'</span>.$value.<span class="hljs-string">'%'</span>);
+	}
+
+	<span class="hljs-comment">//搜索器的使用</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">search1</span>(<span class="hljs-params">$cate_id,$goods_status,$goods_name,$page=<span class="hljs-string">'10'</span></span>)</span>{
+
+
+        <span class="hljs-comment">//根据url传过来的分类id，找出该分类下面的所有子分类id</span>
+		$cateChilerenId=<span class="hljs-string">''</span>;
+        <span class="hljs-keyword">if</span>(!<span class="hljs-keyword">empty</span>($cate_id)){
+
+        	$cates=Db::name(<span class="hljs-string">'Category'</span>)-&gt;field(<span class="hljs-string">'id,parent_id,cate_name'</span>)-&gt;select();
+
+			<span class="hljs-comment">// 构建出1,2,3,4这种字符串</span>
+			$_cateChilerenId=(<span class="hljs-keyword">new</span> CategoryModel())-&gt;getChildrenIdStr($cates,$cate_id);
+
+			$cateChilerenId=$cate_id.<span class="hljs-string">','</span>.$_cateChilerenId;<span class="hljs-comment">//先把当前的id放到字符串中</span>
+
+		}
+		
+
+		<span class="hljs-keyword">if</span>(<span class="hljs-keyword">empty</span>($cate_id)){
+			$goodsData=Goods::name(<span class="hljs-string">'goods'</span>)
+			-&gt;alias(<span class="hljs-string">'a'</span>)
+			-&gt;join(<span class="hljs-string">'category b'</span>,<span class="hljs-string">'a.goods_cate_id=b.id'</span>)
+			-&gt;field(<span class="hljs-string">'a.*,b.cate_name'</span>)
+			-&gt;order(<span class="hljs-string">'listorder asc'</span>)
+			-&gt;order(<span class="hljs-string">'goods_id desc'</span>)
+			-&gt;withSearch(
+				[<span class="hljs-string">'goods_status'</span>,<span class="hljs-string">'goods_name'</span>],
+				[
+				<span class="hljs-string">'goods_status'</span>=&gt;$goods_status,
+				<span class="hljs-string">'goods_name'</span>=&gt;$goods_name
+				])
+			-&gt;paginate([<span class="hljs-string">'list_rows'</span>=&gt; $page,<span class="hljs-string">'query'</span>=&gt;request()-&gt;param()]);
+		}
+
+		<span class="hljs-keyword">if</span>(!<span class="hljs-keyword">empty</span>($cate_id)){
+			$goodsData=Goods::name(<span class="hljs-string">'goods'</span>)
+			-&gt;alias(<span class="hljs-string">'a'</span>)
+			-&gt;join(<span class="hljs-string">'category b'</span>,<span class="hljs-string">'a.goods_cate_id=b.id'</span>)
+			-&gt;field(<span class="hljs-string">'a.*,b.cate_name'</span>)
+			-&gt;order(<span class="hljs-string">'listorder asc'</span>)
+			-&gt;order(<span class="hljs-string">'goods_id desc'</span>)
+			-&gt;withSearch(
+				[<span class="hljs-string">'goods_cate_id'</span>,<span class="hljs-string">'goods_status'</span>,<span class="hljs-string">'goods_name'</span>],
+				[
+					<span class="hljs-string">'goods_cate_id'</span>=&gt;$cateChilerenId,
+					<span class="hljs-string">'goods_status'</span>=&gt;$goods_status,
+					<span class="hljs-string">'goods_name'</span>=&gt;$goods_name
+				])
+			-&gt;paginate([<span class="hljs-string">'list_rows'</span>=&gt; $page,<span class="hljs-string">'query'</span>=&gt;request()-&gt;param()]);
+		}
+		<span class="hljs-comment">//echo Goods::getLastSql();</span>
+        <span class="hljs-keyword">return</span> $goodsData;		
+	}
+
+}
+<span class="hljs-meta">?&gt;</span></code></pre><p>控制器中</p><pre type="Html"><code><span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">common</span>\<span class="hljs-title">model</span>\<span class="hljs-title">Goods</span> <span class="hljs-title">as</span> <span class="hljs-title">GoodsModel</span>;
+<span class="hljs-comment">//商品列表</span>
+$goods_model=<span class="hljs-keyword">new</span> GoodsModel();
+$goodsData=$goods_model-&gt;search1($cate_id,$goods_status,$search_key);</code></pre><p><code>withSearch(['goods_status','goods_name'], [...])</code>会遍历第一个数组里的每个字段名，按<code>search</code>+ 驼峰 +<code>Attr</code>规则拼出方法名，然后自动调用：</p><ul><li><p><code>goods_status</code>→<code>searchGoodsStatusAttr($query, $goods_status)</code></p></li><li><p><code>goods_name</code>→<code>searchGoodsNameAttr($query, $goods_name)</code></p></li></ul><p><strong>前提是模型里确实存在这些方法</strong>，否则框架静默跳过，不报错。</p><div><h3><code>withSearch</code>本质上是在构建查询语句</h3></div><div><code>withSearch</code>本身不执行 SQL，它只是<strong>把搜索器里的条件挂到查询构造器<code>$query</code>上</strong>。真正的 SQL 要等你调用<code>paginate()</code>、<code>select()</code>、<code>find()</code>这些终结方法时才生成并执行。<span ></span></div><div><code>withSearch</code>的第二个参数（<code>$params</code>数组）的<strong>键名</strong>必须和第一个数组里的字段名一致。<span ></span></div><div><pre type="Html"><code>withSearch(
+    [<span class="hljs-string">'goods_status'</span>, <span class="hljs-string">'goods_name'</span>],   <span class="hljs-comment">// 字段名</span>
+    [
+        <span class="hljs-string">'goods_status'</span> =&gt; $goods_status,  <span class="hljs-comment">// 键名对应</span>
+        <span class="hljs-string">'goods_name'</span>   =&gt; $goods_name,    <span class="hljs-comment">// 键名对应</span>
+    ]
+)</code></pre></div><p><code>withSearch</code>=<strong>声明要按哪些字段搜索 + 传入搜索值</strong>，框架据此<strong>自动调用对应的搜索器方法</strong>，把<code>where</code>条件挂到查询构造器上，最后<code>paginate/select</code>时才生成并执行 SQL。</p><h3>Goods::name('goods')<span ></span></h3><p>例如，在这个Goods模型中，可以使用&nbsp;Goods::name('goods') 来访问数据表，作用等同于Db::name('表名')。</p><p><code>Goods</code>是你的模型类。模型类本身也支持链式查询方法（底层会转发给查询构造器）</p><p>当前场景里，既然已经写了<code>Goods</code>模型，其实更“模型化”的写法是直接用模型本身：</p><pre><code>Goods::alias('a')-&gt;join(...)-&gt;field(...)-&gt;withSearch(...)-&gt;paginate(...);</code></pre><p>不需要再额外<code>name('goods')</code>，因为模型会自动关联到对应的数据表（通常就是<code>goods</code>）。</p><p><b>TP6 模型会“自动推导”表名</b></p><p>TP6 的模型有一个默认行为：它会根据<strong>模型类的名称</strong>自动去对应数据表。</p><p>规则是：把类名转为小写+下划线，再拼上数据库配置里的前缀。</p><ul><li><p>如果你的模型类叫<code>Goods</code>，它会自动去找<code>goods</code>表（假设无前缀）。</p></li><li><p>如果你的模型类叫<code>UserType</code>，它会自动去找<code>user_type</code>表。</p></li></ul><p><b>所以在未指定&nbsp;protected$name ='goods'; 明确表名的情况下，</b>框架会按类名自动推导表名；如果类名和实际表名对不上，才需要手动用<b>Db::name 或者 Goods:: 或者 Goods::name('goods') 或者$this-&gt;</b></p><blockquote><code>注意：Goods::name()</code>走模型静态代理，<strong>仍然能触发模型特性</strong>（比如<code>withSearch</code>）。Db<code >::name()</code><span >返回查询构造器，</span><strong >不触发模型特性</strong><span >（获取器、搜索器、关联等）</span></blockquote><blockquote><strong>在模型方法里能不能用<code>$this</code>，取决于你是在“实例方法”还是“静态调用”场景下。</strong><code >$this</code><span >是 PHP 里的一个特殊变量，它指向</span><strong >当前对象实例</strong><span >。</span></blockquote><p><strong>在模型内部写普通方法（实例方法）时，本来就可以用<code>$this</code></strong></p><pre type="Html"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Goods</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">protected</span> $name = <span class="hljs-string">'goods'</span>; // 指定表名与$this之间无关！不指定也能用$this
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getList</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-comment">// $this 就是当前模型实例，可以直接链式查询</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;alias(<span class="hljs-string">'a'</span>)
+            -&gt;join(<span class="hljs-string">'category b'</span>, <span class="hljs-string">'a.goods_cate_id=b.id'</span>)
+            -&gt;field(<span class="hljs-string">'a.*,b.cate_name'</span>)
+            -&gt;select();
+    }
+}</code></pre><p>控制器里：</p><pre type="Html"><code>$goods = <span class="hljs-keyword">new</span> GoodsModel();
+$goods-&gt;getList();   <span class="hljs-comment">// 走实例方法，$this 有效</span></code></pre><h2>指定表名</h2><p>在 TP6 模型里，<strong>通常会在类顶部用<code>protected</code>属性指定表名</strong>，这是模型的标准做法。</p><pre type="Html"><code><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">common</span>\<span class="hljs-title">model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Goods</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">think</span>\<span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">protected</span> $name = <span class="hljs-string">'goods'</span>;   <span class="hljs-comment">// 指定数据表名（不带前缀）</span>
+    <span class="hljs-comment">// 或者</span>
+    <span class="hljs-keyword">protected</span> $table = <span class="hljs-string">'tp_goods'</span>; <span class="hljs-comment">// 指定完整表名（带前缀）</span>
+}</code></pre><h3><code>name</code>和<code>$table</code>的区别</h3><table border="0" width="100%" cellpadding="0" cellspacing="0"><thead><tr><th>属性</th><th>含义</th><th>是否自动加前缀</th></tr></thead><tbody><tr><td><code>protected $name = 'goods';</code></td><td>表名（不含前缀）</td><td>✅ 自动加前缀</td></tr><tr><td><code>protected $table = 'tp_goods';</code></td><td>完整表名</td><td>❌ 不自动加前缀</td></tr></tbody></table><p>一般推荐用<code>$name</code>，因为前缀在数据库配置里统一管理，换前缀时不用改模型。</p><p><code>protected $name</code>的作用是<strong>覆盖</strong>默认的自动推导规则。只有在“模型类名”和“实际表名”对不上时，才<strong>必须</strong>用它。</p><p>当然我个人还是建议每个模型，都明确表名。</p><div><span ></span></div><div><span ></span></div><div><span ></span></div><div><span ></span></div><div><span ></span></div><div><span ></span></div><div><span ></span></div><div><span ></span></div><div><span ></span></div><div><span ></span></div>
+                                                            <!-- 测试的文章内容 end -->
+                </section>
+                <footer class="content-footer clear">
+                    <div class="btns">
+                        <span id="zan-me">
+                            <i class="icon fa fa-thumbs-o-up"></i>
+                            <cite>点赞</cite>
+                        </span>
+                        <span id="support-me">
+                            <i class="icon fa fa-gift"></i>支持一下
+                        </span>
+                        <em>觉得不错？客官您就稍微鼓励一下吧！</em>
+                    </div>
+                    <div class="keywords">
+                        <i class="icon fa fa-tags"></i>
+                        关键词：thinkphp模型
+                    </div>
+                </footer>
+            </article>
+            <!-- 推荐阅读 -->
+            <div class="detail-news-list margin-bot-l" id="detail-news-recommends">
+    <div class="headline">
+        推荐阅读
+    </div>
+    <div class="list-loading"></div>
+    <ul class="list-a"></ul>
+    <div class="no-list small">
+        <img src="/assets/img/no-list.gif" alt="抱歉，目前还没有推荐文章哦">
+        <p class="text">抱歉, 目前还没有任何文章</p>
+    </div>
+</div>            <!-- 推荐阅读 end -->
+            <!-- 猜你喜欢 -->
+            <div class="detail-news-list " id="guess-you-like">
+        <div class="headline">
+        猜你喜欢
+        <span class="refresh">
+            <cite class="count-down"></cite>
+            <cite class="count-down-tips">换一组文章</cite>
+            <i class="icon fa fa-refresh"></i>
+        </span>
+    </div>
+    <ul class="list-b">
+                <li>
+            <a href="/blog/articles/339" class="imgbox">
+                <img src="/statics/blog/2022/1209/47944d26f348fc6e06c88538af70083f.png">
+            </a>
+            <a href="/blog/articles/339" class="title" title="uniapp打包APP上架相关问题【IOS】篇">
+                uniapp打包APP上架相关问题【IOS】篇
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/171" class="imgbox">
+                <img src="/statics/blog/2021/0901/81191d5078efdc10e533077163e05bcf.jpg">
+            </a>
+            <a href="/blog/articles/171" class="title" title="Composer快速入门之基本使用">
+                Composer快速入门之基本使用
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/88" class="imgbox">
+                <img src="/statics/blog/2021/0617/88c818b2e93c9f4830be6b1441805f73.jpg">
+            </a>
+            <a href="/blog/articles/88" class="title" title="女儿跟男朋友同居被发现后，爸爸写的一封信">
+                女儿跟男朋友同居被发现后，爸爸写的一封信
+            </a>
+        </li>
+            </ul>
+    </div>            <!-- 猜你喜欢 end -->
+        </div>
+    </div>
+    <!-- article end -->
+    <aside class="left">
+        <div class="inner">
+            <!-- userinfo -->
+                <div class="userinfo smaller">
+        <div class="userinfo-skeleton-screen">
+            <div class="u-s-avatar"></div>
+            <div class="u-s-myname">
+                <div class="u-s-row row-50"></div>
+                <div class="u-s-row row-80"></div>
+            </div>
+            <div class="u-s-say">
+                <div class="u-s-row"></div>
+                <div class="u-s-row"></div>
+                <div class="u-s-row"></div>
+                <div class="u-s-row"></div>
+                <div class="u-s-row row-30"></div>
+            </div>
+        </div>
+        <div class="avatar">
+            <img src="/assets/img/blog-logo-avatar.png">
+        </div>
+        <div class="myname">
+            <p class="name">WuBin</p>
+            <p class="small">一介武夫 | 博客空间</p>
+        </div>
+        <p class="say">
+            <span>这里是武彬的个人博客空间，分享技术，交流经验，分享生活。</span>
+        </p>
+                <ul class="my-contact" id="my-contact">
+            <li class="gitee" data-content="https://github.com/634174214" data-cls="github" title="我的github仓库">
+                <i class="icon icon-gitee"></i>
+            </li>
+            <li class="qq" data-content="/assets/img/myqqqr.jpg" data-cls="qq" title="我的QQ号">
+                <i class="icon icon-qq"></i>
+            </li>
+            <li class="wexin" data-content="/assets/img/myweqr.jpg" data-cls="wexin" title="我的微信">
+                <i class="icon icon-wexin"></i>
+            </li>
+            <li class="email" data-content="bin3656@aliyun.com" data-cls="email" title="我的邮箱">
+                <i class="icon icon-email"></i>
+            </li>
+            <li class="shang" data-content="/statics/userinfo/2026/0402/ab78f3d896b10587acacda61a9ac9c52.jpg, /statics/userinfo/2026/0402/58f763836700b965658ba7e12053d125.jpg" data-cls="shang" title="赞助网站">
+                <i class="icon icon-shang-a"></i>
+            </li>
+        </ul>
+    </div>
+            <!-- userinfo end -->
+            <!-- qr-box -->
+            <div class="qr-box margin-bot-l">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="微信赞助">
+        </em>
+        <p>微信赞助</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>支付宝打赏</p>
+    </li>
+</ul>            </div>
+            <!-- qr-box end -->
+            <section id="left-fixed-bar">
+                <!-- news-list -->
+                                    <div class="detail-news-list margin-bot-l">
+                        <div class="headline">
+                            相关文章
+                            <a href="/blog/list/thinkphp">全部<i class="icon fa fa-chevron-right"></i></a>
+                        </div>
+                        <ul class="list-c">
+                                                            <li>
+                                    <a href="/blog/articles/117">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        Blade模板中的URL获取
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/109">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用Eloquent-ORM删除数据
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/125">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        控制器之中间件Middleware
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/186">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用Composer安装Laravel
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/120">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        控制器之Request
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </div>
+                                <!-- news-list end -->
+                <!-- share bar -->
+                <div class="sharebar" id="sharebar">
+                    <em>分享</em>
+                    <a href="javascript:void(0)" title="分享到微信" class="wexin">
+                        <i class="icon icon-wexin"></i>
+                        <div class="qrbox">
+                            <img class="qr-img">
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到QQ" class="qq">
+                        <i class="icon icon-qq"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到微博" class="weibo">
+                        <i class="icon icon-weibo"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="分享到朋友圈" class="qzone">
+                        <i class="icon icon-qzone"></i>
+                    </a>
+                    <a href="javascript:void(0)" title="复制链接" class="copy">
+                        <i class="icon fa fa-link"></i>
+                    </a>
+                </div>
+                <!-- sharebar end -->
+            </section>
+        </div>
+    </aside>
+</section>
+<!-- main end -->
+<!-- 目录和喜欢 -->
+<div class="article-control" id="article-control">
+    <a href="tencent://message/?uin=634174214&Site=https://www.wubin.work/&Menu=yes"
+       target="_blank"
+       class="follow icon-span"
+       title="与作者交流，说出你的看法和意见"
+    >
+        <i class="icon fa fa-comment-o"></i>交流
+    </a>
+    <span class="favourite icon-span" title="无需注册即可收藏本站文章，快来试试吧！">
+        <i class="icon fa fa-heart-o"></i>收藏
+    </span>
+    <span class="catalogue" title="文章目录">
+        <!-- <i class="img-icon catalogue-icon"></i> -->
+        <img src="/assets/img/detail-contents-30@2x.gif" class="gif-icon">
+        <em>目录</em>
+    </span>
+    <div class="article-contents" id="article-contents">
+        <div class="inner">
+            <ul class="catalog-list">
+                <li class="head">
+                    <a href="#article-title">目录</a>
+                    <i class="icon fa fa-close close"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 目录和喜欢 end -->
+
+<footer class="footer has-pet" id="footer">
+                <section class="detail-pet shizuku fixed" id="detail-pet">
+            <iframe src="/assets/woman/1-shizuku.html" frameborder="0"></iframe>
+        </section>
+        <div class="inner">
+        <section class="footer-body">
+            <div class="left">
+                <div class="footer-nav">
+                    <a href="/" target="_blank">博客</a>
+                    <a href="https://634174214.github.io/blog-others/build/" target="_blank">商务</a>
+                    <a href="https://634174214.github.io/blog-others/hao/" target="_blank">导航</a>
+                    <a href="https://634174214.github.io/blog-others/doc/" target="_blank">专栏</a>
+                    <a href="/other/about/" target="_blank">关于</a>
+                    <a href="/finders" target="_blank">发现更多</a>
+                </div>
+                <div class="about">
+                    <strong>关于网站：</strong>
+                    <span id="footer-about-content"> “一介武夫“个人博客于2021年1月正式上线。旨在共享设计、开发类的知识，交流开发中遇到的各种问题。涵盖了MYSQL、PHP、ThinkPHP、JS、CSS、Less、VUE、jQuery、Python、Linux、Apache、Nginx、AI、canvas、Godot游戏开发、服务器配置、安全防范、小程序开发、微信公众号开发、界面UI设计、印刷设计、单页设计等等内容，为广大读者提供最新鲜的一手信息资料，与您在互联网产品开发的道路上共同进步！</span>
+                </div>
+            </div>
+            <div class="right">
+                <ul class="qr-box-inner">
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/building-qr.png" alt="微信赞助">
+        </em>
+        <p>微信赞助</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/images/m-site-qr.png" alt="手机版二维码">
+        </em>
+        <p>手机版</p>
+    </li>
+    <li>
+        <em class="qr-x-em">
+            <img src="/assets/img/zanpay.jpg" alt="支付宝打赏">
+        </em>
+        <p>支付宝打赏</p>
+    </li>
+</ul>            </div>
+        </section>
+        <p class="copyright">
+    Copyright © 2020 - 2026 All Rights Reserved
+    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37020302371900" target="_blank" class="gongan">
+        <img src="/assets/img/gongan.png">鲁公网安备 37020302371900号</a>
+    <a href="http://beian.miit.gov.cn" target="_blank">鲁ICP备 2021005085号</a>
+</p>    </div>
+</footer>
+<script>
+    var ASSETS_URL = "/assets/";
+</script>
+<script src="/assets/libs/LAB.min.js"></script>
+<script src="/assets/js/init_detail.js?t=4445"></script></body>
+</html>

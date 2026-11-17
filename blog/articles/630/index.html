@@ -144,11 +144,11 @@
                         <div class="left">
                                                         <span class="readnum">
                                 <i class="icon fa fa-eye"></i>
-                                <em>5981</em>次阅读
+                                <em>6129</em>次阅读
                             </span>
                             <span class="goodnum">
                                 <i class="icon fa fa-thumbs-o-up"></i>
-                                <em>174</em>人点赞
+                                <em>189</em>人点赞
                             </span>
                             <span class="author">
                                 <i class="icon fa fa-pencil-square-o"></i>
@@ -173,7 +173,9 @@
                 <section class="content-body entry" id="content-body">
                     <!-- !这里特别注意 code中的排列与页面文档缩进相关！！！如果要让文档正常显示 注意渲染页面的缩进问题！ -->
                     <!-- 测试的文章内容 -->
-                    <h2>常用函数</h2><h3>判断网页有没有内容提交过来</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037519" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037519</a></p><pre type="Html"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Login</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseController</span>
+                    <h2>常用函数</h2><h3>获取项目根目录</h3><pre type="Html"><code><span class="hljs-comment">// app()是助手函数 获取项目根目录 </span>
+<span class="hljs-comment">// D:\phpstudy\WWW\tp6-eshop\code\</span>
+$path = app()-&gt;getRootPath();</code></pre><h3>判断网页有没有内容提交过来</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037519" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037519</a></p><pre type="Html"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Login</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseController</span>
 </span>{
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)
     </span>{
@@ -185,12 +187,13 @@
             <span class="hljs-keyword">return</span> view();
         }
     }
-}</code></pre><p>接收网页post传递过来的全部值</p><pre type="Html"><code><span class="hljs-variable">$data</span> = input(<span class="hljs-string">'post.'</span>);</code></pre><p>接收网页get传递过来的全部值</p><pre type="Html"><code><span class="hljs-variable">$data</span> = input(<span class="hljs-string">'get.'</span>);</code></pre><pre type="Html"><code><span class="hljs-selector-tag">input</span>(<span class="hljs-string">''</span>)        <span class="hljs-comment">// 取合并后的所有参数（GET+POST等），POST 优先 </span>
+}</code></pre><p>接收网页post传递过来的全部值</p><pre type="Html"><code><span class="hljs-variable">$data</span> = input(<span class="hljs-string">'post.'</span>); // 等价 request()-&gt;post();</code></pre><p>接收网页get传递过来的全部值</p><pre type="Html"><code><span class="hljs-variable">$data</span> = input(<span class="hljs-string">'get.'</span>);</code></pre><pre type="Html"><code><span class="hljs-selector-tag">input</span>(<span class="hljs-string">''</span>)        <span class="hljs-comment">// 取合并后的所有参数（GET+POST等），POST 优先 </span>
 <span class="hljs-selector-tag">input</span>(<span class="hljs-string">'get.'</span>)    <span class="hljs-comment">// 只取 GET</span>
 <span class="hljs-selector-tag">input</span>(<span class="hljs-string">'post.'</span>)   <span class="hljs-comment">// 只取 POST</span>
 <span class="hljs-selector-tag">input</span>(<span class="hljs-string">'get.id'</span>)  <span class="hljs-comment">// 只取 GET 里的 id</span>
 <span class="hljs-selector-tag">input</span>(<span class="hljs-string">'id'</span>)      <span class="hljs-comment">// 等价于 input('param.id')，走合并逻辑，从传递过来的post和get的合并值中找id字段</span></code></pre><pre type="Html"><code><span class="hljs-built_in">input</span>(<span class="hljs-string">'param.name'</span>); // 获取单个参数 等价于 <span class="hljs-built_in">input</span>(<span class="hljs-string">'name'</span>); 
-<span class="hljs-built_in">input</span>(<span class="hljs-string">'param.'</span>); // 获取全部get/POST等所有传递方法的参数 <span class="hljs-built_in">input</span>(<span class="hljs-string">''</span>);</code></pre><h3>session（助手函数）</h3><p>设置session</p><pre type="Html"><code> session(<span class="hljs-string">'adminSessionData'</span>, <span class="hljs-variable">$adminData</span>);</code></pre><p>退出登录 清空即可</p><pre type="Html"><code><span class="hljs-selector-tag">session</span>(<span class="hljs-string">'adminSessionData'</span>, null);
+<span class="hljs-built_in">input</span>(<span class="hljs-string">'param.'</span>); // 获取全部get/POST等所有传递方法的参数 <span class="hljs-built_in">input</span>(<span class="hljs-string">''</span>);
+<span class="hljs-built_in">input</span>(<span class="hljs-string">'post.cover'</span>); // 从post参数中获取 cover字段</code></pre><h3>session（助手函数）</h3><p>设置session</p><pre type="Html"><code> session(<span class="hljs-string">'adminSessionData'</span>, <span class="hljs-variable">$adminData</span>);</code></pre><p>退出登录 清空即可</p><pre type="Html"><code><span class="hljs-selector-tag">session</span>(<span class="hljs-string">'adminSessionData'</span>, null);
 <span class="hljs-selector-tag">session</span>(<span class="hljs-string">'adminSessionData'</span>, <span class="hljs-string">''</span>); 无法清空登录状态！
 \<span class="hljs-selector-tag">think</span>\<span class="hljs-selector-tag">facade</span>\<span class="hljs-selector-tag">Session</span><span class="hljs-selector-pseudo">::delete('adminSessionData')</span>;
 <span class="hljs-selector-tag">Session</span><span class="hljs-selector-pseudo">::clear()</span></code></pre><blockquote>退出登录清空session之后，验证需要配合中间件，本页搜索中间件，查看对应的验证方法。</blockquote><p>获取session</p><pre type="Html"><code><span class="hljs-variable">$res</span> = session(<span class="hljs-string">'adminSessionData'</span>);</code></pre><h3>重定向redirect</h3><pre type="Html"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logout</span>(<span class="hljs-params"></span>)
@@ -199,7 +202,26 @@
         session(<span class="hljs-string">'adminSessionData'</span>, <span class="hljs-string">''</span>);
         <span class="hljs-comment">// 跳转重定向</span>
         <span class="hljs-keyword">return</span> redirect(<span class="hljs-string">'tp6-eshop/code/qingadmin/login/index'</span>);
-    }</code></pre><h3>url()助手函数</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037508" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037508</a></p><pre type="Html"><code>系统提供了一个url助手函数用于完成相同的功能，例如：
+    }</code></pre><p>注意，重定向方法只有在可访问的控制器中应用才生效，在<span >initialize中使用不生效。</span></p><p><span >或者使用抛出错误的方法，在非可访问的控制器中，实现跳转</span></p><pre type="Html"><code><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// 构建一个父类控制器 在父类中放一些公共的方法 以及初始化之类的</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">qingadmin</span>\<span class="hljs-title">controller</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">BaseController</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">exception</span>\<span class="hljs-title">HttpResponseException</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Base</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseController</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initialize</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">$this</span>-&gt;redirect(<span class="hljs-string">'要跳转的着陆页'</span>);
+        <span class="hljs-comment">// 重定向只有在控制器中的方法才生效</span>
+    }
+    <span class="hljs-comment">// 抛出异常的方式进行跳转</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">redirect</span>(<span class="hljs-params">...$args</span>)
+    </span>{
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> HttpResponseException(redirect(...$args)); 
+    }
+}</code></pre><p>此方法用于，当没有权限的时候，跳转到后台首页。</p><h3>url()助手函数</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037508" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037508</a></p><pre type="Html"><code>系统提供了一个url助手函数用于完成相同的功能，例如：
 
 url(<span class="hljs-string">'index/blog/read'</span>, [<span class="hljs-string">'id'</span>=&gt;<span class="hljs-number">5</span>])
     -&gt;suffix(<span class="hljs-string">'html'</span>)
@@ -219,16 +241,126 @@ url(<span class="hljs-string">'index/blog/read'</span>, [<span class="hljs-strin
 <span class="hljs-keyword">　　　　return</span> Request::param(<span class="hljs-string">'name'</span>);
     }    
 }</code></strong></pre><p>param方法&nbsp;&nbsp;<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037519" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037519</a>&nbsp;&nbsp;</p><pre type="Html"><code>在 ThinkPHP <span class="hljs-number">6</span> 中，param 方法：
-param($name, $default = <span class="hljs-literal">null</span>, $filter = <span class="hljs-string">''</span>)</code></pre><p>111</p><h2>增删改查</h2><h3>查</h3><p>查询<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037533" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037533</a></p><p>查询多个数据（数据集）使用<font face="monospace"><span >select</span></font>方法：</p><pre type="Html"><code>Db::table(<span class="hljs-string">'think_user'</span>)-&gt;where(<span class="hljs-string">'status'</span>, <span class="hljs-number">1</span>)-&gt;select();
+param($name, $default = <span class="hljs-literal">null</span>, $filter = <span class="hljs-string">''</span>)</code></pre><h3>上传</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037639" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037639</a></p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/index/upload"</span> <span class="hljs-attr">enctype</span>=<span class="hljs-string">"multipart/form-data"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"image"</span> /&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span> 
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"上传"</span> /&gt;</span> 
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span> </code></pre><pre type="Html"><code>composer <span class="hljs-keyword">require</span> topthink/think-filesystem
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upload</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-comment">// 获取表单上传文件 例如上传了001.jpg</span>
+    $file = request()-&gt;file(<span class="hljs-string">'image'</span>);
+    <span class="hljs-comment">// 上传到本地服务器 topic 是指上传到的目录名</span>
+    $savename = \think\facade\Filesystem::putFile( <span class="hljs-string">'topic'</span>, $file);
+    <span class="hljs-comment">// 如果你希望上传的文件是可以直接访问或者下载的话，可以使用public存储方式。</span>
+    $savename = \think\facade\Filesystem::disk(<span class="hljs-string">'public'</span>)-&gt;putFile( <span class="hljs-string">'topic'</span>, $file);
+}</code></pre><p>非public的上传路径：<span >\runtime\storage\topic\20261104\xxx.jpg，但是这个上传目录runtime是一个临时目录，正常情况我们需要修改上传的路径，在项目目录\</span><span >config\</span><span >filesystem.php中修改，默认配置如下：</span></p><pre type="Html"><code><span class="hljs-keyword">return</span> [
+    <span class="hljs-comment">// 默认磁盘</span>
+    <span class="hljs-string">'default'</span> =&gt; env(<span class="hljs-string">'filesystem.driver'</span>, <span class="hljs-string">'local'</span>),
+    <span class="hljs-comment">// 磁盘列表</span>
+    <span class="hljs-string">'disks'</span>   =&gt; [
+        <span class="hljs-string">'local'</span>  =&gt; [
+            <span class="hljs-string">'type'</span> =&gt; <span class="hljs-string">'local'</span>,
+            <span class="hljs-string">'root'</span> =&gt; app()-&gt;getRuntimePath() . <span class="hljs-string">'storage'</span>,
+        ],
+        <span class="hljs-string">'public'</span> =&gt; [
+            <span class="hljs-comment">// 磁盘类型</span>
+            <span class="hljs-string">'type'</span>       =&gt; <span class="hljs-string">'local'</span>,
+            <span class="hljs-comment">// 磁盘路径</span>
+            <span class="hljs-string">'root'</span>       =&gt; app()-&gt;getRootPath() . <span class="hljs-string">'public/storage'</span>,
+            <span class="hljs-comment">// 磁盘路径对应的外部URL路径</span>
+            <span class="hljs-string">'url'</span>        =&gt; <span class="hljs-string">'/storage'</span>,
+            <span class="hljs-comment">// 可见性</span>
+            <span class="hljs-string">'visibility'</span> =&gt; <span class="hljs-string">'public'</span>,
+        ],
+        <span class="hljs-comment">// 更多的磁盘配置信息</span>
+    ],
+];</code></pre><p>'default'=&gt; env('filesystem.driver','local') 中的local 指代的是 使用的disks['local']的配置。比如我可以改成这样：</p><pre type="Html"><code><span class="hljs-keyword">return</span> [
+    <span class="hljs-comment">// 默认磁盘</span>
+    <span class="hljs-string">'default'</span> =&gt; env(<span class="hljs-string">'filesystem.driver'</span>, <span class="hljs-string">'public'</span>),
+    <span class="hljs-comment">// 磁盘列表</span>
+    <span class="hljs-string">'disks'</span>   =&gt; [
+        <span class="hljs-string">'local'</span>  =&gt; [
+            <span class="hljs-string">'type'</span> =&gt; <span class="hljs-string">'local'</span>,
+            <span class="hljs-string">'root'</span> =&gt; app()-&gt;getRuntimePath() . <span class="hljs-string">'storage'</span>,
+        ],
+        <span class="hljs-string">'public'</span> =&gt; [
+            <span class="hljs-comment">// 磁盘类型</span>
+            <span class="hljs-string">'type'</span>       =&gt; <span class="hljs-string">'local'</span>,
+            <span class="hljs-comment">// 磁盘路径 app()-&gt;getRootPath()代表是项目根目录 下的 public/upload文件夹中</span>
+            <span class="hljs-string">'root'</span>       =&gt; app()-&gt;getRootPath() . <span class="hljs-string">'public/upload'</span>,
+            <span class="hljs-comment">// 磁盘路径对应的外部URL路径</span>
+            <span class="hljs-string">'url'</span>        =&gt; <span class="hljs-string">'/storage'</span>,
+            <span class="hljs-comment">// 可见性</span>
+            <span class="hljs-string">'visibility'</span> =&gt; <span class="hljs-string">'public'</span>,
+        ],
+        <span class="hljs-comment">// 更多的磁盘配置信息</span>
+    ],
+];</code></pre><p>env('filesystem.driver','public') 代表 执行&nbsp;\think\facade\Filesystem::putFile('topic', $file);的时候会自动使用public的配置，然后我还修改了root，指向了public/upload 文件夹。</p><p>或者还可以这样：</p><pre type="Html"><code><span class="hljs-comment">// 这里仅仅指向public文件夹</span>
+<span class="hljs-string">'root'</span>       =&gt; app()-&gt;getRootPath() . <span class="hljs-string">'public'</span>,   
+
+<span class="hljs-comment">// 应用的时候 putFile中指定要上传的文件夹</span>
+$file = request()-&gt;file(<span class="hljs-string">'file'</span>);
+$savename = \think\facade\Filesystem::putFile( <span class="hljs-string">'upload'</span>, $file);</code></pre><p><span ></span></p><p>最终的上传路径：$savename =&nbsp;<span >upload/20261106\xxx.jpg</span></p><blockquote><b>注意 这个上传路径前面不会自动拼接上传设置里面</b><b>的public！</b></blockquote><p><b>如果我这么写：</b></p><pre type="Html"><code><span class="hljs-string">'root'</span>       =&gt; app()-&gt;getRootPath() . <span class="hljs-string">'public'</span>,   
+$savename = \think\facade\Filesystem::putFile( <span class="hljs-string">'public/upload'</span>, $file);
+                                  </code></pre><p>&nbsp;$savename = public/upload/20261106\xxx.jpg</p><p>&nbsp;最终路径是\tp6-eshop\code\public\public\upload\20261106\xxx.jpg</p><p><b>所以不要在putFile里面写复杂的路径，并且最终要手动拼接一个 root指向的目录名称！</b></p><pre type="Html"><code><span class="hljs-variable">$savename</span> = <span class="hljs-string">'public/'</span> . <span class="hljs-variable">$savename</span>;</code></pre><p>public后面要带个“/”</p><p>注意 上传之后的路径 比如：<span >^"upload/20261104\4f967d1fb1a0cf6c18766b4639a8dabb.jpg" 这里还要加一个替换\的操作。</span></p><pre type="Html"><code><span class="hljs-variable">$savename</span> = str_replace(<span class="hljs-string">'\\'</span>, <span class="hljs-string">'/'</span>, <span class="hljs-variable">$savename</span>);</code></pre><h3>上传验证</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037639" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037639</a></p><p>官方是这么写的（对应的多文件上传）：</p><pre type="Html"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upload</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-comment">// 获取表单上传文件</span>
+    $files = request()-&gt;file();
+    <span class="hljs-keyword">try</span> {
+        validate([<span class="hljs-string">'image'</span>=&gt;<span class="hljs-string">'fileSize:10240|fileExt:jpg|image:200,200,jpg'</span>])
+            -&gt;check($files);
+        $savename = [];
+        <span class="hljs-keyword">foreach</span>($files <span class="hljs-keyword">as</span> $file) {
+            $savename[] = \think\facade\Filesystem::putFile( <span class="hljs-string">'topic'</span>, $file);
+        }
+    } <span class="hljs-keyword">catch</span> (\think\<span class="hljs-built_in">exception</span>\ValidateException $e) {
+        <span class="hljs-keyword">echo</span> $e-&gt;getMessage();
+    }
+}</code></pre><table border="0" width="100%" cellpadding="0" cellspacing="0"><thead><tr><th>验证参数</th><th>说明</th></tr><tr><td><p>file</p></td><td>验证是否是一个上传文件</td></tr><tr><td><p>image:width,height,type</p></td><td>验证是否是一个图像文件，width height和type都是可选，width和height必须同时定义。</td></tr></thead><tbody><tr><td>fileSize</td><td>上传文件的最大字节，验证上传文件大小，单位是KB</td></tr><tr><td>fileExt</td><td>文件后缀，多个用逗号分割或者数组，验证上传文件后缀</td></tr><tr><td>fileMime</td><td>文件MIME类型，多个用逗号分割或者数组，验证上传文件类型</td></tr><tr><td>image</td><td>验证图像文件的尺寸和类型</td></tr></tbody></table><p>上传验证：<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037629#_444" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037629#_444</a></p><p>如果是单一文件的话：</p><pre type="Html"><code> $file = request()-&gt;file(<span class="hljs-string">'file'</span>);
+
+     <span class="hljs-comment">// 上传验证</span>
+     <span class="hljs-keyword">try</span> {
+        validate([
+            <span class="hljs-string">'file'</span> =&gt; [
+               <span class="hljs-string">'filesize'</span> =&gt; <span class="hljs-number">10240</span>, <span class="hljs-comment">//kb</span>
+               <span class="hljs-string">'fileExt'</span> =&gt; <span class="hljs-string">'jpg'</span>
+            ]
+        ])-&gt;check([
+            <span class="hljs-string">'file'</span> =&gt; $file
+        ]);
+
+         $savename = \think\facade\Filesystem::putFile( <span class="hljs-string">'upload'</span>, $file);
+         $savename = str_replace(<span class="hljs-string">'\\'</span>, <span class="hljs-string">'/'</span>, $savename);
+         $return[<span class="hljs-string">'path'</span>] = <span class="hljs-string">'/tp6-eshop/code/'</span> . $savename;
+       
+    } <span class="hljs-keyword">catch</span> (\think\<span class="hljs-built_in">exception</span>\ValidateException $e) {
+        <span class="hljs-keyword">echo</span> $e-&gt;getMessage();
+    }  
+</code></pre><p>validate里面的 file是字段名，是指你要验证的字段名——它需要和 -&gt;check([..]) 里传入数组的 key 对应。</p><h3>返回JSON，json（）助手函数</h3><p>通常上传都是异步的，这时候操作完上传，需要返回一个json，这时候可以直接使用json函数，就会自动设置header(Content-Type: application/json; charset=utf-8)</p><p>在控制器中：</p><pre type="Html"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)
+</span>{
+    $data = [<span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'thinkphp'</span>, <span class="hljs-string">'status'</span> =&gt; <span class="hljs-string">'1'</span>];
+    <span class="hljs-keyword">return</span> json($data);
+}</code></pre><p>注意：ThinkPHP 6 默认已开启中文不转义（<code>JSON_UNESCAPED_UNICODE</code>）</p><p>如果你确实需要在模板文件里输出 JSON</p><p>有时你需要在 HTML 模板的<code>&lt;script&gt;</code>标签里，把后端数据转成 JS 对象，这时才会涉及模板输出。核心问题是<strong>模板默认会对变量进行 HTML 转义</strong>，直接输出 JSON 字符串会导致引号变成<code>&amp;quot;</code>，前端 JS 解析报错。</p><p><strong>方法一：使用<code>{:json_encode()}</code>配合<code>|raw</code>过滤器</strong></p><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-comment">// 模板中直接对数组变量进行 json_encode 并阻止转义</span>
+    <span class="hljs-keyword">var</span> data = {:json_encode($data)|raw};
+    <span class="hljs-built_in">console</span>.log(data);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>这里<code>|raw</code>的作用是告诉模板引擎不要对<code>json_encode</code>的结果进行<code>htmlentities</code>转义。</p><p><strong>方法二：在控制器中预先处理，模板用<code>|raw</code>输出</strong><strong></strong></p><pre type="Html"><code><span class="hljs-comment">// 控制器</span>
+View::assign(<span class="hljs-string">'json_data'</span>, json_encode($<span class="hljs-keyword">data</span>));</code></pre><pre type="Html"><code><span class="hljs-comment">&lt;!-- 模板 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> data = {$json_data|raw};
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>这种方式效果与上面一致，但把<code>json_encode</code>的逻辑移到了控制器。</p><p><b>避坑提醒</b></p><ul><li><p><strong>不要写<code>return $data;</code>（直接返回数组）</strong>：TP6 会尝试走模板渲染流程，导致输出 HTML 或报错，而不是 JSON。<a href="https://www.php.cn/faq/3103344.html#1" target="_blank"></a><a href="https://www.php.cn/faq/2688734.html#1" target="_blank"></a></p></li><li><p><strong>不要用<code>echo json_encode($data);</code></strong>：这会绕过框架的响应生命周期，导致日志、中间件等功能失效。<a href="https://www.php.cn/faq/3103344.html#1" target="_blank"></a></p></li><li><p><strong>模板中若不加<code>|raw</code></strong>：JSON 字符串里的引号会被转义，前端<code>JSON.parse</code>或直接赋值给 JS 变量时会出错。</p></li></ul><h2>增删改查</h2><h3>查</h3><p>查询<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037533" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037533</a></p><p>查询多个数据（数据集）使用<font face="monospace"><span >select</span></font>方法：</p><pre type="Html"><code>Db::table(<span class="hljs-string">'think_user'</span>)-&gt;where(<span class="hljs-string">'status'</span>, <span class="hljs-number">1</span>)-&gt;select();
 最终生成的SQL语句可能是：
 SELECT * <span class="hljs-keyword">FROM</span> `think_user` WHERE `status` = <span class="hljs-number">1</span></code></pre><blockquote>select 方法查询结果是一个数据集对象，如果需要转换为数组可以使用</blockquote><pre><code>Db::table('think_user')-&gt;where('status',1)-&gt;select()-&gt;toArray();</code></pre><p>如果设置了数据表前缀参数的话，可以使用（table是表全名，name是除去表的前缀，表前缀在config/database.php中<span >prefix</span><span >设置）</span></p><pre type="Html"><code>Db::name(<span class="hljs-symbol">'user</span>')-&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'id</span>', <span class="hljs-number">1</span>)-&gt;find();
-Db::name(<span class="hljs-symbol">'user</span>')-&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'status</span>', <span class="hljs-number">1</span>)-&gt;select();</code></pre><p><b>查询某个字段的值可以用</b></p><pre type="Html"><code>/ 返回某个字段的值
+Db::name(<span class="hljs-symbol">'user</span>')-&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'status</span>', <span class="hljs-number">1</span>)-&gt;select();</code></pre><pre type="Html"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;find($id);
+这样写作用与where(<span class="hljs-string">'id'</span>, $id)-&gt;find()一样，但是必须注意，直接使用find(id),必须保证id是主键！</code></pre><p><b>需要注意，</b>直接使用find(id),必须保证id是主键！</p><p><b>查询不等于1</b></p><pre type="Html"><code>Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'parent_id'</span>, <span class="hljs-string">'&lt;&gt;'</span>,  <span class="hljs-number">1</span>)-&gt;select();</code></pre><p><b>查询某个字段的值可以用</b></p><pre type="Html"><code>/ 返回某个字段的值
 Db::table(<span class="hljs-symbol">'think_user</span>')-&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'id</span>', <span class="hljs-number">1</span>)-&gt;value(<span class="hljs-symbol">'name</span>');</code></pre><p>value方法查询结果不存在，返回 null。比如判断输入的关键词内容有没有重复的</p><pre type="Html"><code>$keyword = input(<span class="hljs-string">'name'</span>);
 $id = Db::name(<span class="hljs-string">'search'</span>)-&gt;where(<span class="hljs-string">'name'</span>, $keyword)-&gt;value(<span class="hljs-string">'id'</span>);
  <span class="hljs-keyword">if</span>($id) {
       <span class="hljs-keyword">return</span> appCommonAlert(<span class="hljs-string">'不要重复添加'</span>, <span class="hljs-string">'index'</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>);
 }
-数据表中如果查询到了id，代表关键词重复了，就不能重复输入</code></pre><h3>关于field</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037542" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037542</a></p><p>在查询操作中<code>field</code>方法是使用最频繁的。</p><pre><code>Db::table('user')-&gt;field('id,title,content')-&gt;select();</code></pre><p>里使用field方法指定了查询的结果集中包含id,title,content三个字段的值。执行的SQL相当于：</p><pre><code>SELECTid,title,contentFROMuser</code></pre><p>可以给某个字段设置别名，例如：</p><pre><code>Db::table('user')-&gt;field('id,nickname as name')-&gt;select();
+数据表中如果查询到了id，代表关键词重复了，就不能重复输入</code></pre><h3>find和select区别</h3><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th></th><th>find()</th><th>select()</th></tr><tr><td>返回结果</td><td><strong>单条</strong>记录</td><td>二维数组（集合）</td></tr><tr><td>返回类型</td><td>一维数组（或<code>null</code></td><td>二维数组（集合）</td></tr><tr><td>底层 SQL</td><td>自动加<code>LIMIT 1</code></td><td>不加<code>LIMIT</code></td></tr><tr><td>没查到</td><td>null</td><td>空数组<code>[]</code>（TP6 是<code>Collection</code>，可当空数组用）</td></tr><tr><td>典型场景</td><td>按主键查一条</td><td>按外键/条件查列表</td></tr></tbody></table><p>比如这么一个表</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>id</th><th>standard_id</th><th>value</th></tr><tr><td>1</td><td>4</td><td>11</td></tr><tr><td>2</td><td>4</td><td>12</td></tr><tr><td>3</td><td>3</td><td>13</td></tr><tr><td>4</td><td>4</td><td>14</td></tr></tbody></table><pre type="Html"><code><span class="hljs-comment">// 一对多，必须用 select 拿全部</span>
+$attrData = Db::name(<span class="hljs-string">'standard_value'</span>)
+                        -&gt;where(<span class="hljs-string">'standard_id'</span>, <span class="hljs-number">4</span>)
+                        -&gt;select(); </code></pre><p>这里&nbsp;一对多，必须用 select 拿全部，如果用find就只能拿到一条。</p><h3>关于field</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037542" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037542</a></p><p>在查询操作中<code>field</code>方法是使用最频繁的。</p><pre><code>Db::table('user')-&gt;field('id,title,content')-&gt;select();</code></pre><p>里使用field方法指定了查询的结果集中包含id,title,content三个字段的值。执行的SQL相当于：</p><pre><code>SELECTid,title,contentFROMuser</code></pre><p>可以给某个字段设置别名，例如：</p><pre><code>Db::table('user')-&gt;field('id,nickname as name')-&gt;select();
 执行的SQL语句相当于：
 
 SELECT id,nicknameasnameFROMuser</code></pre><p><b>获取所有字段</b></p><pre><code>Db::table('user')-&gt;select();
@@ -263,7 +395,7 @@ SELECT * FROM think_user WHERE id &gt; <span class="hljs-number">1</span> AND na
     [<span class="hljs-string">'status'</span>,<span class="hljs-string">'='</span>,<span class="hljs-number">1</span>]
 ])-&gt;select(); 
 等价于
-SELECT * <span class="hljs-keyword">FROM</span> think_user WHERE `name`=<span class="hljs-string">'thinkphp'</span> <span class="hljs-keyword">AND</span> status = <span class="hljs-number">1</span></code></pre><p></p><p><span >以及本例中，用的就是索引数组</span></p><pre type="Html"><code>$where[] = [
+SELECT * <span class="hljs-keyword">FROM</span> think_user WHERE `name`=<span class="hljs-string">'thinkphp'</span> <span class="hljs-keyword">AND</span> status = <span class="hljs-number">1</span></code></pre><p><span >以及本例中，用的就是索引数组</span></p><pre type="Html"><code>$where[] = [
     <span class="hljs-string">'title'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'%'</span> . $searchkey . <span class="hljs-string">'%'</span>
 ];
 <span class="hljs-comment">// 此时 $where = [ ['title', 'like', '%xxxx%'] ]</span>
@@ -277,7 +409,52 @@ SELECT * <span class="hljs-keyword">FROM</span> xx WHERE title LIKE <span class=
                             -&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'parent_id</span>', <span class="hljs-number">0</span>)
                             -&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'status</span>', <span class="hljs-number">1</span>)
                             -&gt;select()
-                            -&gt;toArray();</code></pre><p>相当于whereparent_id =0AND status =1</p><h3>连表查询</h3><p>例子：比如下面两个表</p><p>xxx_auth_group</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>id</th><th>title</th><th>status</th></tr><tr><td>1</td><td>超级管理员</td><td>1</td></tr></tbody></table><p>xxx_admin</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>id</th><th>group_id</th><th>user_name</th><th>password</th></tr><tr><td>1</td><td>1</td><td>wb</td><td>asdsadasda</td></tr></tbody></table><p>选出所有admin表中admin.group_id = auth_group.id的行</p><pre type="Html"><code>$adminData = Db::name(<span class="hljs-string">'admin'</span>)
+                            -&gt;toArray();</code></pre><p>相当于whereparent_id =0AND status =1</p><h3>where+like</h3><p>重点：<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037566" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037566</a></p><p><b>批量（字段）查询</b></p><p>可以进行多个条件的批量条件查询定义，例如：</p><pre type="Html"><code>Db::table(<span class="hljs-string">'think_user'</span>)
+    -&gt;where([
+        [<span class="hljs-string">'name'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'thinkphp%'</span>],
+        [<span class="hljs-string">'title'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'%thinkphp'</span>],
+        [<span class="hljs-string">'id'</span>, <span class="hljs-string">'&gt;'</span>, <span class="hljs-number">0</span>],
+        [<span class="hljs-string">'status'</span>, <span class="hljs-string">'='</span>, <span class="hljs-number">1</span>],
+    ])
+    -&gt;select();
+Db::table(<span class="hljs-string">'think_user'</span>)
+    -&gt;where([
+        [<span class="hljs-string">'name'</span>, <span class="hljs-string">'like'</span>, $name . <span class="hljs-string">'%'</span>],
+        [<span class="hljs-string">'title'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'%'</span> . $title],
+        [<span class="hljs-string">'id'</span>, <span class="hljs-string">'&gt;'</span>, $id],
+        [<span class="hljs-string">'status'</span>, <span class="hljs-string">'='</span>, $status],
+    ])
+    -&gt;select();</code></pre><p>对应的sql语句是：SELECT * FROM `think_user` WHERE `name` LIKE 'thinkphp%' AND `title` LIKE '%thinkphp' AND `id` &gt; 0 AND `status` = '1'</p><pre type="Html"><code>$map = [
+        [<span class="hljs-string">'name'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'thinkphp%'</span>],
+        [<span class="hljs-string">'title'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'%thinkphp'</span>],
+        [<span class="hljs-string">'id'</span>, <span class="hljs-string">'&gt;'</span>, <span class="hljs-number">0</span>],
+    ];
+Db::table(<span class="hljs-string">'think_user'</span>)
+    -&gt;where([ $map ])
+    -&gt;where(<span class="hljs-string">'status'</span>,<span class="hljs-number">1</span>)
+    -&gt;select();</code></pre><p>SQL语句是：SELECT * FROM `think_user` WHERE ( `name` LIKE 'thinkphp%' AND `title` LIKE '%thinkphp' AND `id` &gt; 0 ) AND `status` = '1'</p><pre type="Html"><code>$map1 = [
+        [<span class="hljs-string">'name'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'thinkphp%'</span>],
+        [<span class="hljs-string">'title'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'%thinkphp'</span>],
+    ];
+    
+$map2 = [
+        [<span class="hljs-string">'name'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'kancloud%'</span>],
+        [<span class="hljs-string">'title'</span>, <span class="hljs-string">'like'</span>, <span class="hljs-string">'%kancloud'</span>],
+    ];    
+    
+Db::table(<span class="hljs-string">'think_user'</span>)
+    -&gt;whereOr([ $map1, $map2 ])
+    -&gt;select();</code></pre><p>SQL语句：SELECT * FROM `think_user` WHERE ( `name` LIKE 'thinkphp%' AND `title` LIKE '%thinkphp' ) OR ( `name` LIKE 'kancloud%' AND `title` LIKE '%kancloud' )</p><h3>order排序</h3><pre type="Html"><code>倒序
+<span class="hljs-selector-tag">-</span>&gt;<span class="hljs-selector-tag">order</span>(<span class="hljs-string">'id'</span>, <span class="hljs-string">'desc'</span>)
+正序
+<span class="hljs-selector-tag">-</span>&gt;<span class="hljs-selector-tag">order</span>(<span class="hljs-string">'listorder asc'</span>)</code></pre><pre type="Html"><code>Db::name(<span class="hljs-string">'score_goods'</span>)
+                           -&gt;where(<span class="hljs-string">'title'</span>, <span class="hljs-string">'like'</span>,  <span class="hljs-string">'%'</span> . $searchkey . <span class="hljs-string">'%'</span>)
+                           -&gt;order(<span class="hljs-string">'listorder asc'</span>)
+                           -&gt;order(<span class="hljs-string">'id desc'</span>)
+                           -&gt;paginate(<span class="hljs-number">5</span>);</code></pre><p>这里连续使用两个order作用就是 先按照listorder数字进行正序排序，如果listorder数字一致那么就按照id进行倒序排序。</p><p><b>快捷查询</b></p><pre type="Html"><code>Db::table(<span class="hljs-symbol">'think_user</span>')
+    -&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'name</span>|title<span class="hljs-string">','</span>like<span class="hljs-string">','</span>thinkphp%')
+    -&gt;<span class="hljs-keyword">where</span>(<span class="hljs-symbol">'create_time</span>&amp;update_time<span class="hljs-string">','</span>&gt;',<span class="hljs-number">0</span>)
+    -&gt;find();</code></pre><p>SQL：SELECT * FROM `think_user` WHERE ( `name` LIKE 'thinkphp%' OR `title` LIKE 'thinkphp%' ) AND ( `create_time` &gt; 0 AND `update_time` &gt; 0 ) LIMIT 1</p><p>在多个字段之间用<code>|</code>分割表示<code>OR</code>查询，用<code>&amp;</code>分割表示<code>AND</code>查询</p><p>还有使用闭包函数等等用法，一定要看文档。</p><h3>连表查询</h3><p>例子：比如下面两个表</p><p>xxx_auth_group</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>id</th><th>title</th><th>status</th></tr><tr><td>1</td><td>超级管理员</td><td>1</td></tr></tbody></table><p>xxx_admin</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><th>id</th><th>group_id</th><th>user_name</th><th>password</th></tr><tr><td>1</td><td>1</td><td>wb</td><td>asdsadasda</td></tr></tbody></table><p>选出所有admin表中admin.group_id = auth_group.id的行</p><pre type="Html"><code>$adminData = Db::name(<span class="hljs-string">'admin'</span>)
                 -&gt;alias(<span class="hljs-string">'a'</span>) // alias起别名
                 -&gt;field(<span class="hljs-string">'a.*, b.title'</span>) <span class="hljs-comment">// a数据表获取所有 b数据表获取title即可</span>
                 -&gt;join(<span class="hljs-string">'auth_group b'</span>, <span class="hljs-string">'a.group_id = b.id'</span>) <span class="hljs-comment">// join第二个参数是连表的条件 </span>
@@ -286,9 +463,55 @@ SELECT * <span class="hljs-keyword">FROM</span> xx WHERE title LIKE <span class=
                             -&gt;field(<span class="hljs-string">'a.*, b.title'</span>) <span class="hljs-comment">// a数据表获取所有 b数据表获取title即可</span>
                             -&gt;join(<span class="hljs-string">'auth_group b'</span>, <span class="hljs-string">'a.group_id = b.id'</span>) <span class="hljs-comment">// join第二个参数是连表的条件</span>
                             -&gt;where(<span class="hljs-string">'a.id'</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">// 其他管理员只能看到自己</span>
-                            -&gt;select();</code></pre><p>join链接表，并且join也能直接给表起别名</p><pre type="Html"><code><span class="hljs-keyword">join</span>(<span class="hljs-string">'auth_group b'</span>)这个表起别名叫b</code></pre><p>join：<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037549" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037549</a></p><h3>增</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037534" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037534</a></p><pre type="Html"><code>$data = [<span class="hljs-string">'foo'</span> =&gt; <span class="hljs-string">'bar'</span>, <span class="hljs-string">'bar'</span> =&gt; <span class="hljs-string">'foo'</span>];
-Db::name(<span class="hljs-string">'user'</span>)-&gt;insert($data);</code></pre><blockquote><p><code>insert</code>方法添加数据成功返回添加成功的条数，通常情况返回 1，如果你的数据表里面没有<code >foo</code>或者<code >bar</code>字段，那么就会抛出异常。</p></blockquote><p>添加数据后如果需要返回新增数据的自增主键，可以使用<code>insertGetId</code>方法新增数据并返回主键值：</p><pre type="Html"><code>$userId = Db::name(<span class="hljs-string">'user'</span>)-&gt;insertGetId($data);</code></pre><p><code>insertGetId</code>方法添加数据成功返回添加数据的自增主键</p><h3>删</h3><p>当id设置为表的主键的时候，可以用下面的方法删除：</p><pre type="Html"><code>$res = Db::name($dbname)-&gt;delete($id);</code></pre><p>上面这个删除有可能会报错。<span >&nbsp;Db::name($dbname)-&gt;delete($id) 这种写法依赖 ThinkPHP 自动将传入的值解析为主键条件。如果目标表 $dbname 对应的数据表没有设置主键，或者主键名不是默认的 id，框架就无法执行。会抛出错误：</span>报错了
-没有条件不会执行删除操作。</p><p>建议改为：</p><pre type="Html"><code>$res = Db::table($dbname)-&gt;where(<span class="hljs-string">'id'</span>, $id)-&gt;delete();</code></pre><p>111</p><h2>模板</h2><p>新版框架默认只能支持PHP原生模板，如果需要使用<code>thinkTemplate</code>模板引擎，需要安装<code>think-view</code>扩展（该扩展会自动安装<code>think-template</code>依赖库）。</p><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037613" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037613</a></p><pre type="Html"><code>composer <span class="hljs-built_in">require</span> topthink/think-view</code></pre><p>模板使用方法：<a href="https://www.kancloud.cn/manual/think-template/1286403" target="_blank">https://www.kancloud.cn/manual/think-template/1286403</a></p><p>模板所有标签：<a href="https://www.kancloud.cn/manual/think-template/1286416" target="_blank">https://www.kancloud.cn/manual/think-template/1286416</a></p><h3>基本循环和判断<b></b></h3><p>首先在控制器中，传入数据</p><pre type="Html"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)
+                            -&gt;select();</code></pre><p>join链接表，并且join也能直接给表起别名</p><pre type="Html"><code><span class="hljs-keyword">join</span>(<span class="hljs-string">'auth_group b'</span>)这个表起别名叫b</code></pre><p>如果我需要对a表加id限制，比如要表示 a.id = 10 and a.goods_id = b.id：</p><pre type="Html"><code> $id = input(<span class="hljs-string">'id'</span>);
+$scoreGoodsData = Db::name(<span class="hljs-string">'score_record'</span>)
+                           -&gt;alias(<span class="hljs-string">'a'</span>)
+                           -&gt;join(<span class="hljs-string">'score_goods b'</span>, <span class="hljs-string">"a.goods_id = b.id"</span>)
+                           -&gt;field(<span class="hljs-string">'a.*, b.title, b.thumb'</span>)
+                           -&gt;where(<span class="hljs-string">'a.id'</span>, $id)
+                           -&gt;find();</code></pre><p>这种情况的时候需要单独加where。</p><p>3个表互相链接</p><pre type="Html"><code>$commentData = Db::name(<span class="hljs-string">'comment'</span>)
+                           -&gt;alias(<span class="hljs-string">'a'</span>)
+                           -&gt;join(<span class="hljs-string">'goods b'</span>, <span class="hljs-string">'a.goods_id = b.goods_id'</span>)
+                           -&gt;join(<span class="hljs-string">'user c'</span>, <span class="hljs-string">'a.user_id = c.id'</span>)
+                           -&gt;field(<span class="hljs-string">'a.*, b.goods_thumb, c.username, c.mobile'</span>)
+                           -&gt;order(<span class="hljs-string">'a.id desc'</span>)
+                           -&gt;paginate(<span class="hljs-number">5</span>);</code></pre><pre type="Html"><code><span class="hljs-keyword">SELECT</span> a.*, b.goods_thumb, c.username, c.mobile
+<span class="hljs-keyword">FROM</span> tp_comment <span class="hljs-keyword">AS</span> a
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> tp_goods <span class="hljs-keyword">AS</span> b <span class="hljs-keyword">ON</span> a.goods_id = b.goods_id
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> tp_user <span class="hljs-keyword">AS</span> c <span class="hljs-keyword">ON</span> a.user_id = c.id
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> a.id <span class="hljs-keyword">DESC</span>
+<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">0</span>, <span class="hljs-number">5</span>;</code></pre><p>注意<span ><b>join vs leftJoin的区别</b></span></p><p><b>join() = INNER JOIN（内连接）</b>只返回两张表中都匹配上的行</p><pre type="Html"><code><span class="hljs-attribute">comment</span> (a)          user (c)
+  <span class="hljs-attribute">id</span>=<span class="hljs-number">1</span>, user_id=<span class="hljs-number">100</span>     id=<span class="hljs-number">100</span>, mobile=...
+  <span class="hljs-attribute">id</span>=<span class="hljs-number">2</span>, user_id=<span class="hljs-number">999</span>     id=<span class="hljs-number">100</span>...</code></pre><p>评论1的 user_id=100 → user 表有 → 保留</p><p>评论2的 user_id=999 → user 表没有（用户被删了）→ 丢弃</p><p>用 SQL 表达：FROM comment a INNER JOIN user c ON a.user_id = c.id</p><p><b>leftJoin() = LEFT JOIN（左连接）</b></p><p>以左表（comment）为准，左表每一行都保留；右表匹配不上就填 NULL。</p><p>评论1 → 匹配到 user → 保留，带 username/mobile</p><p>评论2（user_id=999 不存在）→ 也保留，但 c.username、c.mobile 都是 NULL</p><p>用 SQL 表达：FROM comment a LEFT JOIN user c ON a.user_id = c.id</p><p>对比表</p><table border="0" width="100%" cellpadding="0" cellspacing="0"><thead><tr><th></th><th><code>join</code>(INNER)</th><th><code>leftJoin</code>(LEFT)</th></tr></thead><tbody><tr><td>左表不匹配的行</td><td>丢弃</td><td>&nbsp;保留（右表字段为 NULL）</td></tr><tr><td>右表不匹配的行</td><td>丢弃</td><td>&nbsp;丢弃（左连接不看右表多余行）</td></tr><tr><td>结果行数</td><td>两表交集</td><td>≥ 左表行数</td></tr><tr><td>典型场景</td><td>一定要关联数据、关联不上就不要</td><td>主表数据必须展示，关联信息可有可无</td></tr></tbody></table><p>join：<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037549" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037549</a></p><h3>增</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037534" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037534</a></p><pre type="Html"><code>$data = [<span class="hljs-string">'foo'</span> =&gt; <span class="hljs-string">'bar'</span>, <span class="hljs-string">'bar'</span> =&gt; <span class="hljs-string">'foo'</span>];
+Db::name(<span class="hljs-string">'user'</span>)-&gt;insert($data);</code></pre><blockquote><p><code>insert</code>方法添加数据成功返回添加成功的条数，单条插入成功时通常就是整数<font face="monospace">1</font>，结合本例，如果你的数据表里面没有<font face="monospace">foo</font>或者<font face="monospace">bar</font>字段，那么就会抛出异常。</p></blockquote><p>添加数据后如果需要返回新增数据的自增主键，可以使用<code>insertGetId</code>方法新增数据并返回主键值：</p><pre type="Html"><code>$userId = Db::name(<span class="hljs-string">'user'</span>)-&gt;insertGetId($data);</code></pre><p><code>insertGetId</code>方法添加数据成功返回添加数据的自增主键</p><p>如果你因为某些原因必须保留<code>insert</code>方法，也可以在插入后紧接着调用<code>getLastInsID()</code>：</p><pre type="Html"><code>Db::name(<span class="hljs-string">'standard'</span>)-&gt;insert([...]);
+$id = Db::name(<span class="hljs-string">'standard'</span>)-&gt;getLastInsID();</code></pre><p>更推荐直接使用<code>insertGetId</code>，语义更清晰，也能避免中间执行其他数据库操作导致<code>getLastInsID</code>取到错误值。</p><p><b>一次性插入多行&nbsp;</b>InsertAll</p><p><b>比如有这么一个多行数据</b></p><pre type="Html"><code>
+$attrValues = [
+    [<span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>]
+];
+$resStandardId = <span class="hljs-number">20</span>;
+<span class="hljs-comment">// array_map 里面的func是一个闭包，如果使用外部的变量必须用use</span>
+$standardValueRows = array_map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$item</span>) <span class="hljs-title">use</span> (<span class="hljs-params">$resStandardId</span>) </span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-string">'standard_id'</span> =&gt; $resStandardId,
+        <span class="hljs-string">'standard_value'</span> =&gt; $item
+    ];
+}, $attrValues);
+$res = Db::name(<span class="hljs-string">'standard_value'</span>)-&gt;insertAll($standardValueRows);</code></pre><p>构建出来的$attrValues 如下：</p><pre type="Html"><code>^ <span class="hljs-keyword">array</span>:<span class="hljs-number">3</span> [▼
+  <span class="hljs-number">0</span> =&gt; <span class="hljs-keyword">array</span>:<span class="hljs-number">2</span> [▼
+    <span class="hljs-string">"standard_id"</span> =&gt; <font color="#008080">20</font>
+    <span class="hljs-string">"standard_value"</span> =&gt; <span class="hljs-string">"11"</span>
+  ]
+  <span class="hljs-number">1</span> =&gt; <span class="hljs-keyword">array</span>:<span class="hljs-number">2</span> [▼
+    <span class="hljs-string">"standard_id"</span> =&gt; <font color="#008080">20</font>
+    <span class="hljs-string">"standard_value"</span> =&gt; <span class="hljs-string">"12"</span>
+  ]
+  <span class="hljs-number">2</span> =&gt; <span class="hljs-keyword">array</span>:<span class="hljs-number">2</span> [▼
+    <span class="hljs-string">"standard_id"</span> =&gt; <font color="#008080">20</font>
+    <span class="hljs-string">"standard_value"</span> =&gt; <span class="hljs-string">"13"</span>
+  ]
+]</code></pre><p>Db::name('standard_value')-&gt;insertAll($standardValueRows); 构建好数据之后，可以用InsertAll一次性插入多行。</p><h3>删</h3><p>当id设置为表的主键的时候，可以用下面的方法删除：</p><pre type="Html"><code>$res = Db::name($dbname)-&gt;delete($id);</code></pre><p>上面这个删除有可能会报错。<span >&nbsp;Db::name($dbname)-&gt;delete($id) 这种写法依赖 ThinkPHP 自动将传入的值解析为主键条件。如果目标表 $dbname 对应的数据表没有设置主键，或者主键名不是默认的 id，框架就无法执行。会抛出错误：</span>报错了
+没有条件不会执行删除操作。</p><p>建议改为：</p><pre type="Html"><code>$res = Db::table($dbname)-&gt;where(<span class="hljs-string">'id'</span>, $id)-&gt;delete();</code></pre><h3>whereIn删除</h3><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037566" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037566</a></p><p>这是一个快捷方法，比如 我要删除：</p><pre type="Html"><code>$childStr = ‘<span class="hljs-number">1</span>，<span class="hljs-number">2</span>，<span class="hljs-number">3</span>，<span class="hljs-number">4</span>，<span class="hljs-number">5</span>，<span class="hljs-number">6</span>’;
+Db::name(<span class="hljs-string">'category'</span>)-&gt;whereIn(<span class="hljs-string">'id'</span>, $childStr)-&gt;delete();</code></pre><p>字段IN查询</p><h2>模板</h2><p>新版框架默认只能支持PHP原生模板，如果需要使用<code>thinkTemplate</code>模板引擎，需要安装<code>think-view</code>扩展（该扩展会自动安装<code>think-template</code>依赖库）。</p><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037613" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037613</a></p><pre type="Html"><code>composer <span class="hljs-built_in">require</span> topthink/think-view</code></pre><p>模板使用方法：<a href="https://www.kancloud.cn/manual/think-template/1286403" target="_blank">https://www.kancloud.cn/manual/think-template/1286403</a></p><p>模板所有标签：<a href="https://www.kancloud.cn/manual/think-template/1286416" target="_blank">https://www.kancloud.cn/manual/think-template/1286416</a></p><h3>基本循环和判断<b></b></h3><p>首先在控制器中，传入数据</p><pre type="Html"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)
     </span>{
         $configData1 = DB::name(<span class="hljs-string">'xxx'</span>)-&gt;where(<span class="hljs-string">'xxx'</span>, <span class="hljs-number">1</span>)-&gt;select();
         <span class="hljs-keyword">return</span> view(<span class="hljs-string">''</span>, [
@@ -328,7 +551,13 @@ Db::name(<span class="hljs-string">'user'</span>)-&gt;insert($data);</code></pre
     <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>女士<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 {/if}</code></pre><p>同样的还可以使用原生php</p><pre type="Html"><code>{php}
      <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">in_array($vo[<span class="hljs-string">'id'</span>], [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])</span>)</span>{ echo <span class="hljs-string">'checked'</span>; }
-{/php}</code></pre><p>111</p><h3>在父类中进行模板赋值</h3><p>模板赋值：<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037609" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037609</a></p><p>比如现在有个父类控制器</p><pre type="Html"><code><span class="hljs-comment">// controller/Base.php</span>
+{/php}</code></pre><pre type="Html"><code>{php}
+     <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">in_array($vo[<span class="hljs-string">'id'</span>], [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])</span>)</span>{ 
+{/php}
+.... HTML
+{php}
+     }
+{/php}</code></pre><p><span >111</span></p><h3>在父类中进行模板赋值</h3><p>模板赋值：<a href="https://www.kancloud.cn/manual/thinkphp6_0/1037609" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037609</a></p><p>比如现在有个父类控制器</p><pre type="Html"><code><span class="hljs-comment">// controller/Base.php</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Base</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseController</span> </span>{...}
 
 <span class="hljs-comment">// controller/Other.php</span>
@@ -363,7 +592,63 @@ Db::name(<span class="hljs-string">'user'</span>)-&gt;insert($data);</code></pre
 
 <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">group_add</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">return</span> view(<span class="hljs-string">'admin/group_add'</span>);
-}</code></pre><p>111</p><h2>中间件</h2><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037493" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037493</a></p><p>安装中间件，并生成一个Check.php的中间件文件</p><pre type="Html"><code><span class="hljs-selector-tag">php</span> <span class="hljs-selector-tag">think</span> <span class="hljs-selector-tag">make</span><span class="hljs-selector-pseudo">:middleware</span> <span class="hljs-selector-tag">Check</span></code></pre><p>执行之后，会在app目录下生成一个middleware/Check.php的目录，注意，app目录下的是叫做全局中间件，如果要做应用中间件，就是对某个目录下的应用生效，就要放到对应的目录中，比如demo里面。注意要同时移动app/middleware目录和<strong>复制</strong>app/middleware.php文件 都一起移动到子应用demo目录中。</p><blockquote>app/middleware.php 里面负责开启session，不开启session会导致验证码怎么验证都是false，这个文件不能删除</blockquote><h3>开启应用中间件</h3><p>app/demo/middleware.php 中必须要开启，中间件才能生效</p><pre type="Html"><code><span class="hljs-keyword">return</span> [
+}</code></pre><h3>在模板中给变量一个默认值</h3><pre type="Html"><code>&lt;input placeholder=<span class="hljs-string">"{<span class="hljs-variable">$searchkey</span>|default='权限名称'}"</span>&gt;</code></pre><p>使用default指定一个默认值</p><h3>禁止转义</h3><pre type="Html"><code>&lt;i <span class="hljs-keyword">class</span>=<span class="hljs-string">"Hui-iconfont"</span>&gt;&amp;<span class="hljs-meta">#xe620;&lt;/i&gt;</span></code></pre><p>比如这种图标写法，直接写html浏览器是可以正常渲染的。但是改成动态输出，并给一个默认值：</p><pre type="Html"><code>&lt;i <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"Hui-iconfont"</span>&gt;{$vo.icon|<span class="hljs-keyword">default</span>=<span class="hljs-string">"&amp;#xe620;"</span>}&lt;/i&gt;</code></pre><p>这时候在浏览器中输出会有问题，原因就是被转义了，这时候需要禁止转义：</p><pre type="Html"><code>&lt;i <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"Hui-iconfont"</span>&gt;{$vo.icon|<span class="hljs-keyword">default</span>=<span class="hljs-string">"&amp;#xe620;"</span>|raw}&lt;/i&gt;</code></pre><p>加上|raw，禁止转义。</p><h3>模板中使用原生PHP</h3><pre type="Html"><code>{php}
+<span class="hljs-keyword">if</span>(!<span class="hljs-keyword">empty</span>($searchkey)){
+	<span class="hljs-keyword">echo</span> (str_replace($searchkey,<span class="hljs-string">"&lt;span style='color: #f00;'&gt;"</span>.$searchkey.<span class="hljs-string">"&lt;/span&gt;"</span>,$vo[<span class="hljs-string">'title'</span>]));
+}<span class="hljs-keyword">else</span>{
+	<span class="hljs-keyword">echo</span> $vo[<span class="hljs-string">'title'</span>];
+}
+{/php}</code></pre><p>用原生PHP代码实现关键词标红替换。</p><h3>模板时间戳格式化</h3><pre type="Html"><code>&lt;td&gt;{$vo.<span class="hljs-built_in">time</span>|<span class="hljs-built_in">date</span>=<span class="hljs-string">'Y-m-d H:s:i'</span>}&lt;/td&gt;</code></pre><p>vo.time是一个时间戳</p><h3>模板自定义函数</h3><pre type="Html"><code><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{$vo.parent_id | getUserById}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></code></pre><p>上面这个函数是一个自定义的功能，{参数 | 函数名}，像前面的{$vo.time|date='Y-m-d H:s:i'} 也是一样，无非就是date是内置函数了，$vo.time是参数。</p><p>getUserById这个函数放在 <b>项目</b><span ><b>\app\common.php</b>中：</span></p><pre type="Html"><code><span class="hljs-comment">// 应用公共文件</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">facade</span>\<span class="hljs-title">Db</span>;
+
+<span class="hljs-comment">// 应用在 项目\app\qingadmin\view\fenyong\index.html</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUserById</span>(<span class="hljs-params">$id</span>) </span>{
+    <span class="hljs-comment">// 通过这个ID从数据表中获取用户的信息</span>
+    $userData = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'id'</span>, <span class="hljs-string">'='</span>, $id)-&gt;find();
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">empty</span>($userData)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'其他途径'</span>;
+    }
+    <span class="hljs-keyword">return</span> $userData[<span class="hljs-string">'username'</span>];
+}</code></pre><p>最终渲染出用户名。</p><h2>异常处理</h2><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037615#_78" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037615#_78</a>&nbsp;异常处理接管</p><p>在项目/app/<span >ExceptionHandle.php中,注意 在这里修改，会导致全局生效</span></p><pre type="Html"><code> <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params">$request, <span class="hljs-built_in">Throwable</span> $e</span>): <span class="hljs-title">Response</span>
+    </span>{
+        <span class="hljs-comment">// 添加自定义异常处理机制</span>
+        <span class="hljs-keyword">if</span> ($e <span class="hljs-keyword">instanceof</span> ValidateException) {
+            <span class="hljs-keyword">return</span> json($e-&gt;getError(), <span class="hljs-number">422</span>);
+        }
+
+        <span class="hljs-comment">// 其他错误交给系统处理</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">parent</span>::render($request, $e);
+    }</code></pre><p>比如，如上，添加验证捕获类自定义异常处理，当上传等验证抛错捕获到之后，会将错误以json形式进行渲染。</p><p>需要注意，假如我在全局中设置了自定义抛错，那么在控制器中，就不能再执行try-catch了</p><pre type="Html"><code><span class="hljs-keyword">try</span> {
+        validate([
+            <span class="hljs-string">'file'</span> =&gt; [
+               <span class="hljs-string">'filesize'</span> =&gt; <span class="hljs-number">102400</span>, <span class="hljs-comment">//kb</span>
+               <span class="hljs-string">'fileExt'</span> =&gt; <span class="hljs-string">'jpg'</span>
+            ]
+        ])-&gt;check([
+            <span class="hljs-string">'file'</span> =&gt; $file
+        ]);
+
+         $savename = \think\facade\Filesystem::putFile( <span class="hljs-string">'upload'</span>, $file);
+         $savename = str_replace(<span class="hljs-string">'\\'</span>, <span class="hljs-string">'/'</span>, $savename);
+         $return[<span class="hljs-string">'path'</span>] = <span class="hljs-string">'/tp6-eshop/code/'</span> . $savename;
+       
+    } <span class="hljs-keyword">catch</span> (\think\<span class="hljs-built_in">exception</span>\ValidateException $e) {
+        <span class="hljs-comment">// 如果设置了全局 抛错处理，就不需要在控制器中再设置了try-catch了</span>
+       <span class="hljs-comment">// 否则还会走catch  </span>
+        <span class="hljs-keyword">echo</span> $e-&gt;getMessage();
+    }  </code></pre><p>正确操作如下：</p><pre type="Html"><code>validate([
+            <span class="hljs-string">'file'</span> =&gt; [
+               <span class="hljs-string">'filesize'</span> =&gt; <span class="hljs-number">102400</span>, <span class="hljs-comment">//kb</span>
+               <span class="hljs-string">'fileExt'</span> =&gt; <span class="hljs-string">'jpg'</span>
+            ]
+        ])-&gt;check([
+            <span class="hljs-string">'file'</span> =&gt; $file
+        ]);
+
+         $savename = \think\facade\Filesystem::putFile( <span class="hljs-string">'upload'</span>, $file);
+         $savename = str_replace(<span class="hljs-string">'\\'</span>, <span class="hljs-string">'/'</span>, $savename);
+         $return[<span class="hljs-string">'path'</span>] = <span class="hljs-string">'/tp6-eshop/code/'</span> . $savename;
+    <span class="hljs-keyword">return</span> json($return);</code></pre><p>在控制器中去掉try-catch，交给统一的全局处理。</p><p><span ></span></p><h2>中间件</h2><p><a href="https://www.kancloud.cn/manual/thinkphp6_0/1037493" target="_blank">https://www.kancloud.cn/manual/thinkphp6_0/1037493</a></p><p>安装中间件，并生成一个Check.php的中间件文件</p><pre type="Html"><code><span class="hljs-selector-tag">php</span> <span class="hljs-selector-tag">think</span> <span class="hljs-selector-tag">make</span><span class="hljs-selector-pseudo">:middleware</span> <span class="hljs-selector-tag">Check</span></code></pre><p>执行之后，会在app目录下生成一个middleware/Check.php的目录，注意，app目录下的是叫做全局中间件，如果要做应用中间件，就是对某个目录下的应用生效，就要放到对应的目录中，比如demo里面。注意要同时移动app/middleware目录和<strong>复制</strong>app/middleware.php文件 都一起移动到子应用demo目录中。</p><blockquote>app/middleware.php 里面负责开启session，不开启session会导致验证码怎么验证都是false，这个文件不能删除</blockquote><h3>开启应用中间件</h3><p>app/demo/middleware.php 中必须要开启，中间件才能生效</p><pre type="Html"><code><span class="hljs-keyword">return</span> [
     <span class="hljs-comment">// 全局请求缓存</span>
     <span class="hljs-comment">// \think\middleware\CheckRequestCache::class,</span>
     <span class="hljs-comment">// 多语言加载</span>
@@ -501,27 +786,27 @@ $list = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class=
     </div>
     <ul class="list-b">
                 <li>
-            <a href="/blog/articles/516" class="imgbox">
-                <img src="/statics/blog/2024/0513/2772518d6af8a19221032644c2ed3019.png">
+            <a href="/blog/articles/321" class="imgbox">
+                <img src="/statics/blog/2022/1020/b585415b95b0a09b50a897e45b449245.jpg">
             </a>
-            <a href="/blog/articles/516" class="title" title="thinkphp-多对多关联查询">
-                thinkphp-多对多关联查询
-            </a>
-        </li>
-                <li>
-            <a href="/blog/articles/328" class="imgbox">
-                <img src="/statics/blog/2022/1124/00f04e792579ed049a5bb01c4fa6eb09.png">
-            </a>
-            <a href="/blog/articles/328" class="title" title="js获取浏览器、屏幕的宽高(多浏览器)">
-                js获取浏览器、屏幕的宽高(多浏览器)
+            <a href="/blog/articles/321" class="title" title="uniapp项目中禁止横屏让app不自动旋转且始终保持竖屏">
+                uniapp项目中禁止横屏让app不自动旋转且始终保持竖屏
             </a>
         </li>
                 <li>
-            <a href="/blog/articles/316" class="imgbox">
-                <img src="/statics/blog/2022/1011/9e86f388b0f00f92f8aecc27cecf4eeb.jpg">
+            <a href="/blog/articles/484" class="imgbox">
+                <img src="/statics/blog/2024/0326/90ea11d08a1726570ae38a9a226c9186.png">
             </a>
-            <a href="/blog/articles/316" class="title" title="跨域请求产生错误的原因及基本的处理方法">
-                跨域请求产生错误的原因及基本的处理方法
+            <a href="/blog/articles/484" class="title" title="在phpstudy中配置composer">
+                在phpstudy中配置composer
+            </a>
+        </li>
+                <li>
+            <a href="/blog/articles/361" class="imgbox">
+                <img src="/statics/blog/2023/0216/668c9296be956f049b809bc035ccdf8c.jpg">
+            </a>
+            <a href="/blog/articles/361" class="title" title="uniapp开发的APP下载图片到手机相册功能的实现">
+                uniapp开发的APP下载图片到手机相册功能的实现
             </a>
         </li>
             </ul>
@@ -608,18 +893,6 @@ $list = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class=
                         </div>
                         <ul class="list-c">
                                                             <li>
-                                    <a href="/blog/articles/543">
-                                        <i class="icon fa fa-caret-right"></i>
-                                        thinkphp笔记-上传功能、多语言
-                                    </a>
-                                </li>
-                                                            <li>
-                                    <a href="/blog/articles/103">
-                                        <i class="icon fa fa-caret-right"></i>
-                                        Eloquent-ORM简介、模型的建立及查询数据
-                                    </a>
-                                </li>
-                                                            <li>
                                     <a href="/blog/articles/108">
                                         <i class="icon fa fa-caret-right"></i>
                                         使用Eloquent-ORM修改数据
@@ -632,9 +905,21 @@ $list = Db::name(<span class="hljs-string">'user'</span>)-&gt;where(<span class=
                                     </a>
                                 </li>
                                                             <li>
-                                    <a href="/blog/articles/190">
+                                    <a href="/blog/articles/517">
                                         <i class="icon fa fa-caret-right"></i>
-                                        Artisan基本用法
+                                        thinkphp-路由、路由的变量规则和闭包、地址和参数、域名和跨域请求
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/89">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        控制器与视图的基础应用
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="/blog/articles/100">
+                                        <i class="icon fa fa-caret-right"></i>
+                                        使用查询构造器查询数据
                                     </a>
                                 </li>
                                                     </ul>
